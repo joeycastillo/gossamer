@@ -57,7 +57,8 @@ LDFLAGS += -Wl,--script=$(TOP)/chips/$(CHIP)/linker/$(LDSCRIPT).ld
 LIBS += -lm
 
 INCLUDES += \
-  -I$(TOP)/common \
+  -I$(TOP)/common/ \
+  -I$(TOP)/peripherals/ \
   -I$(TOP)/chips/$(CHIP)/include/ \
   -I$(TOP)/chips/$(CHIP)/include/component \
   -I$(TOP)/chips/$(CHIP)/include/instance \
@@ -68,6 +69,7 @@ SRCS += \
   $(TOP)/chips/$(CHIP)/system_$(CHIP).c \
   $(TOP)/main.c \
   $(TOP)/common/delay.c \
+  $(TOP)/peripherals/rtc.c \
 
 DEFINES += \
   -DDONT_USE_CMSIS_INIT
