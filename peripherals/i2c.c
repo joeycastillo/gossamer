@@ -18,6 +18,8 @@
 
 /// TODO: move the SERCOM selection back to a board config file
 
+#ifdef _SAMD21_
+
 void i2c_init(void) {
     /* Enable the APB clock for SERCOM. */
     PM->APBCMASK.reg |= PM_APBCMASK_SERCOM5;
@@ -122,3 +124,5 @@ I2CResult i2c_write(uint8_t address, uint8_t* data, size_t len) {
 
     return I2C_RESULT_SUCCESS;
 }
+
+#endif

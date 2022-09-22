@@ -28,7 +28,7 @@
 
 MEMORY
 {
-  flash (rx) : ORIGIN = 0x00000000 + 8K, LENGTH = 0x4000 - 8K /* 16k - 8k */
+  flash (rx) : ORIGIN = 0x00000000 + 1K, LENGTH = 0x4000 - 1K /* 16k - 1k */
   ram  (rwx) : ORIGIN = 0x20000000, LENGTH = 0x1000 /* 4k */
 }
 

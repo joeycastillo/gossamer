@@ -2,6 +2,8 @@
 BUILD = ./build
 BIN = firmware
 
+include $(TOP)/boards/$(BOARD)/board.mk
+
 ##############################################################################
 .PHONY: all directory clean size
 
@@ -40,7 +42,9 @@ endif
 CC = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
 SIZE = arm-none-eabi-size
-UF2 = python3 $(TOP)/utils/uf2conv.py
+UF2 = python3 $(TOP)/utils/uf2/uf2conv.py
+DFU_CONV = $(TOP)/utils/dfu/dx1elf2dfu
+DFU_UTIL = dfu-util
 
 CFLAGS += -W -Wall -Wextra -Wmissing-prototypes -Wmissing-declarations
 CFLAGS += --std=gnu99 -Os
@@ -60,6 +64,7 @@ LIBS += -lm
 INCLUDES += \
   -I$(TOP)/common/ \
   -I$(TOP)/peripherals/ \
+  -I$(TOP)/boards/$(BOARD)/ \
   -I$(TOP)/chips/$(CHIP)/include/ \
 
 SRCS += \
