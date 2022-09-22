@@ -67,6 +67,7 @@ SRCS += \
   $(TOP)/chips/$(CHIP)/startup_$(CHIP).c \
   $(TOP)/chips/$(CHIP)/system_$(CHIP).c \
   $(TOP)/main.c \
+  $(TOP)/common/delay.c \
 
 DEFINES += \
   -DDONT_USE_CMSIS_INIT

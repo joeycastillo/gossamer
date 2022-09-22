@@ -35,12 +35,16 @@
 #include "pins.h"
 #include "app.h"
 #include "system.h"
+#include "delay.h"
 
 //-----------------------------------------------------------------------------
 
 int main(void) {
     // set up system clocks
     sys_init();
+
+    // set up system tick
+    systick_init();
 
     // allow application to do its own initialization
     app_init();
