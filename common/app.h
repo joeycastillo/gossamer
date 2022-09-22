@@ -24,7 +24,12 @@
 
 #pragma once
 
+#include <stdint.h>
 #include <stdbool.h>
+#include <stddef.h>
+
+#include "sam.h"
+#include "pins.h"
 
 ////< @file app.h
 
