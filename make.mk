@@ -60,9 +60,6 @@ INCLUDES += \
   -I$(TOP)/common/ \
   -I$(TOP)/peripherals/ \
   -I$(TOP)/chips/$(CHIP)/include/ \
-  -I$(TOP)/chips/$(CHIP)/include/component \
-  -I$(TOP)/chips/$(CHIP)/include/instance \
-  -I$(TOP)/chips/$(CHIP)/include/pio \
 
 SRCS += \
   $(TOP)/chips/$(CHIP)/startup_$(CHIP).c \
