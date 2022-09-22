@@ -1,6 +1,7 @@
+#pragma once
+
 #include "hal_gpio.h"
 
-#pragma once
 
 // Analog pins
 HAL_GPIO_PIN(AREF, A, 3)

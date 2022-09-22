@@ -26,6 +26,8 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#pragma once
+
 ////< @file system.h
 
 /// @{

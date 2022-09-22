@@ -25,9 +25,9 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+#include "sam.h"
 
-#ifndef _HAL_GPIO_H_
-#define _HAL_GPIO_H_
+#pragma once
 
 /*- Definitions -------------------------------------------------------------*/
 #define HAL_GPIO_PORTA       0
@@ -121,6 +121,4 @@
     PORT->Group[HAL_GPIO_PORT##port].PINCFG[pin].reg &= ~PORT_PINCFG_PMUXEN;	\
     (void)HAL_GPIO_##name##_pmuxdis;						\
   }										\
-
-#endif // _HAL_GPIO_H_
 

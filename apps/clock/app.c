@@ -1,5 +1,7 @@
 #include "app.h"
+#include "i2c.h"
 #include "eic.h"
+#include "drivers/oso_lcd.h"
 
 void app_init(void) {
 }
@@ -11,6 +13,12 @@ void app_setup(void) {
 
     // set up the external interrupt controller
     eic_init();
+
+    // set up the I²C peripheral...
+    i2c_init();
+    // ...and the Oddly Specific LCD
+    oso_lcd_begin();
+    oso_lcd_fill(0);
 
     // configure button D5 as an active low interrupt
     HAL_GPIO_D5_in();
@@ -26,13 +34,8 @@ void app_setup(void) {
 }
 
 bool app_loop(void) {
-    // if D5 is pressed light the green LED
-    if (HAL_GPIO_D5_read()) HAL_GPIO_D8_clr();
-    else HAL_GPIO_D8_set();
-
-    // if D5 is pressed light the red one
-    if (HAL_GPIO_D9_read()) HAL_GPIO_LED_clr();
-    else HAL_GPIO_LED_set();
+    if (!HAL_GPIO_D9_read()) oso_lcd_print("Hello");
+    if (!HAL_GPIO_D5_read()) oso_lcd_print("$Jrld");
 
     // return true to hang out in STANDBY until another button is pressed
     return true;
