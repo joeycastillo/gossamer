@@ -74,10 +74,10 @@ rtc_date_time rtc_get_date_time(void) {
 void rtc_enable_alarm_interrupt(rtc_date_time alarm_time, rtc_alarm_match mask) {
     RTC->MODE2.Mode2Alarm[0].ALARM.reg = alarm_time.reg;
     RTC->MODE2.Mode2Alarm[0].MASK.reg = mask;
+    _rtc_sync();
     RTC->MODE2.INTENSET.reg = RTC_MODE2_INTENSET_ALARM0;
     NVIC_ClearPendingIRQ(RTC_IRQn);
     NVIC_EnableIRQ(RTC_IRQn);
-    RTC->MODE2.INTENSET.reg = RTC_MODE2_INTENSET_ALARM0;
 }
 
 void rtc_disable_alarm_interrupt(void) {

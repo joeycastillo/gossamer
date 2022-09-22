@@ -53,6 +53,7 @@ CFLAGS += -MD -MP -MT $(BUILD)/$(*F).o -MF $(BUILD)/$(@F).d
 LDFLAGS += -mcpu=cortex-m0plus -mthumb
 LDFLAGS += -Wl,--gc-sections
 LDFLAGS += -Wl,--script=$(TOP)/chips/$(CHIP)/linker/$(LDSCRIPT).ld
+LDFLAGS += -specs=nosys.specs
 
 LIBS += -lm
 
