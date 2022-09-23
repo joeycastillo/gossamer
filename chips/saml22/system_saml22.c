@@ -28,9 +28,10 @@
 
 //-----------------------------------------------------------------------------
 #include "saml22.h"
+#include "system.h"
 
 //-----------------------------------------------------------------------------
-static void sys_init(void) {
+void sys_init(void) {
     // Switch to 8MHz clock
     OSCCTRL->OSC16MCTRL.reg = OSCCTRL_OSC16MCTRL_ENABLE | OSCCTRL_OSC16MCTRL_FSEL_8;
 
@@ -38,4 +39,44 @@ static void sys_init(void) {
     PM->INTFLAG.reg = PM_INTFLAG_PLRDY;
     PM->PLCFG.reg = PM_PLCFG_PLSEL_PL2_Val;
     while (!PM->INTFLAG.reg);
+}
+
+uint32_t get_cpu_frequency(void) {
+    switch (OSCCTRL->OSC16MCTRL.bit.FSEL) {
+    case 0:
+        return 4000000;
+    case 1:
+        return 8000000;
+    case 2:
+        return 12000000;
+    case 3:
+        return 16000000;
+    default:
+        return 0;
+    }
+}
+
+bool set_cpu_frequency(uint32_t freq) {
+    switch (freq) {
+    case 4000000:
+        OSCCTRL->OSC16MCTRL.bit.FSEL = 0;
+        break;
+    case 8000000:
+        OSCCTRL->OSC16MCTRL.bit.FSEL = 1;
+        break;
+    case 12000000:
+        OSCCTRL->OSC16MCTRL.bit.FSEL = 2;
+        break;
+    case 16000000:
+        OSCCTRL->OSC16MCTRL.bit.FSEL = 3;
+        break;
+    default:
+        return false;
+    }
+    return true;
+}
+
+void _enter_standby_mode() {
+    PM->SLEEPCFG.bit.SLEEPMODE = PM_SLEEPCFG_SLEEPMODE_STANDBY_Val;
+    __WFI();
 }
