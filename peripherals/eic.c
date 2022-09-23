@@ -22,31 +22,47 @@
  * SOFTWARE.
  */
 
+#include <stddef.h>
 #include "eic.h"
 #include "sam.h"
-#include <stddef.h>
 
-#ifdef _SAMD21_
+#if defined(_SAMD21_) || defined(_SAMD11_)
+#define CTRLREG (EIC->CTRL)
+#else
+#define CTRLREG (EIC->CTRLA)
+#endif
 
 static void _eic_sync(void) {
+#if defined(_SAMD21_) || defined(_SAMD11_)
     while (EIC->STATUS.bit.SYNCBUSY);
+#else
+    while (EIC->SYNCBUSY.reg);
+#endif
 }
 
 void eic_init(void) {
+#if defined(_SAMD21_) || defined(_SAMD11_)
     // enable the EIC
     PM->APBAMASK.reg |= PM_APBAMASK_EIC;
-
     // Configure EIC to use GCLK2 (the 32.768 kHz low power oscillator)
     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(EIC_GCLK_ID) | GCLK_CLKCTRL_CLKEN |
                         GCLK_CLKCTRL_GEN(2);
+#else
+    // enable the EIC
+    MCLK->APBAMASK.reg |= MCLK_APBAMASK_EIC;
+#endif
 
-    EIC->CTRL.bit.ENABLE = 0;
+    CTRLREG.bit.ENABLE = 0;
     _eic_sync();
 
-    EIC->CTRL.bit.SWRST = 1;
+    CTRLREG.bit.SWRST = 1;
     _eic_sync();
 
-    RTC->MODE2.CTRL.bit.ENABLE = 1;
+#if defined(_SAML21_) || defined(_SAML22_)
+    // Configure EIC to use the 32.768 kHz low power oscillator directly.
+    EIC->CTRLA.bit.CKSEL = 1;
+#endif
+    CTRLREG.bit.ENABLE = 1;
     _eic_sync();
 
     NVIC_ClearPendingIRQ(EIC_IRQn);
@@ -57,18 +73,20 @@ void eic_configure_channel(const uint8_t channel, eic_interrupt_trigger trigger)
     uint8_t config_index = (channel > 7) ? 1 : 0;
     uint8_t sense_pos = 4 * (channel % 8);
 
-    EIC->CTRL.bit.ENABLE = 0;
+    CTRLREG.bit.ENABLE = 0;
     _eic_sync();
 
     uint32_t config = EIC->CONFIG[config_index].reg;
-    uint32_t wakeup = EIC->WAKEUP.reg;
     config &= ~(7 << sense_pos);
     config |= trigger << (sense_pos);
     EIC->CONFIG[config_index].reg = config;
     EIC->INTENSET.reg = 1 << channel;
+#if defined(_SAMD21_) || defined(_SAMD11_)
+    uint32_t wakeup = EIC->WAKEUP.reg;
     EIC->WAKEUP.reg = wakeup | (1 << channel);
+#endif
 
-    EIC->CTRL.bit.ENABLE = 1;
+    CTRLREG.bit.ENABLE = 1;
     _eic_sync();
 }
 
@@ -77,5 +95,3 @@ void irq_handler_eic(void);
 void irq_handler_eic(void) {
     EIC->INTFLAG.reg = EIC_INTFLAG_MASK;
 }
-
-#endif
