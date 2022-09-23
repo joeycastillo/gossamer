@@ -27,6 +27,8 @@
 
 /// TODO: SAM L series has different register name (CTRLA) and setup
 
+#ifdef _SAMD21_
+
 bool rtc_is_enabled(void) {
     return RTC->MODE2.CTRL.bit.ENABLE;
 }
@@ -93,3 +95,5 @@ void irq_handler_rtc(void) {
         RTC->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_ALARM0;
     }
 }
+
+#endif

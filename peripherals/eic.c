@@ -26,6 +26,8 @@
 #include "sam.h"
 #include <stddef.h>
 
+#ifdef _SAMD21_
+
 static void _eic_sync(void) {
     while (EIC->STATUS.bit.SYNCBUSY);
 }
@@ -75,3 +77,5 @@ void irq_handler_eic(void);
 void irq_handler_eic(void) {
     EIC->INTFLAG.reg = EIC_INTFLAG_MASK;
 }
+
+#endif
