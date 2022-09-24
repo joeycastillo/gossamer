@@ -1,7 +1,7 @@
 #pragma once
 
 #include "hal_gpio.h"
-
+#include "sam.h"
 
 // Analog pins
 HAL_GPIO_PIN(AREF, A, 3)
@@ -21,6 +21,9 @@ HAL_GPIO_PIN(MISO, A, 23)
 // I2C
 HAL_GPIO_PIN(SDA,  A, 14)
 HAL_GPIO_PIN(SCL,  A, 15)
+#define I2C_SERCOM SERCOM2
+#define I2C_SERCOM_APBCMASK PM_APBCMASK_SERCOM2
+#define I2C_GCLK_CLKCTRL_ID GCLK_CLKCTRL_ID_SERCOM2_CORE
 
 // UART
 HAL_GPIO_PIN(TX, A, 8)

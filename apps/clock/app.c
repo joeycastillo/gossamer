@@ -16,14 +16,18 @@ void app_setup(void) {
     eic_init();
 
     // set up the I²C peripheral...
+    HAL_GPIO_SDA_out();
+    HAL_GPIO_SCL_out();
+    HAL_GPIO_SDA_pmuxen(PORT_PMUX_PMUXE_D_Val);
+    HAL_GPIO_SCL_pmuxen(PORT_PMUX_PMUXE_D_Val);
     i2c_init();
     // ...and the Oddly Specific LCD
     oso_lcd_begin();
     oso_lcd_fill(0);
 
     // fire RTC alarm every minute
-    rtc_date_time date_time = {0};
-    rtc_enable_alarm_interrupt(date_time, ALARM_MATCH_SS);
+    // rtc_date_time date_time = {0};
+    // rtc_enable_alarm_interrupt(date_time, ALARM_MATCH_SS);
 
     HAL_GPIO_D5_in();
     HAL_GPIO_D5_pullup();

@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-#include <samd21.h>
+#include "sam.h"
 #include <string.h>
 #include <ctype.h>
 #include "oso_lcd.h"
