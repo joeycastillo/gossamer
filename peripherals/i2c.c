@@ -11,21 +11,25 @@
 #include "system.h"
 #include "i2c.h"
 
+#if defined(I2C_SERCOM_APBCMASK) && defined(I2C_GCLK_CLKCTRL_ID)
+
 #define BUSSTATE_UNKNOWN 0
 #define BUSSTATE_IDLE 1
 #define BUSSTATE_OWNER 2
 #define BUSSTATE_BUSY 3
 
-/// TODO: move the SERCOM selection back to a board config file
-
-#ifdef _SAMD21_
-
 void i2c_init(void) {
+#if defined(_SAMD21_) || defined(_SAMD11_)
     /* Enable the APB clock for SERCOM. */
-    PM->APBCMASK.reg |= PM_APBCMASK_SERCOM5;
-
+    PM->APBCMASK.reg |= I2C_SERCOM_APBCMASK;
     /* Enable GCLK1 for the SERCOM */
-    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK0 | GCLK_CLKCTRL_ID_SERCOM5_CORE;
+    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK0 | I2C_GCLK_CLKCTRL_ID;
+#else
+    /* Enable the APB clock for SERCOM. */
+    MCLK->APBCMASK.reg |= I2C_SERCOM_APBCMASK;
+    /* Enable GCLK1 for the SERCOM */
+    GCLK->PCHCTRL[I2C_GCLK_CLKCTRL_ID].reg = GCLK_PCHCTRL_CHEN | GCLK_PCHCTRL_GEN_GCLK0_Val;
+#endif
 
     /* Wait for bus synchronization. */
     while (GCLK->STATUS.bit.SYNCBUSY) {};
