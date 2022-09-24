@@ -49,7 +49,7 @@ void sys_init(void) {
 #ifdef CRYSTALLESS
     // if no crystal, set up internal 32k oscillator
     if (!SYSCTRL->OSC32K.bit.ENABLE) {
-        uint32_t calib = (*((uint32_t *) FUSES_OSC32K_CAL_ADDR) & FUSES_OSC32K_CAL_Msk);
+        uint32_t calib = (*((uint32_t *) FUSES_OSC32K_ADDR) & FUSES_OSC32K_Msk);
         SYSCTRL->OSC32K.reg = SYSCTRL_OSC32K_STARTUP(0x6) | SYSCTRL_OSC32K_CALIB(calib) | 
                             SYSCTRL_XOSC32K_RUNSTDBY | SYSCTRL_OSC32K_ONDEMAND |
                             SYSCTRL_OSC32K_EN32K;

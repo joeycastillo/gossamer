@@ -3,7 +3,7 @@ TOP = ../..
 
 # If your firmware targets a specific board, specify it here,
 # or omit it and provide it on the command line (make BOARD=foo).
-# BOARD=candle_concept
+BOARD=feather_d11_soic
 
 # Leave this line here.
 include $(TOP)/make.mk
