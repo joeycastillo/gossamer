@@ -72,6 +72,7 @@ SRCS += \
   $(TOP)/chips/$(CHIP)/system_$(CHIP).c \
   $(TOP)/main.c \
   $(TOP)/common/delay.c \
+  $(TOP)/peripherals/adc.c \
   $(TOP)/peripherals/eic.c \
   $(TOP)/peripherals/i2c.c \
   $(TOP)/peripherals/rtc.c \
