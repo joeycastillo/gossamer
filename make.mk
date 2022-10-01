@@ -76,6 +76,7 @@ SRCS += \
   $(TOP)/peripherals/eic.c \
   $(TOP)/peripherals/i2c.c \
   $(TOP)/peripherals/rtc.c \
+  $(TOP)/peripherals/tcc.c \
 
 DEFINES += \
   -DDONT_USE_CMSIS_INIT

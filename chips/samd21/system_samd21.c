@@ -30,6 +30,35 @@
 #include "samd21.h"
 #include "system.h"
 
+TCC_Instance_Details TCC_Peripherals[3] = {
+    {TCC0, PM_APBCMASK_TCC0, GCLK_CLKCTRL_ID_TCC0_TCC1},
+    {TCC1, PM_APBCMASK_TCC1, GCLK_CLKCTRL_ID_TCC0_TCC1},
+    {TCC2, PM_APBCMASK_TCC2, GCLK_CLKCTRL_ID_TCC2_TC3},
+};
+uint8_t Num_TCC_Instances = 3;
+
+TC_Instance_Details TC_Peripherals[4] = {
+    {TC3, PM_APBCMASK_TC3, GCLK_CLKCTRL_ID_TCC2_TC3},
+    {TC4, PM_APBCMASK_TC4, GCLK_CLKCTRL_ID_TC4_TC5},
+    {TC5, PM_APBCMASK_TC5, GCLK_CLKCTRL_ID_TC4_TC5},
+#if defined(__SAMD21J15A__) || defined(__ATSAMD21J15A__) || \
+    defined(__SAMD21J16A__) || defined(__ATSAMD21J16A__) || \
+    defined(__SAMD21J17A__) || defined(__ATSAMD21J17A__) || \
+    defined(__SAMD21J18A__) || defined(__ATSAMD21J18A__)
+    {TC6, PM_APBCMASK_TC6, GCLK_CLKCTRL_ID_TC6_TC7},
+    {TC7, PM_APBCMASK_TC7, GCLK_CLKCTRL_ID_TC6_TC7},
+#endif
+};
+
+#if defined(__SAMD21J15A__) || defined(__ATSAMD21J15A__) || \
+    defined(__SAMD21J16A__) || defined(__ATSAMD21J16A__) || \
+    defined(__SAMD21J17A__) || defined(__ATSAMD21J17A__) || \
+    defined(__SAMD21J18A__) || defined(__ATSAMD21J18A__)
+uint8_t Num_TC_Instances = 5;
+#else
+uint8_t Num_TC_Instances = 3;
+#endif
+
 //-----------------------------------------------------------------------------
 void sys_init(void) {
     // Switch GCLK0 to 8MHz clock (disable prescaler)

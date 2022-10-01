@@ -25,8 +25,27 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include "sam.h"
 
 #pragma once
+
+typedef struct {
+    Tc* tc;
+    uint32_t clock_enable_mask;
+    uint8_t gclk_id;
+} TC_Instance_Details;
+
+typedef struct {
+    Tcc* tcc;
+    uint32_t clock_enable_mask;
+    uint8_t gclk_id;
+} TCC_Instance_Details;
+
+extern TC_Instance_Details TC_Peripherals[];
+extern uint8_t Num_TC_Instances;
+
+extern TCC_Instance_Details TCC_Peripherals[];
+extern uint8_t Num_TCC_Instances;
 
 ////< @file system.h
 
