@@ -30,6 +30,11 @@
 #include "samd11.h"
 #include "system.h"
 
+TCC_Instance_Details TCC_Peripherals[3] = {
+    {TCC0, PM_APBCMASK_TCC0, GCLK_CLKCTRL_ID_TCC0},
+};
+uint8_t Num_TCC_Instances = 1;
+
 //-----------------------------------------------------------------------------
 void sys_init(void) {
     // Switch GCLK0 to 8MHz clock (disable prescaler)
