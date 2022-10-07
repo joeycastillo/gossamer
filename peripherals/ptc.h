@@ -50,7 +50,7 @@ typedef enum tag_oversample_level_t {
   OVERSAMPLE_16,
   OVERSAMPLE_32,
   OVERSAMPLE_64
-} oversample_t;
+} ptc_oversample_t;
 
 /* Touch library series resistor setting */
 typedef enum tag_series_resistor_t {
@@ -58,14 +58,14 @@ typedef enum tag_series_resistor_t {
   RESISTOR_20K,
   RESISTOR_50K,
   RESISTOR_100K,
-} series_resistor_t;
+} ptc_series_resistor_t;
 
 typedef enum tag_freq_mode_t {
   FREQ_MODE_NONE,
   FREQ_MODE_HOP,
   FREQ_MODE_SPREAD,
   FREQ_MODE_SPREAD_MEDIAN
-} freq_mode_t;
+} ptc_freq_mode_t;
 
 typedef enum tag_freq_hop_t {
   FREQ_HOP_1,
@@ -84,7 +84,7 @@ typedef enum tag_freq_hop_t {
   FREQ_HOP_14,
   FREQ_HOP_15,
   FREQ_HOP_16
-} freq_hop_t;
+} ptc_freq_hop_t;
 
 void ptc_init(void);
 void ptc_enable_channel(uint8_t channel);
