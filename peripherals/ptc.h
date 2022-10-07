@@ -86,20 +86,9 @@ typedef enum tag_freq_hop_t {
   FREQ_HOP_16
 } freq_hop_t;
 
-struct ptc_config {
-  uint8_t pin;  // ASF pin #
-  int8_t yline; // the Y select line (see datasheet)
-  oversample_t oversample;
-  series_resistor_t seriesres;
-  freq_mode_t freqhop;
-  freq_hop_t hops;
-  uint16_t compcap;
-  uint8_t intcap;
-};
-
-void ptc_get_config_default(struct ptc_config *config);
-void ptc_init(Ptc *module_inst, struct ptc_config const *config);
-void ptc_start_conversion(Ptc *module_inst, struct ptc_config const *config);
+void ptc_init(Ptc *module_inst);
+void ptc_enable_channel(Ptc *module_inst, uint8_t channel);
+void ptc_start_conversion(Ptc *module_inst, uint8_t channel);
 
 bool ptc_is_conversion_finished(Ptc *module_inst);
 uint16_t ptc_get_conversion_result(Ptc *module_inst);
