@@ -31,6 +31,10 @@ static void _ptc_sync() {
     while (((Ptc *)PTC)->CTRLB.bit.SYNCFLAG);
 }
 
+static bool _ptc_is_conversion_finished() {
+    return ((Ptc *)PTC)->CONVCTRL.bit.CONVERT == 0;
+}
+
 void ptc_init(void) {
     /* Enable the APB clock for PTC. */
     PM->APBCMASK.reg |= PM_APBCMASK_PTC;
@@ -84,7 +88,7 @@ void ptc_enable_channel(uint8_t channel) {
     _ptc_sync();
 }
 
-void ptc_start_conversion(uint8_t channel) {
+uint16_t ptc_get_value(uint8_t channel) {
     ((Ptc *)PTC)->CTRLA.bit.RUNINSTANDBY = 1;
     _ptc_sync();
     ((Ptc *)PTC)->CTRLA.bit.ENABLE = 1;
@@ -133,14 +137,9 @@ void ptc_start_conversion(uint8_t channel) {
 
     ((Ptc *)PTC)->CONVCTRL.bit.CONVERT = 1;
     _ptc_sync();
-}
 
-bool ptc_is_conversion_finished() {
-    return ((Ptc *)PTC)->CONVCTRL.bit.CONVERT == 0;
-}
+    while(_ptc_is_conversion_finished());
 
-uint16_t ptc_get_conversion_result() {
-    _ptc_sync();
     return ((Ptc *)PTC)->RESULT.reg;
 }
 

@@ -88,9 +88,6 @@ typedef enum tag_freq_hop_t {
 
 void ptc_init(void);
 void ptc_enable_channel(uint8_t channel);
-void ptc_start_conversion(uint8_t channel);
-
-bool ptc_is_conversion_finished(void);
-uint16_t ptc_get_conversion_result(void);
+uint16_t ptc_get_value(uint8_t channel);
 
 #endif

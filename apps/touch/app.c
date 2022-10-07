@@ -13,9 +13,7 @@ void app_setup(void) {
 }
 
 bool app_loop(void) {
-    ptc_start_conversion(2);
-    while (!ptc_is_conversion_finished());
-    uint16_t val = ptc_get_conversion_result();
+    uint16_t val = ptc_get_value(2);
 
     if (val >= 2048) HAL_GPIO_LED_set();
     else HAL_GPIO_LED_clr();
