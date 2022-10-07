@@ -98,10 +98,8 @@ struct ptc_config {
 };
 
 void ptc_get_config_default(struct ptc_config *config);
-void ptc_init(Ptc *module_inst,
-                       struct ptc_config const *config);
-void ptc_start_conversion(Ptc *module_inst,
-                                   struct ptc_config const *config);
+void ptc_init(Ptc *module_inst, struct ptc_config const *config);
+void ptc_start_conversion(Ptc *module_inst, struct ptc_config const *config);
 
 bool ptc_is_conversion_finished(Ptc *module_inst);
 uint16_t ptc_get_conversion_result(Ptc *module_inst);
