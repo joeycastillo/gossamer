@@ -24,125 +24,124 @@
  */
 
 #include "ptc.h"
-#include "pins.h"
 
 #ifdef HAS_PTC
 
-static void sync_config(Ptc const *module_inst) {
-    while (module_inst->CTRLB.bit.SYNCFLAG);
+static void _ptc_sync() {
+    while (((Ptc *)PTC)->CTRLB.bit.SYNCFLAG);
 }
 
-void ptc_init(Ptc *module_inst) {
+void ptc_init(void) {
     /* Enable the APB clock for PTC. */
     PM->APBCMASK.reg |= PM_APBCMASK_PTC;
     /* Clock PTC with GCLK2 */
     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK2 | GCLK_CLKCTRL_ID_PTC;
     /* Wait for bus synchronization. */
     while (GCLK->STATUS.bit.SYNCBUSY) {};
-    module_inst->CTRLA.bit.ENABLE = 0;
-    while (module_inst->CTRLB.bit.SYNCFLAG) {};
-    module_inst->CTRLA.bit.SWRESET = 1;
-    while (module_inst->CTRLA.bit.SWRESET) {};
+    ((Ptc *)PTC)->CTRLA.bit.ENABLE = 0;
+    while (((Ptc *)PTC)->CTRLB.bit.SYNCFLAG) {};
+    ((Ptc *)PTC)->CTRLA.bit.SWRESET = 1;
+    while (((Ptc *)PTC)->CTRLA.bit.SWRESET) {};
 
-    sync_config(module_inst);
-    module_inst->CTRLA.bit.ENABLE = 0;
-    sync_config(module_inst);
+    _ptc_sync();
+    ((Ptc *)PTC)->CTRLA.bit.ENABLE = 0;
+    _ptc_sync();
 
-    module_inst->UNK4C04.reg &= 0xF7; // MEMORY[0x42004C04] &= 0xF7u;
-    module_inst->UNK4C04.reg &= 0xFB; // MEMORY[0x42004C04] &= 0xFBu;
-    module_inst->UNK4C04.reg &= 0xFC; // MEMORY[0x42004C04] &= 0xFCu;
-    sync_config(module_inst);
-    module_inst->FREQCTRL.reg &= 0x9F; // MEMORY[0x42004C0C] &= 0x9Fu;
-    sync_config(module_inst);
-    module_inst->FREQCTRL.reg &= 0xEF; // MEMORY[0x42004C0C] &= 0xEFu;
-    sync_config(module_inst);
-    module_inst->FREQCTRL.bit.SAMPLEDELAY = 0; // MEMORY[0x42004C0C] &= 0xF0u;
-    module_inst->CTRLC.bit.INIT = 1;           // MEMORY[0x42004C05] |= 1u;
-    module_inst->CTRLA.bit.RUNINSTANDBY = 1;   // MEMORY[0x42004C00] |= 4u;
-    sync_config(module_inst);
-    module_inst->INTDISABLE.bit.WCO = 1;
-    sync_config(module_inst);
-    module_inst->INTDISABLE.bit.EOC = 1;
-    sync_config(module_inst);
+    ((Ptc *)PTC)->UNK4C04.reg &= 0xF7; // MEMORY[0x42004C04] &= 0xF7u;
+    ((Ptc *)PTC)->UNK4C04.reg &= 0xFB; // MEMORY[0x42004C04] &= 0xFBu;
+    ((Ptc *)PTC)->UNK4C04.reg &= 0xFC; // MEMORY[0x42004C04] &= 0xFCu;
+    _ptc_sync();
+    ((Ptc *)PTC)->FREQCTRL.reg &= 0x9F; // MEMORY[0x42004C0C] &= 0x9Fu;
+    _ptc_sync();
+    ((Ptc *)PTC)->FREQCTRL.reg &= 0xEF; // MEMORY[0x42004C0C] &= 0xEFu;
+    _ptc_sync();
+    ((Ptc *)PTC)->FREQCTRL.bit.SAMPLEDELAY = 0; // MEMORY[0x42004C0C] &= 0xF0u;
+    ((Ptc *)PTC)->CTRLC.bit.INIT = 1;           // MEMORY[0x42004C05] |= 1u;
+    ((Ptc *)PTC)->CTRLA.bit.RUNINSTANDBY = 1;   // MEMORY[0x42004C00] |= 4u;
+    _ptc_sync();
+    ((Ptc *)PTC)->INTDISABLE.bit.WCO = 1;
+    _ptc_sync();
+    ((Ptc *)PTC)->INTDISABLE.bit.EOC = 1;
+    _ptc_sync();
 
     // enable the sensor, only done once per line
-    sync_config(module_inst);
-    module_inst->CTRLA.bit.ENABLE = 1;
-    sync_config(module_inst);
+    _ptc_sync();
+    ((Ptc *)PTC)->CTRLA.bit.ENABLE = 1;
+    _ptc_sync();
 }
 
-void ptc_enable_channel(Ptc *module_inst, uint8_t channel) {
-    module_inst->CTRLA.bit.ENABLE = 0;
-    sync_config(module_inst);
+void ptc_enable_channel(uint8_t channel) {
+    ((Ptc *)PTC)->CTRLA.bit.ENABLE = 0;
+    _ptc_sync();
     if (channel < 8) {
-        sync_config(module_inst);
-        module_inst->YENABLEL.reg |= 1 << channel;
-        sync_config(module_inst);
+        _ptc_sync();
+        ((Ptc *)PTC)->YENABLEL.reg |= 1 << channel;
+        _ptc_sync();
     } else if (channel < 16) {
-        module_inst->YENABLEH.reg |= 1 << (channel - 8);
+        ((Ptc *)PTC)->YENABLEH.reg |= 1 << (channel - 8);
     }
-    module_inst->CTRLA.bit.ENABLE = 1;
-    sync_config(module_inst);
+    ((Ptc *)PTC)->CTRLA.bit.ENABLE = 1;
+    _ptc_sync();
 }
 
-void ptc_start_conversion(Ptc *module_inst, uint8_t channel) {
-    module_inst->CTRLA.bit.RUNINSTANDBY = 1;
-    sync_config(module_inst);
-    module_inst->CTRLA.bit.ENABLE = 1;
-    sync_config(module_inst);
-    module_inst->INTDISABLE.bit.WCO = 1;
-    sync_config(module_inst);
-    module_inst->INTFLAGS.bit.WCO = 1;
-    sync_config(module_inst);
-    module_inst->INTFLAGS.bit.EOC = 1;
-    sync_config(module_inst);
+void ptc_start_conversion(uint8_t channel) {
+    ((Ptc *)PTC)->CTRLA.bit.RUNINSTANDBY = 1;
+    _ptc_sync();
+    ((Ptc *)PTC)->CTRLA.bit.ENABLE = 1;
+    _ptc_sync();
+    ((Ptc *)PTC)->INTDISABLE.bit.WCO = 1;
+    _ptc_sync();
+    ((Ptc *)PTC)->INTFLAGS.bit.WCO = 1;
+    _ptc_sync();
+    ((Ptc *)PTC)->INTFLAGS.bit.EOC = 1;
+    _ptc_sync();
 
     // set up pin!
-    sync_config(module_inst);
+    _ptc_sync();
     if (channel < 8) {
-        module_inst->YSELECTL.reg = 1 << channel;
+        ((Ptc *)PTC)->YSELECTL.reg = 1 << channel;
     } else {
-        module_inst->YSELECTL.reg = 0;
+        ((Ptc *)PTC)->YSELECTL.reg = 0;
     }
 
     if (channel > 7) {
-        module_inst->YSELECTH.reg = 1 << (channel - 8);
+        ((Ptc *)PTC)->YSELECTH.reg = 1 << (channel - 8);
     } else {
-        module_inst->YSELECTH.reg = 0;
+        ((Ptc *)PTC)->YSELECTH.reg = 0;
     }
 
-    sync_config(module_inst);
+    _ptc_sync();
     // set up sense resistor
-    module_inst->SERRES.bit.RESISTOR = RESISTOR_0;
-    sync_config(module_inst);
+    ((Ptc *)PTC)->SERRES.bit.RESISTOR = RESISTOR_0;
+    _ptc_sync();
     // set up prescalar
-    module_inst->CONVCTRL.bit.ADCACCUM = OVERSAMPLE_4;
-    sync_config(module_inst);
+    ((Ptc *)PTC)->CONVCTRL.bit.ADCACCUM = OVERSAMPLE_4;
+    _ptc_sync();
     // set up freq hopping
-    module_inst->FREQCTRL.bit.FREQSPREADEN = 0;
-    module_inst->FREQCTRL.bit.SAMPLEDELAY = 0;
+    ((Ptc *)PTC)->FREQCTRL.bit.FREQSPREADEN = 0;
+    ((Ptc *)PTC)->FREQCTRL.bit.SAMPLEDELAY = 0;
     // set up compensation cap + int (?) cap
-    sync_config(module_inst);
-    module_inst->COMPCAPL.bit.VALUE = 0;
-    module_inst->COMPCAPH.bit.VALUE = 0x20;
-    sync_config(module_inst);
-    module_inst->INTCAP.bit.VALUE = 0x3F;
-    sync_config(module_inst);
+    _ptc_sync();
+    ((Ptc *)PTC)->COMPCAPL.bit.VALUE = 0;
+    ((Ptc *)PTC)->COMPCAPH.bit.VALUE = 0x20;
+    _ptc_sync();
+    ((Ptc *)PTC)->INTCAP.bit.VALUE = 0x3F;
+    _ptc_sync();
 
-    module_inst->BURSTMODE.reg = 0xA4;
-    sync_config(module_inst);
+    ((Ptc *)PTC)->BURSTMODE.reg = 0xA4;
+    _ptc_sync();
 
-    module_inst->CONVCTRL.bit.CONVERT = 1;
-    sync_config(module_inst);
+    ((Ptc *)PTC)->CONVCTRL.bit.CONVERT = 1;
+    _ptc_sync();
 }
 
-bool ptc_is_conversion_finished(Ptc *module_inst) {
-    return module_inst->CONVCTRL.bit.CONVERT == 0;
+bool ptc_is_conversion_finished() {
+    return ((Ptc *)PTC)->CONVCTRL.bit.CONVERT == 0;
 }
 
-uint16_t ptc_get_conversion_result(Ptc *module_inst) {
-    sync_config(module_inst);
-    return module_inst->RESULT.reg;
+uint16_t ptc_get_conversion_result() {
+    _ptc_sync();
+    return ((Ptc *)PTC)->RESULT.reg;
 }
 
 #endif
