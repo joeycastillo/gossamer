@@ -64,6 +64,7 @@ LIBS += -lm
 INCLUDES += \
   -I$(TOP)/common/ \
   -I$(TOP)/peripherals/ \
+  -I$(TOP)/drivers/ \
   -I$(TOP)/boards/$(BOARD)/ \
   -I$(TOP)/chips/$(CHIP)/include/ \
 
@@ -78,6 +79,7 @@ SRCS += \
   $(TOP)/peripherals/ptc.c \
   $(TOP)/peripherals/rtc.c \
   $(TOP)/peripherals/tcc.c \
+  $(TOP)/drivers/piezo.c \
 
 DEFINES += \
   -DDONT_USE_CMSIS_INIT
