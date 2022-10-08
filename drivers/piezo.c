@@ -69,7 +69,7 @@ void piezo_tcc_on(uint32_t freq) {
     }
 }
 
-void piezo_tcc_off() {
+void piezo_tcc_off(void) {
     if (piezo_tcc != NULL) {
         // set the duty cycle of the positive pin to 0%, logic low
         piezo_tcc->CC[wo_p % 4].reg = 0;

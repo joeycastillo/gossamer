@@ -35,4 +35,4 @@ void piezo_tcc_on(uint32_t freq);
 
 /** @brief Turns the piezo buzzer off.
   */
-void piezo_tcc_off();
+void piezo_tcc_off(void);
