@@ -30,6 +30,13 @@
 #include "saml21.h"
 #include "system.h"
 
+TCC_Instance_Details TCC_Peripherals[3] = {
+    {TCC0, MCLK_APBCMASK_TCC0, TCC0_GCLK_ID},
+    {TCC1, MCLK_APBCMASK_TCC1, TCC1_GCLK_ID},
+    {TCC2, MCLK_APBCMASK_TCC2, TCC2_GCLK_ID},
+};
+uint8_t Num_TCC_Instances = 3;
+
 //-----------------------------------------------------------------------------
 void sys_init(void) {
     // Switch to 8MHz clock
