@@ -9,9 +9,9 @@ static void _sync_slcd(uint32_t reg) {
 }
 
 static inline void _display_character(uint8_t pos, uint8_t c) {
-    // segment indices are 4, 2 and 0 for positions 0, 1 and 2, respectively.
+    // segment indices are 5, 3 and 1 for positions 0, 1 and 2, respectively.
     // common indices are all 0
-    SLCD->CMINDEX.reg = SLCD_CMINDEX_SINDEX(2 * (2 - pos)) | SLCD_CMINDEX_CINDEX(0);
+    SLCD->CMINDEX.reg = SLCD_CMINDEX_SINDEX(2 * (2 - pos) + 1) | SLCD_CMINDEX_CINDEX(0);
 
     // write character data (lookup table starts at ' ', 0x20)
     SLCD->CMDATA.reg = CHARS[c - 0x20];
@@ -51,12 +51,12 @@ void app_setup(void) {
     SLCD->FC0.bit.OVF = SLCD_FC0_OVF(8);
 
     // Character mapping config: our characters are two SEG lines wide:
-    // COM3    F        A
-    // COM2    G        B
-    // COM1    E        C
-    // COM0    D        X < LSB
+    // COM3    A        F
+    // COM2    B        G
+    // COM1    C        E
+    // COM0    X        D < LSB
     //      SEG n+1  SEG n+0
-    SLCD->CMCFG.reg = SLCD_CMCFG_NSEG(2 - 1);
+    SLCD->CMCFG.reg = SLCD_CMCFG_DEC | SLCD_CMCFG_NSEG(2 - 1);
 
     // don't mask out any segments when character mapping
     SLCD->CMDMASK.reg = 0;
@@ -124,61 +124,61 @@ void irq_handler_slcd(void) {
 static const uint8_t CHARS[] = {
     0b00000000, // [space]
     0b00000000, // ! (unused)
-    0b10010000, // "
+    0b01100000, // "
     0b11110000, // # (°)
-    0b10001110, // $ (Like an L with an extra segment, use $J to make a W)
-    0b00011000, // %
-    0b11011000, // & (Like an F without a cross stroke, use &7 to make an M)
-    0b00010000, // '
-    0b11001010, // (
-    0b01010110, // )
+    0b01001101, // $ (Like an L with an extra segment, use $J to make a W)
+    0b00100100, // %
+    0b11100100, // & (Like an F without a cross stroke, use &7 to make an M)
+    0b00100000, // '
+    0b11000101, // (
+    0b10101001, // )
     0b00000000, // * (Currently unused)
-    0b10101000, // +
-    0b00000100, // ,
-    0b00100000, // -
+    0b01010100, // +
+    0b00001000, // ,
+    0b00010000, // -
     0000000000, // . (unused)
-    0b00011000, // /
-    0b11011110, // 0
-    0b00010100, // 1
-    0b01111010, // 2
-    0b01110110, // 3
-    0b10110100, // 4
-    0b11100110, // 5
-    0b11101110, // 6
-    0b11010100, // 7
-    0b11111110, // 8
-    0b11110110, // 9
+    0b00100100, // /
+    0b11101101, // 0
+    0b00101000, // 1
+    0b10110101, // 2
+    0b10111001, // 3
+    0b01111000, // 4
+    0b11011001, // 5
+    0b11011101, // 6
+    0b11101000, // 7
+    0b11111101, // 8
+    0b11111001, // 9
     0b00000000, // : (unavailable / unused)
-    0b01000000, // ; (Like the apostrophe, but on the other side, use 'foo; to say ‘foo’)
+    0b10000000, // ; (Like the apostrophe, but on the other side, use 'foo; to say ‘foo’)
     0000000000, // < (unused)
-    0b00100010, // =
+    0b00010001, // =
     0000000000, // > (unused)
     0000000000, // ? (unused)
     0000000000, // @ (unused)
     0b11111100, // A
-    0b10101110, // B (lowercase)
-    0b11001010, // C (lowercase)
-    0b00111110, // D (lowercase)
-    0b11101010, // E
-    0b11101000, // F
-    0b11001110, // G
-    0b10101100, // H (lowercase)
-    0b00001000, // I (lowercase)
-    0b00011110, // J
-    0b11101100, // K
-    0b10001010, // L
-    0b11011100, // M (looks like tall N)
-    0b00101100, // N (lowercase)
-    0b00101110, // O (lowercase)
-    0b11111000, // P
-    0b11110100, // Q (lowercase)
-    0b00101000, // R (lowercase)
-    0b11000110, // S (looks like 5 without the center segment)
-    0b10101010, // T (lowercase)
-    0b00001110, // U (lowercase)
-    0b10011110, // V (looks like tall U)
-    0b10111110, // W (looks like upside down A)
-    0b10111100, // X (looks like uppercase H)
-    0b10110110, // Y
-    0b01011010, // Z (looks like 2 without the center segment)
+    0b01011101, // B (lowercase)
+    0b11000101, // C (lowercase)
+    0b00111101, // D (lowercase)
+    0b11010101, // E
+    0b11010100, // F
+    0b11001101, // G
+    0b01011100, // H (lowercase)
+    0b00000100, // I (lowercase)
+    0b00101101, // J
+    0b11011100, // K
+    0b01000101, // L
+    0b11101100, // M (looks like tall N)
+    0b00011100, // N (lowercase)
+    0b00011101, // O (lowercase)
+    0b11110100, // P
+    0b11111000, // Q (lowercase)
+    0b00010100, // R (lowercase)
+    0b11001001, // S (looks like 5 without the center segment)
+    0b01010101, // T (lowercase)
+    0b00001101, // U (lowercase)
+    0b01101101, // V (looks like tall U)
+    0b01111101, // W (looks like upside down A)
+    0b01111100, // X (looks like uppercase H)
+    0b01111001, // Y
+    0b10100101, // Z (looks like 2 without the center segment)
 };
