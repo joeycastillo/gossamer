@@ -18,8 +18,8 @@ void app_setup(void) {
     // set up the I²C peripheral...
     HAL_GPIO_SDA_out();
     HAL_GPIO_SCL_out();
-    HAL_GPIO_SDA_pmuxen(PORT_PMUX_PMUXE_D_Val);
-    HAL_GPIO_SCL_pmuxen(PORT_PMUX_PMUXE_D_Val);
+    HAL_GPIO_SDA_pmuxen(HAL_GPIO_PMUX_D);
+    HAL_GPIO_SCL_pmuxen(HAL_GPIO_PMUX_D);
     i2c_init();
     // ...and the Oddly Specific LCD
     oso_lcd_begin();
