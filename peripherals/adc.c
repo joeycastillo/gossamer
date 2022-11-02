@@ -27,6 +27,10 @@
 #include "system.h"
 #include "adc.h"
 
+#if !defined(ADC_INPUTCTRL_MUXNEG_GND_Val) && defined(_SAML22_)
+#define ADC_INPUTCTRL_MUXNEG_GND_Val (0x18)
+#endif
+
 static void _adc_sync(void) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
     while (ADC->STATUS.bit.SYNCBUSY);
@@ -54,8 +58,12 @@ void adc_enable(void) {
     // Configure ADC to use GCLK0 (the main 8 MHz oscillator)
     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(ADC_GCLK_ID) | GCLK_CLKCTRL_CLKEN |
                         GCLK_CLKCTRL_GEN(0);
-
-#else
+#elif defined(_SAML21_)
+    // enable the ADC
+    MCLK->APBDMASK.reg |= MCLK_APBDMASK_ADC;
+    // Configure ADC to use GCLK0 (the main 8 MHz oscillator)
+    GCLK->PCHCTRL[ADC_GCLK_ID].reg = GCLK_PCHCTRL_GEN_GCLK0 | GCLK_PCHCTRL_CHEN;
+#else // SAM L22
     // enable the ADC
     MCLK->APBCMASK.reg |= MCLK_APBCMASK_ADC;
     // Configure ADC to use GCLK0 (the main 8 MHz oscillator)
@@ -114,7 +122,9 @@ void adc_disable(void) {
 
 #if defined(_SAMD21_) || defined(_SAMD11_)
     PM->APBAMASK.reg &= ~PM_APBCMASK_ADC;
-#else
+#elif defined(_SAML21_)
+    MCLK->APBDMASK.reg &= ~MCLK_APBDMASK_ADC;
+#else // SAM L22
     MCLK->APBCMASK.reg &= ~MCLK_APBCMASK_ADC;
 #endif
 }

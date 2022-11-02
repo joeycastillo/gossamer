@@ -24,15 +24,16 @@ void i2c_init(void) {
     PM->APBCMASK.reg |= I2C_SERCOM_APBCMASK;
     /* Enable GCLK1 for the SERCOM */
     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK0 | I2C_GCLK_CLKCTRL_ID;
+    /* Wait for bus synchronization. */
+    while (GCLK->STATUS.bit.SYNCBUSY) {};
 #else
     /* Enable the APB clock for SERCOM. */
     MCLK->APBCMASK.reg |= I2C_SERCOM_APBCMASK;
     /* Enable GCLK1 for the SERCOM */
     GCLK->PCHCTRL[I2C_GCLK_CLKCTRL_ID].reg = GCLK_PCHCTRL_CHEN | GCLK_PCHCTRL_GEN_GCLK0_Val;
-#endif
-
     /* Wait for bus synchronization. */
-    while (GCLK->STATUS.bit.SYNCBUSY) {};
+    while (GCLK->SYNCBUSY.bit.GENCTRL0) {};
+#endif
 
     /* Reset the SERCOM. */
     I2C_SERCOM->I2CM.CTRLA.bit.ENABLE = 0;
@@ -44,10 +45,15 @@ void i2c_init(void) {
     I2C_SERCOM->I2CM.CTRLA.bit.SWRST = 1;
     while (I2C_SERCOM->I2CM.SYNCBUSY.bit.SWRST || I2C_SERCOM->I2CM.CTRLA.bit.SWRST) {};
 
+#if defined(_SAMD21_) || defined(_SAMD11_)
     I2C_SERCOM->I2CM.CTRLA.reg = SERCOM_I2CM_CTRLA_SPEED(0) |        // 0 is standard/fast mode 100 & 400kHz
                                      SERCOM_I2CM_CTRLA_SDAHOLD(0) |      // Hold SDA low for 300-600ns
                                      SERCOM_I2CM_CTRLA_MODE_I2C_MASTER;  // work as master
-
+#else
+    I2C_SERCOM->I2CM.CTRLA.reg = SERCOM_I2CM_CTRLA_SPEED(0) |        // 0 is standard/fast mode 100 & 400kHz
+                                     SERCOM_I2CM_CTRLA_SDAHOLD(0) |      // Hold SDA low for 300-600ns
+                                     SERCOM_I2CM_CTRLA_MODE(5);  // work as master
+#endif
     /* Enable smart mode */
     I2C_SERCOM->I2CM.CTRLB.reg = SERCOM_I2CM_CTRLB_SMEN | SERCOM_I2CM_CTRLB_QCEN;
     while (I2C_SERCOM->I2CM.SYNCBUSY.bit.SYSOP) {};

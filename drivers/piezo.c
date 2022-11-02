@@ -58,13 +58,13 @@ void piezo_tcc_on(uint32_t freq) {
         // if so, calculate our period (1 MHz clock / the frequency)
         uint32_t period = 1000000 / freq;
         // set the period buffer to the period for our desired frequency
-        piezo_tcc->PERB.reg = period;
+        piezo_tcc->PER.reg = period;
         // and the CC buffers to half that (50% duty cycle).
         // note that there are only four CC registers for eight WO channels.
         // in the default configutation, WO4/5/6/7 use CC0/1/2/3 respectively.
-        piezo_tcc->CCB[wo_p % 4].reg = period / 2;
+        piezo_tcc->CC[wo_p % 4].reg = period / 2;
         if (wo_n >= 0) {
-            piezo_tcc->CCB[wo_n % 4].reg = period / 2;
+            piezo_tcc->CC[wo_n % 4].reg = period / 2;
         }
     }
 }
@@ -75,7 +75,7 @@ void piezo_tcc_off(void) {
         piezo_tcc->CC[wo_p % 4].reg = 0;
         if (wo_n >= 0) {
             // and of the negative pin to 100% (inverted to logic low)
-            piezo_tcc->CCB[wo_n % 4].reg = piezo_tcc->PER.reg;
+            piezo_tcc->CC[wo_n % 4].reg = piezo_tcc->PER.reg;
         }
     }
 }
