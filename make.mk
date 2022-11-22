@@ -78,6 +78,7 @@ SRCS += \
   $(TOP)/peripherals/i2c.c \
   $(TOP)/peripherals/ptc.c \
   $(TOP)/peripherals/rtc.c \
+  $(TOP)/peripherals/tc.c \
   $(TOP)/peripherals/tcc.c \
   $(TOP)/drivers/piezo.c \
 

@@ -43,6 +43,7 @@ typedef struct {
 
 extern TC_Instance_Details TC_Peripherals[];
 extern uint8_t Num_TC_Instances;
+extern uint8_t TC_First_Index;
 
 extern TCC_Instance_Details TCC_Peripherals[];
 extern uint8_t Num_TCC_Instances;

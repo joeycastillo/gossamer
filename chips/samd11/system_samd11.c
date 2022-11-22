@@ -30,6 +30,13 @@
 #include "samd11.h"
 #include "system.h"
 
+TC_Instance_Details TC_Peripherals[2] = {
+    {TC1, PM_APBCMASK_TC1, GCLK_CLKCTRL_ID_TC1_TC2},
+    {TC2, PM_APBCMASK_TC2, GCLK_CLKCTRL_ID_TC1_TC2},
+};
+uint8_t Num_TC_Instances = 2;
+uint8_t TC_First_Index = 1;
+
 TCC_Instance_Details TCC_Peripherals[1] = {
     {TCC0, PM_APBCMASK_TCC0, GCLK_CLKCTRL_ID_TCC0},
 };
