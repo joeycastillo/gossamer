@@ -37,3 +37,16 @@ void delay_ms(const uint16_t ms) {
     _delay_cycles(_cycles_for_ms(ms));
 }
 
+static uint32_t _cycles_for_us(const uint16_t us) {
+    int32_t freq = get_cpu_frequency();
+    if (freq < 10000000) {
+		return (us * (freq / 100000) - 1) / 10 + 1;
+    } else {
+		return (us * (freq / 10000) - 1) / 100 + 1;
+    }
+}
+
+void delay_us(const uint16_t us) {
+    _delay_cycles(_cycles_for_us(us));
+}
+
