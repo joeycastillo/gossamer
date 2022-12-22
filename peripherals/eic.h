@@ -35,12 +35,13 @@ typedef enum eic_interrupt_trigger {
     INTERRUPT_TRIGGER_BOTH,
 } eic_interrupt_trigger;
 
+typedef void (*eic_cb_t)(void);
 
 /** @brief Enables the external interrupt controller.
   */
 void eic_init(void);
 
-/** @brief Configures an external interrupt callback on one of the external interrupt channels
+/** @brief Configures an external interrupt on one of the external interrupt channels
   * @details Note that this call does not deal with pins at all. Your external interrupt pin needs
   *          to already be configured as an input, and assigned to the EIC peripheral function.
   *          With that done, consult the pin mux table in the data sheet to see which EIC channel
@@ -49,3 +50,8 @@ void eic_init(void);
   * @param trigger The condition on which you wish to trigger: rising, falling or both.
   */
 void eic_configure_channel(const uint8_t channel, eic_interrupt_trigger trigger);
+
+/** @brief Configures an external interrupt callback.
+  * @param callback The function that will be called when the interrupt fires.
+  */
+void eic_configure_callback(eic_cb_t callback);
