@@ -3,7 +3,10 @@
 #include "tcc.h"
 #include "tc.h"
 
-#define RUNTIME_MINUTES (30)
+#define RUNTIME_MINUTES (60)
+
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
 
 void app_init(void) {
 }
@@ -95,10 +98,10 @@ const int maxLoops = 1400 * RUNTIME_MINUTES; // 1400 loops keeps the light on ab
 int loops = 1400 * RUNTIME_MINUTES;
 
 bool app_loop(void) {
-    TCC0->CC[0].reg = (flicker[i] / 6) >> (maxLoops / loops);
-    TCC0->CC[1].reg = (flicker[i] / 2) >> (maxLoops / loops);
+    TCC0->CC[0].reg = (flicker[i] / 6) >> MAX(maxLoops / loops - 1, 0);
+    TCC0->CC[1].reg = (flicker[i] / 2) >> MAX(maxLoops / loops - 1, 0);
     ++i;
-    TC1->COUNT8.CC[0].reg = (flicker[i] / 8) >> (maxLoops / loops);
+    TC1->COUNT8.CC[0].reg = (flicker[i] / 8) >> MAX(maxLoops / loops - 1, 0);
     i = i % (sizeof(flicker) - 1);
     delay_ms(50);
 
