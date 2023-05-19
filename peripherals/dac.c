@@ -68,6 +68,7 @@ void dac_enable(uint16_t channel) {
     DAC->CTRLB.bit.REFSEL = DAC_CTRLB_REFSEL_VDDANA_Val;
     DAC->DACCTRL[channel].bit.ENABLE = 1;
     DAC->DACCTRL[channel].bit.CCTRL = DAC_DACCTRL_CCTRL_CC1M_Val;
+    DAC->DACCTRL[channel].bit.REFRESH = 2;
 #endif
     DAC->CTRLA.bit.ENABLE = 1;
     _dac_sync();
@@ -79,7 +80,10 @@ void dac_set_analog_value(uint16_t channel, uint16_t value) {
 
     DAC->DATA.reg = value;
 #else // SAM L21
+    DAC->DACCTRL[channel].bit.ENABLE = 0;
+    while (!(DAC->STATUS.bit.READY0));
     DAC->DATA[channel].reg = value;
+    DAC->DACCTRL[channel].bit.ENABLE = 1;
 #endif
     _dac_sync();
 }
