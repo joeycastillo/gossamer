@@ -82,6 +82,8 @@ SRCS += \
   $(TOP)/peripherals/rtc.c \
   $(TOP)/peripherals/tc.c \
   $(TOP)/peripherals/tcc.c \
+  $(TOP)/drivers/gfx/gfx.c \
+  $(TOP)/drivers/gfx/sh1107.c \
   $(TOP)/drivers/piezo.c \
 
 DEFINES += \
