@@ -19,13 +19,19 @@ uint8_t selected_column = 0;
 
 void draw_opamp(int instance);
 void draw_menu(int instance);
+void configure_opamp(int instance);
 
 void app_init(void) {
-    opamps[0].res1mux = opamps[1].res1mux = opamps[2].res1mux = OPAMP_RES1MUX_NC;
-    opamps[0].res2mux = opamps[1].res2mux = opamps[2].res2mux = OPAMP_RES2MUX_NC;
 }
 
 void app_setup(void) {
+    opamps[0].potmux = opamps[1].potmux = opamps[2].potmux = 4;
+    opamps[0].res1mux = opamps[1].res1mux = opamps[2].res1mux = OPAMP_RES1MUX_GND;
+    opamps[0].res2mux = opamps[1].res2mux = opamps[2].res2mux = OPAMP_RES2MUX_OUT;
+    opamps[0].muxneg = opamps[1].muxneg = opamps[2].muxneg = OPAMP_MUXNEG_LADDER;
+    opamps[1].muxpos = OPAMP1_MUXPOS_OUT_0;
+    opamps[2].muxpos = OPAMP2_MUXPOS_OUT_1;
+
     HAL_GPIO_LED_out();
     HAL_GPIO_D10_in();
     HAL_GPIO_D10_pullup();
@@ -56,27 +62,9 @@ void app_setup(void) {
 
     opamp_init();
 
-    opamp_set_muxpos(0, OPAMP_MUXPOS_POS);
-    opamp_set_muxneg(0, OPAMP_MUXNEG_LADDER);
-    opamp_set_res1mux(0, OPAMP_RES1MUX_GND);
-    opamp_set_res2mux(0, OPAMP_RES2MUX_OUT);
-    opamp_set_potmux(0, OPAMP_POTMUX_RATIO_1_15);
-
-    opamp_set_muxpos(1, OPAMP1_MUXPOS_OUT_0);
-    opamp_set_muxneg(1, OPAMP_MUXNEG_LADDER);
-    opamp_set_res1mux(1, OPAMP_RES1MUX_GND);
-    opamp_set_res2mux(1, OPAMP_RES2MUX_OUT);
-    opamp_set_potmux(1, OPAMP_POTMUX_RATIO_8_8);
-
-    opamp_set_muxpos(2, OPAMP2_MUXPOS_OUT_1);
-    opamp_set_muxneg(2, OPAMP_MUXNEG_LADDER);
-    opamp_set_res1mux(2, OPAMP_RES1MUX_GND);
-    opamp_set_res2mux(2, OPAMP_RES2MUX_OUT);
-    opamp_set_potmux(2, OPAMP_POTMUX_RATIO_8_8);
-
-    opamp_enable(0);
-    opamp_enable(1);
-    opamp_enable(2);
+    configure_opamp(0);
+    configure_opamp(1);
+    configure_opamp(2);
 }
 
 bool app_loop(void) {
@@ -112,9 +100,7 @@ bool app_loop(void) {
                 opamps[selected_row].res2mux = ((opamps[selected_row].res2mux + updown * 2) - 1) % 3;
                 break;
         }
-        HAL_GPIO_LED_set();
-        delay_ms(100);
-        HAL_GPIO_LED_clr();
+        configure_opamp(selected_row);
     }
     if (!HAL_GPIO_D6_read()) {
         selected_column = (selected_column + 1) % 6;
@@ -144,7 +130,7 @@ void draw_opamp(int instance) {
     gfx_draw_fast_hline(15 + x, 11 + y, 2, 1);
 
     gfx_draw_small_char(24 + x, 6 + y, '0' + instance, 1, 1);
-    gfx_draw_fast_hline(35 + x, 8 + y, 2, 1);
+    gfx_draw_fast_hline(35 + x, 8 + y, (instance == 2) ? 4 : 2, 1);
 
 
     gfx_draw_fast_hline(7 + x, 22 + y, 27, 1);
@@ -169,15 +155,26 @@ void draw_opamp(int instance) {
 
     switch (opamps[instance].res1mux) {
         case OPAMP_RES1MUX_POS:
-            gfx_draw_fast_hline(0 + x, 5 + y, 15, 1);
-            gfx_draw_fast_vline(0 + x, 6 + y, 16, 1);
-            gfx_draw_fast_hline(0 + x, 22 + y, 8, 1);
+            if (instance) {
+                gfx_draw_fast_vline(3 + x, 23 + y, 1, 1);
+                gfx_draw_fast_hline(3 + x, 22 + y, 4, 1);
+                gfx_draw_string(-2 + x, 25 + y, "IN +", 1, 1, 0);
+            } else {
+                gfx_draw_fast_vline(3 + x, 23 + y, 1, 1);
+                gfx_draw_fast_hline(3 + x, 22 + y, 4, 1);
+                gfx_draw_string(0 + x, 25 + y, "IN\n +", 1, 1, 0);
+            }
             break;
         case OPAMP_RES1MUX_NEG:
-            // TODO: needs some tweaks when MUXPOS is connected to ladder
-            gfx_draw_fast_hline(0 + x, 11 + y, 15, 1);
-            gfx_draw_fast_vline(0 + x, 12 + y, 10, 1);
-            gfx_draw_fast_hline(0 + x, 22 + y, 8, 1);
+            if (instance) {
+                gfx_draw_fast_vline(3 + x, 23 + y, 1, 1);
+                gfx_draw_fast_hline(3 + x, 22 + y, 4, 1);
+                gfx_draw_string(-2 + x, 25 + y, "IN -", 1, 1, 0);
+            } else {
+                gfx_draw_fast_vline(3 + x, 23 + y, 1, 1);
+                gfx_draw_fast_hline(3 + x, 22 + y, 4, 1);
+                gfx_draw_string(0 + x, 25 + y, "IN\n -", 1, 1, 0);
+            }
             break;
         case OPAMP0_RES1MUX_DAC: // 3 is DAC on instance 0, previous output on 1 and 2
         // case OPAMP1_RES1MUX_OUT_0:
@@ -291,8 +288,8 @@ void draw_opamp(int instance) {
                 gfx_draw_string(2 + x, 3 + y, "DAC", 1, 1, 0);
             } else {
                 gfx_draw_fast_hline(x - 6, 8 + y, 1, 1);
-                gfx_draw_fast_vline(x - 5, 5 + y, 4, 1);
-                gfx_draw_fast_hline(x - 5, 5 + y, 20, 1);
+                gfx_draw_fast_vline(x - 6, 5 + y, 4, 1);
+                gfx_draw_fast_hline(x - 6, 5 + y, 21, 1);
             }
             break;
         case OPAMP_MUXPOS_GND:
@@ -519,4 +516,14 @@ void draw_menu(int instance) {
         default:
             gfx_draw_string(108, 41 + 8 * instance, "NC ", !highlighted, highlighted, 1);
     }
+}
+
+void configure_opamp(int instance) {
+    opamp_disable(instance);
+    opamp_set_muxpos(instance, opamps[instance].muxpos);
+    opamp_set_muxneg(instance, opamps[instance].muxneg);
+    opamp_set_res1mux(instance, opamps[instance].res1mux);
+    opamp_set_res2mux(instance, opamps[instance].res2mux);
+    opamp_set_potmux(instance, opamps[instance].potmux);
+    opamp_enable(instance);
 }
