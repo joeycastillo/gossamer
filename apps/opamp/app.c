@@ -43,10 +43,6 @@ void app_setup(void) {
     gfx_init(64, 128, 1);
     gfx_set_rotation(1);
 
-    // gfx_draw_string(0, 40, "0 IN+ IN- NC  P0  NC", 1, 0, 1);
-    // gfx_draw_string(0, 48, "1 IN+ IN- NC  P0  NC", 1, 0, 1);
-    // gfx_draw_string(0, 56, "2 IN+ IN- NC  P0  NC", 1, 0, 1);
-
     sh1107_begin();
     sh1107_update();
 
@@ -60,22 +56,22 @@ void app_setup(void) {
 
     opamp_init();
 
-    opamp_set_muxpos(0, OPAMP0_MUXPOS_POS_0);
-    opamp_set_muxneg(0, OPAMP0_MUXNEG_LADDER_0);
+    opamp_set_muxpos(0, OPAMP_MUXPOS_POS);
+    opamp_set_muxneg(0, OPAMP_MUXNEG_LADDER);
     opamp_set_res1mux(0, OPAMP_RES1MUX_GND);
-    opamp_set_res2mux(0, OPAMP0_RES2MUX_OUT_0);
+    opamp_set_res2mux(0, OPAMP_RES2MUX_OUT);
     opamp_set_potmux(0, OPAMP_POTMUX_RATIO_1_15);
 
     opamp_set_muxpos(1, OPAMP1_MUXPOS_OUT_0);
-    opamp_set_muxneg(1, OPAMP1_MUXNEG_LADDER_1);
+    opamp_set_muxneg(1, OPAMP_MUXNEG_LADDER);
     opamp_set_res1mux(1, OPAMP_RES1MUX_GND);
-    opamp_set_res2mux(1, OPAMP1_RES2MUX_OUT_1);
+    opamp_set_res2mux(1, OPAMP_RES2MUX_OUT);
     opamp_set_potmux(1, OPAMP_POTMUX_RATIO_8_8);
 
     opamp_set_muxpos(2, OPAMP2_MUXPOS_OUT_1);
-    opamp_set_muxneg(2, OPAMP2_MUXNEG_LADDER_2);
+    opamp_set_muxneg(2, OPAMP_MUXNEG_LADDER);
     opamp_set_res1mux(2, OPAMP_RES1MUX_GND);
-    opamp_set_res2mux(2, OPAMP2_RES2MUX_OUT_2);
+    opamp_set_res2mux(2, OPAMP_RES2MUX_OUT);
     opamp_set_potmux(2, OPAMP_POTMUX_RATIO_8_8);
 
     opamp_enable(0);
@@ -169,17 +165,19 @@ void draw_opamp(int instance) {
     gfx_draw_pixel(30 + x, 23 + y, 1);
 
     switch (opamps[instance].res1mux) {
-        case 0: // OAxPOS
+        case OPAMP_RES1MUX_POS:
             gfx_draw_fast_hline(0 + x, 5 + y, 14, 1);
             gfx_draw_fast_vline(0 + x, 6 + y, 16, 1);
             gfx_draw_fast_hline(0 + x, 22 + y, 8, 1);
             break;
-        case 1: // OAxNEG
+        case OPAMP_RES1MUX_NEG:
             gfx_draw_fast_hline(0 + x, 11 + y, 14, 1);
             gfx_draw_fast_vline(0 + x, 12 + y, 10, 1);
             gfx_draw_fast_hline(0 + x, 22 + y, 8, 1);
             break;
-        case 2: // DAC or previous output
+        case OPAMP0_RES1MUX_DAC: // 3 is DAC on instance 0, previous output on 1 and 2
+        // case OPAMP1_RES1MUX_OUT_0:
+        // case OPAMP2_RES1MUX_OUT_1:
             if (instance) {
                 gfx_draw_fast_vline(6 + x, 8 + y, 15, 1);
                 gfx_draw_fast_hline(-7 + x, 8 + y, 13, 1);
@@ -189,7 +187,7 @@ void draw_opamp(int instance) {
                 gfx_draw_string(0 + x, 15 + y, "DAC", 1, 1, 0);
             }
             break;
-        case 3: // GND
+        case OPAMP_RES1MUX_GND:
             gfx_draw_fast_vline(6 + x, 22 + y, 3, 1);
             gfx_draw_fast_hline(4 + x, 25 + y, 5, 1);
             gfx_draw_fast_hline(5 + x, 27 + y, 3, 1);
@@ -198,12 +196,12 @@ void draw_opamp(int instance) {
             break;
     }
     switch (opamps[instance].res2mux) {
-        case 0: // VCC
+        case OPAMP_RES2MUX_VCC:
             gfx_draw_fast_hline(31 + x, 22 + y, 3, 1);
             gfx_draw_fast_vline(34 + x, 19 + y, 4, 1);
             gfx_draw_fast_hline(33 + x, 20 + y, 3, 1);
             break;
-        case 1: // OUT
+        case OPAMP_RES2MUX_OUT:
             gfx_draw_fast_hline(31 + x, 22 + y, 10, 1);
             gfx_draw_fast_vline(40 + x, 9 + y, 13, 1);
             gfx_draw_fast_hline(37 + x, 8 + y, 4, 1);
@@ -215,49 +213,49 @@ void draw_opamp(int instance) {
     char r2[3] = {0};
     
     switch (opamps[instance].potmux) {
-        case 0:
+        case OPAMP_POTMUX_RATIO_14_2:
             r1[0] = '1';
             r1[1] = '4';
             r2[0] = ' ';
             r2[1] = '2';
             break;
-        case 1:
+        case OPAMP_POTMUX_RATIO_12_4:
             r1[0] = '1';
             r1[1] = '2';
             r2[0] = ' ';
             r2[1] = '4';
             break;
-        case 2:
+        case OPAMP_POTMUX_RATIO_8_8:
             r1[0] = ' ';
             r1[1] = '8';
             r2[0] = ' ';
             r2[1] = '8';
             break;
-        case 3:
+        case OPAMP_POTMUX_RATIO_6_10:
             r1[0] = ' ';
             r1[1] = '6';
             r2[0] = '1';
             r2[1] = '0';
             break;
-        case 4:
+        case OPAMP_POTMUX_RATIO_4_12:
             r1[0] = ' ';
             r1[1] = '4';
             r2[0] = '1';
             r2[1] = '2';
             break;
-        case 5:
+        case OPAMP_POTMUX_RATIO_3_13:
             r1[0] = ' ';
             r1[1] = '3';
             r2[0] = '1';
             r2[1] = '3';
             break;
-        case 6:
+        case OPAMP_POTMUX_RATIO_2_14:
             r1[0] = ' ';
             r1[1] = '2';
             r2[0] = '1';
             r2[1] = '4';
             break;
-        case 7:
+        case OPAMP_POTMUX_RATIO_1_15:
             r1[0] = ' ';
             r1[1] = '1';
             r2[0] = '1';
@@ -268,16 +266,18 @@ void draw_opamp(int instance) {
     gfx_draw_string(24 + x, 24 + y, r2, 1, 1, 0);
 
     switch (opamps[instance].muxpos) {
-        case 0: // OAxPOS
+        case OPAMP_MUXPOS_POS:
             gfx_draw_string(2 + x, 3 + y, "IN+", 1, 1, 0);
             break;
-        case 1: // OAxTAP
+        case OPAMP_MUXPOS_LADDER:
             gfx_draw_fast_hline(12 + x, 5 + y, 3, 1);
             gfx_draw_fast_vline(12 + x, 5 + y, 14, 1);
             gfx_draw_fast_hline(12 + x, 19 + y, 9, 1);
             gfx_draw_fast_vline(20 + x, 19 + y, 4, 1);
             break;
-        case 2: // DAC or output
+        case OPAMP0_MUXPOS_DAC: // 2 is DAC on instance 0, previous output on 1 and 2
+        // case OPAMP1_MUXPOS_OUT_0:
+        // case OPAMP2_MUXPOS_OUT_1:
             if (instance == 0) {
                 gfx_draw_string(2 + x, 3 + y, "DAC", 1, 1, 0);
             } else {
@@ -286,46 +286,54 @@ void draw_opamp(int instance) {
                 gfx_draw_fast_hline(x - 5, 5 + y, 20, 1);
             }
             break;
-        case 3: // GND
+        case OPAMP_MUXPOS_GND:
             gfx_draw_fast_vline(13 + x, 2 + y, 4, 1);
             gfx_draw_fast_hline(6 + x, 2 + y, 8, 1);
             gfx_draw_fast_vline(6 + x, 2 + y, 2, 1);
             gfx_draw_fast_hline(4 + x, 4 + y, 5, 1);
             gfx_draw_fast_hline(5 + x, 6 + y, 3, 1);
             break;
-        case 4: // OA0 positive (second instance only)
+        case OPAMP2_MUXPOS_POS_0: // OA0 positive (second instance only)
+            // TODO
             break;
-        case 5: // OA1 positive (second instance only)
+        case OPAMP2_MUXPOS_POS_1: // OA1 positive (second instance only)
+            // TODO
             break;
-        case 6: // OA0 tap (second instance only)
+        case OPAMP2_MUXPOS_LADDER_0: // OA0 tap (second instance only)
+            // TODO
             break;
         default:
             break;
     }
 
     switch (opamps[instance].muxneg) {
-        case 0: // OAxNEG
+        case OPAMP_MUXNEG_NEG:
             gfx_draw_string(2 + x, 9 + y, "IN-", 1, 1, 0);
             break;
-        case 1: // OAxTAP
+        case OPAMP_MUXNEG_LADDER:
             gfx_draw_fast_hline(13 + x, 11 + y, 3, 1);
             gfx_draw_fast_vline(13 + x, 11 + y, 8, 1);
             gfx_draw_fast_hline(13 + x, 18 + y, 8, 1);
             gfx_draw_fast_vline(20 + x, 18 + y, 4, 1);
             break;
-        case 2: // OAxOUT
+        case OPAMP_MUXNEG_OUT:
+            // TODO
             break;
-        case 3: // DAC (0, 1) or OA0 negative (2)
+        case OPAMP0_MUXNEG_DAC: // 3 is DAC on instance 0 and 1, 0 NEG on instance 2
+        // case OPAMP1_MUXNEG_DAC:
+        // case OPAMP2_MUXNEG_NEG_0:
             if (instance == 2) {
+                // TODO
             } else {
                 gfx_draw_string(2 + x, 9 + y, "DAC", 1, 1, 0);
             }
             break;
-        case 4: // OA1 negative (second instance only)
+        case OPAMP2_MUXNEG_NEG_1: // OA1 negative (second instance only)
             if (instance == 2) {
+                // TODO
             }
             break;
-        case 5: // DAC (second instance only)
+        case OPAMP2_MUXNEG_DAC: // DAC (second instance only)
             if (instance == 2) {
                 gfx_draw_string(2 + x, 9 + y, "DAC", 1, 1, 0);
             }

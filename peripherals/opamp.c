@@ -67,9 +67,7 @@ void opamp_set_res2mux(uint16_t channel, uint8_t res2mux) {
             OPAMP->OPAMPCTRL[channel].bit.RES2OUT = 0;
             OPAMP->OPAMPCTRL[channel].bit.RES2VCC = 1;
             break;
-        case OPAMP0_RES2MUX_OUT_0:
-        // case OPAMP1_RES2MUX_OUT_1:
-        // case OPAMP2_RES2MUX_OUT_2:
+        case OPAMP_RES2MUX_OUT:
             OPAMP->OPAMPCTRL[channel].bit.RES2VCC = 0;
             OPAMP->OPAMPCTRL[channel].bit.RES2OUT = 1;
             break;
