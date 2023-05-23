@@ -1,3 +1,7 @@
+/** 
+ * @file tcc.h
+ * @brief Timer/Counter for Control Applications (TCC) Peripheral
+ */
 /*
  * MIT License
  *

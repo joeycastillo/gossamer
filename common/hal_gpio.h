@@ -1,3 +1,7 @@
+/** 
+ * @file hal_gpio.h
+ * @brief GPIO Macros
+ */
 /*
  * Copyright (c) 2014-2016, Alex Taradov <alex@taradov.com>
  * All rights reserved.

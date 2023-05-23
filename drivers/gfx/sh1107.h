@@ -1,3 +1,7 @@
+/** 
+ * @file sh1107.h
+ * @brief SH1107 OLED display driver.
+ */
 // Ported from Adafruit_GFX
 // See LICENSE for license text
 

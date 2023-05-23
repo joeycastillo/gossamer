@@ -1,3 +1,7 @@
+/** 
+ * @file gfx.h
+ * @brief Graphics routines
+ */
 // Ported from Adafruit_GFX
 // See LICENSE for license text
 

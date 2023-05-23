@@ -1,4 +1,8 @@
-/*
+/** 
+ * @file adc.h
+ * @brief Analog to Digital Converter
+ */
+/* 
  * MIT License
  *
  * Copyright (c) 2022 Joey Castillo

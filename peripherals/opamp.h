@@ -1,3 +1,7 @@
+/** 
+ * @file opamp.h
+ * @brief Operational Amplifier Peripheral
+ */
 /*
  * MIT License
  *

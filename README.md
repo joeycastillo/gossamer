@@ -1,3 +1,5 @@
+/// @mainpage
+
 gossamer: a very lightweight app framework for SAMD and SAML chips
 ==================================================================
 

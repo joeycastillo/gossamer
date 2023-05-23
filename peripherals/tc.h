@@ -1,3 +1,7 @@
+/** 
+ * @file tc.h
+ * @brief Timer/Counter Peripheral
+ */
 /*
  * MIT License
  *

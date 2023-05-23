@@ -1,3 +1,7 @@
+/** 
+ * @file rtc.h
+ * @brief Real-Time Clock
+ */
 /*
  * MIT License
  *

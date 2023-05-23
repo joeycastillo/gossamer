@@ -1,3 +1,7 @@
+/** 
+ * @file delay.h
+ * @brief Delay routines
+ */
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>

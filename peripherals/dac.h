@@ -1,3 +1,7 @@
+/** 
+ * @file dac.h
+ * @brief Digital to Analog Converter
+ */
 /*
  * MIT License
  *

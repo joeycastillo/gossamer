@@ -1,3 +1,7 @@
+/** 
+ * @file eic.h
+ * @brief External Interrupt Controller
+ */
 /*
  * MIT License
  *

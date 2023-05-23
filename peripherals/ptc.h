@@ -1,3 +1,7 @@
+/** 
+ * @file ptc.h
+ * @brief Peripheral Touch Controller
+ */
 /*
  * FreeTouch, a QTouch-compatible library - tested on ATSAMD21 only!
  * The MIT License (MIT)

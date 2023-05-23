@@ -1,3 +1,7 @@
+/** 
+ * @file i2c.h
+ * @brief I2C Peripheral
+ */
 /*
     Cribbed from the Castor & Pollux Gemini firmware:
     https://github.com/wntrblm/Castor_and_Pollux/

@@ -1,3 +1,7 @@
+/** 
+ * @file app.h
+ * @brief Gossamer application framework
+ */
 /*
  * MIT License
  *
@@ -31,9 +35,6 @@
 #include "sam.h"
 #include "pins.h"
 
-////< @file app.h
-
-/// @{
 /** @brief A function you will implement to initialize your application state. The app_init function is called after
   *        system clocks are initialized, and before anything else.
   * @details Use this function to set up any internal data structures or state required by your app, and set up any
@@ -58,5 +59,3 @@ void app_setup(void);
   *         app_loop method will be called again immediately.
   */
 bool app_loop(void);
-
-/// @}
