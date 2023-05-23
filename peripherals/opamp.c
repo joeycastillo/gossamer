@@ -53,7 +53,7 @@ void opamp_set_potmux(uint16_t channel, uint8_t potmux) {
 
 
 void opamp_set_res1mux(uint16_t channel, uint8_t res1mux) {
-    if (res1mux != OPAMP0_RES1MUX_NC) {
+    if (res1mux != OPAMP_RES1MUX_NC) {
         OPAMP->OPAMPCTRL[channel].bit.RES1MUX = res1mux;
         OPAMP->OPAMPCTRL[channel].bit.RES1EN = 1;
     } else {
@@ -67,11 +67,14 @@ void opamp_set_res2mux(uint16_t channel, uint8_t res2mux) {
             OPAMP->OPAMPCTRL[channel].bit.RES2OUT = 0;
             OPAMP->OPAMPCTRL[channel].bit.RES2VCC = 1;
             break;
-        case OPAMP_RES2MUX_OUT:
+        case OPAMP0_RES2MUX_OUT_0:
+        // case OPAMP1_RES2MUX_OUT_1:
+        // case OPAMP2_RES2MUX_OUT_2:
             OPAMP->OPAMPCTRL[channel].bit.RES2VCC = 0;
             OPAMP->OPAMPCTRL[channel].bit.RES2OUT = 1;
             break;
         case OPAMP_RES2MUX_NC:
+        default:
             OPAMP->OPAMPCTRL[channel].bit.RES2VCC = 0;
             OPAMP->OPAMPCTRL[channel].bit.RES2OUT = 0;
             break;
