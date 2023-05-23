@@ -16,6 +16,7 @@
 #endif
 
 static const unsigned char font_5x7[];
+static const uint16_t font_3x5[];
 
 int16_t gfx_raw_width = 0;
 int16_t gfx_raw_height = 0;
@@ -462,22 +463,64 @@ void gfx_draw_char(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16
     gfx_end_write();
 }
 
+uint8_t gfx_draw_small_char(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg) {
+    if ((x >= gfx_width) || (y >= gfx_height) ||
+        ((x + 4 - 1) < 0) || ((y + 6 - 1) < 0)) {
+        return 0;
+    }
+
+    gfx_start_write();
+    uint16_t bitmap = font_3x5[c - 0x20];
+    uint8_t advance = 4;
+    if (bitmap & 1) advance = 2;
+    else if (!bitmap) advance = 1;
+    bitmap >>= 1;
+
+    for (int8_t j = 14; j >= 0; j--, bitmap >>= 1) {
+        if (bitmap & 1) {
+            gfx_write_pixel(x + (j % 3), y + j / 3, color);
+        } else if (bg != color) {
+            gfx_write_pixel(x + (j % 3), y + j / 3, bg);
+        }
+    }
+    if (bg != color) { // If opaque, draw lines for last row and column
+        gfx_write_fast_hline(x, y + 5, 3, bg);
+        gfx_write_fast_vline(x + 3, y, 6, bg);
+    }
+    gfx_end_write();
+
+    return advance;
+}
+
 void gfx_draw_string(int16_t x, int16_t y, char *s, uint16_t color, uint16_t bg, uint8_t size) {
     int cursor_x = x;
     int cursor_y = y;
     bool wrap = false;
     for(size_t i = 0; i < strlen(s); i++) {
         unsigned char c = s[i];
-        if (c == '\n') {
-            cursor_x = x;
-            cursor_y += size * 8;
-        } else if (c != '\r') {
-            if (wrap && ((cursor_x + size * 6) > gfx_width)) {
+        if (size == 0) {
+            if (c == '\n') {
+                cursor_x = x;
+                cursor_y += 6;
+            } else if (c != '\r') {
+                if (wrap && ((cursor_x + 4) > gfx_width)) {
+                    cursor_x = x;
+                    cursor_y += 6;
+                }
+                cursor_x += gfx_draw_small_char(cursor_x, cursor_y, s[i], color, bg);;
+            }
+        } else {
+            if (c == '\n') {
                 cursor_x = x;
                 cursor_y += size * 8;
+            } else if (c != '\r') {
+                if (wrap && ((cursor_x + size * 6) > gfx_width)) {
+                    cursor_x = x;
+                    cursor_y += size * 8;
+                }
+                gfx_draw_char(cursor_x, cursor_y, s[i], color, bg, size);
+                cursor_x += size * 6;
             }
-            gfx_draw_char(cursor_x, cursor_y, s[i], color, bg, size);
-            cursor_x += size * 6;
         }
     }
 }
@@ -605,4 +648,105 @@ static const unsigned char font_5x7[] = {
     0x00, 0x00, 0x10, 0x10, 0x00, 0x30, 0x40, 0xFF, 0x01, 0x01, 0x00, 0x1F,
     0x01, 0x01, 0x1E, 0x00, 0x19, 0x1D, 0x17, 0x12, 0x00, 0x3C, 0x3C, 0x3C,
     0x3C, 0x00, 0x00, 0x00, 0x00, 0x00 // #255 NBSP
+};
+
+// Tom Thumb remix. Different from the one in GFX as it omits metrics that would allow for descenders.
+// Still variable width, tho: low bit determines if this is a 'skinny' character (advance by 2px instead of 4).
+static const uint16_t font_3x5[] = {
+    0x0000,       /* 0x20 space, advance of 1 handled in a special case */
+    0x9208 | 1,   /* 0x21 exclam */
+    0xB400,       /* 0x22 quotedbl */
+    0xBEFA,       /* 0x23 numbersign */
+    0x79E4,       /* 0x24 dollar */
+    0x8542,       /* 0x25 percent */
+    0xDBD6,       /* 0x26 ampersand */
+    0x9000 | 1,   /* 0x27 quotesingle */
+    0x5244,       /* 0x28 parenleft */
+    0x4494,       /* 0x29 parenright */
+    0x1550,       /* 0x2A asterisk */
+    0x0BA0,       /* 0x2B plus */
+    0x0028,       /* 0x2C comma */
+    0x0380,       /* 0x2D hyphen */
+    0x0008 | 1,   /* 0x2E period */
+    0x2548,       /* 0x2F slash */
+    0x76DC,       /* 0x30 zero */
+    0x5924,       /* 0x31 one */
+    0xC54E,       /* 0x32 two */
+    0xC51C,       /* 0x33 three */
+    0xB792,       /* 0x34 four */
+    0xF31C,       /* 0x35 five */
+    0x73DE,       /* 0x36 six */
+    0xE548,       /* 0x37 seven */
+    0xF7DE,       /* 0x38 eight */
+    0xF79C,       /* 0x39 nine */
+    0x1040 | 1,   /* 0x3A colon */
+    0x0828,       /* 0x3B semicolon */
+    0x2A22,       /* 0x3C less */
+    0x1C70,       /* 0x3D equal */
+    0x88A8,       /* 0x3E greater */
+    0xE504,       /* 0x3F question */
+    0x57C6,       /* 0x40 at */
+    0x57DA,       /* 0x41 A */
+    0xD75C,       /* 0x42 B */
+    0x7246,       /* 0x43 C */
+    0xD6DC,       /* 0x44 D */
+    0xF3CE,       /* 0x45 E */
+    0xF3C8,       /* 0x46 F */
+    0x73D6,       /* 0x47 G */
+    0xB7DA,       /* 0x48 H */
+    0xE92E,       /* 0x49 I */
+    0x24D4,       /* 0x4A J */
+    0xB75A,       /* 0x4B K */
+    0x924E,       /* 0x4C L */
+    0xBFDA,       /* 0x4D M */
+    0xBFFA,       /* 0x4E N */
+    0x56D4,       /* 0x4F O */
+    0xD748,       /* 0x50 P */
+    0x56F6,       /* 0x51 Q */
+    0xD7EA,       /* 0x52 R */
+    0x711C,       /* 0x53 S */
+    0xE924,       /* 0x54 T */
+    0xB6D6,       /* 0x55 U */
+    0xB6A4,       /* 0x56 V */
+    0xB7FA,       /* 0x57 W */
+    0xB55A,       /* 0x58 X */
+    0xB524,       /* 0x59 Y */
+    0xE54E,       /* 0x5A Z */
+    0xF24E,       /* 0x5B bracketleft */
+    0x8880,       /* 0x5C backslash */
+    0xE49E,       /* 0x5D bracketright */
+    0x5400,       /* 0x5E asciicircum */
+    0xE000,       /* 0x5F underscore */
+    0x9000,       /* 0x60 grave */
+    0x19DE,       /* 0x61 a */
+    0x9ADC,       /* 0x62 b */
+    0x0E46,       /* 0x63 c */
+    0x2ED6,       /* 0x64 d */
+    0x0EE6,       /* 0x65 e */
+    0x2BA4,       /* 0x66 f */
+    0x7794,       /* 0x67 g */
+    0x9ADA,       /* 0x68 h */
+    0x8248 | 1,   /* 0x69 i */
+    0x209C,       /* 0x6A j */
+    0x976A,       /* 0x6B k */
+    0xC92E,       /* 0x6C l */
+    0x1FFA,       /* 0x6D m */
+    0x1ADA,       /* 0x6E n */
+    0x0AD4,       /* 0x6F o */
+    0xD6E8,       /* 0x70 p */
+    0x76B2,       /* 0x71 q */
+    0x0E48,       /* 0x72 r */
+    0x0F3C,       /* 0x73 s */
+    0x5D26,       /* 0x74 t */
+    0x16D6,       /* 0x75 u */
+    0x16F4,       /* 0x76 v */
+    0x17FE,       /* 0x77 w */
+    0x152A,       /* 0x78 x */
+    0xB594,       /* 0x79 y */
+    0x1DEE,       /* 0x7A z */
+    0x6A26,       /* 0x7B braceleft */
+    0x9248 | 1,   /* 0x7C bar */
+    0xC8AC,       /* 0x7D braceright */
+    0x7800,       /* 0x7E asciitilde */
+    0xFFFE,       /* 0x7F full block */
 };

@@ -74,7 +74,11 @@ void draw_opamp(int x, int y, int instance) {
     gfx_draw_triangle(17 + x, 0 + y, 34 + x, 8 + y, 17 + x, 16 + y, 1);
     gfx_draw_fast_hline(14 + x, 5 + y, 3, 1);
     gfx_draw_fast_hline(14 + x, 11 + y, 3, 1);
-    gfx_draw_fast_hline(35 + x, 8 + y, (instance == 2) ? 4 : 2, 1);
+    gfx_draw_fast_hline(35 + x, 8 + y, 2, 1);
+
+    gfx_draw_small_char(19 + x, 3 + y, '+', 1, 1);
+    gfx_draw_small_char(19 + x, 9 + y, '-', 1, 1);
+    gfx_draw_small_char(24 + x, 6 + y, '0' + instance, 1, 1);
 
     gfx_draw_fast_hline(7 + x, 22 + y, 27, 1);
     gfx_draw_pixel(10 + x, 22 + y, 0);

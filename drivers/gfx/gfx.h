@@ -47,6 +47,7 @@ void gfx_draw_round_rect(int16_t x0, int16_t y0, int16_t w, int16_t h, int16_t r
 void gfx_fill_round_rect(int16_t x0, int16_t y0, int16_t w, int16_t h, int16_t radius, uint16_t color);
 
 void gfx_draw_char(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);
+uint8_t gfx_draw_small_char(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg);
 void gfx_draw_string(int16_t x, int16_t y, char *s, uint16_t color, uint16_t bg, uint8_t size);
 
 // void gfx_draw_bitmap(int16_t x, int16_t y, const uint8_t bitmap[], int16_t w, int16_t h, uint16_t color, uint16_t bg);
