@@ -8,7 +8,21 @@
 
 #pragma once
 
+// this file is a driver for the SH1107 OLED that works in conjunction with the gfx driver.
+
+/**
+ * @brief Initializes the SH1107 display.
+ * @details You must configure both the GFX driver (@see `gfx_init()`) and the I2C peripheral
+ * @see `i2c_init()` before calling this function.
+ */
 void sh1107_begin(void);
+
+/**
+ * @brief Pushes the current contents of the GFX buffer to the display.
+ * @details Once you have configured the GFX driver, you will draw to that buffer using the
+ *       gfx draw functions. This function merely pushes the contents of that buffer to the
+ *       display, and you MUST call `sh1107_update` to see any changes you have made.
+ */
 void sh1107_update(void);
 
 #define SH110X_MEMORYMODE 0x20          ///< See datasheet

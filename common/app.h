@@ -35,9 +35,10 @@
 
 /// @{
 /** @brief A function you will implement to initialize your application state. The app_init function is called after
-  *        system clocks are initialized, and before anything else. Use it to set up any internal data structures or
-  *        state required by your app, and set up any low-level parameters like CPU speed or microcontroller register
-  *        configuration. If your application plans to use the real-time clock, you should call `rtc_init` here.
+  *        system clocks are initialized, and before anything else.
+  * @details Use this function to set up any internal data structures or state required by your app, and set up any
+  *          low-level parameters like CPU speed or microcontroller register configuration.
+  * @note If your application plans to use the real-time clock perhiperal, you should call the `rtc_init` function here.
   */
 void app_init(void);
 
@@ -50,7 +51,9 @@ void app_init(void);
 void app_setup(void);
 
 /** @brief A function you will implement to serve as the app's main run loop. This method will be called repeatedly,
-           or if you enter STANDBY mode, as soon as the device wakes from sleep.
+  *        or if you enter STANDBY mode, as soon as the device wakes from that mode.
+  * @note In order to wake from STANDBY mode, you must set up an interrupt or wake source. Otherwise your app will
+  *       remain in STANDBY indefinitely.
   * @return You should return true if your app is prepared to enter STANDBY mode. If you return false, your app's
   *         app_loop method will be called again immediately.
   */

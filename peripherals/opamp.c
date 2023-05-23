@@ -35,52 +35,52 @@ void opamp_init(void) {
     OPAMP->CTRLA.reg |= OPAMP_CTRLA_ENABLE;
 }
 
-void opamp_enable(uint16_t channel) {
-    OPAMP->OPAMPCTRL[channel].reg |= OPAMP_OPAMPCTRL_ENABLE;
+void opamp_enable(uint16_t instance) {
+    OPAMP->OPAMPCTRL[instance].reg |= OPAMP_OPAMPCTRL_ENABLE;
 }
 
-void opamp_set_muxpos(uint16_t channel, uint8_t muxpos) {
-    OPAMP->OPAMPCTRL[channel].bit.MUXPOS = muxpos;
+void opamp_set_muxpos(uint16_t instance, uint8_t muxpos) {
+    OPAMP->OPAMPCTRL[instance].bit.MUXPOS = muxpos;
 }
 
-void opamp_set_muxneg(uint16_t channel, uint8_t muxneg) {
-    OPAMP->OPAMPCTRL[channel].bit.MUXNEG = muxneg;
+void opamp_set_muxneg(uint16_t instance, uint8_t muxneg) {
+    OPAMP->OPAMPCTRL[instance].bit.MUXNEG = muxneg;
 }
 
-void opamp_set_potmux(uint16_t channel, uint8_t potmux) {
-    OPAMP->OPAMPCTRL[channel].bit.POTMUX = potmux;
+void opamp_set_potmux(uint16_t instance, uint8_t potmux) {
+    OPAMP->OPAMPCTRL[instance].bit.POTMUX = potmux;
 }
 
 
-void opamp_set_res1mux(uint16_t channel, uint8_t res1mux) {
+void opamp_set_res1mux(uint16_t instance, uint8_t res1mux) {
     if (res1mux != OPAMP_RES1MUX_NC) {
-        OPAMP->OPAMPCTRL[channel].bit.RES1MUX = res1mux;
-        OPAMP->OPAMPCTRL[channel].bit.RES1EN = 1;
+        OPAMP->OPAMPCTRL[instance].bit.RES1MUX = res1mux;
+        OPAMP->OPAMPCTRL[instance].bit.RES1EN = 1;
     } else {
-        OPAMP->OPAMPCTRL[channel].bit.RES1EN = 0;
+        OPAMP->OPAMPCTRL[instance].bit.RES1EN = 0;
     }
 }
 
-void opamp_set_res2mux(uint16_t channel, uint8_t res2mux) {
+void opamp_set_res2mux(uint16_t instance, uint8_t res2mux) {
     switch (res2mux) {
         case OPAMP_RES2MUX_VCC:
-            OPAMP->OPAMPCTRL[channel].bit.RES2OUT = 0;
-            OPAMP->OPAMPCTRL[channel].bit.RES2VCC = 1;
+            OPAMP->OPAMPCTRL[instance].bit.RES2OUT = 0;
+            OPAMP->OPAMPCTRL[instance].bit.RES2VCC = 1;
             break;
         case OPAMP_RES2MUX_OUT:
-            OPAMP->OPAMPCTRL[channel].bit.RES2VCC = 0;
-            OPAMP->OPAMPCTRL[channel].bit.RES2OUT = 1;
+            OPAMP->OPAMPCTRL[instance].bit.RES2VCC = 0;
+            OPAMP->OPAMPCTRL[instance].bit.RES2OUT = 1;
             break;
         case OPAMP_RES2MUX_NC:
         default:
-            OPAMP->OPAMPCTRL[channel].bit.RES2VCC = 0;
-            OPAMP->OPAMPCTRL[channel].bit.RES2OUT = 0;
+            OPAMP->OPAMPCTRL[instance].bit.RES2VCC = 0;
+            OPAMP->OPAMPCTRL[instance].bit.RES2OUT = 0;
             break;
     }
 }
 
-void opamp_disable(uint16_t channel) {
-    OPAMP->OPAMPCTRL[channel].reg &= ~OPAMP_OPAMPCTRL_ENABLE;
+void opamp_disable(uint16_t instance) {
+    OPAMP->OPAMPCTRL[instance].reg &= ~OPAMP_OPAMPCTRL_ENABLE;
 }
 
 #endif

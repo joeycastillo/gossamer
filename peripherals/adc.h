@@ -28,9 +28,33 @@
 #include <stdbool.h>
 
 
-
+/**
+ * @brief Enable the ADC peripheral
+ * @details This function enables some sensible defaults for basic use cases:
+ *          * Clocks the ADC with the main 8 MHz oscillator and divider of 16
+ *            for a 500 kHz ADC clock.
+ *          * Sets sampling length to one clock cycle, which is appropriate
+ *            for inputs with impedance up to 28 kOhm.
+ *          * Sets oversampling of 16 samples, resulting in a conversion time
+ *            of 32 microseconds.
+ *          * Sets the ADC up for single-ended measurement (you are measuring
+ *            the voltage between the analog input pin and ground, not between
+ *            two analog input pins)
+ *          * On SAM L21 and L22, sets the reference voltage to VDDANA, which
+ *            allows use of the full 0-3.3V range.
+ *          * On SAM D11 and D21, sets the reference voltage to VDDANA / 2 and
+ *            the gain to 1/2, which also allows use of the full 0-3.3V range.
+ */
 void adc_enable(void);
 
+/**
+ * @brief Gets the analog value of the given ADC channel.
+ * @param channel The ADC channel to read from (NOT the pin number).
+ * @return The analog value of the given ADC channel, from 0-65535 by default.
+ */
 uint16_t adc_get_analog_value(uint16_t channel);
 
+/**
+ * @brief Disables the ADC peripheral
+ */
 void adc_disable(void);

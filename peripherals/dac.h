@@ -27,8 +27,23 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+/**
+ * @brief Initialize and enable the DAC peripheral.
+ * @param channel The DAC channel to enable.
+ * @warning Currently only supports the DAC on VOUT[0]
+ */
 void dac_enable(uint16_t channel);
 
+/**
+ * @brief Set the analog value of the DAC.
+ * @param channel The DAC channel to set.
+ * @param value The value to set the DAC to, from 0 to 4095
+ * @warning Currently only supports the DAC on VOUT[0]
+ */
 void dac_set_analog_value(uint16_t channel, uint16_t value);
 
+/**
+ * @brief Disables the given DAC channel.
+ * @warning Currently only supports the DAC on VOUT[0]
+ */
 void dac_disable(uint16_t channel);

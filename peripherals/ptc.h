@@ -86,8 +86,23 @@ typedef enum tag_freq_hop_t {
   FREQ_HOP_16
 } ptc_freq_hop_t;
 
+/**
+ * @brief Initialize the peripheral touch controller.
+ */
 void ptc_init(void);
+
+/**
+ * @brief Enable the given PTC channel.
+ * @param channel The PTC channel (NOT pin number) to enable.
+ * @note You are still responsible for configuring the pin mux.
+ */
 void ptc_enable_channel(uint8_t channel);
+
+/**
+ * @brief Get a value from the given channel.
+ * @param channel The PTC channel (NOT pin number) to read.
+ * @return The touch value read from the channel.
+ */
 uint16_t ptc_get_value(uint8_t channel);
 
 #endif

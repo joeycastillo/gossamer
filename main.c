@@ -8,6 +8,8 @@
 #include "system.h"
 #include "delay.h"
 
+void _enter_standby_mode(void);
+
 int main(void) {
     // set up system clocks
     sys_init();
