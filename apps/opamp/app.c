@@ -47,7 +47,7 @@ void app_setup(void) {
     i2c_init();
 
     gfx_init(64, 128, 1);
-    gfx_set_rotation(1);
+    gfx_set_rotation(90);
 
     sh1107_begin();
     sh1107_update();
@@ -124,16 +124,16 @@ void draw_opamp(int instance) {
     gfx_draw_triangle(17 + x, 0 + y, 34 + x, 8 + y, 17 + x, 16 + y, 1);
 
     gfx_draw_small_char(19 + x, 3 + y, '+', 1, 1);
-    gfx_draw_fast_hline(15 + x, 5 + y, 2, 1);
+    gfx_draw_hline(15 + x, 5 + y, 2, 1);
 
     gfx_draw_small_char(19 + x, 9 + y, '-', 1, 1);
-    gfx_draw_fast_hline(15 + x, 11 + y, 2, 1);
+    gfx_draw_hline(15 + x, 11 + y, 2, 1);
 
     gfx_draw_small_char(24 + x, 6 + y, '0' + instance, 1, 1);
-    gfx_draw_fast_hline(35 + x, 8 + y, (instance == 2) ? 4 : 2, 1);
+    gfx_draw_hline(35 + x, 8 + y, (instance == 2) ? 4 : 2, 1);
 
 
-    gfx_draw_fast_hline(7 + x, 22 + y, 27, 1);
+    gfx_draw_hline(7 + x, 22 + y, 27, 1);
     gfx_draw_pixel(10 + x, 22 + y, 0);
     gfx_draw_pixel(12 + x, 22 + y, 0);
     gfx_draw_pixel(14 + x, 22 + y, 0);
@@ -156,23 +156,23 @@ void draw_opamp(int instance) {
     switch (opamps[instance].res1mux) {
         case OPAMP_RES1MUX_POS:
             if (instance) {
-                gfx_draw_fast_vline(3 + x, 23 + y, 1, 1);
-                gfx_draw_fast_hline(3 + x, 22 + y, 4, 1);
+                gfx_draw_vline(3 + x, 23 + y, 1, 1);
+                gfx_draw_hline(3 + x, 22 + y, 4, 1);
                 gfx_draw_string(-2 + x, 25 + y, "IN +", 1, 1, 0);
             } else {
-                gfx_draw_fast_vline(3 + x, 23 + y, 1, 1);
-                gfx_draw_fast_hline(3 + x, 22 + y, 4, 1);
+                gfx_draw_vline(3 + x, 23 + y, 1, 1);
+                gfx_draw_hline(3 + x, 22 + y, 4, 1);
                 gfx_draw_string(0 + x, 25 + y, "IN\n +", 1, 1, 0);
             }
             break;
         case OPAMP_RES1MUX_NEG:
             if (instance) {
-                gfx_draw_fast_vline(3 + x, 23 + y, 1, 1);
-                gfx_draw_fast_hline(3 + x, 22 + y, 4, 1);
+                gfx_draw_vline(3 + x, 23 + y, 1, 1);
+                gfx_draw_hline(3 + x, 22 + y, 4, 1);
                 gfx_draw_string(-2 + x, 25 + y, "IN -", 1, 1, 0);
             } else {
-                gfx_draw_fast_vline(3 + x, 23 + y, 1, 1);
-                gfx_draw_fast_hline(3 + x, 22 + y, 4, 1);
+                gfx_draw_vline(3 + x, 23 + y, 1, 1);
+                gfx_draw_hline(3 + x, 22 + y, 4, 1);
                 gfx_draw_string(0 + x, 25 + y, "IN\n -", 1, 1, 0);
             }
             break;
@@ -180,33 +180,33 @@ void draw_opamp(int instance) {
         // case OPAMP1_RES1MUX_OUT_0:
         // case OPAMP2_RES1MUX_OUT_1:
             if (instance) {
-                gfx_draw_fast_hline(-9 + x, 8 + y, 7, 1);
-                gfx_draw_fast_vline(-3 + x, 8 + y, 14, 1);
-                gfx_draw_fast_hline(-3 + x, 22 + y, 10, 1);
+                gfx_draw_hline(-9 + x, 8 + y, 7, 1);
+                gfx_draw_vline(-3 + x, 8 + y, 14, 1);
+                gfx_draw_hline(-3 + x, 22 + y, 10, 1);
             } else {
-                gfx_draw_fast_vline(3 + x, 23 + y, 1, 1);
-                gfx_draw_fast_hline(3 + x, 22 + y, 4, 1);
+                gfx_draw_vline(3 + x, 23 + y, 1, 1);
+                gfx_draw_hline(3 + x, 22 + y, 4, 1);
                 gfx_draw_string(0 + x, 25 + y, "DA\n C", 1, 1, 0);
             }
             break;
         case OPAMP_RES1MUX_GND:
-            gfx_draw_fast_vline(6 + x, 22 + y, 3, 1);
-            gfx_draw_fast_hline(4 + x, 25 + y, 5, 1);
-            gfx_draw_fast_hline(5 + x, 27 + y, 3, 1);
+            gfx_draw_vline(6 + x, 22 + y, 3, 1);
+            gfx_draw_hline(4 + x, 25 + y, 5, 1);
+            gfx_draw_hline(5 + x, 27 + y, 3, 1);
             break;
         default:
             break;
     }
     switch (opamps[instance].res2mux) {
         case OPAMP_RES2MUX_VCC:
-            gfx_draw_fast_hline(31 + x, 22 + y, 3, 1);
-            gfx_draw_fast_vline(34 + x, 19 + y, 4, 1);
-            gfx_draw_fast_hline(33 + x, 20 + y, 3, 1);
+            gfx_draw_hline(31 + x, 22 + y, 3, 1);
+            gfx_draw_vline(34 + x, 19 + y, 4, 1);
+            gfx_draw_hline(33 + x, 20 + y, 3, 1);
             break;
         case OPAMP_RES2MUX_OUT:
-            gfx_draw_fast_hline(31 + x, 22 + y, 7, 1);
-            gfx_draw_fast_vline(37 + x, 9 + y, 13, 1);
-            gfx_draw_fast_hline(37 + x, 8 + y, 1, 1);
+            gfx_draw_hline(31 + x, 22 + y, 7, 1);
+            gfx_draw_vline(37 + x, 9 + y, 13, 1);
+            gfx_draw_hline(37 + x, 8 + y, 1, 1);
             break;
         default:
             break;
@@ -276,10 +276,10 @@ void draw_opamp(int instance) {
             }
             break;
         case OPAMP_MUXPOS_LADDER:
-            gfx_draw_fast_hline(0 + x, 5 + y, 16, 1);
-            gfx_draw_fast_vline(0 + x, 5 + y, 14, 1);
-            gfx_draw_fast_hline(0 + x, 19 + y, 21, 1);
-            gfx_draw_fast_vline(20 + x, 19 + y, 4, 1);
+            gfx_draw_hline(0 + x, 5 + y, 16, 1);
+            gfx_draw_vline(0 + x, 5 + y, 14, 1);
+            gfx_draw_hline(0 + x, 19 + y, 21, 1);
+            gfx_draw_vline(20 + x, 19 + y, 4, 1);
             break;
         case OPAMP0_MUXPOS_DAC: // 2 is DAC on instance 0, previous output on 1 and 2
         // case OPAMP1_MUXPOS_OUT_0:
@@ -287,42 +287,42 @@ void draw_opamp(int instance) {
             if (instance == 0) {
                 gfx_draw_string(2 + x, 3 + y, "DAC", 1, 1, 0);
             } else {
-                gfx_draw_fast_hline(x - 6, 8 + y, 1, 1);
-                gfx_draw_fast_vline(x - 6, 5 + y, 4, 1);
-                gfx_draw_fast_hline(x - 6, 5 + y, 21, 1);
+                gfx_draw_hline(x - 6, 8 + y, 1, 1);
+                gfx_draw_vline(x - 6, 5 + y, 4, 1);
+                gfx_draw_hline(x - 6, 5 + y, 21, 1);
             }
             break;
         case OPAMP_MUXPOS_GND:
-            gfx_draw_fast_vline(14 + x, 2 + y, 4, 1);
-            gfx_draw_fast_hline(6 + x, 2 + y, 8, 1);
-            gfx_draw_fast_vline(6 + x, 2 + y, 2, 1);
-            gfx_draw_fast_hline(4 + x, 4 + y, 5, 1);
-            gfx_draw_fast_hline(5 + x, 6 + y, 3, 1);
+            gfx_draw_vline(14 + x, 2 + y, 4, 1);
+            gfx_draw_hline(6 + x, 2 + y, 8, 1);
+            gfx_draw_vline(6 + x, 2 + y, 2, 1);
+            gfx_draw_hline(4 + x, 4 + y, 5, 1);
+            gfx_draw_hline(5 + x, 6 + y, 3, 1);
             break;
         case OPAMP2_MUXPOS_POS_0: // OA0 positive (second instance only)
             if (opamps[0].muxpos == OPAMP_MUXPOS_POS) {
-                gfx_draw_fast_vline(14, -2 + y, 8, 1);
-                gfx_draw_fast_hline(14, -2 + y, 86, 1);
-                gfx_draw_fast_vline(100, -2 + y, 8, 1);
+                gfx_draw_vline(14, -2 + y, 8, 1);
+                gfx_draw_hline(14, -2 + y, 86, 1);
+                gfx_draw_vline(100, -2 + y, 8, 1);
             } else {
                 gfx_draw_string(2 + x, 3 + y, "0+", 1, 1, 0);
             }
             break;
         case OPAMP2_MUXPOS_POS_1: // OA1 positive (second instance only)
             if (opamps[0].muxpos == OPAMP_MUXPOS_POS) {
-                gfx_draw_fast_vline(57, -2 + y, 8, 1);
-                gfx_draw_fast_hline(57, -2 + y, 43, 1);
-                gfx_draw_fast_vline(100, -2 + y, 8, 1);
+                gfx_draw_vline(57, -2 + y, 8, 1);
+                gfx_draw_hline(57, -2 + y, 43, 1);
+                gfx_draw_vline(100, -2 + y, 8, 1);
             } else {
                 gfx_draw_string(2 + x, 3 + y, "1+", 1, 1, 0);
             }
             break;
         case OPAMP2_MUXPOS_LADDER_0: // OA0 tap (second instance only)
-            gfx_draw_fast_vline(100, -2 + y, 7, 1);
-            gfx_draw_fast_hline(100, -2 + y, 27, 1);
-            gfx_draw_fast_vline(127, -2 + y, 32, 1);
-            gfx_draw_fast_vline(20, 23 + y, 6, 1);
-            gfx_draw_fast_hline(20, 29 + y, 107, 1);
+            gfx_draw_vline(100, -2 + y, 7, 1);
+            gfx_draw_hline(100, -2 + y, 27, 1);
+            gfx_draw_vline(127, -2 + y, 32, 1);
+            gfx_draw_vline(20, 23 + y, 6, 1);
+            gfx_draw_hline(20, 29 + y, 107, 1);
         break;
         default:
             break;
@@ -337,15 +337,15 @@ void draw_opamp(int instance) {
             }
             break;
         case OPAMP_MUXNEG_LADDER:
-            gfx_draw_fast_hline(13 + x, 11 + y, 3, 1);
-            gfx_draw_fast_vline(13 + x, 11 + y, 8, 1);
-            gfx_draw_fast_hline(13 + x, 18 + y, 8, 1);
-            gfx_draw_fast_vline(20 + x, 18 + y, 4, 1);
+            gfx_draw_hline(13 + x, 11 + y, 3, 1);
+            gfx_draw_vline(13 + x, 11 + y, 8, 1);
+            gfx_draw_hline(13 + x, 18 + y, 8, 1);
+            gfx_draw_vline(20 + x, 18 + y, 4, 1);
             break;
         case OPAMP_MUXNEG_OUT:
-            gfx_draw_fast_vline(14 + x, 11 + y, 6, 1);
-            gfx_draw_fast_hline(14 + x, 17 + y, 23, 1);
-            gfx_draw_fast_vline(37 + x, 8 + y, 10, 1);
+            gfx_draw_vline(14 + x, 11 + y, 6, 1);
+            gfx_draw_hline(14 + x, 17 + y, 23, 1);
+            gfx_draw_vline(37 + x, 8 + y, 10, 1);
             break;
         case OPAMP0_MUXNEG_DAC: // 3 is DAC on instance 0 and 1, 0 NEG on instance 2
         // case OPAMP1_MUXNEG_DAC:
