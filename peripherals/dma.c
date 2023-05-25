@@ -29,11 +29,12 @@
  * SOFTWARE.
  */
 
+#include <string.h>
+#include <malloc.h>
 #include "pins.h"
 #include "sam.h"
 #include "system.h"
 #include "dma.h"
-#include <string.h>
 
 static volatile uint32_t _channelMask = 0; // Bitmask of allocated channels
 
@@ -105,7 +106,7 @@ void dma_init(void) {
     NVIC_SetPriority(DMAC_IRQn, (1 << __NVIC_PRIO_BITS) - 1);
 }
 
-bool dma_configure(gossamer_dma_job_t *dmaJob, uint8_t peripheralTrigger, uint8_t triggerAction, bool looping) {
+bool dma_configure(gossamer_dma_job_t *dmaJob, uint8_t peripheralTrigger, dma_trigger_action_t triggerAction, dma_configuration_flags_t flags) {
     uint8_t channel;
     for (channel = 0; (channel < DMAC_CH_NUM) && (_channelMask & (1 << channel)); channel++) {
         // do nothing, just find the first available channel
@@ -126,23 +127,25 @@ bool dma_configure(gossamer_dma_job_t *dmaJob, uint8_t peripheralTrigger, uint8_
     DMAC->SWTRIGCTRL.reg &= ~(1 << channel);
 
     // Configure default behaviors
-    DMAC->CHCTRLA.bit.RUNSTDBY = 1;
     DMAC->CHCTRLB.bit.LVL = 0;
     DMAC->CHCTRLB.bit.TRIGSRC = peripheralTrigger;
     DMAC->CHCTRLB.bit.TRIGACT = triggerAction;
+
+    // run in standby if asked
+    DMAC->CHCTRLA.bit.RUNSTDBY = !!(flags & DMA_CONFIG_RUNSTDBY);
 
     cpu_irq_leave_critical();
 
     dmaJob->channel = channel;
     dmaJob->jobStatus = DMA_STATUS_OK;
     dmaJob->hasDescriptors = false; // No descriptors allocated yet
-    dmaJob->loopFlag = looping;
+    dmaJob->loopFlag = !!(flags & DMA_CONFIG_LOOP);
     memset(dmaJob->callbacks, 0, sizeof(dmaJob->callbacks));
 
     return true;
 }
 
-DmacDescriptor *dma_add_descriptor(gossamer_dma_job_t *dmaJob, void *src, void *dst, uint32_t count, dma_beat_size size, bool srcInc, bool dstInc, uint32_t stepSize, bool stepSel) {
+DmacDescriptor *dma_add_descriptor(gossamer_dma_job_t *dmaJob, void *src, void *dst, uint32_t count, dma_beat_size_t size, dma_address_increment_t addressIncrement, dma_stepsize_t stepSize, dma_stepsel_t stepSel) {
     if (dmaJob->channel >= DMAC_CH_NUM)
         return NULL;
 
@@ -193,16 +196,16 @@ DmacDescriptor *dma_add_descriptor(gossamer_dma_job_t *dmaJob, void *src, void *
 
     desc->BTCTRL.bit.VALID = true;
     desc->BTCTRL.bit.EVOSEL = DMA_EVENT_OUTPUT_DISABLE;
-    desc->BTCTRL.bit.BLOCKACT = DMA_BLOCK_ACTION_NOACT;
+    desc->BTCTRL.bit.BLOCKACT = DMA_BLOCK_ACTION_NONE;
     desc->BTCTRL.bit.BEATSIZE = size;
-    desc->BTCTRL.bit.SRCINC = srcInc;
-    desc->BTCTRL.bit.DSTINC = dstInc;
+    desc->BTCTRL.bit.SRCINC = !!(addressIncrement & DMA_INCREMENT_SOURCE);
+    desc->BTCTRL.bit.DSTINC = !!(addressIncrement & DMA_INCREMENT_DESTINATION);
     desc->BTCTRL.bit.STEPSEL = stepSel;
     desc->BTCTRL.bit.STEPSIZE = stepSize;
     desc->BTCNT.reg = count;
     desc->SRCADDR.reg = (uint32_t)src;
 
-    if (srcInc) {
+    if (addressIncrement & DMA_INCREMENT_SOURCE) {
         if (stepSel) {
             desc->SRCADDR.reg += bytesPerBeat * count * (1 << stepSize);
         } else {
@@ -212,7 +215,7 @@ DmacDescriptor *dma_add_descriptor(gossamer_dma_job_t *dmaJob, void *src, void *
 
     desc->DSTADDR.reg = (uint32_t)dst;
 
-    if (dstInc) {
+    if (addressIncrement & DMA_INCREMENT_DESTINATION) {
         if (!stepSel) {
             desc->DSTADDR.reg += bytesPerBeat * count * (1 << stepSize);
         }
