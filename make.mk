@@ -75,6 +75,7 @@ SRCS += \
   $(TOP)/common/delay.c \
   $(TOP)/peripherals/adc.c \
   $(TOP)/peripherals/dac.c \
+  $(TOP)/peripherals/dma.c \
   $(TOP)/peripherals/eic.c \
   $(TOP)/peripherals/i2c.c \
   $(TOP)/peripherals/opamp.c \
