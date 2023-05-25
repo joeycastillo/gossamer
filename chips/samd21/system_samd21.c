@@ -50,6 +50,8 @@ TC_Instance_Details TC_Peripherals[4] = {
 #endif
 };
 
+uint8_t TC_First_Index = 3;
+
 #if defined(__SAMD21J15A__) || defined(__ATSAMD21J15A__) || \
     defined(__SAMD21J16A__) || defined(__ATSAMD21J16A__) || \
     defined(__SAMD21J17A__) || defined(__ATSAMD21J17A__) || \
