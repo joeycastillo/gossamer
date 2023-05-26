@@ -87,7 +87,7 @@ void dma_init(void) {
     PM->AHBMASK.bit.DMAC_ = 1;
     PM->APBBMASK.bit.DMAC_ = 1;
 #else
-    MCLK->APBCMASK.reg |= MCLK_APBCMASK_SLCD;
+    MCLK->AHBMASK.reg |= MCLK_AHBMASK_DMAC;
 #endif
     DMAC->CTRL.bit.DMAENABLE = 0;
     DMAC->CTRL.bit.SWRST = 1;
@@ -131,8 +131,10 @@ bool dma_configure(gossamer_dma_job_t *dmaJob, uint8_t peripheralTrigger, dma_tr
     DMAC->CHCTRLB.bit.TRIGSRC = peripheralTrigger;
     DMAC->CHCTRLB.bit.TRIGACT = triggerAction;
 
+#if defined(_SAML21_) || defined(_SAML22_)
     // run in standby if asked
     DMAC->CHCTRLA.bit.RUNSTDBY = !!(flags & DMA_CONFIG_RUNSTDBY);
+#endif
 
     cpu_irq_leave_critical();
 
