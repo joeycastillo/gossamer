@@ -49,8 +49,7 @@ bool tc_setup(uint8_t instance, uint8_t clocksource) {
     GCLK->PCHCTRL[TC_Peripherals[instance - TC_First_Index].gclk_id].reg = GCLK_PCHCTRL_CHEN | GCLK_PCHCTRL_GEN(clocksource);
 #endif
 
-    // disable and reset the TC
-    tc_disable(instance);
+    // reset the TC
     TC_Peripherals[instance - TC_First_Index].tc->COUNT8.CTRLA.bit.SWRST = 1;
     tc_sync(instance);
 
