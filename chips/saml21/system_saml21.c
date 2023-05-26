@@ -30,7 +30,31 @@
 #include "saml21.h"
 #include "system.h"
 
-TCC_Instance_Details TCC_Peripherals[3] = {
+// NOTE: all chip variants also have a TC4 peripheral, but it's more complicated
+// to set it up since its clock enable is on APBD and not APBC. FOR NOW, just use
+// TC0-TC1 for L21E and L21G, and TC0-TC3 for L21J.
+TC_Instance_Details TC_Peripherals[] = {
+    {TC0, MCLK_APBCMASK_TC0, TC0_GCLK_ID},
+    {TC1, MCLK_APBCMASK_TC1, TC1_GCLK_ID},
+#if defined(__SAML21J15B__) || defined(__ATSAML21J15B__) || \
+    defined(__SAML21J16B__) || defined(__ATSAML21J16B__) || \
+    defined(__SAML21J17B__) || defined(__ATSAML21J17B__) || \
+    defined(__SAML21J18B__) || defined(__ATSAML21J18B__)
+    {TC2, MCLK_APBCMASK_TC2, TC2_GCLK_ID},
+    {TC3, MCLK_APBCMASK_TC3, TC3_GCLK_ID},
+#endif
+};
+#if defined(__SAML21J15B__) || defined(__ATSAML21J15B__) || \
+    defined(__SAML21J16B__) || defined(__ATSAML21J16B__) || \
+    defined(__SAML21J17B__) || defined(__ATSAML21J17B__) || \
+    defined(__SAML21J18B__) || defined(__ATSAML21J18B__)
+uint8_t Num_TC_Instances = 2;
+#else
+uint8_t Num_TC_Instances = 4;
+#endif
+uint8_t TC_First_Index = 0;
+
+TCC_Instance_Details TCC_Peripherals[] = {
     {TCC0, MCLK_APBCMASK_TCC0, TCC0_GCLK_ID},
     {TCC1, MCLK_APBCMASK_TCC1, TCC1_GCLK_ID},
     {TCC2, MCLK_APBCMASK_TCC2, TCC2_GCLK_ID},

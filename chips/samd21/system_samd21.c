@@ -30,14 +30,14 @@
 #include "samd21.h"
 #include "system.h"
 
-TCC_Instance_Details TCC_Peripherals[3] = {
+TCC_Instance_Details TCC_Peripherals[] = {
     {TCC0, PM_APBCMASK_TCC0, GCLK_CLKCTRL_ID_TCC0_TCC1},
     {TCC1, PM_APBCMASK_TCC1, GCLK_CLKCTRL_ID_TCC0_TCC1},
     {TCC2, PM_APBCMASK_TCC2, GCLK_CLKCTRL_ID_TCC2_TC3},
 };
 uint8_t Num_TCC_Instances = 3;
 
-TC_Instance_Details TC_Peripherals[4] = {
+TC_Instance_Details TC_Peripherals[] = {
     {TC3, PM_APBCMASK_TC3, GCLK_CLKCTRL_ID_TCC2_TC3},
     {TC4, PM_APBCMASK_TC4, GCLK_CLKCTRL_ID_TC4_TC5},
     {TC5, PM_APBCMASK_TC5, GCLK_CLKCTRL_ID_TC4_TC5},
