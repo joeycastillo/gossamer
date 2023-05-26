@@ -45,7 +45,7 @@ bool tc_setup(uint8_t instance, uint8_t clocksource) {
                         GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN(clocksource);
 #else
     // enable the TC
-    MCLK->APBAMASK.reg |= TC_Peripherals[instance - TC_First_Index].clock_enable_mask;
+    MCLK->APBCMASK.reg |= TC_Peripherals[instance - TC_First_Index].clock_enable_mask;
     GCLK->PCHCTRL[TC_Peripherals[instance - TC_First_Index].gclk_id].reg = GCLK_PCHCTRL_CHEN | GCLK_PCHCTRL_GEN(clocksource);
 #endif
 
@@ -59,9 +59,9 @@ bool tc_setup(uint8_t instance, uint8_t clocksource) {
 
 void tc_enable(uint8_t instance) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
-    PM->APBAMASK.reg &= ~(TC_Peripherals[instance - TC_First_Index].clock_enable_mask);
+    PM->APBCMASK.reg |= TC_Peripherals[instance - TC_First_Index].clock_enable_mask;
 #else
-    MCLK->APBCMASK.reg &= ~(TC_Peripherals[instance - TC_First_Index].clock_enable_mask);
+    MCLK->APBCMASK.reg |= TC_Peripherals[instance - TC_First_Index].clock_enable_mask;
 #endif
     TC_Peripherals[instance - TC_First_Index].tc->COUNT8.CTRLA.bit.ENABLE = 1;
     tc_sync(instance);
