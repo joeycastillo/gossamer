@@ -1,7 +1,7 @@
 var indexSectionsWithContent =
 {
   0: "_adeghioprst",
-  1: "rt",
+  1: "grt",
   2: "adeghioprst",
   3: "_adegiorst",
   4: "e",

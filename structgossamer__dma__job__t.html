@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>gossamer: Data Structure Index</title>
+<title>gossamer: gossamer_dma_job_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -47,7 +47,6 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,22 +68,35 @@ $(function() {
 </div>
 </div>
 
+</div><!-- top -->
 <div class="header">
-  <div class="headertitle"><div class="title">Data Structure Index</div></div>
+  <div class="summary">
+<a href="#pub-attribs">Data Fields</a>  </div>
+  <div class="headertitle"><div class="title">gossamer_dma_job_t Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="qindex"><a class="qindex" href="#letter_G">G</a>&#160;|&#160;<a class="qindex" href="#letter_R">R</a>&#160;|&#160;<a class="qindex" href="#letter_T">T</a></div>
-<div class="classindex">
-<dl class="classindex even">
-<dt class="alphachar"><a id="letter_G" name="letter_G">G</a></dt>
-<dd><a class="el" href="structgossamer__dma__job__t.html">gossamer_dma_job_t</a></dd></dl>
-<dl class="classindex odd">
-<dt class="alphachar"><a id="letter_R" name="letter_R">R</a></dt>
-<dd><a class="el" href="unionrtc__date__time.html">rtc_date_time</a></dd></dl>
-<dl class="classindex even">
-<dt class="alphachar"><a id="letter_T" name="letter_T">T</a></dt>
-<dd><a class="el" href="struct_t_c___instance___details.html">TC_Instance_Details</a></dd><dd><a class="el" href="struct_t_c_c___instance___details.html">TCC_Instance_Details</a></dd></dl>
-</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a3b3ebad7260026ad400f4413e805882c"><td class="memItemLeft" align="right" valign="top"><a id="a3b3ebad7260026ad400f4413e805882c" name="a3b3ebad7260026ad400f4413e805882c"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>channel</b></td></tr>
+<tr class="separator:a3b3ebad7260026ad400f4413e805882c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a4b1a1dfb5cb31779a0695aa8979ff9"><td class="memItemLeft" align="right" valign="top"><a id="a3a4b1a1dfb5cb31779a0695aa8979ff9" name="a3a4b1a1dfb5cb31779a0695aa8979ff9"></a>
+volatile dma_status_t&#160;</td><td class="memItemRight" valign="bottom"><b>jobStatus</b></td></tr>
+<tr class="separator:a3a4b1a1dfb5cb31779a0695aa8979ff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d02c377a506603785660b4e8c37553d"><td class="memItemLeft" align="right" valign="top"><a id="a1d02c377a506603785660b4e8c37553d" name="a1d02c377a506603785660b4e8c37553d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasDescriptors</b></td></tr>
+<tr class="separator:a1d02c377a506603785660b4e8c37553d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a591f6f58fbc22a6595b719f5be8ca715"><td class="memItemLeft" align="right" valign="top"><a id="a591f6f58fbc22a6595b719f5be8ca715" name="a591f6f58fbc22a6595b719f5be8ca715"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>loopFlag</b></td></tr>
+<tr class="separator:a591f6f58fbc22a6595b719f5be8ca715"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dc4c2873e283caa7890775ed939546f"><td class="memItemLeft" align="right" valign="top"><a id="a7dc4c2873e283caa7890775ed939546f" name="a7dc4c2873e283caa7890775ed939546f"></a>
+void(*&#160;</td><td class="memItemRight" valign="bottom"><b>callbacks</b> [DMA_CALLBACK_N])(void *)</td></tr>
+<tr class="separator:a7dc4c2873e283caa7890775ed939546f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>peripherals/<a class="el" href="dma_8h_source.html">dma.h</a></li>
+</ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
