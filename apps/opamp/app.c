@@ -53,12 +53,13 @@ void app_setup(void) {
     sh1107_update();
 
     HAL_GPIO_AREF_pmuxen(HAL_GPIO_PMUX_B);
-    HAL_GPIO_A0_pmuxen(HAL_GPIO_PMUX_B);
-    HAL_GPIO_A1_pmuxen(HAL_GPIO_PMUX_B);
-    HAL_GPIO_A2_pmuxen(HAL_GPIO_PMUX_B);
-    HAL_GPIO_A3_pmuxen(HAL_GPIO_PMUX_B);
-    HAL_GPIO_A4_pmuxen(HAL_GPIO_PMUX_B);
-    HAL_GPIO_A5_pmuxen(HAL_GPIO_PMUX_B);
+    HAL_GPIO_OPAMP0_NEG_pmuxen(HAL_GPIO_PMUX_B);
+    HAL_GPIO_OPAMP0_POS_pmuxen(HAL_GPIO_PMUX_B);
+    HAL_GPIO_OPAMP0_OUT_pmuxen(HAL_GPIO_PMUX_B);
+    HAL_GPIO_OPAMP1_POS_pmuxen(HAL_GPIO_PMUX_B);
+    HAL_GPIO_OPAMP1_OUT_pmuxen(HAL_GPIO_PMUX_B);
+    HAL_GPIO_OPAMP2_POS_pmuxen(HAL_GPIO_PMUX_B);
+    HAL_GPIO_OPAMP2_OUT_pmuxen(HAL_GPIO_PMUX_B);
 
     opamp_init();
 

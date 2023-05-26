@@ -12,6 +12,15 @@ HAL_GPIO_PIN(A3,   B, 9)
 HAL_GPIO_PIN(A4,   A, 6)
 HAL_GPIO_PIN(A5,   A, 7)
 
+// Op amp pins (same as analog, but with different names for clarity)
+HAL_GPIO_PIN(OPAMP0_POS, A, 6)
+HAL_GPIO_PIN(OPAMP0_NEG, A, 2)
+HAL_GPIO_PIN(OPAMP0_OUT, A, 7)
+HAL_GPIO_PIN(OPAMP1_POS, B, 9)
+HAL_GPIO_PIN(OPAMP1_OUT, B, 8)
+HAL_GPIO_PIN(OPAMP2_POS, A, 5)
+HAL_GPIO_PIN(OPAMP2_OUT, A, 4)
+
 // Digital pins
 HAL_GPIO_PIN(D5,   A, 16)
 HAL_GPIO_PIN(D6,   A, 17)
