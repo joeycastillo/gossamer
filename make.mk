@@ -78,6 +78,7 @@ SRCS += \
   $(TOP)/peripherals/dma.c \
   $(TOP)/peripherals/eic.c \
   $(TOP)/peripherals/i2c.c \
+  $(TOP)/peripherals/i2s.c \
   $(TOP)/peripherals/opamp.c \
   $(TOP)/peripherals/ptc.c \
   $(TOP)/peripherals/rtc.c \
