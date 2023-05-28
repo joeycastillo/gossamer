@@ -75,6 +75,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">tc.h File Reference</div></div>
 </div><!--header-->
@@ -85,20 +86,97 @@ $(function() {
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &quot;sam.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="system_8h_source.html">system.h</a>&quot;</code><br />
 </div>
 <p><a href="tc_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a0e68fe7f8a5ff7bb67bd7663f39b35e1"><td class="memItemLeft" align="right" valign="top"><a id="a0e68fe7f8a5ff7bb67bd7663f39b35e1" name="a0e68fe7f8a5ff7bb67bd7663f39b35e1"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>tc_prescaler_value_t</b> { <br />
+&#160;&#160;<b>TC_PRESCALER_DIV1</b> = 0
+, <b>TC_PRESCALER_DIV2</b> = 1
+, <b>TC_PRESCALER_DIV4</b> = 2
+, <b>TC_PRESCALER_DIV8</b> = 3
+, <br />
+&#160;&#160;<b>TC_PRESCALER_DIV16</b> = 4
+, <b>TC_PRESCALER_DIV64</b> = 5
+, <b>TC_PRESCALER_DIV256</b> = 6
+, <b>TC_PRESCALER_DIV1024</b> = 7
+<br />
+ }</td></tr>
+<tr class="separator:a0e68fe7f8a5ff7bb67bd7663f39b35e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a358a036ad1e037190a723430c4fe3cef"><td class="memItemLeft" align="right" valign="top"><a id="a358a036ad1e037190a723430c4fe3cef" name="a358a036ad1e037190a723430c4fe3cef"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>tc_counter_mode_t</b> { <b>TC_COUNTER_MODE_16BIT</b> = 0
+, <b>TC_COUNTER_MODE_8BIT</b> = 1
+, <b>TC_COUNTER_MODE_32BIT</b> = 2
+ }</td></tr>
+<tr class="separator:a358a036ad1e037190a723430c4fe3cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ea8c0e39f6a01364552744d9734c1a8"><td class="memItemLeft" align="right" valign="top"><a id="a8ea8c0e39f6a01364552744d9734c1a8" name="a8ea8c0e39f6a01364552744d9734c1a8"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>tc_wavegen_t</b> { <b>TC_WAVEGEN_NORMAL_FREQUENCY</b> = 0
+, <b>TC_WAVEGEN_MATCH_FREQUENCY</b> = 1
+, <b>TC_WAVEGEN_NORMAL_PWM</b> = 2
+, <b>TC_WAVEGEN_MATCH_PWM</b> = 3
+ }</td></tr>
+<tr class="separator:a8ea8c0e39f6a01364552744d9734c1a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3fa955b5dc85a2a79c00d3feb1cad62"><td class="memItemLeft" align="right" valign="top"><a id="af3fa955b5dc85a2a79c00d3feb1cad62" name="af3fa955b5dc85a2a79c00d3feb1cad62"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>tc_channel_polarity_t</b> { <b>TC_CHANNEL_POLARITY_NORMAL</b> = 0
+, <b>TC_CHANNEL_POLARITY_INVERTED</b> = 1
+ }</td></tr>
+<tr class="separator:af3fa955b5dc85a2a79c00d3feb1cad62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a125a1ebedbbf2d9f276e2ac515c090e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a125a1ebedbbf2d9f276e2ac515c090e2">tc_sync</a> (uint8_t instance)</td></tr>
-<tr class="memdesc:a125a1ebedbbf2d9f276e2ac515c090e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits for the TC to synchronize.  <a href="tc_8h.html#a125a1ebedbbf2d9f276e2ac515c090e2">More...</a><br /></td></tr>
-<tr class="separator:a125a1ebedbbf2d9f276e2ac515c090e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af93344f59026ad858405406e41508787"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#af93344f59026ad858405406e41508787">tc_setup</a> (uint8_t instance, uint8_t clocksource)</td></tr>
-<tr class="memdesc:af93344f59026ad858405406e41508787"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the peripheral clock for the TC and clocks it with the selected clock source. Also resets the TC to its starting configuration.  <a href="tc_8h.html#af93344f59026ad858405406e41508787">More...</a><br /></td></tr>
-<tr class="separator:af93344f59026ad858405406e41508787"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3700543a155ae4a450e39624a52ca805"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a3700543a155ae4a450e39624a52ca805">tc_setup</a> (uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler)</td></tr>
+<tr class="memdesc:a3700543a155ae4a450e39624a52ca805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the peripheral clock for the TC and clocks it with the selected clock source. Also resets the TC to its starting configuration, which is COUNT16 mode.  <a href="tc_8h.html#a3700543a155ae4a450e39624a52ca805">More...</a><br /></td></tr>
+<tr class="separator:a3700543a155ae4a450e39624a52ca805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbb61997f4579d174976dcc8e858c87a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#abbb61997f4579d174976dcc8e858c87a">tc_set_counter_mode</a> (uint8_t instance, tc_counter_mode_t mode)</td></tr>
+<tr class="memdesc:abbb61997f4579d174976dcc8e858c87a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's counting mode (an 8, 16 or 32-bit counter),.  <a href="tc_8h.html#abbb61997f4579d174976dcc8e858c87a">More...</a><br /></td></tr>
+<tr class="separator:abbb61997f4579d174976dcc8e858c87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dec44fc5db357209ea67b67607c7e81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a0dec44fc5db357209ea67b67607c7e81">tc_set_run_in_standby</a> (uint8_t instance, bool runStandby)</td></tr>
+<tr class="memdesc:a0dec44fc5db357209ea67b67607c7e81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's run-in-standby mode.  <a href="tc_8h.html#a0dec44fc5db357209ea67b67607c7e81">More...</a><br /></td></tr>
+<tr class="separator:a0dec44fc5db357209ea67b67607c7e81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affa4b9e60ccf8ba52074f3f2f28d8823"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#affa4b9e60ccf8ba52074f3f2f28d8823">tc_set_wavegen</a> (uint8_t instance, tc_wavegen_t mode)</td></tr>
+<tr class="memdesc:affa4b9e60ccf8ba52074f3f2f28d8823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's waveform generation mode.  <a href="tc_8h.html#affa4b9e60ccf8ba52074f3f2f28d8823">More...</a><br /></td></tr>
+<tr class="separator:affa4b9e60ccf8ba52074f3f2f28d8823"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd02ffa629bde002a06ad16a570177ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#afd02ffa629bde002a06ad16a570177ac">tc_set_channel_polarity</a> (uint8_t instance, uint8_t channel, tc_channel_polarity_t polarity)</td></tr>
+<tr class="memdesc:afd02ffa629bde002a06ad16a570177ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the polarity of one of the waveform output channels.  <a href="tc_8h.html#afd02ffa629bde002a06ad16a570177ac">More...</a><br /></td></tr>
+<tr class="separator:afd02ffa629bde002a06ad16a570177ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2715d5a6f20298805eefa13a8a7a1b99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">tc_enable</a> (uint8_t instance)</td></tr>
 <tr class="memdesc:a2715d5a6f20298805eefa13a8a7a1b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the TC. Make sure to call tcc_setup first to set it up.  <a href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">More...</a><br /></td></tr>
 <tr class="separator:a2715d5a6f20298805eefa13a8a7a1b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab18ace8a5dd07d75cb9e6957d9e2658c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#ab18ace8a5dd07d75cb9e6957d9e2658c">tc_count8_set_period</a> (uint8_t instance, uint8_t period)</td></tr>
+<tr class="memdesc:ab18ace8a5dd07d75cb9e6957d9e2658c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's period or PER register in 8-bit mode.  <a href="tc_8h.html#ab18ace8a5dd07d75cb9e6957d9e2658c">More...</a><br /></td></tr>
+<tr class="separator:ab18ace8a5dd07d75cb9e6957d9e2658c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8862d572676201371406b19746198c45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a8862d572676201371406b19746198c45">tc_count8_set_cc</a> (uint8_t instance, uint8_t channel, uint8_t value)</td></tr>
+<tr class="memdesc:a8862d572676201371406b19746198c45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's compare channel CC0 or CC1 register in 8-bit mode.  <a href="tc_8h.html#a8862d572676201371406b19746198c45">More...</a><br /></td></tr>
+<tr class="separator:a8862d572676201371406b19746198c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30b584892c4a1cfce9ddc70933776e7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a30b584892c4a1cfce9ddc70933776e7e">tc_count16_set_cc</a> (uint8_t instance, uint8_t channel, uint16_t value)</td></tr>
+<tr class="memdesc:a30b584892c4a1cfce9ddc70933776e7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's compare channel CC0 or CC1 register in 16-bit mode.  <a href="tc_8h.html#a30b584892c4a1cfce9ddc70933776e7e">More...</a><br /></td></tr>
+<tr class="separator:a30b584892c4a1cfce9ddc70933776e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5078d0682876c8bcabbf8da7944865e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a5078d0682876c8bcabbf8da7944865e8">tc_count32_set_cc</a> (uint8_t instance, uint8_t channel, uint32_t value)</td></tr>
+<tr class="memdesc:a5078d0682876c8bcabbf8da7944865e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's compare channel CC0 or CC1 register in 32-bit mode.  <a href="tc_8h.html#a5078d0682876c8bcabbf8da7944865e8">More...</a><br /></td></tr>
+<tr class="separator:a5078d0682876c8bcabbf8da7944865e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a363974408ab3135aaf6529cadfd5195b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a363974408ab3135aaf6529cadfd5195b">tc_count8_set_count</a> (uint8_t instance, uint8_t value)</td></tr>
+<tr class="memdesc:a363974408ab3135aaf6529cadfd5195b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's counter value in 8-bit mode.  <a href="tc_8h.html#a363974408ab3135aaf6529cadfd5195b">More...</a><br /></td></tr>
+<tr class="separator:a363974408ab3135aaf6529cadfd5195b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b52ab8a84db926117b40c7c6d6447d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a2b52ab8a84db926117b40c7c6d6447d6">tc_count16_set_count</a> (uint8_t instance, uint16_t value)</td></tr>
+<tr class="memdesc:a2b52ab8a84db926117b40c7c6d6447d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's counter value in 16-bit mode.  <a href="tc_8h.html#a2b52ab8a84db926117b40c7c6d6447d6">More...</a><br /></td></tr>
+<tr class="separator:a2b52ab8a84db926117b40c7c6d6447d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4136a7369f7b79b4a1d29575c1f1f9d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a4136a7369f7b79b4a1d29575c1f1f9d8">tc_count32_set_count</a> (uint8_t instance, uint32_t value)</td></tr>
+<tr class="memdesc:a4136a7369f7b79b4a1d29575c1f1f9d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's counter value in 32-bit mode.  <a href="tc_8h.html#a4136a7369f7b79b4a1d29575c1f1f9d8">More...</a><br /></td></tr>
+<tr class="separator:a4136a7369f7b79b4a1d29575c1f1f9d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0350dc913a38a4e3b27b441510a614ba"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a0350dc913a38a4e3b27b441510a614ba">tc_count8_get_count</a> (uint8_t instance)</td></tr>
+<tr class="memdesc:a0350dc913a38a4e3b27b441510a614ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the TC's current counter value in 8-bit mode.  <a href="tc_8h.html#a0350dc913a38a4e3b27b441510a614ba">More...</a><br /></td></tr>
+<tr class="separator:a0350dc913a38a4e3b27b441510a614ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e534df47672eea4460487ab3fe1e123"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a2e534df47672eea4460487ab3fe1e123">tc_count16_get_count</a> (uint8_t instance)</td></tr>
+<tr class="memdesc:a2e534df47672eea4460487ab3fe1e123"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the TC's current counter value in 16-bit mode.  <a href="tc_8h.html#a2e534df47672eea4460487ab3fe1e123">More...</a><br /></td></tr>
+<tr class="separator:a2e534df47672eea4460487ab3fe1e123"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5879a623b3133654d474decb14b61f8"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#aa5879a623b3133654d474decb14b61f8">tc_count32_get_count</a> (uint8_t instance)</td></tr>
+<tr class="memdesc:aa5879a623b3133654d474decb14b61f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the TC's current counter value in 32-bit mode.  <a href="tc_8h.html#aa5879a623b3133654d474decb14b61f8">More...</a><br /></td></tr>
+<tr class="separator:aa5879a623b3133654d474decb14b61f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15eaf925943d7ba804ecd8bd466a4b14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a15eaf925943d7ba804ecd8bd466a4b14">tc_stop</a> (uint8_t instance)</td></tr>
+<tr class="memdesc:a15eaf925943d7ba804ecd8bd466a4b14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Issues a STOP command to the TC.  <a href="tc_8h.html#a15eaf925943d7ba804ecd8bd466a4b14">More...</a><br /></td></tr>
+<tr class="separator:a15eaf925943d7ba804ecd8bd466a4b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabc141b06b22193abcb931edf634a7f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#aabc141b06b22193abcb931edf634a7f5">tc_retrigger</a> (uint8_t instance)</td></tr>
+<tr class="memdesc:aabc141b06b22193abcb931edf634a7f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Issues a RETRIGGER command to the TC.  <a href="tc_8h.html#aabc141b06b22193abcb931edf634a7f5">More...</a><br /></td></tr>
+<tr class="separator:aabc141b06b22193abcb931edf634a7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2ed5cb964a3f29663b89bfc2a661caf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#af2ed5cb964a3f29663b89bfc2a661caf">tc_disable</a> (uint8_t instance)</td></tr>
 <tr class="memdesc:af2ed5cb964a3f29663b89bfc2a661caf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the TC, but retains all its settings.  <a href="tc_8h.html#af2ed5cb964a3f29663b89bfc2a661caf">More...</a><br /></td></tr>
 <tr class="separator:af2ed5cb964a3f29663b89bfc2a661caf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,6 +184,367 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Timer/Counter Peripheral. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a2e534df47672eea4460487ab3fe1e123" name="a2e534df47672eea4460487ab3fe1e123"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e534df47672eea4460487ab3fe1e123">&#9670;&#160;</a></span>tc_count16_get_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t tc_count16_get_count </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the TC's current counter value in 16-bit mode. </p>
+<p >It is possible to change the counter value when the counter is stopped or when it is running. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">value</td><td>The value to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a30b584892c4a1cfce9ddc70933776e7e" name="a30b584892c4a1cfce9ddc70933776e7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30b584892c4a1cfce9ddc70933776e7e">&#9670;&#160;</a></span>tc_count16_set_cc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tc_count16_set_cc </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the TC's compare channel CC0 or CC1 register in 16-bit mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">channel</td><td>The compare channel whose value set. This value must be 0 or 1. </td></tr>
+    <tr><td class="paramname">value</td><td>The value to set. This value must be between 0 and 65535, inclusive. Used above as described in <code>tc_set_wavegen</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2b52ab8a84db926117b40c7c6d6447d6" name="a2b52ab8a84db926117b40c7c6d6447d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b52ab8a84db926117b40c7c6d6447d6">&#9670;&#160;</a></span>tc_count16_set_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tc_count16_set_count </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the TC's counter value in 16-bit mode. </p>
+<p >It is possible to change the counter value when the counter is stopped or when it is running. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">value</td><td>The value to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa5879a623b3133654d474decb14b61f8" name="aa5879a623b3133654d474decb14b61f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5879a623b3133654d474decb14b61f8">&#9670;&#160;</a></span>tc_count32_get_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t tc_count32_get_count </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the TC's current counter value in 32-bit mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">value</td><td>The value to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5078d0682876c8bcabbf8da7944865e8" name="a5078d0682876c8bcabbf8da7944865e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5078d0682876c8bcabbf8da7944865e8">&#9670;&#160;</a></span>tc_count32_set_cc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tc_count32_set_cc </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the TC's compare channel CC0 or CC1 register in 32-bit mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">channel</td><td>The compare channel whose value set. This value must be 0 or 1. </td></tr>
+    <tr><td class="paramname">value</td><td>The value to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4136a7369f7b79b4a1d29575c1f1f9d8" name="a4136a7369f7b79b4a1d29575c1f1f9d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4136a7369f7b79b4a1d29575c1f1f9d8">&#9670;&#160;</a></span>tc_count32_set_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tc_count32_set_count </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the TC's counter value in 32-bit mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">value</td><td>The value to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0350dc913a38a4e3b27b441510a614ba" name="a0350dc913a38a4e3b27b441510a614ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0350dc913a38a4e3b27b441510a614ba">&#9670;&#160;</a></span>tc_count8_get_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t tc_count8_get_count </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the TC's current counter value in 8-bit mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">value</td><td>The value to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8862d572676201371406b19746198c45" name="a8862d572676201371406b19746198c45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8862d572676201371406b19746198c45">&#9670;&#160;</a></span>tc_count8_set_cc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tc_count8_set_cc </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the TC's compare channel CC0 or CC1 register in 8-bit mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">channel</td><td>The compare channel whose value set. This value must be 0 or 1. </td></tr>
+    <tr><td class="paramname">value</td><td>The value to set. This value must be between 0 and 255, inclusive. Used above as described in <code>tc_set_wavegen</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a363974408ab3135aaf6529cadfd5195b" name="a363974408ab3135aaf6529cadfd5195b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a363974408ab3135aaf6529cadfd5195b">&#9670;&#160;</a></span>tc_count8_set_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tc_count8_set_count </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the TC's counter value in 8-bit mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">value</td><td>The value to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab18ace8a5dd07d75cb9e6957d9e2658c" name="ab18ace8a5dd07d75cb9e6957d9e2658c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab18ace8a5dd07d75cb9e6957d9e2658c">&#9670;&#160;</a></span>tc_count8_set_period()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tc_count8_set_period </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>period</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the TC's period or PER register in 8-bit mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">period</td><td>The period to set. This value must be between 0 and 255, inclusive. Used above as described in <code>tc_set_wavegen</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="af2ed5cb964a3f29663b89bfc2a661caf" name="af2ed5cb964a3f29663b89bfc2a661caf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af2ed5cb964a3f29663b89bfc2a661caf">&#9670;&#160;</a></span>tc_disable()</h2>
 
@@ -158,8 +597,193 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af93344f59026ad858405406e41508787" name="af93344f59026ad858405406e41508787"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af93344f59026ad858405406e41508787">&#9670;&#160;</a></span>tc_setup()</h2>
+<a id="aabc141b06b22193abcb931edf634a7f5" name="aabc141b06b22193abcb931edf634a7f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabc141b06b22193abcb931edf634a7f5">&#9670;&#160;</a></span>tc_retrigger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tc_retrigger </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Issues a RETRIGGER command to the TC. </p>
+<p >When the command is detected during counting operation, the counter will be reset. When the re-trigger command is detected while the counter is stopped, the counter will resume counting from its current value. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afd02ffa629bde002a06ad16a570177ac" name="afd02ffa629bde002a06ad16a570177ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd02ffa629bde002a06ad16a570177ac">&#9670;&#160;</a></span>tc_set_channel_polarity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tc_set_channel_polarity </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tc_channel_polarity_t&#160;</td>
+          <td class="paramname"><em>polarity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the polarity of one of the waveform output channels. </p>
+<p >This function can be used to invert one or both of the waveform outputs. Inverting one of the waveform outputs is useful to drive a device with a differential signal; inverting both outputs can be useful if you are driving something whose polarity is reversed, like a common anode LED. </p>
+
+</div>
+</div>
+<a id="abbb61997f4579d174976dcc8e858c87a" name="abbb61997f4579d174976dcc8e858c87a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbb61997f4579d174976dcc8e858c87a">&#9670;&#160;</a></span>tc_set_counter_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tc_set_counter_mode </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tc_counter_mode_t&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the TC's counting mode (an 8, 16 or 32-bit counter),. </p>
+<p >In addition to setting the maximum value the counter can count to (MAX), this mode also affects the the available registers and the register layout. As a result, you must use the correctly prefixed function calls to set CC and PER values, depending on the mode set here. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">mode</td><td>The counting mode to set:<ul>
+<li>TC_MODE_16 is the default and has a MAX value of 65,535. The CC0 and CC1 registers can accept values from 0-65535, and can be set using the tc_count16_set_cc function.</li>
+<li>TC_COUNTER_MODE_8BIT has a MAX value of 255. The CC0 and CC1 registers can accept values from 0-255, and can be set using the tc_count8_set_cc function. This mode also gives you access to a PER register that can set the period. The PER register can be set using tc_count8_set_period.</li>
+<li>TC_COUNTER_MODE_32BIT has a MAX value of 4294967295, and is more complex as it involves ganging the TC with an adjacent TC. This mode is not fully supported or tested, and may require additional setup. </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0dec44fc5db357209ea67b67607c7e81" name="a0dec44fc5db357209ea67b67607c7e81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dec44fc5db357209ea67b67607c7e81">&#9670;&#160;</a></span>tc_set_run_in_standby()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tc_set_run_in_standby </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>runStandby</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the TC's run-in-standby mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">runStandby</td><td>true if the TC should keep running in standby mode, false if not. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="affa4b9e60ccf8ba52074f3f2f28d8823" name="affa4b9e60ccf8ba52074f3f2f28d8823"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affa4b9e60ccf8ba52074f3f2f28d8823">&#9670;&#160;</a></span>tc_set_wavegen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tc_set_wavegen </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tc_wavegen_t&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the TC's waveform generation mode. </p>
+<p >This function influences how the waveform is generated by determining what happens when the counter matches and overflows. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">mode</td><td>The waveform generation mode to set:<ul>
+<li>TC_WAVEGEN_NORMAL_FREQUENCY - Normal frequency generation. The TOP value is either PER (in 8-bit mode) or MAX (in 16-bit mode). Waveform output WO[0] / WO[1] toggles on a match with CC0 / CC1, and the counter resets at TOP.</li>
+<li>TC_WAVEGEN_MATCH_FREQUENCY - Match frequency generation. The TOP value is CC0. WO[0] toggles on a match with TOP / CC0 and the counter resets. This results in a square wave with a 50% duty cycle whose frequency depends on CC0. It is also useful for creating a timer that overflows at a specific frequency for generating interrupts or triggering DMA requests.</li>
+<li>TC_WAVEGEN_NORMAL_PWM - Normal pulse-width modulation. The TOP value is either PER (in 8-bit mode) or MAX (in 16-bit mode). Waveform output WO[0] / WO[1] is set on a match with CC0 / CC1, and cleared on a match with TOP. This results in a pair of square waves whose duty cycles are determined by CC0 / CC1.</li>
+<li>TC_WAVEGEN_MATCH_PWM - Match pulse-width modulation. The TOP value is CC0. WO[1] toggles on a match with CC1, and WO[0] emits a one-clock-wide pulse on every overflow (i.e. when the counter matches CC0 and loops). This results in a square wave on WO[1] whose period depends on CC0 and whose duty cycle depends on CC1, and a series of pulses on WO[0] that occurs at the same period. </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3700543a155ae4a450e39624a52ca805" name="a3700543a155ae4a450e39624a52ca805"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3700543a155ae4a450e39624a52ca805">&#9670;&#160;</a></span>tc_setup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -173,8 +797,14 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>clocksource</em>&#160;</td>
+          <td class="paramtype">generic_clock_generator_t&#160;</td>
+          <td class="paramname"><em>clocksource</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tc_prescaler_value_t&#160;</td>
+          <td class="paramname"><em>prescaler</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -184,26 +814,38 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enables the peripheral clock for the TC and clocks it with the selected clock source. Also resets the TC to its starting configuration. </p>
+<p>Enables the peripheral clock for the TC and clocks it with the selected clock source. Also resets the TC to its starting configuration, which is COUNT16 mode. </p>
 <p >This just sets up the TC in its reset state. You are still responsible for configuring it with the options you need for things like clock prescaling and waveform output. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">clocksource</td><td>The generic clock source to use as the TC clock. </td></tr>
+    <tr><td class="paramname">prescaler</td><td>The prescaler factor, which divides the clock source by a factor:<ul>
+<li>TC_PRESCALER_DIV1 - clock source unchanged</li>
+<li>TC_PRESCALER_DIV2 - clock source divided by 2</li>
+<li>TC_PRESCALER_DIV4 - clock source divided by 4</li>
+<li>TC_PRESCALER_DIV8 - clock source divided by 8</li>
+<li>TC_PRESCALER_DIV16 - clock source divided by 16</li>
+<li>TC_PRESCALER_DIV64 - clock source divided by 64</li>
+<li>TC_PRESCALER_DIV256 - clock source divided by 256</li>
+<li>TC_PRESCALER_DIV102 - clock source divided by 1024 </li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if the TC was set up, false if instance was out of range (i.e. you asked for TCC2, but the microcontroller only has one TC). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the TC was set up, false if instance was out of range (i.e. you asked for TC3, but the microcontroller only has two TCs). </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>if this function returns false, you shouldn't interact with this TC instance with any other functions; they don't do the bounds check that this does. </dd></dl>
 
 </div>
 </div>
-<a id="a125a1ebedbbf2d9f276e2ac515c090e2" name="a125a1ebedbbf2d9f276e2ac515c090e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a125a1ebedbbf2d9f276e2ac515c090e2">&#9670;&#160;</a></span>tc_sync()</h2>
+<a id="a15eaf925943d7ba804ecd8bd466a4b14" name="a15eaf925943d7ba804ecd8bd466a4b14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15eaf925943d7ba804ecd8bd466a4b14">&#9670;&#160;</a></span>tc_stop()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void tc_sync </td>
+          <td class="memname">void tc_stop </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>instance</em></td><td>)</td>
@@ -212,8 +854,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Waits for the TC to synchronize. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Issues a STOP command to the TC. </p>
+<p >When a Stop is detected while the counter is running, the counter will retain its current value. All waveforms are cleared and the Stop bit in the Status register is set (STATUS.STOP). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
   </table>
