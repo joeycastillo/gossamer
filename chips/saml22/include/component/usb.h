@@ -103,6 +103,29 @@ typedef union {
 #define USB_SYNCBUSY_ENABLE         (0x1ul << USB_SYNCBUSY_ENABLE_Pos)
 #define USB_SYNCBUSY_MASK           0x03ul       /**< \brief (USB_SYNCBUSY) MASK Register */
 
+/* -------- USB_QOSCTRL : (USB Offset: 0x003) (R/W  8) USB Quality Of Service -------- */
+#if !(defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__))
+typedef union {
+  struct {
+    uint8_t  CQOS:2;           /*!< bit:  0.. 1  Configuration Quality of Service   */
+    uint8_t  DQOS:2;           /*!< bit:  2.. 3  Data Quality of Service            */
+    uint8_t  :4;               /*!< bit:  4.. 7  Reserved                           */
+  } bit;                       /*!< Structure used for bit  access                  */
+  uint8_t reg;                 /*!< Type      used for register access              */
+} USB_QOSCTRL_Type;
+#endif /* !(defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__)) */
+
+#define USB_QOSCTRL_OFFSET          0x003        /**< \brief (USB_QOSCTRL offset) USB Quality Of Service */
+#define USB_QOSCTRL_RESETVALUE      _U_(0x0F)    /**< \brief (USB_QOSCTRL reset_value) USB Quality Of Service */
+
+#define USB_QOSCTRL_CQOS_Pos        0            /**< \brief (USB_QOSCTRL) Configuration Quality of Service */
+#define USB_QOSCTRL_CQOS_Msk        (_U_(0x3) << USB_QOSCTRL_CQOS_Pos)
+#define USB_QOSCTRL_CQOS(value)     (USB_QOSCTRL_CQOS_Msk & ((value) << USB_QOSCTRL_CQOS_Pos))
+#define USB_QOSCTRL_DQOS_Pos        2            /**< \brief (USB_QOSCTRL) Data Quality of Service */
+#define USB_QOSCTRL_DQOS_Msk        (_U_(0x3) << USB_QOSCTRL_DQOS_Pos)
+#define USB_QOSCTRL_DQOS(value)     (USB_QOSCTRL_DQOS_Msk & ((value) << USB_QOSCTRL_DQOS_Pos))
+#define USB_QOSCTRL_MASK            _U_(0x0F)    /**< \brief (USB_QOSCTRL) MASK Register */
+
 /* -------- USB_DEVICE_CTRLB : (USB Offset: 0x008) (R/W 16) DEVICE DEVICE Control B -------- */
 #if !(defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__))
 typedef union {
@@ -943,7 +966,8 @@ typedef struct { /* USB is Device */
   __IO USB_CTRLA_Type            CTRLA;       /**< \brief Offset: 0x000 (R/W  8) Control A */
        RoReg8                    Reserved1[0x1];
   __I  USB_SYNCBUSY_Type         SYNCBUSY;    /**< \brief Offset: 0x002 (R/   8) Synchronization Busy */
-       RoReg8                    Reserved2[0x5];
+  __IO USB_QOSCTRL_Type          QOSCTRL;     /**< \brief Offset: 0x003 (R/W  8) USB Quality Of Service */
+       RoReg8                    Reserved2[0x4];
   __IO USB_DEVICE_CTRLB_Type     CTRLB;       /**< \brief Offset: 0x008 (R/W 16) DEVICE Control B */
   __IO USB_DEVICE_DADD_Type      DADD;        /**< \brief Offset: 0x00A (R/W  8) DEVICE Device Address */
        RoReg8                    Reserved3[0x1];
