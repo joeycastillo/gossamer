@@ -27,9 +27,9 @@
 
 void tc_sync(uint8_t instance) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
-    while (TC_Peripherals[instance - TC_First_Index].tc->COUNT8.STATUS.bit.SYNCBUSY);
+    while (TC_Peripherals[instance - TC_First_Index].tc->COUNT16.STATUS.bit.SYNCBUSY);
 #else
-    while (TC_Peripherals[instance - TC_First_Index].tc->COUNT8.SYNCBUSY.reg);
+    while (TC_Peripherals[instance - TC_First_Index].tc->COUNT16.SYNCBUSY.reg);
 #endif
 }
 
@@ -49,9 +49,9 @@ bool tc_setup(uint8_t instance, generic_clock_generator_t clocksource, tc_presca
 #endif
 
     // reset the TC
-    TC_Peripherals[instance - TC_First_Index].tc->COUNT8.CTRLA.bit.SWRST = 1;
+    TC_Peripherals[instance - TC_First_Index].tc->COUNT16.CTRLA.bit.SWRST = 1;
     tc_sync(instance);
-    TC_Peripherals[instance - TC_First_Index].tc->COUNT8.CTRLA.bit.PRESCALER = prescaler;
+    TC_Peripherals[instance - TC_First_Index].tc->COUNT16.CTRLA.bit.PRESCALER = prescaler;
 
     return true;
 }
@@ -62,12 +62,12 @@ void tc_enable(uint8_t instance) {
 #else
     MCLK->APBCMASK.reg |= TC_Peripherals[instance - TC_First_Index].clock_enable_mask;
 #endif
-    TC_Peripherals[instance - TC_First_Index].tc->COUNT8.CTRLA.bit.ENABLE = 1;
+    TC_Peripherals[instance - TC_First_Index].tc->COUNT16.CTRLA.bit.ENABLE = 1;
     tc_sync(instance);
 }
 
 void tc_disable(uint8_t instance) {
-    TC_Peripherals[instance - TC_First_Index].tc->COUNT8.CTRLA.bit.ENABLE = 0;
+    TC_Peripherals[instance - TC_First_Index].tc->COUNT16.CTRLA.bit.ENABLE = 0;
     tc_sync(instance);
 #if defined(_SAMD21_) || defined(_SAMD11_)
     PM->APBAMASK.reg &= ~(TC_Peripherals[instance - TC_First_Index].clock_enable_mask);
