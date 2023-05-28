@@ -75,7 +75,7 @@ void app_setup(void) {
     TCC0->CC[0].reg = 85;
     TCC0->CC[1].reg = 255;
 
-    tc_setup(1, 2);
+    tc_setup(1, GENERIC_CLOCK_2, TC_PRESCALER_DIV1);
     HAL_GPIO_WARM_WHITE_pmuxen(HAL_GPIO_PMUX_E);
     HAL_GPIO_COOL_WHITE_pmuxen(HAL_GPIO_PMUX_E);
 

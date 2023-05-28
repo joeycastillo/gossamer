@@ -31,6 +31,18 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "sam.h"
+#include "system.h"
+
+typedef enum {
+    TC_PRESCALER_DIV1 = 0,
+    TC_PRESCALER_DIV2 = 1,
+    TC_PRESCALER_DIV4 = 2,
+    TC_PRESCALER_DIV8 = 3,
+    TC_PRESCALER_DIV16 = 4,
+    TC_PRESCALER_DIV64 = 5,
+    TC_PRESCALER_DIV256 = 6,
+    TC_PRESCALER_DIV1024 = 7
+} tc_prescaler_value_t;
 
 /** @brief Waits for the TC to synchronize.
   * @details 
@@ -44,12 +56,22 @@ void tc_sync(uint8_t instance);
   *          for configuring it with the options you need for things like clock
   *          prescaling and waveform output.
   * @param instance The TC peripheral instance as numbered in the data sheet, or 0.
+  * @param clocksource The generic clock source to use as the TC clock.
+  * @param prescaler The prescaler factor, which divides the clock source by a factor:
+  *                  * TC_PRESCALER_DIV1 - clock source unchanged
+  *                  * TC_PRESCALER_DIV2 - clock source divided by 2
+  *                  * TC_PRESCALER_DIV4 - clock source divided by 4
+  *                  * TC_PRESCALER_DIV8 - clock source divided by 8
+  *                  * TC_PRESCALER_DIV16 - clock source divided by 16
+  *                  * TC_PRESCALER_DIV64 - clock source divided by 64
+  *                  * TC_PRESCALER_DIV256 - clock source divided by 256
+  *                  * TC_PRESCALER_DIV102 - clock source divided by 1024
   * @return true if the TC was set up, false if instance was out of range (i.e. you
-  *         asked for TCC2, but the microcontroller only has one TC).
+  *         asked for TC3, but the microcontroller only has two TCs).
   * @note if this function returns false, you shouldn't interact with this TC instance
   *       with any other functions; they don't do the bounds check that this does.
   */
-bool tc_setup(uint8_t instance, uint8_t clocksource);
+bool tc_setup(uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler);
 
 /** @brief Enables the TC. Make sure to call tcc_setup first to set it up.
   * @param instance The TC peripheral instance as numbered in the data sheet, or 0.

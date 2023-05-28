@@ -19,7 +19,7 @@ void app_setup(void) {
     HAL_GPIO_A0_pmuxen(HAL_GPIO_PMUX_B);
     dac_enable(0);
 
-    tc_setup(4, 0);
+    tc_setup(4, GENERIC_CLOCK_0, TC_PRESCALER_DIV1);
     TC4->COUNT16.CTRLA.reg = TC_CTRLA_MODE_COUNT16 |
                              TC_CTRLA_WAVEGEN_MFRQ |
                              TC_CTRLA_PRESCALER_DIV1;

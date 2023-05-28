@@ -23,7 +23,6 @@
  */
 
 #include "pins.h"
-#include "system.h"
 #include "tc.h"
 
 void tc_sync(uint8_t instance) {
@@ -34,7 +33,7 @@ void tc_sync(uint8_t instance) {
 #endif
 }
 
-bool tc_setup(uint8_t instance, uint8_t clocksource) {
+bool tc_setup(uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler) {
     if ((instance - TC_First_Index) >= Num_TC_Instances) return false;
 
 #if defined(_SAMD21_) || defined(_SAMD11_)
@@ -52,6 +51,7 @@ bool tc_setup(uint8_t instance, uint8_t clocksource) {
     // reset the TC
     TC_Peripherals[instance - TC_First_Index].tc->COUNT8.CTRLA.bit.SWRST = 1;
     tc_sync(instance);
+    TC_Peripherals[instance - TC_First_Index].tc->COUNT8.CTRLA.bit.PRESCALER = prescaler;
 
     return true;
 }
