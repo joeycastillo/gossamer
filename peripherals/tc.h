@@ -66,8 +66,7 @@ typedef enum {
   *        clock source. Also resets the TC to its starting configuration, which
   *        is COUNT16 mode.
   * @details This just sets up the TC in its reset state. You are still responsible
-  *          for configuring it with the options you need for things like clock
-  *          prescaling and waveform output.
+  *          for configuring it with the options you need for waveform output.
   * @param instance The TC peripheral instance as numbered in the data sheet.
   * @param clocksource The generic clock source to use as the TC clock.
   * @param prescaler The prescaler factor, which divides the clock source by a factor:
@@ -142,6 +141,11 @@ void tc_set_wavegen(uint8_t instance, tc_wavegen_t mode);
 
 /**
  * @brief Sets the polarity of one of the waveform output channels.
+ * @param instance The TC peripheral instance as numbered in the data sheet.
+ * @param channel The waveform output channel. 0 or 1
+ * @param polarity The polarity to set. One of:
+ *                * TCC_CHANNEL_POLARITY_NORMAL - The output is high when WO[n] is set.
+ *                * TCC_CHANNEL_POLARITY_INVERTED - The output is low  when WO[n] is set.
  * @details This function can be used to invert one or both of the waveform outputs. Inverting
  *          one of the waveform outputs is useful to drive a device with a differential signal;
  *          inverting both outputs can be useful if you are driving something whose polarity is
@@ -149,7 +153,7 @@ void tc_set_wavegen(uint8_t instance, tc_wavegen_t mode);
  */
 void tc_set_channel_polarity(uint8_t instance, uint8_t channel, tc_channel_polarity_t polarity);
 
-/** @brief Enables the TC. Make sure to call tcc_setup first to set it up.
+/** @brief Enables the TC. Make sure to call tc_setup first to set it up.
   * @param instance The TC peripheral instance as numbered in the data sheet, or 0.
   */
 void tc_enable(uint8_t instance);
