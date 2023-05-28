@@ -139,7 +139,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:afd02ffa629bde002a06ad16a570177ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the polarity of one of the waveform output channels.  <a href="tc_8h.html#afd02ffa629bde002a06ad16a570177ac">More...</a><br /></td></tr>
 <tr class="separator:afd02ffa629bde002a06ad16a570177ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2715d5a6f20298805eefa13a8a7a1b99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">tc_enable</a> (uint8_t instance)</td></tr>
-<tr class="memdesc:a2715d5a6f20298805eefa13a8a7a1b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the TC. Make sure to call tcc_setup first to set it up.  <a href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">More...</a><br /></td></tr>
+<tr class="memdesc:a2715d5a6f20298805eefa13a8a7a1b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the TC. Make sure to call tc_setup first to set it up.  <a href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">More...</a><br /></td></tr>
 <tr class="separator:a2715d5a6f20298805eefa13a8a7a1b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab18ace8a5dd07d75cb9e6957d9e2658c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#ab18ace8a5dd07d75cb9e6957d9e2658c">tc_count8_set_period</a> (uint8_t instance, uint8_t period)</td></tr>
 <tr class="memdesc:ab18ace8a5dd07d75cb9e6957d9e2658c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's period or PER register in 8-bit mode.  <a href="tc_8h.html#ab18ace8a5dd07d75cb9e6957d9e2658c">More...</a><br /></td></tr>
@@ -587,7 +587,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enables the TC. Make sure to call tcc_setup first to set it up. </p>
+<p>Enables the TC. Make sure to call tc_setup first to set it up. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet, or 0. </td></tr>
@@ -656,7 +656,20 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sets the polarity of one of the waveform output channels. </p>
-<p >This function can be used to invert one or both of the waveform outputs. Inverting one of the waveform outputs is useful to drive a device with a differential signal; inverting both outputs can be useful if you are driving something whose polarity is reversed, like a common anode LED. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">channel</td><td>The waveform output channel. 0 or 1 </td></tr>
+    <tr><td class="paramname">polarity</td><td>The polarity to set. One of:<ul>
+<li>TCC_CHANNEL_POLARITY_NORMAL - The output is high when WO[n] is set.</li>
+<li><p class="startli">TCC_CHANNEL_POLARITY_INVERTED - The output is low when WO[n] is set.</p>
+<p class="startli">This function can be used to invert one or both of the waveform outputs. Inverting one of the waveform outputs is useful to drive a device with a differential signal; inverting both outputs can be useful if you are driving something whose polarity is reversed, like a common anode LED. </p>
+</li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -815,7 +828,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enables the peripheral clock for the TC and clocks it with the selected clock source. Also resets the TC to its starting configuration, which is COUNT16 mode. </p>
-<p >This just sets up the TC in its reset state. You are still responsible for configuring it with the options you need for things like clock prescaling and waveform output. </p><dl class="params"><dt>Parameters</dt><dd>
+<p >This just sets up the TC in its reset state. You are still responsible for configuring it with the options you need for waveform output. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
     <tr><td class="paramname">clocksource</td><td>The generic clock source to use as the TC clock. </td></tr>

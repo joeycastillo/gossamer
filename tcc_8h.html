@@ -75,6 +75,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">tcc.h File Reference</div></div>
 </div><!--header-->
@@ -88,17 +89,78 @@ $(function() {
 </div>
 <p><a href="tcc_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:aec1499892c25a6784a4dc1446fad910e"><td class="memItemLeft" align="right" valign="top"><a id="aec1499892c25a6784a4dc1446fad910e" name="aec1499892c25a6784a4dc1446fad910e"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>tcc_prescaler_value_t</b> { <br />
+&#160;&#160;<b>TCC_PRESCALER_DIV1</b> = 0
+, <b>TCC_PRESCALER_DIV2</b> = 1
+, <b>TCC_PRESCALER_DIV4</b> = 2
+, <b>TCC_PRESCALER_DIV8</b> = 3
+, <br />
+&#160;&#160;<b>TCC_PRESCALER_DIV16</b> = 4
+, <b>TCC_PRESCALER_DIV64</b> = 5
+, <b>TCC_PRESCALER_DIV256</b> = 6
+, <b>TCC_PRESCALER_DIV1024</b> = 7
+<br />
+ }</td></tr>
+<tr class="separator:aec1499892c25a6784a4dc1446fad910e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3766383cb76ee844c7cab0875799bbab"><td class="memItemLeft" align="right" valign="top"><a id="a3766383cb76ee844c7cab0875799bbab" name="a3766383cb76ee844c7cab0875799bbab"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>tcc_wavegen_t</b> { <b>TCC_WAVEGEN_NORMAL_FREQUENCY</b> = 0
+, <b>TCC_WAVEGEN_MATCH_FREQUENCY</b> = 1
+, <b>TCC_WAVEGEN_NORMAL_PWM</b> = 2
+ }</td></tr>
+<tr class="separator:a3766383cb76ee844c7cab0875799bbab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99335511e676e6205311f06102747795"><td class="memItemLeft" align="right" valign="top"><a id="a99335511e676e6205311f06102747795" name="a99335511e676e6205311f06102747795"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>tcc_output_matrix_t</b> { <b>TCC_OUTPUT_MATRIX_MODULO_4</b> = 0
+, <b>TCC_OUTPUT_MATRIX_MODULO_2</b> = 1
+, <b>TCC_OUTPUT_MATRIX_ALL_CC0</b> = 2
+, <b>TCC_OUTPUT_MATRIX_WO0_CC0_OTHERS_CC1</b> = 3
+ }</td></tr>
+<tr class="separator:a99335511e676e6205311f06102747795"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6a785fab6dfcd2c9ac17b3067205e29"><td class="memItemLeft" align="right" valign="top"><a id="aa6a785fab6dfcd2c9ac17b3067205e29" name="aa6a785fab6dfcd2c9ac17b3067205e29"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>tcc_channel_polarity_t</b> { <b>TCC_CHANNEL_POLARITY_NORMAL</b> = 0
+, <b>TCC_CHANNEL_POLARITY_INVERTED</b> = 1
+ }</td></tr>
+<tr class="separator:aa6a785fab6dfcd2c9ac17b3067205e29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae63955146bb51e9078f11c63c16335c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#ae63955146bb51e9078f11c63c16335c5">tcc_sync</a> (uint8_t instance)</td></tr>
-<tr class="memdesc:ae63955146bb51e9078f11c63c16335c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits for the TCC to synchronize.  <a href="tcc_8h.html#ae63955146bb51e9078f11c63c16335c5">More...</a><br /></td></tr>
-<tr class="separator:ae63955146bb51e9078f11c63c16335c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9510250f4a9db820107e41bb8e0436d5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a9510250f4a9db820107e41bb8e0436d5">tcc_setup</a> (uint8_t instance, uint8_t clocksource)</td></tr>
-<tr class="memdesc:a9510250f4a9db820107e41bb8e0436d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the peripheral clock for the TCC and clocks it with the selected clock source. Also resets the TCC to its starting configuration.  <a href="tcc_8h.html#a9510250f4a9db820107e41bb8e0436d5">More...</a><br /></td></tr>
-<tr class="separator:a9510250f4a9db820107e41bb8e0436d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60f883f4de2c085c1e909285ad402c36"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a60f883f4de2c085c1e909285ad402c36">tcc_setup</a> (uint8_t instance, generic_clock_generator_t clocksource, tcc_prescaler_value_t prescaler)</td></tr>
+<tr class="memdesc:a60f883f4de2c085c1e909285ad402c36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the peripheral clock for the TCC and clocks it with the selected clock source. Also resets the TCC to its starting configuration.  <a href="tcc_8h.html#a60f883f4de2c085c1e909285ad402c36">More...</a><br /></td></tr>
+<tr class="separator:a60f883f4de2c085c1e909285ad402c36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a273b5e8282d26fa117e00925e2a240cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a273b5e8282d26fa117e00925e2a240cc">tcc_set_run_in_standby</a> (uint8_t instance, bool runStandby)</td></tr>
+<tr class="memdesc:a273b5e8282d26fa117e00925e2a240cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether the TCC should run in standby mode.  <a href="tcc_8h.html#a273b5e8282d26fa117e00925e2a240cc">More...</a><br /></td></tr>
+<tr class="separator:a273b5e8282d26fa117e00925e2a240cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d6656d2bfabdc18ac7088094cb304a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a7d6656d2bfabdc18ac7088094cb304a9">tcc_set_wavegen</a> (uint8_t instance, tcc_wavegen_t mode)</td></tr>
+<tr class="memdesc:a7d6656d2bfabdc18ac7088094cb304a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the waveform generation mode for the TCC.  <a href="tcc_8h.html#a7d6656d2bfabdc18ac7088094cb304a9">More...</a><br /></td></tr>
+<tr class="separator:a7d6656d2bfabdc18ac7088094cb304a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5646c274366bca4fdbc220d732282f2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a5646c274366bca4fdbc220d732282f2e">tcc_set_output_matrix</a> (uint8_t instance, tcc_output_matrix_t mode)</td></tr>
+<tr class="memdesc:a5646c274366bca4fdbc220d732282f2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the output matrix for the TCC.  <a href="tcc_8h.html#a5646c274366bca4fdbc220d732282f2e">More...</a><br /></td></tr>
+<tr class="separator:a5646c274366bca4fdbc220d732282f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa449988b4bea75a5e018c01e38d6c058"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#aa449988b4bea75a5e018c01e38d6c058">tcc_set_channel_polarity</a> (uint8_t instance, uint8_t channel, tcc_channel_polarity_t polarity)</td></tr>
+<tr class="memdesc:aa449988b4bea75a5e018c01e38d6c058"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the polarity of a channel.  <a href="tcc_8h.html#aa449988b4bea75a5e018c01e38d6c058">More...</a><br /></td></tr>
+<tr class="separator:aa449988b4bea75a5e018c01e38d6c058"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ac612aa1426900df32765fb71e79918"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a6ac612aa1426900df32765fb71e79918">tcc_enable</a> (uint8_t instance)</td></tr>
-<tr class="memdesc:a6ac612aa1426900df32765fb71e79918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the TCC. Make sure to call tcc_setup first to set it up.  <a href="tcc_8h.html#a6ac612aa1426900df32765fb71e79918">More...</a><br /></td></tr>
+<tr class="memdesc:a6ac612aa1426900df32765fb71e79918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the TC. Make sure to call tcc_setup first to set it up.  <a href="tcc_8h.html#a6ac612aa1426900df32765fb71e79918">More...</a><br /></td></tr>
 <tr class="separator:a6ac612aa1426900df32765fb71e79918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4a80f7c23f094986cfb470068e16f52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#ae4a80f7c23f094986cfb470068e16f52">tcc_set_period</a> (uint8_t instance, uint32_t period)</td></tr>
+<tr class="memdesc:ae4a80f7c23f094986cfb470068e16f52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the period of the TCC.  <a href="tcc_8h.html#ae4a80f7c23f094986cfb470068e16f52">More...</a><br /></td></tr>
+<tr class="separator:ae4a80f7c23f094986cfb470068e16f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a528d1b24d468c56e5ae231213abd9898"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a528d1b24d468c56e5ae231213abd9898">tcc_set_cc</a> (uint8_t instance, uint8_t channel, uint32_t value)</td></tr>
+<tr class="memdesc:a528d1b24d468c56e5ae231213abd9898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value of a compare channel.  <a href="tcc_8h.html#a528d1b24d468c56e5ae231213abd9898">More...</a><br /></td></tr>
+<tr class="separator:a528d1b24d468c56e5ae231213abd9898"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a287f26e06ce521f40c6f25190c1098c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a287f26e06ce521f40c6f25190c1098c1">tcc_set_count</a> (uint8_t instance, uint32_t value)</td></tr>
+<tr class="memdesc:a287f26e06ce521f40c6f25190c1098c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value of the counter.  <a href="tcc_8h.html#a287f26e06ce521f40c6f25190c1098c1">More...</a><br /></td></tr>
+<tr class="separator:a287f26e06ce521f40c6f25190c1098c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52b25028c793c126d85096049f1b1f75"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a52b25028c793c126d85096049f1b1f75">tcc_get_count</a> (uint8_t instance)</td></tr>
+<tr class="memdesc:a52b25028c793c126d85096049f1b1f75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current value of the counter.  <a href="tcc_8h.html#a52b25028c793c126d85096049f1b1f75">More...</a><br /></td></tr>
+<tr class="separator:a52b25028c793c126d85096049f1b1f75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fccdb4bb693f6a77f5a808b8d5011b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a9fccdb4bb693f6a77f5a808b8d5011b2">tcc_stop</a> (uint8_t instance)</td></tr>
+<tr class="memdesc:a9fccdb4bb693f6a77f5a808b8d5011b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Issues a STOP command to the TCC.  <a href="tcc_8h.html#a9fccdb4bb693f6a77f5a808b8d5011b2">More...</a><br /></td></tr>
+<tr class="separator:a9fccdb4bb693f6a77f5a808b8d5011b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9b0bb48f6116f8fb3e6036963ad5ac8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#ac9b0bb48f6116f8fb3e6036963ad5ac8">tcc_retrigger</a> (uint8_t instance)</td></tr>
+<tr class="memdesc:ac9b0bb48f6116f8fb3e6036963ad5ac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Issues a RETRIGGER command to the TCC.  <a href="tcc_8h.html#ac9b0bb48f6116f8fb3e6036963ad5ac8">More...</a><br /></td></tr>
+<tr class="separator:ac9b0bb48f6116f8fb3e6036963ad5ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa135529878d40c76aa1a8fdda73f5b39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#aa135529878d40c76aa1a8fdda73f5b39">tcc_update</a> (uint8_t instance)</td></tr>
+<tr class="memdesc:aa135529878d40c76aa1a8fdda73f5b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Issues an UPDATE command to the TCC.  <a href="tcc_8h.html#aa135529878d40c76aa1a8fdda73f5b39">More...</a><br /></td></tr>
+<tr class="separator:aa135529878d40c76aa1a8fdda73f5b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14a335ba34333f27e6460bf1cf659177"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a14a335ba34333f27e6460bf1cf659177">tcc_disable</a> (uint8_t instance)</td></tr>
 <tr class="memdesc:a14a335ba34333f27e6460bf1cf659177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the TCC, but retains all its settings.  <a href="tcc_8h.html#a14a335ba34333f27e6460bf1cf659177">More...</a><br /></td></tr>
 <tr class="separator:a14a335ba34333f27e6460bf1cf659177"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,7 +210,60 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enables the TCC. Make sure to call tcc_setup first to set it up. </p>
+<p>Enables the TC. Make sure to call tcc_setup first to set it up. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a52b25028c793c126d85096049f1b1f75" name="a52b25028c793c126d85096049f1b1f75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52b25028c793c126d85096049f1b1f75">&#9670;&#160;</a></span>tcc_get_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t tcc_get_count </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the current value of the counter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The current value of the counter. </dd></dl>
+
+</div>
+</div>
+<a id="ac9b0bb48f6116f8fb3e6036963ad5ac8" name="ac9b0bb48f6116f8fb3e6036963ad5ac8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9b0bb48f6116f8fb3e6036963ad5ac8">&#9670;&#160;</a></span>tcc_retrigger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tcc_retrigger </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Issues a RETRIGGER command to the TCC. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
@@ -158,8 +273,304 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a9510250f4a9db820107e41bb8e0436d5" name="a9510250f4a9db820107e41bb8e0436d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9510250f4a9db820107e41bb8e0436d5">&#9670;&#160;</a></span>tcc_setup()</h2>
+<a id="a528d1b24d468c56e5ae231213abd9898" name="a528d1b24d468c56e5ae231213abd9898"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a528d1b24d468c56e5ae231213abd9898">&#9670;&#160;</a></span>tcc_set_cc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tcc_set_cc </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the value of a compare channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+    <tr><td class="paramname">channel</td><td>The compare channel to set, from 0 to 3 (or 0-1 on some TCCs; check the data sheet) </td></tr>
+    <tr><td class="paramname">value</td><td>The value to set the compare channel to. Max 24 bits (16,777,215). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa449988b4bea75a5e018c01e38d6c058" name="aa449988b4bea75a5e018c01e38d6c058"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa449988b4bea75a5e018c01e38d6c058">&#9670;&#160;</a></span>tcc_set_channel_polarity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tcc_set_channel_polarity </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tcc_channel_polarity_t&#160;</td>
+          <td class="paramname"><em>polarity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the polarity of a channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+    <tr><td class="paramname">channel</td><td>The waveform output channel from 0 to 7. </td></tr>
+    <tr><td class="paramname">polarity</td><td>The polarity to set. One of:<ul>
+<li>TCC_CHANNEL_POLARITY_NORMAL - The output is high when WO[n] is set.</li>
+<li><p class="startli">TCC_CHANNEL_POLARITY_INVERTED - The output is low when WO[n] is set.</p>
+<p class="startli">Inverting one of the waveform outputs is useful to drive a device with a differential signal; inverting several outputs can be useful if you are driving something whose polarity is reversed, like a common anode LED. </p>
+</li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a287f26e06ce521f40c6f25190c1098c1" name="a287f26e06ce521f40c6f25190c1098c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a287f26e06ce521f40c6f25190c1098c1">&#9670;&#160;</a></span>tcc_set_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tcc_set_count </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the value of the counter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+    <tr><td class="paramname">value</td><td>The value to set the counter to. Max 24 bits (16,777,215). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5646c274366bca4fdbc220d732282f2e" name="a5646c274366bca4fdbc220d732282f2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5646c274366bca4fdbc220d732282f2e">&#9670;&#160;</a></span>tcc_set_output_matrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tcc_set_output_matrix </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tcc_output_matrix_t&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the output matrix for the TCC. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+    <tr><td class="paramname">mode</td><td>The output matrix mode to use. One of:<ul>
+<li>TCC_OUTPUT_MATRIX_MODULO_4 - Compare channels CC0-CC3 are distributed across waveform outputs WO[0]-WO[7] in a modulo 4 fashion, such that CC0 controls WO[0] and WO[4], CC1 controls WO[1] and WO[5], CC2 controls WO[2] and WO[6], and CC3 controls WO[3] and WO[7].</li>
+<li>TCC_OUTPUT_MATRIX_MODULO_2 - Compare channels CC0-CC1 are distributed across waveform outputs WO[0]-WO[7] in a modulo 2 fashion, such that CC0 controls WO0, WO2, WO4, and WO6, and CC1 controls WO1, WO3, WO5, and WO7.</li>
+<li>TCC_OUTPUT_MATRIX_ALL_CC0 - Compare channel CC0 controls all waveform outputs.</li>
+<li>TCC_OUTPUT_MATRIX_WO0_CC0_OTHERS_CC1 - Compare channel CC0 controls waveform output WO0, and compare channel CC1 controls all other waveform outputs. </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae4a80f7c23f094986cfb470068e16f52" name="ae4a80f7c23f094986cfb470068e16f52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4a80f7c23f094986cfb470068e16f52">&#9670;&#160;</a></span>tcc_set_period()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tcc_set_period </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>period</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the period of the TCC. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+    <tr><td class="paramname">period</td><td>The period to set.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The period is the value that the counter counts up to before resetting. The frequency of the timer is determined by the period and the prescaler value. </p>
+
+</div>
+</div>
+<a id="a273b5e8282d26fa117e00925e2a240cc" name="a273b5e8282d26fa117e00925e2a240cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a273b5e8282d26fa117e00925e2a240cc">&#9670;&#160;</a></span>tcc_set_run_in_standby()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tcc_set_run_in_standby </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>runStandby</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets whether the TCC should run in standby mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+    <tr><td class="paramname">runStandby</td><td>true if the TCC should run in standby mode, false otherwise. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7d6656d2bfabdc18ac7088094cb304a9" name="a7d6656d2bfabdc18ac7088094cb304a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d6656d2bfabdc18ac7088094cb304a9">&#9670;&#160;</a></span>tcc_set_wavegen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tcc_set_wavegen </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tcc_wavegen_t&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the waveform generation mode for the TCC. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+    <tr><td class="paramname">mode</td><td>The waveform generation mode to use. One of:<ul>
+<li>TCC_WAVEGEN_NORMAL_FREQUENCY - Normal frequency generation. The TOP value is PER, and waveform output WO[n] toggles on a match with a compare channel (n % 4 by default; </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><code><a class="el" href="tcc_8h.html#a5646c274366bca4fdbc220d732282f2e" title="Sets the output matrix for the TCC.">tcc_set_output_matrix</a></code> for other options). This mode results in a square wave with a frequency dependent on the PER register, and a duty cycle that depends on the CCn register.<ul>
+<li>TCC_WAVEGEN_MATCH_FREQUENCY - Match frequency generation. The TOP value is CC0. WO[0] toggles on a match with TOP / CC0 and the counter resets. This results in a square wave with a 50% duty cycle whose frequency depends on CC0.</li>
+<li>TCC_WAVEGEN_NORMAL_PWM - Normal pulse-width modulation. The TOP value is PER. Waveform output WO[n] is set at the start of the period and cleared on a match with a compare channel (n % 4 by default; </li>
+</ul>
+</dd>
+<dd>
+<code><a class="el" href="tcc_8h.html#a5646c274366bca4fdbc220d732282f2e" title="Sets the output matrix for the TCC.">tcc_set_output_matrix</a></code> for other options). This mode results in a square wave with a frequency defined by the PER register, and a duty cycle defined by the CCn register. </dd></dl>
+
+</div>
+</div>
+<a id="a60f883f4de2c085c1e909285ad402c36" name="a60f883f4de2c085c1e909285ad402c36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60f883f4de2c085c1e909285ad402c36">&#9670;&#160;</a></span>tcc_setup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -173,8 +584,14 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>clocksource</em>&#160;</td>
+          <td class="paramtype">generic_clock_generator_t&#160;</td>
+          <td class="paramname"><em>clocksource</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tcc_prescaler_value_t&#160;</td>
+          <td class="paramname"><em>prescaler</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -185,9 +602,21 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enables the peripheral clock for the TCC and clocks it with the selected clock source. Also resets the TCC to its starting configuration. </p>
-<p >This just sets up the TCC in its reset state. You are still responsible for configuring it with the options you need for things like clock prescaling and waveform output. </p><dl class="params"><dt>Parameters</dt><dd>
+<p >This just sets up the TCC in its reset state. You are still responsible for configuring it with the options you need for waveform output. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+    <tr><td class="paramname">clocksource</td><td>The clock source to use for the TCC. </td></tr>
+    <tr><td class="paramname">prescaler</td><td>The prescaler factor, which divides the clock source by a factor:<ul>
+<li>TCC_PRESCALER_DIV1 - clock source unchanged</li>
+<li>TCC_PRESCALER_DIV2 - clock source divided by 2</li>
+<li>TCC_PRESCALER_DIV4 - clock source divided by 4</li>
+<li>TCC_PRESCALER_DIV8 - clock source divided by 8</li>
+<li>TCC_PRESCALER_DIV16 - clock source divided by 16</li>
+<li>TCC_PRESCALER_DIV64 - clock source divided by 64</li>
+<li>TCC_PRESCALER_DIV256 - clock source divided by 256</li>
+<li>TCC_PRESCALER_DIV102 - clock source divided by 1024 </li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -196,14 +625,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae63955146bb51e9078f11c63c16335c5" name="ae63955146bb51e9078f11c63c16335c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae63955146bb51e9078f11c63c16335c5">&#9670;&#160;</a></span>tcc_sync()</h2>
+<a id="a9fccdb4bb693f6a77f5a808b8d5011b2" name="a9fccdb4bb693f6a77f5a808b8d5011b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fccdb4bb693f6a77f5a808b8d5011b2">&#9670;&#160;</a></span>tcc_stop()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void tcc_sync </td>
+          <td class="memname">void tcc_stop </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>instance</em></td><td>)</td>
@@ -212,10 +641,37 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Waits for the TCC to synchronize. </p>
+<p>Issues a STOP command to the TCC. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet (or 0 if there is only one TCC, as on the SAM D11 or L22). </td></tr>
+    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>When a stop is detected while the counter is running, the counter will maintain its current value, and the Stop bit in the Status register will be set (STATUS.STOP). </p><dl class="section note"><dt>Note</dt><dd>There is a more complex way to set what happens to the waveform outputs in a stop condition: you can set values for each waveform in the DRVCTRL's Non-Recoverable State Output Enable (DRVCTRL.NREx) and Non- Recoverable State Output Value (DRVCTRL.NRVx) bits. This is not currently implemented; see the data sheet for more information. </dd></dl>
+
+</div>
+</div>
+<a id="aa135529878d40c76aa1a8fdda73f5b39" name="aa135529878d40c76aa1a8fdda73f5b39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa135529878d40c76aa1a8fdda73f5b39">&#9670;&#160;</a></span>tcc_update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tcc_update </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Issues an UPDATE command to the TCC. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
   </table>
   </dd>
 </dl>

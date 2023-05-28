@@ -187,22 +187,23 @@ $(function() {
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">    defined(__SAML22N18A__) || defined(__ATSAML22N18A__)</span></div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="preprocessor">#include &quot;saml22.h&quot;</span></div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="preprocessor">#define HAL_GPIO_PMUX_SLCD HAL_GPIO_PMUX_B</span></div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#define HAL_GPIO_PMUX_RTC_PB01 HAL_GPIO_PMUX_E</span></div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">#define HAL_GPIO_PMUX_COM HAL_GPIO_PMUX_F</span></div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#define HAL_GPIO_PMUX_RTC HAL_GPIO_PMUX_F</span></div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#define HAL_GPIO_PMUX_GCLK HAL_GPIO_PMUX_H</span></div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="preprocessor">#define HAL_GPIO_PMUX_SUPC HAL_GPIO_PMUX_H</span></div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="preprocessor">#define HAL_GPIO_PMUX_AC_OUTPUT HAL_GPIO_PMUX_H</span></div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">#define HAL_GPIO_PMUX_CCL HAL_GPIO_PMUX_I</span></div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    GENERIC_CLOCK_0 = GCLK_PCHCTRL_GEN_GCLK0_Val,</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    GENERIC_CLOCK_1 = GCLK_PCHCTRL_GEN_GCLK1_Val,</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    GENERIC_CLOCK_2 = GCLK_PCHCTRL_GEN_GCLK2_Val,</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    GENERIC_CLOCK_3 = GCLK_PCHCTRL_GEN_GCLK3_Val,</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    GENERIC_CLOCK_4 = GCLK_PCHCTRL_GEN_GCLK4_Val,</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>} generic_clock_generator_t;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#define HAL_GPIO_PMUX_TCC_ALT HAL_GPIO_PMUX_E</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">#define HAL_GPIO_PMUX_RTC_PB01 HAL_GPIO_PMUX_E</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#define HAL_GPIO_PMUX_COM HAL_GPIO_PMUX_F</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#define HAL_GPIO_PMUX_RTC HAL_GPIO_PMUX_F</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="preprocessor">#define HAL_GPIO_PMUX_GCLK HAL_GPIO_PMUX_H</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="preprocessor">#define HAL_GPIO_PMUX_SUPC HAL_GPIO_PMUX_H</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">#define HAL_GPIO_PMUX_AC_OUTPUT HAL_GPIO_PMUX_H</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor">#define HAL_GPIO_PMUX_CCL HAL_GPIO_PMUX_I</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    GENERIC_CLOCK_0 = GCLK_PCHCTRL_GEN_GCLK0_Val,</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    GENERIC_CLOCK_1 = GCLK_PCHCTRL_GEN_GCLK1_Val,</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    GENERIC_CLOCK_2 = GCLK_PCHCTRL_GEN_GCLK2_Val,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    GENERIC_CLOCK_3 = GCLK_PCHCTRL_GEN_GCLK3_Val,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    GENERIC_CLOCK_4 = GCLK_PCHCTRL_GEN_GCLK4_Val,</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>} generic_clock_generator_t;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

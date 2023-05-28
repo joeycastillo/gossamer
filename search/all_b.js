@@ -24,7 +24,17 @@ var searchData=
   ['tcc_2eh_21',['tcc.h',['../tcc_8h.html',1,'']]],
   ['tcc_5fdisable_22',['tcc_disable',['../tcc_8h.html#a14a335ba34333f27e6460bf1cf659177',1,'tcc.c']]],
   ['tcc_5fenable_23',['tcc_enable',['../tcc_8h.html#a6ac612aa1426900df32765fb71e79918',1,'tcc.c']]],
-  ['tcc_5finstance_5fdetails_24',['TCC_Instance_Details',['../struct_t_c_c___instance___details.html',1,'']]],
-  ['tcc_5fsetup_25',['tcc_setup',['../tcc_8h.html#a9510250f4a9db820107e41bb8e0436d5',1,'tcc.c']]],
-  ['tcc_5fsync_26',['tcc_sync',['../tcc_8h.html#ae63955146bb51e9078f11c63c16335c5',1,'tcc.c']]]
+  ['tcc_5fget_5fcount_24',['tcc_get_count',['../tcc_8h.html#a52b25028c793c126d85096049f1b1f75',1,'tcc.c']]],
+  ['tcc_5finstance_5fdetails_25',['TCC_Instance_Details',['../struct_t_c_c___instance___details.html',1,'']]],
+  ['tcc_5fretrigger_26',['tcc_retrigger',['../tcc_8h.html#ac9b0bb48f6116f8fb3e6036963ad5ac8',1,'tcc.c']]],
+  ['tcc_5fset_5fcc_27',['tcc_set_cc',['../tcc_8h.html#a528d1b24d468c56e5ae231213abd9898',1,'tcc.c']]],
+  ['tcc_5fset_5fchannel_5fpolarity_28',['tcc_set_channel_polarity',['../tcc_8h.html#aa449988b4bea75a5e018c01e38d6c058',1,'tcc.c']]],
+  ['tcc_5fset_5fcount_29',['tcc_set_count',['../tcc_8h.html#a287f26e06ce521f40c6f25190c1098c1',1,'tcc.c']]],
+  ['tcc_5fset_5foutput_5fmatrix_30',['tcc_set_output_matrix',['../tcc_8h.html#a5646c274366bca4fdbc220d732282f2e',1,'tcc.c']]],
+  ['tcc_5fset_5fperiod_31',['tcc_set_period',['../tcc_8h.html#ae4a80f7c23f094986cfb470068e16f52',1,'tcc.c']]],
+  ['tcc_5fset_5frun_5fin_5fstandby_32',['tcc_set_run_in_standby',['../tcc_8h.html#a273b5e8282d26fa117e00925e2a240cc',1,'tcc.c']]],
+  ['tcc_5fset_5fwavegen_33',['tcc_set_wavegen',['../tcc_8h.html#a7d6656d2bfabdc18ac7088094cb304a9',1,'tcc.c']]],
+  ['tcc_5fsetup_34',['tcc_setup',['../tcc_8h.html#a60f883f4de2c085c1e909285ad402c36',1,'tcc.c']]],
+  ['tcc_5fstop_35',['tcc_stop',['../tcc_8h.html#a9fccdb4bb693f6a77f5a808b8d5011b2',1,'tcc.c']]],
+  ['tcc_5fupdate_36',['tcc_update',['../tcc_8h.html#aa135529878d40c76aa1a8fdda73f5b39',1,'tcc.c']]]
 ];
