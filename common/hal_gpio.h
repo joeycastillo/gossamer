@@ -126,3 +126,7 @@
     (void)HAL_GPIO_##name##_pmuxdis;						\
   }										\
 
+#ifdef APP_USES_TINYUSB
+HAL_GPIO_PIN(USB_N, A, 24)
+HAL_GPIO_PIN(USB_P, A, 25)
+#endif

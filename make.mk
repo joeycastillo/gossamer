@@ -88,5 +88,33 @@ SRCS += \
   $(TOP)/drivers/gfx/gfx.c \
   $(TOP)/drivers/gfx/sh1107.c \
 
+ifdef TINYUSB
+CFLAGS += -DAPP_USES_TINYUSB
+
+INCLUDES += \
+  -I$(TOP)/drivers/tinyusb/src/ \
+
+SRCS += \
+	$(TOP)/drivers/tinyusb/src/tusb.c \
+	$(TOP)/drivers/tinyusb/src/common/tusb_fifo.c \
+	$(TOP)/drivers/tinyusb/src/device/usbd.c \
+	$(TOP)/drivers/tinyusb/src/device/usbd_control.c \
+	$(TOP)/drivers/tinyusb/src/class/audio/audio_device.c \
+	$(TOP)/drivers/tinyusb/src/class/cdc/cdc_device.c \
+	$(TOP)/drivers/tinyusb/src/class/dfu/dfu_device.c \
+	$(TOP)/drivers/tinyusb/src/class/dfu/dfu_rt_device.c \
+	$(TOP)/drivers/tinyusb/src/class/hid/hid_device.c \
+	$(TOP)/drivers/tinyusb/src/class/midi/midi_device.c \
+	$(TOP)/drivers/tinyusb/src/class/msc/msc_device.c \
+	$(TOP)/drivers/tinyusb/src/class/net/ecm_rndis_device.c \
+	$(TOP)/drivers/tinyusb/src/class/net/ncm_device.c \
+	$(TOP)/drivers/tinyusb/src/class/usbtmc/usbtmc_device.c \
+	$(TOP)/drivers/tinyusb/src/class/video/video_device.c \
+	$(TOP)/drivers/tinyusb/src/class/vendor/vendor_device.c \
+  $(TOP)/drivers/tinyusb/src/portable/microchip/samd/dcd_samd.c \
+  $(TOP)/peripherals/usb.c \
+
+endif
+
 DEFINES += \
   -DDONT_USE_CMSIS_INIT
