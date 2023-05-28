@@ -36,7 +36,7 @@ bool tcc_setup(uint8_t instance, uint8_t clocksource) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
     // enable the TCC
     PM->APBCMASK.reg |= TCC_Peripherals[instance].clock_enable_mask;
-    // Configure TCC to use the selected clock souece
+    // Configure TCC to use the selected clock source
     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(TCC_Peripherals[instance].gclk_id) | 
                         GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN(clocksource);
 #else
