@@ -30,7 +30,8 @@ var searchData=
   ['sh110x_5fsetprecharge_27',['SH110X_SETPRECHARGE',['../sh1107_8h.html#a5f554794057673d14c6d43fbf43cc93c',1,'sh1107.h']]],
   ['sh110x_5fsetstartline_28',['SH110X_SETSTARTLINE',['../sh1107_8h.html#a8224628684ae3ecf84049935b2531118',1,'sh1107.h']]],
   ['sh110x_5fsetvcomdetect_29',['SH110X_SETVCOMDETECT',['../sh1107_8h.html#a790498436deaf2d54f8db57419bf5f2a',1,'sh1107.h']]],
-  ['sys_5finit_30',['sys_init',['../system_8h.html#af411a8bc6b7ed4b0af9114e10c959448',1,'system.h']]],
-  ['system_2eh_31',['system.h',['../system_8h.html',1,'']]],
-  ['systick_5finit_32',['systick_init',['../delay_8h.html#ac816b9d61dad1fe749c8eb4c625320dd',1,'delay.c']]]
+  ['spi_2eh_30',['spi.h',['../spi_8h.html',1,'']]],
+  ['sys_5finit_31',['sys_init',['../system_8h.html#af411a8bc6b7ed4b0af9114e10c959448',1,'system.h']]],
+  ['system_2eh_32',['system.h',['../system_8h.html',1,'']]],
+  ['systick_5finit_33',['systick_init',['../delay_8h.html#ac816b9d61dad1fe749c8eb4c625320dd',1,'delay.c']]]
 ];
