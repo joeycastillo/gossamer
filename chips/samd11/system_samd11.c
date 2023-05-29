@@ -60,34 +60,36 @@ void sys_init(void) {
     // GCLK3 is a more accurate 1024 Hz clock
 #ifdef CRYSTALLESS
     // if no crystal, set up internal 32k oscillator
-    if (!SYSCTRL->OSC32K.bit.ENABLE) {
-        uint32_t calib = (*((uint32_t *) FUSES_OSC32K_ADDR) & FUSES_OSC32K_Msk);
-        SYSCTRL->OSC32K.reg = SYSCTRL_OSC32K_STARTUP(0x6) | SYSCTRL_OSC32K_CALIB(calib) | 
-                            SYSCTRL_XOSC32K_RUNSTDBY | SYSCTRL_OSC32K_ONDEMAND |
-                            SYSCTRL_OSC32K_EN32K;
-        SYSCTRL->OSC32K.bit.ENABLE = 1;
-        while(!SYSCTRL->PCLKSR.bit.OSC32KRDY);
+    uint32_t calib = (*((uint32_t *) FUSES_OSC32K_ADDR) & FUSES_OSC32K_Msk);
+    SYSCTRL->OSC32K.reg = SYSCTRL_OSC32K_CALIB(calib) |
+                          SYSCTRL_OSC32K_STARTUP(0x6) |
+                          SYSCTRL_OSC32K_EN32K |
+                          SYSCTRL_XOSC32K_RUNSTDBY;
+    SYSCTRL->OSC32K.bit.ENABLE = 1;
+    while(!SYSCTRL->PCLKSR.bit.OSC32KRDY);
 
-        // connect external crystal to GCLK3, divide by 32 for a 1.024 kHz clock
-        GCLK->GENDIV.reg = GCLK_GENDIV_ID(3) | GCLK_GENDIV_DIV(32);
-        GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(3) | GCLK_GENCTRL_SRC_OSC32K |
-                            GCLK_GENCTRL_IDC | GCLK_GENCTRL_GENEN;
-        while(GCLK->STATUS.bit.SYNCBUSY);
-    }
+    // connect internal OSC32K to GCLK3, divide by 32 for a 1.024 kHz clock
+    GCLK->GENDIV.reg = GCLK_GENDIV_ID(3) | GCLK_GENDIV_DIV(32);
+    GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(3) | GCLK_GENCTRL_SRC_OSC32K |
+                        GCLK_GENCTRL_IDC | GCLK_GENCTRL_GENEN;
+    while(GCLK->STATUS.bit.SYNCBUSY);
 #else
     // otherwise, set up external 32k crystal oscillator
-    if (!SYSCTRL->XOSC32K.bit.ENABLE) {
-        SYSCTRL->XOSC32K.reg = SYSCTRL_XOSC32K_STARTUP(0x7) | SYSCTRL_XOSC32K_EN32K |
-                               SYSCTRL_XOSC32K_XTALEN | SYSCTRL_XOSC32K_RUNSTDBY;
-        SYSCTRL->XOSC32K.bit.ENABLE = 1;
-        while(!SYSCTRL->PCLKSR.bit.XOSC32KRDY);
+    SYSCTRL->XOSC32K.reg = SYSCTRL_XOSC32K_STARTUP(0x7)|
+                           SYSCTRL_XOSC32K_EN32K |
+                           SYSCTRL_XOSC32K_XTALEN |
+                           SYSCTRL_XOSC32K_RUNSTDBY;
+    SYSCTRL->XOSC32K.bit.ENABLE = 1;
+    while(!SYSCTRL->PCLKSR.bit.XOSC32KRDY);
 
-        // connect external crystal to GCLK3, divide by 32 for a 1.024 kHz clock
-        GCLK->GENDIV.reg = GCLK_GENDIV_ID(3) | GCLK_GENDIV_DIV(32);
-        GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(3) | GCLK_GENCTRL_SRC_XOSC32K |
-                            GCLK_GENCTRL_IDC | GCLK_GENCTRL_GENEN;
-        while(GCLK->STATUS.bit.SYNCBUSY);
-    }
+    // connect external crystal to GCLK3, divide by 32 for a 1.024 kHz clock
+    GCLK->GENDIV.reg = GCLK_GENDIV_ID(3) |
+                       GCLK_GENDIV_DIV(32);
+    GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(3) |
+                        GCLK_GENCTRL_SRC_XOSC32K |
+                        GCLK_GENCTRL_IDC |
+                        GCLK_GENCTRL_GENEN;
+    while(GCLK->STATUS.bit.SYNCBUSY);
 #endif
 }
 
