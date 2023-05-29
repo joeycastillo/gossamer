@@ -584,13 +584,8 @@ void configure_dac(void) {
     dac_enable(0);
 
     tc_setup(1, GENERIC_CLOCK_0, TC_PRESCALER_DIV1);
-    TC1->COUNT16.CTRLA.reg = TC_CTRLA_MODE_COUNT16 |
-                             TC_CTRLA_PRESCALER_DIV1;
-    TC1->COUNT16.WAVE.reg = TC_WAVE_WAVEGEN_MFRQ;
-    tc_sync(1);
-
-    TC1->COUNT16.CC[0].reg = 156; // 8 MHz / (156 * 512 samples) = 100 Hz
-    tc_sync(1);
+    tc_set_wavegen(1, TC_WAVE_WAVEGEN_MFRQ);
+    tc_count16_set_cc(1, 0, 156); // 8 MHz / (156 * 512 samples) = 100 Hz
     tc_enable(1);
 
     gossamer_dma_job_t dac_dma;
