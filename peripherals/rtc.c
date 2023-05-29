@@ -28,34 +28,42 @@
 /// TODO: SAM L series has different register name (CTRLA) and setup
 
 #if defined(_SAMD21_) || defined(_SAMD11_)
+#define CTRLREG (RTC->MODE2.CTRL)
+#else
+#define CTRLREG (RTC->MODE2.CTRLA)
+#endif
 
 bool rtc_is_enabled(void) {
-    return RTC->MODE2.CTRL.bit.ENABLE;
+    return CTRLREG.bit.ENABLE;
 }
 
 static void _rtc_sync(void) {
+#if defined(_SAMD21_) || defined(_SAMD11_)
     while (RTC->MODE2.STATUS.bit.SYNCBUSY);
+#else
+    while (RTC->MODE2.SYNCBUSY.reg & RTC_MODE2_SYNCBUSY_MASK_);
+#endif
 }
 
 void rtc_init(void) {
-    if (rtc_is_enabled()) return; // don't reset the RTC if it's already set up.
+    // if (rtc_is_enabled()) return; // don't reset the RTC if it's already set up.
 
+#if defined(_SAMD21_) || defined(_SAMD11_)
     // enable the RTC
     PM->APBAMASK.reg |= PM_APBAMASK_RTC;
-
     // clock RTC with GCLK3 (prescaled 1024 Hz output from the external crystal)
-    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(RTC_GCLK_ID) | GCLK_CLKCTRL_CLKEN |
-                        GCLK_CLKCTRL_GEN(3);
+    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_GEN(3) | GCLK_CLKCTRL_ID(RTC_GCLK_ID) | GCLK_CLKCTRL_CLKEN;
+#else
+    MCLK->APBAMASK.reg |= MCLK_APBAMASK_RTC;
+#endif
 
-    RTC->MODE2.CTRL.bit.ENABLE = 0;
+    _rtc_sync();
+    CTRLREG.bit.SWRST = 1;
     _rtc_sync();
 
-    RTC->MODE2.CTRL.bit.SWRST = 1;
-    _rtc_sync();
-
-    RTC->MODE2.CTRL.bit.MODE = RTC_MODE2_CTRL_MODE_CLOCK_Val;
-    RTC->MODE2.CTRL.bit.PRESCALER = RTC_MODE2_CTRL_PRESCALER_DIV1024_Val;
-    RTC->MODE2.CTRL.bit.ENABLE = 1;
+    CTRLREG.bit.MODE = 2; // Mode 2 Clock
+    CTRLREG.bit.PRESCALER = 0xA; // 1024 Hz prescaler
+    CTRLREG.bit.ENABLE = 1;
     _rtc_sync();
 }
 
@@ -95,5 +103,3 @@ void irq_handler_rtc(void) {
         RTC->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_ALARM0;
     }
 }
-
-#endif
