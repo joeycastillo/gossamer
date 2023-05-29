@@ -76,24 +76,24 @@ void app_setup(void) {
     eic_configure_channel(0, INTERRUPT_TRIGGER_FALLING);
 
     // configure the TCC peripheral
-    tcc_setup(0, 2);
+    tcc_setup(0, GENERIC_CLOCK_2, TCC_PRESCALER_DIV1);
+    tcc_set_wavegen(0, TCC_WAVEGEN_NORMAL_PWM);
+    tcc_set_period(0, 100);
+    tcc_set_run_in_standby(0, true);
 
     // TCC0 waveform output 0
     HAL_GPIO_A3_out();
-    HAL_GPIO_A3_pmuxen(HAL_GPIO_PMUX_E);
+    HAL_GPIO_A3_pmuxen(HAL_GPIO_PMUX_TC_TCC);
     // TCC0 waveform output 1
     HAL_GPIO_A4_out();
-    HAL_GPIO_A4_pmuxen(HAL_GPIO_PMUX_E);
+    HAL_GPIO_A4_pmuxen(HAL_GPIO_PMUX_TC_TCC);
     // TCC0 waveform output 2
     HAL_GPIO_D1_out();
-    HAL_GPIO_D1_pmuxen(HAL_GPIO_PMUX_F);
+    HAL_GPIO_D1_pmuxen(HAL_GPIO_PMUX_TCC_ALT);
     // TCC0 waveform output 3
     HAL_GPIO_D0_out();
-    HAL_GPIO_D0_pmuxen(HAL_GPIO_PMUX_F);
+    HAL_GPIO_D0_pmuxen(HAL_GPIO_PMUX_TCC_ALT);
 
-    TCC0->WAVE.bit.WAVEGEN = TCC_WAVE_WAVEGEN_NPWM_Val;
-    TCC0->PER.reg = 100;
-    TCC0->CTRLA.bit.RUNSTDBY = 1;
     tcc_enable(0);
 
     HAL_GPIO_A5_in();
@@ -105,29 +105,6 @@ int8_t brightness[4] = {0};
 
 bool app_loop(void) {
     rtc_date_time date_time = rtc_get_date_time();
-
-    if (date_time.unit.hour > 19 || date_time.unit.hour < 3) {
-        if (!TCC0->CTRLA.bit.ENABLE) {
-            tcc_enable(0);
-        }
-        TCC0->CC[0].reg = brightness[0];
-        TCC0->CC[1].reg = brightness[1];
-        TCC0->CC[2].reg = brightness[2];
-        TCC0->CC[3].reg = brightness[3];
-    } else {
-        TCC0->CC[0].reg = 0;
-        TCC0->CC[1].reg = 0;
-        TCC0->CC[2].reg = 0;
-        TCC0->CC[3].reg = 0;
-        if (TCC0->CTRLA.bit.ENABLE) {
-            delay_ms(100);
-            tcc_disable(0);
-            HAL_GPIO_A3_clr();
-            HAL_GPIO_A4_clr();
-            HAL_GPIO_D0_clr();
-            HAL_GPIO_D1_clr();
-        }
-    }
 
     if (!HAL_GPIO_LEFT_read()) {
         if (mode == 0) mode = NUM_MODES - 1;
@@ -157,7 +134,6 @@ bool app_loop(void) {
         if (mode < 4) {
             brightness[mode] = MAX(brightness[mode] - 10, 0);
             if (brightness[mode] > 100) brightness[mode] = 0;
-            TCC0->CC[mode].reg = brightness[mode];
         } else if (mode == 4) {
             if (date_time.unit.minute == 0) {
                 date_time.unit.hour = (date_time.unit.hour + 23) % 24;
@@ -187,6 +163,27 @@ bool app_loop(void) {
             break;
         default:
             break;
+    }
+
+    if (date_time.unit.hour > 19 || date_time.unit.hour < 3) {
+        if (!tcc_is_enabled(0)) {
+            tcc_enable(0);
+        }
+        for (uint8_t i = 0; i < 4; i++) {
+            tcc_set_cc(0, i, brightness[i]);
+        }
+    } else {
+        for (uint8_t i = 0; i < 4; i++) {
+            tcc_set_cc(0, i, 0);
+        }
+        if (TCC0->CTRLA.bit.ENABLE) {
+            delay_ms(100);
+            tcc_disable(0);
+            HAL_GPIO_A3_clr();
+            HAL_GPIO_A4_clr();
+            HAL_GPIO_D0_clr();
+            HAL_GPIO_D1_clr();
+        }
     }
 
     return true;    
