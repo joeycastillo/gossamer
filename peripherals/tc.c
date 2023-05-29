@@ -101,6 +101,10 @@ void tc_enable(uint8_t instance) {
     tc_sync(instance);
 }
 
+bool tc_is_enabled(uint8_t instance) {
+    return TC_Peripherals[instance - TC_First_Index].tc->COUNT16.CTRLA.bit.ENABLE;
+}
+
 void tc_count8_set_period(uint8_t instance, uint8_t period) {
     TC_Peripherals[instance - TC_First_Index].tc->COUNT8.PER.reg = period;
 }

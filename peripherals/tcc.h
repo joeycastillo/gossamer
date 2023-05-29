@@ -145,10 +145,16 @@ void tcc_set_output_matrix(uint8_t instance, tcc_output_matrix_t mode);
 */
 void tcc_set_channel_polarity(uint8_t instance, uint8_t channel, tcc_channel_polarity_t polarity);
 
-/** @brief Enables the TC. Make sure to call tcc_setup first to set it up.
-  * @param instance The TC peripheral instance as numbered in the data sheet, or 0.
+/** @brief Enables the TCC. Make sure to call tcc_setup first to set it up.
+  * @param instance The TCC peripheral instance as numbered in the data sheet, or 0.
   */
 void tcc_enable(uint8_t instance);
+
+/** @brief Checks whether the TCC is enabled.
+  * @param instance The TCC peripheral instance as numbered in the data sheet, or 0.
+  * @return true if the TCC is enabled, false if instance is disabled.
+  */
+bool tcc_is_enabled(uint8_t instance);
 
 /**
  * @brief Sets the period of the TCC.

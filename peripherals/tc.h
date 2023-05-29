@@ -158,6 +158,12 @@ void tc_set_channel_polarity(uint8_t instance, uint8_t channel, tc_channel_polar
   */
 void tc_enable(uint8_t instance);
 
+/** @brief Checks whether the TC is enabled.
+  * @param instance The TC peripheral instance as numbered in the data sheet, or 0.
+  * @return true if the TC is enabled, false if instance is disabled.
+  */
+bool tc_is_enabled(uint8_t instance);
+
 /**
  * @brief Sets the TC's period or PER register in 8-bit mode.
  * @param instance The TC peripheral instance as numbered in the data sheet.

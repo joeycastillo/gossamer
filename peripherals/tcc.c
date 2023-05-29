@@ -87,6 +87,10 @@ void tcc_enable(uint8_t instance) {
     tcc_sync(instance);
 }
 
+bool tcc_is_enabled(uint8_t instance) {
+    return TCC_Peripherals[instance].tcc->CTRLA.bit.ENABLE;
+}
+
 void tcc_set_period(uint8_t instance, uint32_t period) {
     TCC_Peripherals[instance].tcc->PER.bit.PER = period;
 }
