@@ -53,6 +53,32 @@ void sys_init(void) {
     PM->INTFLAG.reg = PM_INTFLAG_PLRDY;
     PM->PLCFG.reg = PM_PLCFG_PLSEL_PL2_Val;
     while (!PM->INTFLAG.reg);
+
+    // set up low power 32k oscillator on GCLK2
+    GCLK->GENCTRL[2].reg = GCLK_GENCTRL_DIV(1) |
+                           GCLK_GENCTRL_SRC_OSCULP32K |
+                           GCLK_GENCTRL_RUNSTDBY |
+                           GCLK_GENCTRL_GENEN;
+
+#ifdef CRYSTALLESS
+    // SAM L22 has no high accuracy internal OSC32K, so we have no choice but to
+    // use the internal OSCULP32K. This means timekeeping will be less accurate.
+    OSC32KCTRL->RTCCTRL.reg = OSC32KCTRL_RTCCTRL_RTCSEL_ULP1K;
+#else
+    OSC32KCTRL->XOSC32K.reg = OSC32KCTRL_XOSC32K_STARTUP(0x6) |
+                              OSC32KCTRL_XOSC32K_XTALEN |
+                              OSC32KCTRL_XOSC32K_EN1K |
+                              OSC32KCTRL_XOSC32K_EN32K |
+                              OSC32KCTRL_XOSC32K_RUNSTDBY |
+                              OSC32KCTRL_XOSC32K_ONDEMAND |
+                              OSC32KCTRL_XOSC32K_ENABLE;
+    OSC32KCTRL->RTCCTRL.reg = OSC32KCTRL_RTCCTRL_RTCSEL_XOSC1K;
+    // set up high accuracy 1k oscillator on GCLK3
+    GCLK->GENCTRL[3].reg = GCLK_GENCTRL_DIV(32) |
+                           GCLK_GENCTRL_SRC_XOSC32K |
+                           GCLK_GENCTRL_RUNSTDBY |
+                           GCLK_GENCTRL_GENEN;
+#endif
 }
 
 uint32_t get_cpu_frequency(void) {

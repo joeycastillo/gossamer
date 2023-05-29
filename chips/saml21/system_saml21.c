@@ -29,6 +29,7 @@
 //-----------------------------------------------------------------------------
 #include "saml21.h"
 #include "system.h"
+#include "pins.h"
 
 // NOTE: all chip variants also have a TC4 peripheral, but it's more complicated
 // to set it up since its clock enable is on APBD and not APBC. FOR NOW, just use
@@ -70,8 +71,44 @@ void sys_init(void) {
     PM->INTFLAG.reg = PM_INTFLAG_PLRDY;
     PM->PLCFG.reg = PM_PLCFG_PLSEL_PL2_Val;
     while (!PM->INTFLAG.reg);
-}
 
+    // set up low power 32k oscillator on GCLK2
+    GCLK->GENCTRL[2].reg = GCLK_GENCTRL_DIV(1) |
+                           GCLK_GENCTRL_SRC_OSCULP32K |
+                           GCLK_GENCTRL_RUNSTDBY |
+                           GCLK_GENCTRL_GENEN;
+
+#ifdef CRYSTALLESS
+    uint32_t *calibrationArea = (uint32_t*) NVMCTRL_OTP5;
+    uint32_t calib = ((*calibrationArea) & 0x1FC0) >> 6;
+    OSC32KCTRL->OSC32K.reg = OSC32KCTRL_OSC32K_CALIB(calib) |
+                             OSC32KCTRL_OSC32K_EN1K |
+                             OSC32KCTRL_OSC32K_EN32K |
+                             OSC32KCTRL_OSC32K_RUNSTDBY |
+                             OSC32KCTRL_OSC32K_ONDEMAND |
+                             OSC32KCTRL_OSC32K_ENABLE;
+    OSC32KCTRL->RTCCTRL.reg = OSC32KCTRL_RTCCTRL_RTCSEL_OSC1K;
+    // set up high accuracy 1k oscillator on GCLK3
+    GCLK->GENCTRL[3].reg = GCLK_GENCTRL_DIV(32) |
+                           GCLK_GENCTRL_SRC_OSC32K |
+                           GCLK_GENCTRL_RUNSTDBY |
+                           GCLK_GENCTRL_GENEN;
+#else
+    OSC32KCTRL->XOSC32K.reg = OSC32KCTRL_XOSC32K_STARTUP(0x6) |
+                              OSC32KCTRL_XOSC32K_XTALEN |
+                              OSC32KCTRL_XOSC32K_EN1K |
+                              OSC32KCTRL_XOSC32K_EN32K |
+                              OSC32KCTRL_XOSC32K_RUNSTDBY |
+                              OSC32KCTRL_XOSC32K_ONDEMAND |
+                              OSC32KCTRL_XOSC32K_ENABLE;
+    OSC32KCTRL->RTCCTRL.reg = OSC32KCTRL_RTCCTRL_RTCSEL_XOSC1K;
+    // set up high accuracy 1k oscillator on GCLK3
+    GCLK->GENCTRL[3].reg = GCLK_GENCTRL_DIV(32) |
+                           GCLK_GENCTRL_SRC_XOSC32K |
+                           GCLK_GENCTRL_RUNSTDBY |
+                           GCLK_GENCTRL_GENEN;
+#endif
+}
 
 uint32_t get_cpu_frequency(void) {
     switch (OSCCTRL->OSC16MCTRL.bit.FSEL) {
