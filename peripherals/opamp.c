@@ -79,6 +79,10 @@ void opamp_set_res2mux(uint16_t instance, uint8_t res2mux) {
     }
 }
 
+void opamp_set_analog_connection(uint16_t instance, bool connected) {
+    OPAMP->OPAMPCTRL[instance].bit.ANAOUT = connected;
+}
+
 void opamp_disable(uint16_t instance) {
     OPAMP->OPAMPCTRL[instance].reg &= ~OPAMP_OPAMPCTRL_ENABLE;
 }

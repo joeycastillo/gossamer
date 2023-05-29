@@ -1,4 +1,5 @@
 #include "app.h"
+#include "adc.h"
 #include "dac.h"
 #include "dma.h"
 #include "opamp.h"
@@ -8,16 +9,26 @@
 #include "gfx/sh1107.h"
 
 typedef struct opamp_state_t { 
-    uint8_t muxneg;
-    uint8_t muxpos;
-    uint8_t potmux;
-    uint8_t res1mux;
-    uint8_t res2mux;
+    int8_t muxneg;
+    int8_t muxpos;
+    int8_t potmux;
+    int8_t res1mux;
+    int8_t res2mux;
 } opamp_state_t;
 
 opamp_state_t opamps[3];
-uint8_t selected_row = 0;
-uint8_t selected_column = 0;
+int8_t selected_row = 0;
+int8_t selected_column = 0;
+int8_t graphed_channel = -1;
+int8_t active_screen = 0;
+#define NUM_SCREENS 2
+
+
+uint32_t select_held = 0;
+
+bool needs_sample = false;
+uint16_t adc_sample = 0;
+uint8_t xpos = 0;
 
 void draw_opamp(int instance);
 void draw_menu(int instance);
@@ -25,6 +36,7 @@ void configure_opamp(int instance);
 void configure_dac(void);
 
 void app_init(void) {
+    set_cpu_frequency(16000000);
 }
 
 void app_setup(void) {
@@ -35,9 +47,11 @@ void app_setup(void) {
     // haven't figured out how to use the DAC and OPAMP0 at the same time without
     // conflicts, so I'm configuring OPAMP0 to simply buffer the DAC output.
 
-    // configure_dac();
-    // opamps[0].muxneg = OPAMP_MUXNEG_OUT;
-    // opamps[0].muxpos = OPAMP0_MUXPOS_DAC;
+    configure_dac();
+    opamps[0].muxneg = OPAMP_MUXNEG_OUT;
+    opamps[0].muxpos = OPAMP0_MUXPOS_DAC;
+
+    adc_enable();
 
     HAL_GPIO_LED_out();
     HAL_GPIO_D10_in();
@@ -74,55 +88,103 @@ bool dirty = true;
 uint16_t i = 0;
 
 bool app_loop(void) {
-    uint8_t updown = 0;
+    int8_t updown = 0;
+    int8_t select = 0;
 
     if (!HAL_GPIO_D10_read()) updown = -1;
     if (!HAL_GPIO_D5_read()) updown = 1;
+    if (!HAL_GPIO_D6_read()) {
+        select_held++;
+        select = select_held == 1;
+        dirty = true;
+    } else {
+        select_held = 0;
+        dirty = true;
+    }
 
-    if (updown) {
+    // On screen 0, move through rows with up/down buttons
+    if (updown && active_screen == 0) {
         dirty = true;
         switch (selected_column) {
             case 0:
-                selected_row = (selected_row + updown) % 3;
+                selected_row = (3 + selected_row + updown) % 3;
                 break;
             case 1:
-                opamps[selected_row].muxpos = ((opamps[selected_row].muxpos + updown * 2) - 1) % 7;
+                opamps[selected_row].muxpos = (7 + (opamps[selected_row].muxpos + updown)) % 7;
                 if (opamps[selected_row].muxpos > 3 && selected_row != 2) {
                     opamps[selected_row].muxpos = 0;
                 }
                 break;
             case 2:
-                opamps[selected_row].muxneg = ((opamps[selected_row].muxneg + updown * 2) - 1) % 6;
+                opamps[selected_row].muxneg = (6 + (opamps[selected_row].muxneg + updown)) % 6;
                 if (opamps[selected_row].muxneg > 3 && selected_row != 2) {
                     opamps[selected_row].muxneg = 0;
                 }
                 break;
             case 3:
-                opamps[selected_row].res1mux = ((opamps[selected_row].res1mux + updown * 2) - 1) % 5;
+                opamps[selected_row].res1mux = (5 + (opamps[selected_row].res1mux + updown)) % 5;
                 break;
             case 4:
-                opamps[selected_row].potmux = (opamps[selected_row].potmux + updown) % 8;
+                opamps[selected_row].potmux = (8 + opamps[selected_row].potmux + updown) % 8;
                 break;
             case 5:
-                opamps[selected_row].res2mux = ((opamps[selected_row].res2mux + updown * 2) - 1) % 3;
+                opamps[selected_row].res2mux = (3 + (opamps[selected_row].res2mux + updown)) % 3;
                 break;
         }
         configure_opamp(selected_row);
     }
-    if (!HAL_GPIO_D6_read()) {
+
+    // On screen 0, move through columns with select button
+    if (select && active_screen == 0) {
         dirty = true;
         selected_column = (selected_column + 1) % 6;
     }
 
+    // Graph a channel or return from the graph by holding the select button
+    if (select_held == 10) {
+        selected_column = 0;
+        xpos = 0;
+        active_screen = (active_screen + 1) % NUM_SCREENS;
+        graphed_channel = selected_row;
+        dirty = true;
+    }
+
+    if (active_screen == 1) {
+        switch (graphed_channel) {
+            case 0:
+                adc_sample = adc_get_analog_value(7);
+                break;
+            case 1:
+                adc_sample = adc_get_analog_value(2);
+                break;
+            case 2:
+                adc_sample = adc_get_analog_value(4);
+                break;
+            default:
+                adc_sample = 32768;
+                break;
+        }
+        dirty = true;
+    }
+
     if (dirty) {
         dirty = false;
-        gfx_fill_screen(0);
-        gfx_draw_string(0, 33, "  POS NEG R1  POT R2", 1, 0, 1);
-        for (size_t i = 0; i < 3; i++) {
-            draw_opamp(i);
-            draw_menu(i);
+        switch (active_screen) {
+            case 0:
+                gfx_fill_screen(0);
+                gfx_draw_string(0, 33, "  POS NEG R1  POT R2", 1, 0, 1);
+                for (size_t i = 0; i < 3; i++) {
+                    draw_opamp(i);
+                    draw_menu(i);
+                }
+                break;
+            case 1:
+                gfx_draw_pixel(xpos, 63 - adc_sample / 1024, 1);
+                xpos = (xpos + 1) % 128;
+                gfx_draw_vline((xpos + 1) % 128, 0, 64, 0);
+                break;
         }
-        
+
         sh1107_update();
     }
 
@@ -393,7 +455,7 @@ void draw_menu(int instance) {
 
     if (row_active && selected_column == 0) gfx_draw_char(0, 41 + 8 * instance, '0' + instance, 0, 1, 1);
     else gfx_draw_char(0, 41 + 8 * instance, '0' + instance, 1, 0, 1);
-    
+
     highlighted = (row_active && selected_column == 1) ? 1 : 0;
     switch (opamps[instance].muxpos) {
         case 0: // OAxPOS
@@ -511,7 +573,33 @@ void draw_menu(int instance) {
     buf[0] = 'P';
     buf[1] = '0' + opamps[instance].potmux;
     buf[2] = ' ';
-    gfx_draw_string(84, 41 + 8 * instance, buf, !highlighted, highlighted, 1);
+    if (highlighted) gfx_fill_rect(84, 41 + 8 * instance, 17, 8, 1);
+    switch (opamps[instance].potmux) {
+        case OPAMP_POTMUX_RATIO_14_2:
+            gfx_draw_string(85, 42 + 8 * instance, "14 : 2", !highlighted, highlighted, 0);
+            break;
+        case OPAMP_POTMUX_RATIO_12_4:
+            gfx_draw_string(85, 42 + 8 * instance, "12 : 4", !highlighted, highlighted, 0);
+            break;
+        case OPAMP_POTMUX_RATIO_8_8:
+            gfx_draw_string(85, 42 + 8 * instance, "  8 : 8", !highlighted, highlighted, 0);
+            break;
+        case OPAMP_POTMUX_RATIO_6_10:
+            gfx_draw_string(85, 42 + 8 * instance, "6 : 10", !highlighted, highlighted, 0);
+            break;
+        case OPAMP_POTMUX_RATIO_4_12:
+            gfx_draw_string(85, 42 + 8 * instance, "4 : 12", !highlighted, highlighted, 0);
+            break;
+        case OPAMP_POTMUX_RATIO_3_13:
+            gfx_draw_string(85, 42 + 8 * instance, "3 : 13", !highlighted, highlighted, 0);
+            break;
+        case OPAMP_POTMUX_RATIO_2_14:
+            gfx_draw_string(85, 42 + 8 * instance, "2 : 14", !highlighted, highlighted, 0);
+            break;
+        case OPAMP_POTMUX_RATIO_1_15:
+            gfx_draw_string(85, 42 + 8 * instance, "1 : 15", !highlighted, highlighted, 0);
+            break;
+    }
 
     highlighted = (row_active && selected_column == 5) ? 1 : 0;
     switch(opamps[instance].res2mux) {
@@ -536,6 +624,7 @@ void configure_opamp(int instance) {
     opamp_set_res1mux(instance, opamps[instance].res1mux);
     opamp_set_res2mux(instance, opamps[instance].res2mux);
     opamp_set_potmux(instance, opamps[instance].potmux);
+    opamp_set_analog_connection(instance, true);
 
     if (opamps[instance].muxpos == OPAMP_MUXPOS_POS || opamps[instance].res1mux == OPAMP_RES1MUX_POS) {
         switch (instance) {
@@ -583,9 +672,9 @@ void configure_dac(void) {
     HAL_GPIO_A0_pmuxen(HAL_GPIO_PMUX_B);
     dac_enable(0);
 
-    tc_setup(1, GENERIC_CLOCK_0, TC_PRESCALER_DIV1);
+    tc_setup(1, GENERIC_CLOCK_0, TC_PRESCALER_DIV256);
     tc_set_wavegen(1, TC_WAVE_WAVEGEN_MFRQ);
-    tc_count16_set_cc(1, 0, 156); // 8 MHz / (156 * 512 samples) = 100 Hz
+    tc_count16_set_cc(1, 0, 122); // (16 MHz / 256) / (122 * 512 samples) = 1 Hz
     tc_enable(1);
 
     gossamer_dma_job_t dac_dma;

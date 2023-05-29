@@ -155,6 +155,14 @@ void opamp_set_res1mux(uint16_t instance, uint8_t res1mux);
 void opamp_set_res2mux(uint16_t instance, uint8_t res2mux);
 
 /**
+ * @brief Sets or removes the connection from the opamp output to the ADC / AC.
+ * @param instance The opamp instance to configure.
+ * @param connected True to connect the opamp output to the ADC / AC, false
+ *                  to disconnect it.
+ */
+void opamp_set_analog_connection(uint16_t instance, bool connected);
+
+/**
  * @brief Disables the given opamp.
  * @param instance The opamp instance to disable.
  * @note You should disable the opamp before reconfiguring it, and re-enable it afterwards.
