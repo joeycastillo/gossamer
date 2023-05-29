@@ -141,6 +141,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a2715d5a6f20298805eefa13a8a7a1b99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">tc_enable</a> (uint8_t instance)</td></tr>
 <tr class="memdesc:a2715d5a6f20298805eefa13a8a7a1b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the TC. Make sure to call tc_setup first to set it up.  <a href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">More...</a><br /></td></tr>
 <tr class="separator:a2715d5a6f20298805eefa13a8a7a1b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b71bab26fe6c8796a723a10fba63b6b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a1b71bab26fe6c8796a723a10fba63b6b">tc_is_enabled</a> (uint8_t instance)</td></tr>
+<tr class="memdesc:a1b71bab26fe6c8796a723a10fba63b6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the TC is enabled.  <a href="tc_8h.html#a1b71bab26fe6c8796a723a10fba63b6b">More...</a><br /></td></tr>
+<tr class="separator:a1b71bab26fe6c8796a723a10fba63b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab18ace8a5dd07d75cb9e6957d9e2658c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#ab18ace8a5dd07d75cb9e6957d9e2658c">tc_count8_set_period</a> (uint8_t instance, uint8_t period)</td></tr>
 <tr class="memdesc:ab18ace8a5dd07d75cb9e6957d9e2658c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's period or PER register in 8-bit mode.  <a href="tc_8h.html#ab18ace8a5dd07d75cb9e6957d9e2658c">More...</a><br /></td></tr>
 <tr class="separator:ab18ace8a5dd07d75cb9e6957d9e2658c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -594,6 +597,33 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a1b71bab26fe6c8796a723a10fba63b6b" name="a1b71bab26fe6c8796a723a10fba63b6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b71bab26fe6c8796a723a10fba63b6b">&#9670;&#160;</a></span>tc_is_enabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tc_is_enabled </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks whether the TC is enabled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the TC is enabled, false if instance is disabled. </dd></dl>
 
 </div>
 </div>

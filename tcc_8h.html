@@ -138,8 +138,11 @@ Functions</h2></td></tr>
 <tr class="memdesc:aa449988b4bea75a5e018c01e38d6c058"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the polarity of a channel.  <a href="tcc_8h.html#aa449988b4bea75a5e018c01e38d6c058">More...</a><br /></td></tr>
 <tr class="separator:aa449988b4bea75a5e018c01e38d6c058"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ac612aa1426900df32765fb71e79918"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a6ac612aa1426900df32765fb71e79918">tcc_enable</a> (uint8_t instance)</td></tr>
-<tr class="memdesc:a6ac612aa1426900df32765fb71e79918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the TC. Make sure to call tcc_setup first to set it up.  <a href="tcc_8h.html#a6ac612aa1426900df32765fb71e79918">More...</a><br /></td></tr>
+<tr class="memdesc:a6ac612aa1426900df32765fb71e79918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the TCC. Make sure to call tcc_setup first to set it up.  <a href="tcc_8h.html#a6ac612aa1426900df32765fb71e79918">More...</a><br /></td></tr>
 <tr class="separator:a6ac612aa1426900df32765fb71e79918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5797bec545a165a39f092514139f5b1e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a5797bec545a165a39f092514139f5b1e">tcc_is_enabled</a> (uint8_t instance)</td></tr>
+<tr class="memdesc:a5797bec545a165a39f092514139f5b1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the TCC is enabled.  <a href="tcc_8h.html#a5797bec545a165a39f092514139f5b1e">More...</a><br /></td></tr>
+<tr class="separator:a5797bec545a165a39f092514139f5b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4a80f7c23f094986cfb470068e16f52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#ae4a80f7c23f094986cfb470068e16f52">tcc_set_period</a> (uint8_t instance, uint32_t period)</td></tr>
 <tr class="memdesc:ae4a80f7c23f094986cfb470068e16f52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the period of the TCC.  <a href="tcc_8h.html#ae4a80f7c23f094986cfb470068e16f52">More...</a><br /></td></tr>
 <tr class="separator:ae4a80f7c23f094986cfb470068e16f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -210,10 +213,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enables the TC. Make sure to call tcc_setup first to set it up. </p>
+<p>Enables the TCC. Make sure to call tcc_setup first to set it up. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
   </table>
   </dd>
 </dl>
@@ -244,6 +247,33 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The current value of the counter. </dd></dl>
+
+</div>
+</div>
+<a id="a5797bec545a165a39f092514139f5b1e" name="a5797bec545a165a39f092514139f5b1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5797bec545a165a39f092514139f5b1e">&#9670;&#160;</a></span>tcc_is_enabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tcc_is_enabled </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks whether the TCC is enabled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the TCC is enabled, false if instance is disabled. </dd></dl>
 
 </div>
 </div>
