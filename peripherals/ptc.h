@@ -99,8 +99,9 @@ void ptc_init(void);
  * @brief Enable the given PTC channel.
  * @param channel The PTC channel (NOT pin number) to enable.
  * @note You are still responsible for configuring the pin mux.
+ *       Also we don't yet have a way to disable a channel.
  */
-void ptc_enable_channel(uint8_t channel);
+void ptc_enable(uint8_t channel);
 
 /**
  * @brief Get a value from the given channel.

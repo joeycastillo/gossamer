@@ -74,7 +74,7 @@ void ptc_init(void) {
     _ptc_sync();
 }
 
-void ptc_enable_channel(uint8_t channel) {
+void ptc_enable(uint8_t channel) {
     ((Ptc *)PTC)->CTRLA.bit.ENABLE = 0;
     _ptc_sync();
     if (channel < 8) {
