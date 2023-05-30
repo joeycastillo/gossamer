@@ -63,8 +63,8 @@ void app_setup(void) {
 
     HAL_GPIO_SDA_out();
     HAL_GPIO_SCL_out();
-    HAL_GPIO_SDA_pmuxen(HAL_GPIO_PMUX_D);
-    HAL_GPIO_SCL_pmuxen(HAL_GPIO_PMUX_D);
+    HAL_GPIO_SDA_pmuxen(HAL_GPIO_PMUX_SERCOM);
+    HAL_GPIO_SCL_pmuxen(HAL_GPIO_PMUX_SERCOM);
     i2c_init();
     i2c_enable();
 
