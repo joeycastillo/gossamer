@@ -30,6 +30,7 @@ void app_init(void) {
 void app_setup(void) {
     // set up the external interrupt controller
     eic_init();
+    eic_enable();
 
     // set up the I²C peripheral...
     HAL_GPIO_SDA_out();

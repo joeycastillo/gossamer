@@ -17,6 +17,8 @@ void app_init(void) {
 
 void app_setup(void) {
     eic_init();
+    eic_enable();
+
     // set up the I²C peripheral...
     HAL_GPIO_SDA_out();
     HAL_GPIO_SCL_out();

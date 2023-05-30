@@ -3,7 +3,7 @@ TOP = ../..
 
 # If your firmware targets a specific board, specify it here,
 # or omit it and provide it on the command line (make BOARD=foo).
-BOARD=sensorwatch_m0
+BOARD=circuitplayground_m0
 
 # Leave this line here.
 include $(TOP)/make.mk

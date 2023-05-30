@@ -44,13 +44,14 @@ static void _eic_sync(void) {
 
 void eic_init(void) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
-    // enable the EIC
+    // enable the EIC's peripheral clock
     PM->APBAMASK.reg |= PM_APBAMASK_EIC;
     // Configure EIC to use GCLK2 (the 32.768 kHz low power oscillator)
-    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(EIC_GCLK_ID) | GCLK_CLKCTRL_CLKEN |
+    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(EIC_GCLK_ID) |
+                        GCLK_CLKCTRL_CLKEN |
                         GCLK_CLKCTRL_GEN(2);
 #else
-    // enable the EIC
+    // enable the EIC's peripheral clock
     MCLK->APBAMASK.reg |= MCLK_APBAMASK_EIC;
 #endif
 
@@ -64,6 +65,9 @@ void eic_init(void) {
     // Configure EIC to use the 32.768 kHz low power oscillator directly.
     EIC->CTRLA.bit.CKSEL = 1;
 #endif
+}
+
+void eic_enable(void) {
     CTRLREG.bit.ENABLE = 1;
     _eic_sync();
 
@@ -92,14 +96,21 @@ void eic_configure_channel(const uint8_t channel, eic_interrupt_trigger trigger)
     _eic_sync();
 }
 
+void eic_disable(void) {
+    CTRLREG.bit.ENABLE = 0;
+    NVIC_DisableIRQ(EIC_IRQn);
+    NVIC_ClearPendingIRQ(EIC_IRQn);
+}
+
 void eic_configure_callback(eic_cb_t callback) {
     _eic_callback = callback;
 }
 
 void irq_handler_eic(void);
 void irq_handler_eic(void) {
+    uint8_t channel = __builtin_ctz(EIC->INTFLAG.reg);
     if (_eic_callback != NULL) {
-        _eic_callback();
+        _eic_callback(channel);
     }
     EIC->INTFLAG.reg = EIC_INTFLAG_MASK;
 }

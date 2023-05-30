@@ -39,11 +39,15 @@ typedef enum eic_interrupt_trigger {
     INTERRUPT_TRIGGER_BOTH,
 } eic_interrupt_trigger;
 
-typedef void (*eic_cb_t)(void);
+typedef void (*eic_cb_t)(uint8_t channel);
+
+/** @brief Initializes the external interrupt controller, but does not enable it.
+  */
+void eic_init(void);
 
 /** @brief Enables the external interrupt controller.
   */
-void eic_init(void);
+void eic_enable(void);
 
 /** @brief Configures an external interrupt on one of the external interrupt channels
   * @details Note that this call does not deal with pins at all. Your external interrupt pin needs
@@ -59,3 +63,7 @@ void eic_configure_channel(const uint8_t channel, eic_interrupt_trigger trigger)
   * @param callback The function that will be called when the interrupt fires.
   */
 void eic_configure_callback(eic_cb_t callback);
+
+/** @brief Disables the external interrupt controller.
+  */
+void eic_disable(void);
