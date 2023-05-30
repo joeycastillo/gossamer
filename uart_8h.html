@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>gossamer: peripherals/uart.h Source File</title>
+<title>gossamer: peripherals/uart.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -74,24 +74,38 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="headertitle"><div class="title">uart.h</div></div>
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">uart.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="uart_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keywordtype">void</span> uart_init(uint32_t baud);</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keywordtype">void</span> uart_enable(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keywordtype">void</span> uart_write(uint8_t *data, <span class="keywordtype">size_t</span> length);</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keywordtype">void</span> uart_disable(<span class="keywordtype">void</span>);</div>
-</div><!-- fragment --></div><!-- contents -->
+
+<p>UART Peripheral.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stddef.h&gt;</code><br />
+</div>
+<p><a href="uart_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ad8f6a793347af79ca41a3363dbd3fd96"><td class="memItemLeft" align="right" valign="top"><a id="ad8f6a793347af79ca41a3363dbd3fd96" name="ad8f6a793347af79ca41a3363dbd3fd96"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_init</b> (uint32_t baud)</td></tr>
+<tr class="separator:ad8f6a793347af79ca41a3363dbd3fd96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affcbd24efeade3b1444100dbbc614e88"><td class="memItemLeft" align="right" valign="top"><a id="affcbd24efeade3b1444100dbbc614e88" name="affcbd24efeade3b1444100dbbc614e88"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_enable</b> (void)</td></tr>
+<tr class="separator:affcbd24efeade3b1444100dbbc614e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e0844dd68d04ca88f255b6c75326a70"><td class="memItemLeft" align="right" valign="top"><a id="a6e0844dd68d04ca88f255b6c75326a70" name="a6e0844dd68d04ca88f255b6c75326a70"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_write</b> (uint8_t *data, size_t length)</td></tr>
+<tr class="separator:a6e0844dd68d04ca88f255b6c75326a70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dbcc0696f2607e16da1f55d3b4d6d94"><td class="memItemLeft" align="right" valign="top"><a id="a9dbcc0696f2607e16da1f55d3b4d6d94" name="a9dbcc0696f2607e16da1f55d3b4d6d94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_disable</b> (void)</td></tr>
+<tr class="separator:a9dbcc0696f2607e16da1f55d3b4d6d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >UART Peripheral. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
