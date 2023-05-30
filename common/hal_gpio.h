@@ -98,6 +98,13 @@
     (void)HAL_GPIO_##name##_pullup;						\
   }										\
 										\
+  static inline void HAL_GPIO_##name##_pulldown(void)				\
+  {										\
+    PORT->Group[HAL_GPIO_PORT##port].OUTCLR.reg = (1 << pin);			\
+    PORT->Group[HAL_GPIO_PORT##port].PINCFG[pin].reg |= PORT_PINCFG_PULLEN;	\
+    (void)HAL_GPIO_##name##_pullup;						\
+  }										\
+										\
   static inline int HAL_GPIO_##name##_read(void)				\
   {										\
     return (PORT->Group[HAL_GPIO_PORT##port].IN.reg & (1 << pin)) != 0;		\
