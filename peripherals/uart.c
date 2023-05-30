@@ -71,6 +71,13 @@ void uart_write(uint8_t *data, size_t length) {
     }
 }
 
+uint8_t uart_read(void) {
+    while (!UART_SERCOM->USART.INTFLAG.bit.DRE) {}
+
+    while (!UART_SERCOM->USART.INTFLAG.bit.RXC) {}
+    return UART_SERCOM->USART.DATA.bit.DATA;
+}
+
 void uart_disable(void) {
     UART_SERCOM->USART.CTRLA.bit.ENABLE = 0;
     while (UART_SERCOM->USART.SYNCBUSY.bit.ENABLE) {}
