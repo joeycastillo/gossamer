@@ -121,7 +121,7 @@ Consistent interface to peripherals</h2>
 </div><!-- fragment --><p >This is how you would set up Timer/Counter TC1 to overflow at 500 Hz (i.e. for driving a DMA transaction):</p>
 <div class="fragment"><div class="line">tc_setup(1, GENERIC_CLOCK_0, TC_PRESCALER_DIV256); <span class="comment">// 16 MHz / 256 = 62,500</span></div>
 <div class="line">tc_set_wavegen(1, TC_WAVE_WAVEGEN_MFRQ); <span class="comment">// Match frequency mode, overflow at CC0</span></div>
-<div class="line">tc_count16_set_cc(1, 0, 122); <span class="comment">// 62,500 / 125 = 500 Hz</span></div>
+<div class="line">tc_count16_set_cc(1, 0, 125); <span class="comment">// 62,500 / 125 = 500 Hz</span></div>
 <div class="line">tc_enable(1);</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
 Consistent process for flashing firmware</h2>
