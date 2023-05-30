@@ -85,6 +85,7 @@ SRCS += \
   $(TOP)/peripherals/spi.c \
   $(TOP)/peripherals/tc.c \
   $(TOP)/peripherals/tcc.c \
+  $(TOP)/peripherals/uart.c \
   $(TOP)/drivers/gfx/gfx.c \
   $(TOP)/drivers/gfx/sh1107.c \
 
