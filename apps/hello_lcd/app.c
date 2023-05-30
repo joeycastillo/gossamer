@@ -13,6 +13,7 @@ void app_setup(void) {
     HAL_GPIO_SDA_pmuxen(HAL_GPIO_PMUX_D);
     HAL_GPIO_SCL_pmuxen(HAL_GPIO_PMUX_D);
     i2c_init();
+    i2c_enable();
     // ...and the Oddly Specific LCD
     oso_lcd_begin();
     oso_lcd_fill(0);

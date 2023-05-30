@@ -86,6 +86,7 @@ void app_setup(void) {
     HAL_GPIO_SCL_pmuxen(HAL_GPIO_PMUX_D);
     // initialize the I2C peripheral
     i2c_init();
+    i2c_enable();
 
     // display text on the LCD
     oso_lcd_begin();

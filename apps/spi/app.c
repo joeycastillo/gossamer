@@ -28,8 +28,10 @@ void app_setup(void) {
     HAL_GPIO_MOSI_pmuxen(HAL_GPIO_PMUX_SERCOM_ALT);
     HAL_GPIO_MISO_pmuxen(HAL_GPIO_PMUX_SERCOM_ALT);
     spi_init(SPI_MODE_0, 8000000);
+    spi_enable(SPI_MODE_0, 8000000);
 
     i2c_init();
+    i2c_enable();
     oso_lcd_begin();
     oso_lcd_fill(0);
 }

@@ -27,4 +27,8 @@ typedef enum {
 
 void spi_init(spi_mode_t mode, uint32_t baud);
 
+void spi_enable(void);
+
 uint8_t spi_transfer(uint8_t data);
+
+void spi_disable(void);

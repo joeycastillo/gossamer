@@ -76,7 +76,9 @@ void spi_init(spi_mode_t mode, uint32_t baud) {
     } else {
         SPI_SERCOM->SPI.BAUD.reg = get_cpu_frequency() / (2 * baudrate) - 1;
     }
+}
 
+void spi_enable(void) {
     /* Enable the SERCOM. */
     SPI_SERCOM->SPI.CTRLA.bit.ENABLE = 1;
     while (SPI_SERCOM->SPI.SYNCBUSY.bit.ENABLE) {}
@@ -90,6 +92,11 @@ uint8_t spi_transfer(uint8_t data) {
     while (!SPI_SERCOM->SPI.INTFLAG.bit.RXC) {}
 
     return SPI_SERCOM->SPI.DATA.bit.DATA;
+}
+
+void spi_disable(void) {
+    SPI_SERCOM->SPI.CTRLA.bit.ENABLE = 0;
+    while (SPI_SERCOM->SPI.SYNCBUSY.bit.ENABLE) {}
 }
 
 #endif

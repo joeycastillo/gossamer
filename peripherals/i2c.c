@@ -68,7 +68,9 @@ void i2c_init(void) {
     I2C_SERCOM->I2CM.BAUD.bit.BAUD =
         clock_speed / (2 * baudrate) - 5 - (((clock_speed / 1000000) * rise_time) / (2 * 1000));
     while (I2C_SERCOM->I2CM.SYNCBUSY.bit.SYSOP) {};
+}
 
+void i2c_enable(void) {
     /* Enable the SERCOM. */
     I2C_SERCOM->I2CM.CTRLA.bit.ENABLE = 1;
     while (I2C_SERCOM->I2CM.SYNCBUSY.bit.ENABLE) {};
@@ -131,4 +133,8 @@ I2CResult i2c_write(uint8_t address, uint8_t* data, size_t len) {
     return I2C_RESULT_SUCCESS;
 }
 
+void i2c_disable(void) {
+    I2C_SERCOM->I2CM.CTRLA.bit.ENABLE = 0;
+    while (I2C_SERCOM->I2CM.SYNCBUSY.bit.ENABLE) {};
+}
 #endif

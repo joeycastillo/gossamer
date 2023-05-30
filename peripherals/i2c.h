@@ -35,9 +35,19 @@ typedef enum {
 void i2c_init(void);
 
 /**
+ * @brief Enables the I2C peripheral.
+ */
+void i2c_enable(void);
+
+/**
  * @brief Writes data to an I2C device at the provided address.
  * @param address The I2C address of the device.
  * @param data The data to write.
  * @param len The length of the data to write.
  */
 I2CResult i2c_write(uint8_t address, uint8_t* data, size_t len);
+
+/**
+ * @brief Disables the I2C peripheral.
+ */
+void i2c_disable(void);
