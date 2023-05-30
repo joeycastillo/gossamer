@@ -220,6 +220,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>opamp_init</b> (void)
 <tr class="memitem:ab9f7e0d2fbaf34171563d8c1ceb5f3b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opamp_8h.html#ab9f7e0d2fbaf34171563d8c1ceb5f3b8">opamp_set_res2mux</a> (uint16_t instance, uint8_t res2mux)</td></tr>
 <tr class="memdesc:ab9f7e0d2fbaf34171563d8c1ceb5f3b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the connection for the top of the resistor ladder for the given instance.  <a href="opamp_8h.html#ab9f7e0d2fbaf34171563d8c1ceb5f3b8">More...</a><br /></td></tr>
 <tr class="separator:ab9f7e0d2fbaf34171563d8c1ceb5f3b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa41c70604826026b22c95f1b0448c642"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opamp_8h.html#aa41c70604826026b22c95f1b0448c642">opamp_set_analog_connection</a> (uint16_t instance, bool connected)</td></tr>
+<tr class="memdesc:aa41c70604826026b22c95f1b0448c642"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets or removes the connection from the opamp output to the ADC / AC.  <a href="opamp_8h.html#aa41c70604826026b22c95f1b0448c642">More...</a><br /></td></tr>
+<tr class="separator:aa41c70604826026b22c95f1b0448c642"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dcff33b01f135e8608d0bb90a758e8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opamp_8h.html#a0dcff33b01f135e8608d0bb90a758e8a">opamp_disable</a> (uint16_t instance)</td></tr>
 <tr class="memdesc:a0dcff33b01f135e8608d0bb90a758e8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the given opamp.  <a href="opamp_8h.html#a0dcff33b01f135e8608d0bb90a758e8a">More...</a><br /></td></tr>
 <tr class="separator:a0dcff33b01f135e8608d0bb90a758e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -274,6 +277,43 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>opamp_init</b> (void)
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>The opamp instance to enable. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa41c70604826026b22c95f1b0448c642" name="aa41c70604826026b22c95f1b0448c642"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa41c70604826026b22c95f1b0448c642">&#9670;&#160;</a></span>opamp_set_analog_connection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void opamp_set_analog_connection </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>connected</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets or removes the connection from the opamp output to the ADC / AC. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The opamp instance to configure. </td></tr>
+    <tr><td class="paramname">connected</td><td>True to connect the opamp output to the ADC / AC, false to disconnect it. </td></tr>
   </table>
   </dd>
 </dl>

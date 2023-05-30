@@ -119,10 +119,13 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:acf9024748b942a7ae375cf75951afa9c"><td class="memItemLeft" align="right" valign="top"><a id="acf9024748b942a7ae375cf75951afa9c" name="acf9024748b942a7ae375cf75951afa9c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_init</b> (void)</td></tr>
-<tr class="memdesc:acf9024748b942a7ae375cf75951afa9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the RTC. Assumes a 1024 Hz clock on GCLK3. <br /></td></tr>
+<tr class="memitem:acf9024748b942a7ae375cf75951afa9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtc_8h.html#acf9024748b942a7ae375cf75951afa9c">rtc_init</a> (void)</td></tr>
+<tr class="memdesc:acf9024748b942a7ae375cf75951afa9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the RTC.  <a href="rtc_8h.html#acf9024748b942a7ae375cf75951afa9c">More...</a><br /></td></tr>
 <tr class="separator:acf9024748b942a7ae375cf75951afa9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abec68bd2863d22f5a8e12ab89f8134f4"><td class="memItemLeft" align="right" valign="top"><a id="abec68bd2863d22f5a8e12ab89f8134f4" name="abec68bd2863d22f5a8e12ab89f8134f4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_enable</b> (void)</td></tr>
+<tr class="memdesc:abec68bd2863d22f5a8e12ab89f8134f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the RTC. <br /></td></tr>
+<tr class="separator:abec68bd2863d22f5a8e12ab89f8134f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72309e05f8aa147cfdd0eb6ac2037889"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtc_8h.html#a72309e05f8aa147cfdd0eb6ac2037889">rtc_is_enabled</a> (void)</td></tr>
 <tr class="memdesc:a72309e05f8aa147cfdd0eb6ac2037889"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the RTC is enabled.  <a href="rtc_8h.html#a72309e05f8aa147cfdd0eb6ac2037889">More...</a><br /></td></tr>
 <tr class="separator:a72309e05f8aa147cfdd0eb6ac2037889"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,6 +202,27 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_disable_alarm_int
 <p>Returns the date and time. </p>
 <dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="unionrtc__date__time.html">rtc_date_time</a> with the current date and time, with a year value from 0-63 representing 2020-2083. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="rtc_8h.html#a0e68bc38011f721147d9258714a72cb8" title="Sets the date and time.">rtc_set_date_time</a> for notes about how the year is stored. </dd></dl>
+
+</div>
+</div>
+<a id="acf9024748b942a7ae375cf75951afa9c" name="acf9024748b942a7ae375cf75951afa9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf9024748b942a7ae375cf75951afa9c">&#9670;&#160;</a></span>rtc_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtc_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the RTC. </p>
+<p >Configures the RTC for 24-hour clock / calendar mode, with a 1 Hz tick derived from the 1024 Hz clock on GCLK3 (for SAM D devices) or OSC32KCTRL's most accurate 1024 Hz output (for SAM L devices). </p>
 
 </div>
 </div>

@@ -89,8 +89,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3afdea3b7c9b91013c270f1a1a669782"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adc_8h.html#a3afdea3b7c9b91013c270f1a1a669782">adc_enable</a> (void)</td></tr>
-<tr class="memdesc:a3afdea3b7c9b91013c270f1a1a669782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the ADC peripheral.  <a href="adc_8h.html#a3afdea3b7c9b91013c270f1a1a669782">More...</a><br /></td></tr>
+<tr class="memitem:a2b815e6730e8723a6d1d06d9ef8f31c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adc_8h.html#a2b815e6730e8723a6d1d06d9ef8f31c0">adc_init</a> (void)</td></tr>
+<tr class="memdesc:a2b815e6730e8723a6d1d06d9ef8f31c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the ADC peripheral, but does not enable it.  <a href="adc_8h.html#a2b815e6730e8723a6d1d06d9ef8f31c0">More...</a><br /></td></tr>
+<tr class="separator:a2b815e6730e8723a6d1d06d9ef8f31c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3afdea3b7c9b91013c270f1a1a669782"><td class="memItemLeft" align="right" valign="top"><a id="a3afdea3b7c9b91013c270f1a1a669782" name="a3afdea3b7c9b91013c270f1a1a669782"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>adc_enable</b> (void)</td></tr>
+<tr class="memdesc:a3afdea3b7c9b91013c270f1a1a669782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the ADC peripheral. <br /></td></tr>
 <tr class="separator:a3afdea3b7c9b91013c270f1a1a669782"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afdf9ce1e2c41b0ec24037168737dd1ad"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adc_8h.html#afdf9ce1e2c41b0ec24037168737dd1ad">adc_get_analog_value</a> (uint16_t channel)</td></tr>
 <tr class="memdesc:afdf9ce1e2c41b0ec24037168737dd1ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the analog value of the given ADC channel.  <a href="adc_8h.html#afdf9ce1e2c41b0ec24037168737dd1ad">More...</a><br /></td></tr>
@@ -103,34 +107,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>adc_disable</b> (void
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Analog to Digital Converter. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a3afdea3b7c9b91013c270f1a1a669782" name="a3afdea3b7c9b91013c270f1a1a669782"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3afdea3b7c9b91013c270f1a1a669782">&#9670;&#160;</a></span>adc_enable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void adc_enable </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable the ADC peripheral. </p>
-<p >This function enables some sensible defaults for basic use cases:</p><ul>
-<li>Clocks the ADC with the main 8 MHz oscillator and divider of 16 for a 500 kHz ADC clock.</li>
-<li>Sets sampling length to one clock cycle, which is appropriate for inputs with impedance up to 28 kOhm.</li>
-<li>Sets oversampling of 16 samples, resulting in a conversion time of 32 microseconds.</li>
-<li>Sets the ADC up for single-ended measurement (you are measuring the voltage between the analog input pin and ground, not between two analog input pins)</li>
-<li>On SAM L21 and L22, sets the reference voltage to VDDANA, which allows use of the full 0-3.3V range.</li>
-<li>On SAM D11 and D21, sets the reference voltage to VDDANA / 2 and the gain to 1/2, which also allows use of the full 0-3.3V range. </li>
-</ul>
-
-</div>
-</div>
 <a id="afdf9ce1e2c41b0ec24037168737dd1ad" name="afdf9ce1e2c41b0ec24037168737dd1ad"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afdf9ce1e2c41b0ec24037168737dd1ad">&#9670;&#160;</a></span>adc_get_analog_value()</h2>
 
@@ -155,6 +131,34 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>adc_disable</b> (void
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The analog value of the given ADC channel, from 0-65535 by default. </dd></dl>
+
+</div>
+</div>
+<a id="a2b815e6730e8723a6d1d06d9ef8f31c0" name="a2b815e6730e8723a6d1d06d9ef8f31c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b815e6730e8723a6d1d06d9ef8f31c0">&#9670;&#160;</a></span>adc_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void adc_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the ADC peripheral, but does not enable it. </p>
+<p >This function sets up some sensible defaults for basic use cases:</p><ul>
+<li>Clocks the ADC with the main oscillator divided down to a 500 kHz ADC clock.</li>
+<li>Sets sampling length to one clock cycle, which is appropriate for inputs with impedance up to 28 kOhm.</li>
+<li>Sets oversampling of 16 samples, resulting in a conversion time of 32 microseconds.</li>
+<li>Sets the ADC up for single-ended measurement (you are measuring the voltage between the analog input pin and ground, not between two analog input pins)</li>
+<li>On SAM L21 and L22, sets the reference voltage to VDDANA, which allows use of the full 0-3.3V range.</li>
+<li>On SAM D11 and D21, sets the reference voltage to VDDANA / 2 and the gain to 1/2, which also allows use of the full 0-3.3V range. </li>
+</ul>
 
 </div>
 </div>
