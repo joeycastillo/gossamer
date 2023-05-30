@@ -32,17 +32,24 @@
 #include <stdbool.h>
 
 /**
- * @brief Initialize and enable the DAC peripheral.
+ * @brief Initializes the DAC peripheral, but does not enable it.
  * @param channel The DAC channel to enable.
  * @warning Currently only supports the DAC on VOUT[0]
+ */
+void dac_init(void);
+
+/**
+ * @brief Enables the given DAC channel.
  */
 void dac_enable(uint16_t channel);
 
 /**
  * @brief Set the analog value of the DAC.
  * @param channel The DAC channel to set.
- * @param value The value to set the DAC to, from 0 to 4095
- * @warning Currently only supports the DAC on VOUT[0]
+ * @param value The value to set the DAC to. The range is platform-dependent:
+ *              * On SAM L21, the valid range is from 0 to 4095.
+ *              * On SAM D21 and D11, the valid range is from 0 to 1023.
+ *              In both cases, 0 is 0V and the maximum value is VDDANA.
  */
 void dac_set_analog_value(uint16_t channel, uint16_t value);
 

@@ -33,10 +33,10 @@
 
 
 /**
- * @brief Enable the ADC peripheral
- * @details This function enables some sensible defaults for basic use cases:
- *          * Clocks the ADC with the main 8 MHz oscillator and divider of 16
- *            for a 500 kHz ADC clock.
+ * @brief Initializes the ADC peripheral, but does not enable it.
+ * @details This function sets up some sensible defaults for basic use cases:
+ *          * Clocks the ADC with the main oscillator divided down to a
+ *            500 kHz ADC clock.
  *          * Sets sampling length to one clock cycle, which is appropriate
  *            for inputs with impedance up to 28 kOhm.
  *          * Sets oversampling of 16 samples, resulting in a conversion time
@@ -48,6 +48,11 @@
  *            allows use of the full 0-3.3V range.
  *          * On SAM D11 and D21, sets the reference voltage to VDDANA / 2 and
  *            the gain to 1/2, which also allows use of the full 0-3.3V range.
+ */
+void adc_init(void);
+
+/**
+ * @brief Enables the ADC peripheral
  */
 void adc_enable(void);
 

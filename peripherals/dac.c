@@ -37,17 +37,15 @@ static void _dac_sync() {
 #endif
 }
 
-void dac_enable(uint16_t channel) {
+void dac_init(void) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
-    (void) channel; // these chips have only one DAC
-
-    // enable the DAC
+    // enable the DAC's peripheral clock
     PM->APBCMASK.reg |= PM_APBCMASK_DAC;
     // Configure DAC to use GCLK0 (the main 8 MHz oscillator)
     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(DAC_GCLK_ID) | GCLK_CLKCTRL_CLKEN |
                         GCLK_CLKCTRL_GEN(0);
 #else // SAM L21
-    // enable the DAC
+    // enable the DAC's peripheral clock
     MCLK->APBCMASK.reg |= MCLK_APBCMASK_DAC;
     // Configure DAC to use GCLK0 (the main 8 MHz oscillator)
     GCLK->PCHCTRL[DAC_GCLK_ID].reg = GCLK_PCHCTRL_GEN_GCLK0 | GCLK_PCHCTRL_CHEN;
@@ -57,7 +55,6 @@ void dac_enable(uint16_t channel) {
         _dac_sync();
     }
     
-    // TODO: move this to a dac_init function, this will break the use of dual DAC on SAM L21
     DAC->CTRLA.bit.SWRST = 1;
     _dac_sync();
 
@@ -66,6 +63,16 @@ void dac_enable(uint16_t channel) {
     DAC->CTRLB.bit.EOEN = 1;
 #else
     DAC->CTRLB.bit.REFSEL = DAC_CTRLB_REFSEL_VDDANA_Val;
+#endif
+}
+
+void dac_enable(uint16_t channel) {
+#if defined(_SAMD21_) || defined(_SAMD11_)
+    (void) channel;
+    // Chips with a single DAC don't need to enable individual channels
+#else
+    DAC->CTRLA.bit.ENABLE = 0;
+    _dac_sync();
     DAC->DACCTRL[channel].bit.ENABLE = 1;
     DAC->DACCTRL[channel].bit.CCTRL = DAC_DACCTRL_CCTRL_CC1M_Val;
     DAC->DACCTRL[channel].bit.REFRESH = 2;
@@ -77,7 +84,6 @@ void dac_enable(uint16_t channel) {
 void dac_set_analog_value(uint16_t channel, uint16_t value) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
     (void) channel; // these chips have only one DAC
-
     DAC->DATA.reg = value;
 #else // SAM L21
     DAC->DACCTRL[channel].bit.ENABLE = 0;
@@ -97,13 +103,13 @@ void dac_disable(uint16_t channel) {
 
     PM->APBAMASK.reg &= ~PM_APBCMASK_DAC;
 #else // SAM L21
-    // TODO: deal with dual DAC case on L21
-    DAC->CTRLA.bit.ENABLE = 0;
-    _dac_sync();
     DAC->DACCTRL[channel].bit.ENABLE = 0;
     _dac_sync();
 
-    MCLK->APBCMASK.reg &= ~MCLK_APBCMASK_DAC;
+    if (DAC->DACCTRL[0].bit.ENABLE == 0 && DAC->DACCTRL[1].bit.ENABLE == 0) {
+        DAC->CTRLA.bit.ENABLE = 0;
+        _dac_sync();
+    }
 #endif
 }
 

@@ -51,7 +51,7 @@ uint16_t adc_get_analog_value(uint16_t channel) {
     return ADC->RESULT.reg;
 }
 
-void adc_enable(void) {
+void adc_init(void) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
     // enable the ADC
     PM->APBAMASK.reg |= PM_APBCMASK_ADC;
@@ -110,6 +110,9 @@ void adc_enable(void) {
     ADC->AVGCTRL.bit.SAMPLENUM = ADC_AVGCTRL_SAMPLENUM_16_Val;
     ADC->SAMPCTRL.bit.SAMPLEN = 0;
     ADC->INTENSET.reg = ADC_INTENSET_RESRDY;
+}
+
+void adc_enable(void) {
     ADC->CTRLA.bit.ENABLE = 1;
     _adc_sync();
     // throw away one measurement after reference change (the channel doesn't matter).

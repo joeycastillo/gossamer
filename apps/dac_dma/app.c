@@ -17,16 +17,12 @@ void app_init(void) {
 
 void app_setup(void) {
     HAL_GPIO_A0_pmuxen(HAL_GPIO_PMUX_B);
+    dac_init();
     dac_enable(0);
 
     tc_setup(4, GENERIC_CLOCK_0, TC_PRESCALER_DIV1);
-    TC4->COUNT16.CTRLA.reg = TC_CTRLA_MODE_COUNT16 |
-                             TC_CTRLA_WAVEGEN_MFRQ |
-                             TC_CTRLA_PRESCALER_DIV1;
-    tc_sync(4);
-
-    TC4->COUNT16.CC[0].reg = 20;
-    tc_sync(4);
+    tc_set_wavegen(4, TC_WAVEGEN_MATCH_FREQUENCY);
+    tc_count16_set_cc(4, 0, 20);
     tc_enable(4);
 
     gossamer_dma_job_t dac_dma;

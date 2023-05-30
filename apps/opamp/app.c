@@ -51,6 +51,7 @@ void app_setup(void) {
     opamps[0].muxneg = OPAMP_MUXNEG_OUT;
     opamps[0].muxpos = OPAMP0_MUXPOS_DAC;
 
+    adc_init();
     adc_enable();
 
     HAL_GPIO_LED_out();
@@ -670,6 +671,7 @@ static uint16_t sine_vals[] = {
 
 void configure_dac(void) {
     HAL_GPIO_A0_pmuxen(HAL_GPIO_PMUX_B);
+    dac_init();
     dac_enable(0);
 
     tc_setup(1, GENERIC_CLOCK_0, TC_PRESCALER_DIV256);
