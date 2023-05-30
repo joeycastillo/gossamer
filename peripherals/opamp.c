@@ -36,6 +36,10 @@ void opamp_init(void) {
 }
 
 void opamp_enable(uint16_t instance) {
+    if (OPAMP->CTRLA.bit.ENABLE == 0) {
+        OPAMP->CTRLA.reg |= OPAMP_CTRLA_ENABLE;
+    }
+
     OPAMP->OPAMPCTRL[instance].reg |= OPAMP_OPAMPCTRL_ENABLE;
 }
 
@@ -85,6 +89,12 @@ void opamp_set_analog_connection(uint16_t instance, bool connected) {
 
 void opamp_disable(uint16_t instance) {
     OPAMP->OPAMPCTRL[instance].reg &= ~OPAMP_OPAMPCTRL_ENABLE;
+
+    if (OPAMP->OPAMPCTRL[0].bit.ENABLE == 0 &&
+        OPAMP->OPAMPCTRL[1].bit.ENABLE == 0 &&
+        OPAMP->OPAMPCTRL[2].bit.ENABLE == 0) {
+        OPAMP->CTRLA.reg &= ~OPAMP_CTRLA_ENABLE;
+    }
 }
 
 #endif
