@@ -46,10 +46,9 @@ void app_setup(void) {
     // OPTIONAL: Configure the DAC to emit a sine wave. Note that I still
     // haven't figured out how to use the DAC and OPAMP0 at the same time without
     // conflicts, so I'm configuring OPAMP0 to simply buffer the DAC output.
-
-    configure_dac();
-    opamps[0].muxneg = OPAMP_MUXNEG_OUT;
-    opamps[0].muxpos = OPAMP0_MUXPOS_DAC;
+    // configure_dac();
+    // opamps[0].muxneg = OPAMP_MUXNEG_OUT;
+    // opamps[0].muxpos = OPAMP0_MUXPOS_DAC;
 
     adc_init();
     adc_enable();
