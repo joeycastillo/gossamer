@@ -43,7 +43,7 @@ void spi_init(spi_mode_t mode, uint32_t baud) {
 
     /* Setup SPI controller. */
 #if defined(_SAMD21_) || defined(_SAMD11_)
-    SPI_SERCOM->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_MODE_SPI_MASTER | SERCOM_SPI_CTRLA_DOPO(spi->dopo);
+    SPI_SERCOM->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_MODE_SPI_MASTER | SPI_SERCOM_DOPO | SPI_SERCOM_DIPO;
 #else
     SPI_SERCOM->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_MODE(3) | SPI_SERCOM_DOPO | SPI_SERCOM_DIPO;
 #endif
