@@ -52,9 +52,16 @@ typedef enum rtc_alarm_match {
     ALARM_MATCH_HHMMSS,
 } rtc_alarm_match;
 
-/** @brief Initializes the RTC. Assumes a 1024 Hz clock on GCLK3.
+/** @brief Initializes the RTC.
+ *  @details Configures the RTC for 24-hour clock / calendar mode, with a 1 Hz
+ *           tick derived from the 1024 Hz clock on GCLK3 (for SAM D devices)
+ *           or OSC32KCTRL's most accurate 1024 Hz output (for SAM L devices).
  */
 void rtc_init(void);
+
+/** @brief Enables the RTC.
+ */
+void rtc_enable(void);
 
 /** @brief Checks if the RTC is enabled. 
   * @return true if the RTC is enabled; false if not.

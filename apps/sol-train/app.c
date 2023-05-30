@@ -25,6 +25,7 @@ HAL_GPIO_PIN(UP,     A, 19)
 
 void app_init(void) {
     rtc_init();
+    rtc_enable();
 }
 
 void app_setup(void) {

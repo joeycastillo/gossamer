@@ -9,6 +9,7 @@ static void _display_time(rtc_date_time date_time);
 
 void app_init(void) {
     rtc_init();
+    rtc_enable();
 }
 
 void app_setup(void) {

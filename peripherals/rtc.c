@@ -63,6 +63,10 @@ void rtc_init(void) {
 
     CTRLREG.bit.MODE = 2; // Mode 2 Clock
     CTRLREG.bit.PRESCALER = 0xA; // 1024 Hz prescaler
+}
+
+void rtc_enable(void) {
+    if (rtc_is_enabled()) return;
     CTRLREG.bit.ENABLE = 1;
     _rtc_sync();
 }
