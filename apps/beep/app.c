@@ -19,9 +19,9 @@ void app_setup(void) {
 
     tc_setup(3, GENERIC_CLOCK_0, TC_PRESCALER_DIV8);
     tc_set_counter_mode(3, TC_COUNTER_MODE_8BIT);
-    tc_count8_set_period(3, 250);
     tc_set_wavegen(3, TC_WAVEGEN_NORMAL_PWM);
-    tc_count16_set_cc(3, 0, 0);
+    tc_count8_set_period(3, 250);
+    tc_count8_set_cc(3, 0, 0);
     tc_enable(3);
 }
 
