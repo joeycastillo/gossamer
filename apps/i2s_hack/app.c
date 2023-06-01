@@ -16,7 +16,7 @@
 void app_init(void) {
 }
 
-uint8_t txBuffer[] = {0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00};
+uint8_t txBuffer[] = {0x7F, 0xFF, 0xFF, 0xFF, 0x80, 0x00, 0x00, 0x00};
 volatile uint64_t rxData;
 
 void app_setup(void) {
@@ -32,7 +32,7 @@ void app_setup(void) {
     HAL_GPIO_SCK_pmuxen(HAL_GPIO_PMUX_SERCOM_ALT);
     HAL_GPIO_MOSI_pmuxen(HAL_GPIO_PMUX_SERCOM_ALT);
     HAL_GPIO_MISO_pmuxen(HAL_GPIO_PMUX_SERCOM_ALT);
-    spi_init(SPI_MODE_0, 8000000);
+    spi_init(SPI_MODE_2, 8000000);
     spi_enable();
 
     i2c_init();
@@ -74,9 +74,10 @@ void app_setup(void) {
 }
 
 bool app_loop(void) {
-    char buf[7];
-    sprintf(buf, "%5llu", rxData);
-    // sprintf(buf, "%5llu", rxData >> 48);
+    char buf[32];
+    // uint16_t data = (rxData >> 24) & 0xFFFF;
+    // sprintf(buf, "%043x ", data);
+    sprintf(buf, "%llu", rxData);
     oso_lcd_print(buf);
 
     return false;
