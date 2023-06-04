@@ -88,6 +88,8 @@ SRCS += \
   $(TOP)/peripherals/uart.c \
   $(TOP)/drivers/gfx/gfx.c \
   $(TOP)/drivers/gfx/sh1107.c \
+  $(TOP)/drivers/gfx/st77xx.c \
+  $(TOP)/drivers/gfx/st7735.c \
 
 ifdef TINYUSB
 CFLAGS += -DAPP_USES_TINYUSB
