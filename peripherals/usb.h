@@ -25,6 +25,10 @@
 // WORK IN PROGRESS, not yet functional.
 #ifdef APP_USES_TINYUSB
 
+#if defined(_SAML22_)
+#error "USB is not currently supported on SAM L22"
+#endif
+
 #pragma once
 
 #include <stdint.h>
