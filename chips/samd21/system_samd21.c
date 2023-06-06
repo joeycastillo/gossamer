@@ -260,6 +260,19 @@ uint32_t get_cpu_frequency(void) {
 }
 
 bool set_cpu_frequency(uint32_t freq) {
+    if (freq == 48000000) {
+        enable_48mhz_clock();
+        return true;
+    }
+
+    GCLK->GENCTRL.bit.ID = 0;
+    while(GCLK->STATUS.bit.SYNCBUSY);
+
+    if (GCLK->GENCTRL.bit.SRC == GCLK_GENCTRL_SRC_DFLL48M_Val) {
+        GCLK->GENCTRL.bit.SRC = GCLK_GENCTRL_SRC_OSC8M_Val;
+        while(GCLK->STATUS.bit.SYNCBUSY);
+    }
+
     switch (freq) {
     case 1000000:
         SYSCTRL->OSC8M.bit.PRESC = 3;
@@ -272,9 +285,6 @@ bool set_cpu_frequency(uint32_t freq) {
         break;
     case 8000000:
         SYSCTRL->OSC8M.bit.PRESC = 0;
-        break;
-    case 48000000:
-        enable_48mhz_clock();
         break;
     default:
         return false;

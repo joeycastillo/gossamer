@@ -31,10 +31,40 @@
 #include <stdbool.h>
 #include "tusb.h"
 
-void usb_setup(void);
+/** @brief Enables the peripheral clock for USB and clocks it with GCLK0. Also
+  *         sets up the USB pins. For USB to work, the CPU speed must be 48 MHz.
+  * @warning You MUST call `cpu_set_frequency(48000000)` before calling this
+  *          function. The USB peripheral depends on a 48 MHz clock on GCLK0.
+  */
+void usb_init(void);
 
+/**
+ * @brief Initializes the TinyUSB stack and enables the USB peripheral.
+ * @details In order to make use of the tinyUSB stack, there are two additional
+ *          setup steps you must take:
+ *          1. In your Makefile, set the type and number of TinyUSB device
+ *             classes you intend to use. For example, if you want to use a USB
+ *             mass storage class, you would add `TINYUSB_MSC=1` to your app's
+ *             Makefile. You can also add more than one class, e.g. for two CDC
+ *             interfaces, you would add `TINYUSB_CDC=2`. Available TinyUSB
+ *             classes are:
+ *              * TINYUSB_CDC
+ *              * TINYUSB_MSC
+ *              * TINYUSB_HID
+ *              * TINYUSB_MIDI
+ *              * TINYUSB_VENDOR
+ *          2. You must also set up your USB device descriptor. This is
+ *             typically done in a `usb_descriptors.c` file. See the usb app
+ *             for an example of how to do this.
+ *          3. Depending on which classes you enable, you may need to do some
+ *             additional setup. Check out tinyusb's examples for more info.
+ */
 void usb_enable(void);
 
+/**
+ * @brief Disables the USB peripheral.
+ * @note Has not been extensively tested, TinyUSB may not like this.
+ */
 void usb_disable(void);
 
 #endif
