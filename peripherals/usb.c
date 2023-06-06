@@ -31,12 +31,21 @@
 #ifdef APP_USES_TINYUSB
 
  void usb_init(void) {
+#if defined(_SAMD21_) || defined(_SAMD11_)
     // Enable USB clocks...
     PM->AHBMASK.reg |= PM_AHBMASK_USB;
     PM->APBBMASK.reg |= PM_APBBMASK_USB;
 
     // ...and assign GCLK0 to USB
     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(USB_GCLK_ID) | GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN(0);
+#else
+    // Enable USB clocks...
+    MCLK->AHBMASK.reg |= MCLK_AHBMASK_USB;
+    MCLK->APBBMASK.reg |= MCLK_APBBMASK_USB;
+
+    // ...and assign GCLK0 to USB
+    GCLK->PCHCTRL[USB_GCLK_ID].reg = GCLK_PCHCTRL_GEN_GCLK0 | GCLK_PCHCTRL_CHEN;
+#endif
 
     // USB Pin Init
     HAL_GPIO_USB_N_out();
