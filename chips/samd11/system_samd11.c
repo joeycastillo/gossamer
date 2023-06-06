@@ -93,7 +93,135 @@ void sys_init(void) {
 #endif
 }
 
+static void enable_48mhz_clock(void) {
+    NVMCTRL->CTRLB.bit.RWS = 1;
+
+#if defined(CRYSTALLESS)
+    while(!SYSCTRL->PCLKSR.bit.DFLLRDY);
+    SYSCTRL->DFLLCTRL.reg = SYSCTRL_DFLLCTRL_ENABLE;
+    while(!SYSCTRL->PCLKSR.bit.DFLLRDY);
+
+    /* Write the coarse and fine calibration from NVM. */
+    uint32_t coarse =
+        ((*(uint32_t*)FUSES_DFLL48M_COARSE_CAL_ADDR) & FUSES_DFLL48M_COARSE_CAL_Msk) >> FUSES_DFLL48M_COARSE_CAL_Pos;
+    uint32_t fine =
+        ((*(uint32_t*)FUSES_DFLL48M_FINE_CAL_ADDR) & FUSES_DFLL48M_FINE_CAL_Msk) >> FUSES_DFLL48M_FINE_CAL_Pos;
+
+    SYSCTRL->DFLLVAL.reg = SYSCTRL_DFLLVAL_COARSE(coarse) | SYSCTRL_DFLLVAL_FINE(fine);
+
+    /* Wait for the write to finish. */
+    while (!SYSCTRL->PCLKSR.bit.DFLLRDY) {};
+    SYSCTRL->DFLLCTRL.reg |=
+        /* Enable USB clock recovery mode */
+        SYSCTRL_DFLLCTRL_USBCRM |
+        /* Disable chill cycle as per datasheet to speed up locking.
+        This is specified in section 17.6.7.2.2, and chill cycles
+        are described in section 17.6.7.2.1. */
+        SYSCTRL_DFLLCTRL_CCDIS;
+
+    /* Configure the DFLL to multiply the 1 kHz clock to 48 MHz */
+    SYSCTRL->DFLLMUL.reg =
+        /* This value is output frequency / reference clock frequency,
+        so 48 MHz / 1 kHz */
+        SYSCTRL_DFLLMUL_MUL(48000) |
+        /* The coarse and fine values can be set to their minimum
+        since coarse is fixed in USB clock recovery mode and
+        fine should lock on quickly. */
+        SYSCTRL_DFLLMUL_FSTEP(1) |
+        SYSCTRL_DFLLMUL_CSTEP(1);
+    /* Closed loop mode */
+    SYSCTRL->DFLLCTRL.bit.MODE = 1;
+
+    /* Enable the DFLL */
+    SYSCTRL->DFLLCTRL.bit.ENABLE = 1;
+
+    /* Wait for the write to complete */
+    while (!SYSCTRL->PCLKSR.bit.DFLLRDY) {};
+#else
+    /* Configure GCLK1's divider - in this case, no division - so just divide by one */
+    GCLK->GENDIV.reg =
+        GCLK_GENDIV_ID(1) |
+        GCLK_GENDIV_DIV(1);
+
+    /* Setup GCLK1 using the external 32.768 kHz oscillator */
+    GCLK->GENCTRL.reg =
+        GCLK_GENCTRL_ID(1) |
+        GCLK_GENCTRL_SRC_XOSC32K |
+        /* Improve the duty cycle. */
+        GCLK_GENCTRL_IDC |
+        GCLK_GENCTRL_GENEN;
+
+    /* Wait for the write to complete */
+    while(GCLK->STATUS.bit.SYNCBUSY);
+
+    GCLK->CLKCTRL.reg =
+        GCLK_CLKCTRL_ID_DFLL48 |
+        GCLK_CLKCTRL_GEN_GCLK1 |
+        GCLK_CLKCTRL_CLKEN;
+
+    while(!SYSCTRL->PCLKSR.bit.DFLLRDY);
+    SYSCTRL->DFLLCTRL.reg = SYSCTRL_DFLLCTRL_ENABLE;
+    while(!SYSCTRL->PCLKSR.bit.DFLLRDY);
+
+    /* Set up the multiplier. This tells the DFLL to multiply the 32.768 kHz
+    reference clock to 48 MHz */
+    SYSCTRL->DFLLMUL.reg =
+        /* This value is output frequency / reference clock frequency,
+        so 48 MHz / 32.768 kHz */
+        SYSCTRL_DFLLMUL_MUL(1465) |
+        /* The coarse and fine step are used by the DFLL to lock
+        on to the target frequency. These are set to half
+        of the maximum value. Lower values mean less overshoot,
+        whereas higher values typically result in some overshoot but
+        faster locking. */
+        SYSCTRL_DFLLMUL_FSTEP(511) | // max value: 1023
+        SYSCTRL_DFLLMUL_CSTEP(31);  // max value: 63
+
+    /* Wait for the write to finish */
+    while(!SYSCTRL->PCLKSR.bit.DFLLRDY);
+
+    uint32_t coarse = (*((uint32_t *)FUSES_DFLL48M_COARSE_CAL_ADDR) & FUSES_DFLL48M_COARSE_CAL_Msk) >> FUSES_DFLL48M_COARSE_CAL_Pos;
+
+    SYSCTRL->DFLLVAL.bit.COARSE = coarse;
+
+    /* Wait for the write to finish */
+    while(!SYSCTRL->PCLKSR.bit.DFLLRDY);
+
+    SYSCTRL->DFLLCTRL.reg |=
+        /* Closed loop mode */
+        SYSCTRL_DFLLCTRL_MODE |
+        /* Wait for the frequency to be locked before outputting the clock */
+        SYSCTRL_DFLLCTRL_WAITLOCK |
+        /* Enable it */
+        SYSCTRL_DFLLCTRL_ENABLE;
+
+    /* Wait for the frequency to lock */
+    while (!SYSCTRL->PCLKSR.bit.DFLLLCKC || !SYSCTRL->PCLKSR.bit.DFLLLCKF) {}
+
+#endif
+
+    /* Setup GCLK0 using the DFLL @ 48 MHz */
+    GCLK->GENCTRL.reg =
+        GCLK_GENCTRL_ID(0) |
+        GCLK_GENCTRL_SRC_DFLL48M |
+        /* Improve the duty cycle. */
+        GCLK_GENCTRL_IDC |
+        GCLK_GENCTRL_GENEN;
+
+    /* Wait for the write to complete */
+    while(GCLK->STATUS.bit.SYNCBUSY);
+}
+
 uint32_t get_cpu_frequency(void) {
+    GCLK->GENCTRL.bit.ID = 0;
+    while(GCLK->STATUS.bit.SYNCBUSY);
+
+    // if GCLK0's source is the DFLL, we're running at 48 MHz
+    if (GCLK->GENCTRL.bit.SRC == GCLK_GENCTRL_SRC_DFLL48M_Val) {
+        return 48000000;
+    }
+
+    // otherwise, we're running at 8 MHz divided by the prescaler
     switch (SYSCTRL->OSC8M.bit.PRESC) {
     case 3:
         return 1000000;
@@ -109,6 +237,19 @@ uint32_t get_cpu_frequency(void) {
 }
 
 bool set_cpu_frequency(uint32_t freq) {
+    if (freq == 48000000) {
+        enable_48mhz_clock();
+        return true;
+    }
+
+    GCLK->GENCTRL.bit.ID = 0;
+    while(GCLK->STATUS.bit.SYNCBUSY);
+
+    if (GCLK->GENCTRL.bit.SRC == GCLK_GENCTRL_SRC_DFLL48M_Val) {
+        GCLK->GENCTRL.bit.SRC = GCLK_GENCTRL_SRC_OSC8M_Val;
+        while(GCLK->STATUS.bit.SYNCBUSY);
+    }
+
     switch (freq) {
     case 1000000:
         SYSCTRL->OSC8M.bit.PRESC = 3;
