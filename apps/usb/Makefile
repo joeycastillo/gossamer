@@ -3,11 +3,10 @@ TOP = ../..
 
 # If your firmware targets a specific board, specify it here,
 # or omit it and provide it on the command line (make BOARD=foo).
-BOARD=hallowing_m0
-TINYUSB_CDC=2
+BOARD=feather_m0
 
-# Set CFG_TUSB_DEBUG to 1, 2 or 3 to enable debug output.
-CFLAGS += -DCFG_TUSB_DEBUG=0 -DCFG_TUSB_DEBUG_PRINTF=debug_printf
+# for USB example, use two CDC interfaces (we'll echo uppercase to one and lowercase to the other)
+TINYUSB_CDC=2
 
 # Leave this line here.
 include $(TOP)/make.mk

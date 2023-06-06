@@ -2,7 +2,6 @@
 #include "tusb.h"
 #include "tcc.h"
 #include "usb.h"
-#include "uart.h"
 #include "system.h"
 #include "delay.h"
 #include <ctype.h>
@@ -11,25 +10,10 @@
 static void cdc_task(void);
 
 void app_init(void) {
-    HAL_GPIO_LED_out();
     set_cpu_frequency(48000000);
 }
 
 void app_setup(void) {
-    // Set up debug UART on the UART TX pin
-    HAL_GPIO_TX_pmuxen(HAL_GPIO_PMUX_SERCOM);
-    uart_init(115200);
-    uart_enable();
-
-    // Output 500 Hz square wave on D12 to validate clock setup
-    HAL_GPIO_D12_out();
-    HAL_GPIO_D12_pmuxen(HAL_GPIO_PMUX_TCC_ALT);
-    tcc_setup(0, GENERIC_CLOCK_0, TCC_CTRLA_PRESCALER_DIV1_Val);
-    tcc_set_period(0, 48000000 / 1000);
-    tcc_set_cc(0, 3, 48000000 / 2000);
-    tcc_enable(0);
-
-    // Set up USB
     usb_init();
     usb_enable();
 }
@@ -77,16 +61,4 @@ static void cdc_task(void) {
             echo_serial_port(1, buf, count);
         }
     }
-}
-
-int debug_printf(const char *format, ...);
-int debug_printf(const char *format, ...) {
-    char buf[1024];
-    va_list args;
-    va_start(args, format);
-    vsnprintf (buf, 1024, format, args);
-    va_end(args);
-    uart_write((uint8_t *)buf, strlen(buf));
-
-    return strlen(buf);
 }
