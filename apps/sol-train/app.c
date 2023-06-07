@@ -79,7 +79,7 @@ void app_setup(void) {
     eic_configure_channel(0, INTERRUPT_TRIGGER_FALLING);
 
     // configure the TCC peripheral
-    tcc_setup(0, GENERIC_CLOCK_2, TCC_PRESCALER_DIV1);
+    tcc_init(0, GENERIC_CLOCK_2, TCC_PRESCALER_DIV1);
     tcc_set_wavegen(0, TCC_WAVEGEN_NORMAL_PWM);
     tcc_set_period(0, 100);
     tcc_set_run_in_standby(0, true);

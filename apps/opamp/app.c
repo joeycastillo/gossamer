@@ -674,7 +674,7 @@ void configure_dac(void) {
     dac_init();
     dac_enable(0);
 
-    tc_setup(1, GENERIC_CLOCK_0, TC_PRESCALER_DIV256);
+    tc_init(1, GENERIC_CLOCK_0, TC_PRESCALER_DIV256);
     tc_set_wavegen(1, TC_WAVE_WAVEGEN_MFRQ);
     tc_count16_set_cc(1, 0, 122); // (16 MHz / 256) / (122 * 512 samples) = 1 Hz
     tc_enable(1);

@@ -16,7 +16,7 @@ void app_setup(void) {
     HAL_GPIO_D11_out();
     HAL_GPIO_D11_pmuxen(HAL_GPIO_PMUX_TCC_ALT);
 
-    tcc_setup(0, GENERIC_CLOCK_0, TCC_PRESCALER_DIV8);
+    tcc_init(0, GENERIC_CLOCK_0, TCC_PRESCALER_DIV8);
     tcc_set_wavegen(0, TCC_WAVEGEN_NORMAL_PWM);
     tcc_set_channel_polarity(0, 6, TCC_CHANNEL_POLARITY_INVERTED);
     tcc_set_period(0, 250);

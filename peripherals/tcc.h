@@ -86,7 +86,7 @@ typedef enum {
   * @note if this function returns false, you shouldn't interact with this TCC instance
   *       with any other functions; they don't do the bounds check that this does.
   */
-bool tcc_setup(uint8_t instance, generic_clock_generator_t clocksource, tcc_prescaler_value_t prescaler);
+bool tcc_init(uint8_t instance, generic_clock_generator_t clocksource, tcc_prescaler_value_t prescaler);
 
 /**
  * @brief Sets whether the TCC should run in standby mode.
@@ -145,7 +145,7 @@ void tcc_set_output_matrix(uint8_t instance, tcc_output_matrix_t mode);
 */
 void tcc_set_channel_polarity(uint8_t instance, uint8_t channel, tcc_channel_polarity_t polarity);
 
-/** @brief Enables the TCC. Make sure to call tcc_setup first to set it up.
+/** @brief Enables the TCC. Make sure to call tcc_init first to set it up.
   * @param instance The TCC peripheral instance as numbered in the data sheet, or 0.
   */
 void tcc_enable(uint8_t instance);

@@ -83,7 +83,7 @@ typedef enum {
   * @note if this function returns false, you shouldn't interact with this TC instance
   *       with any other functions; they don't do the bounds check that this does.
   */
-bool tc_setup(uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler);
+bool tc_init(uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler);
 
 /**
  * @brief Sets the TC's counting mode (an 8, 16 or 32-bit counter),
@@ -153,7 +153,7 @@ void tc_set_wavegen(uint8_t instance, tc_wavegen_t mode);
  */
 void tc_set_channel_polarity(uint8_t instance, uint8_t channel, tc_channel_polarity_t polarity);
 
-/** @brief Enables the TC. Make sure to call tc_setup first to set it up.
+/** @brief Enables the TC. Make sure to call tc_init first to set it up.
   * @param instance The TC peripheral instance as numbered in the data sheet, or 0.
   */
 void tc_enable(uint8_t instance);

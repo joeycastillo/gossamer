@@ -63,7 +63,7 @@ dac_set_analog_value(0, 512);
 This is how you would set up Timer/Counter TC1 to overflow at 500 Hz (i.e. for driving a DMA transaction):
 
 ```c
-tc_setup(1, GENERIC_CLOCK_0, TC_PRESCALER_DIV256); // 16 MHz / 256 = 62,500
+tc_init(1, GENERIC_CLOCK_0, TC_PRESCALER_DIV256); // 16 MHz / 256 = 62,500
 tc_set_wavegen(1, TC_WAVE_WAVEGEN_MFRQ); // Match frequency mode, overflow at CC0
 tc_count16_set_cc(1, 0, 125); // 62,500 / 125 = 500 Hz
 tc_enable(1);

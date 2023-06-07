@@ -41,7 +41,7 @@ void app_setup(void) {
     HAL_GPIO_GREEN3_set();
 
     // configure TCC0 to drive red/green LED pins
-    tcc_setup(0, GENERIC_CLOCK_2, TCC_PRESCALER_DIV1);
+    tcc_init(0, GENERIC_CLOCK_2, TCC_PRESCALER_DIV1);
     HAL_GPIO_RED1_pmuxen(HAL_GPIO_PMUX_TCC_ALT);
     HAL_GPIO_RED2_pmuxen(HAL_GPIO_PMUX_TCC_ALT);
     HAL_GPIO_RED3_pmuxen(HAL_GPIO_PMUX_TCC_ALT);
@@ -77,7 +77,7 @@ void app_setup(void) {
     // with OTMX 2:
     // CC[0] controls all LEDs together (three yellow LEDs)
 
-    tc_setup(1, GENERIC_CLOCK_2, TC_PRESCALER_DIV1);
+    tc_init(1, GENERIC_CLOCK_2, TC_PRESCALER_DIV1);
     HAL_GPIO_WARM_WHITE_pmuxen(HAL_GPIO_PMUX_E);
     HAL_GPIO_COOL_WHITE_pmuxen(HAL_GPIO_PMUX_E);
 

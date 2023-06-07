@@ -41,7 +41,7 @@ void app_setup(void) {
     eic_configure_channel(2, INTERRUPT_TRIGGER_FALLING);
 
     // set up TCC for light dimming
-    tcc_setup(0, 2);
+    tcc_init(0, 2);
     // TCC0 waveform output 7
     HAL_GPIO_LIGHT_out();
     HAL_GPIO_LIGHT_pmuxen(HAL_GPIO_PMUX_F);
