@@ -28,7 +28,11 @@ void i2c_init(void) {
     while (GCLK->STATUS.bit.SYNCBUSY) {};
 #else
     /* Enable the APB clock for SERCOM. */
+#if defined(I2C_SERCOM_APBCMASK)
     MCLK->APBCMASK.reg |= I2C_SERCOM_APBCMASK;
+#elif defined(I2C_SERCOM_APBDMASK)
+    MCLK->APBDMASK.reg |= I2C_SERCOM_APBDMASK;
+#endif
     /* Enable GCLK1 for the SERCOM */
     GCLK->PCHCTRL[I2C_GCLK_CLKCTRL_ID].reg = GCLK_PCHCTRL_CHEN | GCLK_PCHCTRL_GEN_GCLK0_Val;
     /* Wait for bus synchronization. */

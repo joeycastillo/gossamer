@@ -28,7 +28,11 @@ void spi_init(spi_mode_t mode, uint32_t baud) {
     while (GCLK->STATUS.bit.SYNCBUSY) {};
 #else
     /* Enable the APB clock for SERCOM. */
+#if defined(SPI_SERCOM_APBCMASK)
     MCLK->APBCMASK.reg |= SPI_SERCOM_APBCMASK;
+#elif defined(SPI_SERCOM_APBDMASK)
+    MCLK->APBDMASK.reg |= SPI_SERCOM_APBDMASK;
+#endif
     /* Enable GCLK1 for the SERCOM */
     GCLK->PCHCTRL[SPI_GCLK_CLKCTRL_ID].reg = GCLK_PCHCTRL_CHEN | GCLK_PCHCTRL_GEN_GCLK0_Val;
     /* Wait for bus synchronization. */

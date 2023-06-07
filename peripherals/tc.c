@@ -34,7 +34,10 @@ static void tc_sync(uint8_t instance) {
 }
 
 bool tc_init(uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler) {
-    if ((instance - TC_First_Index) >= Num_TC_Instances) return false;
+    if ((instance - TC_First_Index) >= Num_TC_Instances ||
+        TC_Peripherals[instance - TC_First_Index].tc == NULL) {
+        return false;
+    }
 
 #if defined(_SAMD21_) || defined(_SAMD11_)
     // enable the TC
@@ -42,6 +45,14 @@ bool tc_init(uint8_t instance, generic_clock_generator_t clocksource, tc_prescal
     // Configure TC to use the selected clock souece
     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(TC_Peripherals[instance - TC_First_Index].gclk_id) | 
                         GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN(clocksource);
+#elif defined(_SAML21_)
+    // On L21, TC4 is on the APBD bus, not the APBC bus.
+    if (instance == 4) {
+        MCLK->APBDMASK.reg |= TC_Peripherals[instance - TC_First_Index].clock_enable_mask;
+    } else {
+        MCLK->APBCMASK.reg |= TC_Peripherals[instance - TC_First_Index].clock_enable_mask;
+    }
+    GCLK->PCHCTRL[TC_Peripherals[instance - TC_First_Index].gclk_id].reg = GCLK_PCHCTRL_CHEN | GCLK_PCHCTRL_GEN(clocksource);
 #else
     // enable the TC
     MCLK->APBCMASK.reg |= TC_Peripherals[instance - TC_First_Index].clock_enable_mask;
