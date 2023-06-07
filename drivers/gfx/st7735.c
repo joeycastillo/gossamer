@@ -2,6 +2,7 @@
 // See LICENSE for license text
 
 #include "st7735.h"
+#include "pins.h"
 
 uint8_t _colstart = 0,  ///< Some displays need this changed to offset
         _rowstart = 0,  ///< Some displays need this changed to offset
@@ -197,7 +198,7 @@ void st7735_init_r(uint8_t options) {
     // Black tab, change MADCTL color filter
     if ((options == INITR_BLACKTAB) || (options == INITR_MINI160x80)) {
         uint8_t data = 0xC0;
-        sendCommand(ST77XX_MADCTL, &data, 1);
+        st77xx_send_command(ST77XX_MADCTL, &data, 1);
     }
 
     if (options == INITR_HALLOWING) {
@@ -208,4 +209,15 @@ void st7735_init_r(uint8_t options) {
         _tabcolor = options;
         gfx_set_rotation(0);
     }
+}
+
+void st7735_update(void) {
+    size_t numPixels = gfx_width * gfx_height * gfx_depth / 8;
+
+    HAL_GPIO_TFT_CS_clr();
+    for (size_t i = 0; i < numPixels * 2; i += 2) {
+        spi_transfer(((uint16_t *)gfx_buffer)[i]);
+        spi_transfer(((uint16_t *)gfx_buffer)[i + 1]);
+    }
+    HAL_GPIO_TFT_CS_set();
 }

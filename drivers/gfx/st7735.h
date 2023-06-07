@@ -41,3 +41,5 @@
 void st7735_init_b(void);
 
 void st7735_init_r(uint8_t options);
+
+void st7735_update(void);

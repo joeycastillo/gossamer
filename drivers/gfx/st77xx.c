@@ -2,30 +2,28 @@
 // See LICENSE for license text
 
 #include "st77xx.h"
+#include "spi.h"
+#include "pins.h"
 #include "delay.h"
 
 static void spiWrite(uint8_t b) {
-    hwspi._spi->transfer(b);
+    spi_transfer(b);
 }
 
-static void sendCommand(uint8_t commandByte, uint8_t *dataBytes, uint8_t numDataBytes) {
-    SPI_BEGIN_TRANSACTION();
-    if (_cs >= 0)
-        SPI_CS_LOW();
+void st77xx_send_command(uint8_t commandByte, uint8_t *dataBytes, uint8_t numDataBytes) {
+    HAL_GPIO_TFT_CS_clr();
 
-    SPI_DC_LOW();          // Command mode
+    HAL_GPIO_TFT_DC_clr();          // Command mode
     spiWrite(commandByte); // Send the command byte
 
-    SPI_DC_HIGH();
+    HAL_GPIO_TFT_DC_set();
     for (int i = 0; i < numDataBytes; i++)
     {
         spiWrite(*dataBytes); // Send the data bytes
         dataBytes++;
     }
 
-    if (_cs >= 0)
-        SPI_CS_HIGH();
-    SPI_END_TRANSACTION();
+    HAL_GPIO_TFT_CS_set();
 }
 
 void st77xx_display_init(const uint8_t *addr)
@@ -40,7 +38,7 @@ void st77xx_display_init(const uint8_t *addr)
         numArgs = *(addr++);         // Number of args to follow
         ms = numArgs & ST_CMD_DELAY; // If hibit set, delay follows args
         numArgs &= ~ST_CMD_DELAY;    // Mask out delay bit
-        sendCommand(cmd, addr, numArgs);
+        st77xx_send_command(cmd, (uint8_t *)addr, numArgs);
         addr += numArgs;
 
         if (ms)

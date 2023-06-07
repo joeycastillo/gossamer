@@ -58,3 +58,5 @@
 #define ST77XX_ORANGE 0xFC00
 
 void st77xx_display_init(const uint8_t *addr);
+
+void st77xx_send_command(uint8_t commandByte, uint8_t *dataBytes, uint8_t numDataBytes);
