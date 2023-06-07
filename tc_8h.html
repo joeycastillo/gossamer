@@ -123,9 +123,9 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3700543a155ae4a450e39624a52ca805"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a3700543a155ae4a450e39624a52ca805">tc_setup</a> (uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler)</td></tr>
-<tr class="memdesc:a3700543a155ae4a450e39624a52ca805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the peripheral clock for the TC and clocks it with the selected clock source. Also resets the TC to its starting configuration, which is COUNT16 mode.  <a href="tc_8h.html#a3700543a155ae4a450e39624a52ca805">More...</a><br /></td></tr>
-<tr class="separator:a3700543a155ae4a450e39624a52ca805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ccf965a51a89fb1df2545988d4739d2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a1ccf965a51a89fb1df2545988d4739d2">tc_init</a> (uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler)</td></tr>
+<tr class="memdesc:a1ccf965a51a89fb1df2545988d4739d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the peripheral clock for the TC and clocks it with the selected clock source. Also resets the TC to its starting configuration, which is COUNT16 mode.  <a href="tc_8h.html#a1ccf965a51a89fb1df2545988d4739d2">More...</a><br /></td></tr>
+<tr class="separator:a1ccf965a51a89fb1df2545988d4739d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbb61997f4579d174976dcc8e858c87a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#abbb61997f4579d174976dcc8e858c87a">tc_set_counter_mode</a> (uint8_t instance, tc_counter_mode_t mode)</td></tr>
 <tr class="memdesc:abbb61997f4579d174976dcc8e858c87a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's counting mode (an 8, 16 or 32-bit counter),.  <a href="tc_8h.html#abbb61997f4579d174976dcc8e858c87a">More...</a><br /></td></tr>
 <tr class="separator:abbb61997f4579d174976dcc8e858c87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,7 +139,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:afd02ffa629bde002a06ad16a570177ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the polarity of one of the waveform output channels.  <a href="tc_8h.html#afd02ffa629bde002a06ad16a570177ac">More...</a><br /></td></tr>
 <tr class="separator:afd02ffa629bde002a06ad16a570177ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2715d5a6f20298805eefa13a8a7a1b99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">tc_enable</a> (uint8_t instance)</td></tr>
-<tr class="memdesc:a2715d5a6f20298805eefa13a8a7a1b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the TC. Make sure to call tc_setup first to set it up.  <a href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">More...</a><br /></td></tr>
+<tr class="memdesc:a2715d5a6f20298805eefa13a8a7a1b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the TC. Make sure to call tc_init first to set it up.  <a href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">More...</a><br /></td></tr>
 <tr class="separator:a2715d5a6f20298805eefa13a8a7a1b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b71bab26fe6c8796a723a10fba63b6b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a1b71bab26fe6c8796a723a10fba63b6b">tc_is_enabled</a> (uint8_t instance)</td></tr>
 <tr class="memdesc:a1b71bab26fe6c8796a723a10fba63b6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the TC is enabled.  <a href="tc_8h.html#a1b71bab26fe6c8796a723a10fba63b6b">More...</a><br /></td></tr>
@@ -590,13 +590,69 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enables the TC. Make sure to call tc_setup first to set it up. </p>
+<p>Enables the TC. Make sure to call tc_init first to set it up. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet, or 0. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a1ccf965a51a89fb1df2545988d4739d2" name="a1ccf965a51a89fb1df2545988d4739d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ccf965a51a89fb1df2545988d4739d2">&#9670;&#160;</a></span>tc_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tc_init </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">generic_clock_generator_t&#160;</td>
+          <td class="paramname"><em>clocksource</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tc_prescaler_value_t&#160;</td>
+          <td class="paramname"><em>prescaler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables the peripheral clock for the TC and clocks it with the selected clock source. Also resets the TC to its starting configuration, which is COUNT16 mode. </p>
+<p >This just sets up the TC in its reset state. You are still responsible for configuring it with the options you need for waveform output. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">clocksource</td><td>The generic clock source to use as the TC clock. </td></tr>
+    <tr><td class="paramname">prescaler</td><td>The prescaler factor, which divides the clock source by a factor:<ul>
+<li>TC_PRESCALER_DIV1 - clock source unchanged</li>
+<li>TC_PRESCALER_DIV2 - clock source divided by 2</li>
+<li>TC_PRESCALER_DIV4 - clock source divided by 4</li>
+<li>TC_PRESCALER_DIV8 - clock source divided by 8</li>
+<li>TC_PRESCALER_DIV16 - clock source divided by 16</li>
+<li>TC_PRESCALER_DIV64 - clock source divided by 64</li>
+<li>TC_PRESCALER_DIV256 - clock source divided by 256</li>
+<li>TC_PRESCALER_DIV102 - clock source divided by 1024 </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the TC was set up, false if instance was out of range (i.e. you asked for TC3, but the microcontroller only has two TCs). </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>if this function returns false, you shouldn't interact with this TC instance with any other functions; they don't do the bounds check that this does. </dd></dl>
 
 </div>
 </div>
@@ -822,62 +878,6 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a3700543a155ae4a450e39624a52ca805" name="a3700543a155ae4a450e39624a52ca805"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3700543a155ae4a450e39624a52ca805">&#9670;&#160;</a></span>tc_setup()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool tc_setup </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">generic_clock_generator_t&#160;</td>
-          <td class="paramname"><em>clocksource</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">tc_prescaler_value_t&#160;</td>
-          <td class="paramname"><em>prescaler</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enables the peripheral clock for the TC and clocks it with the selected clock source. Also resets the TC to its starting configuration, which is COUNT16 mode. </p>
-<p >This just sets up the TC in its reset state. You are still responsible for configuring it with the options you need for waveform output. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
-    <tr><td class="paramname">clocksource</td><td>The generic clock source to use as the TC clock. </td></tr>
-    <tr><td class="paramname">prescaler</td><td>The prescaler factor, which divides the clock source by a factor:<ul>
-<li>TC_PRESCALER_DIV1 - clock source unchanged</li>
-<li>TC_PRESCALER_DIV2 - clock source divided by 2</li>
-<li>TC_PRESCALER_DIV4 - clock source divided by 4</li>
-<li>TC_PRESCALER_DIV8 - clock source divided by 8</li>
-<li>TC_PRESCALER_DIV16 - clock source divided by 16</li>
-<li>TC_PRESCALER_DIV64 - clock source divided by 64</li>
-<li>TC_PRESCALER_DIV256 - clock source divided by 256</li>
-<li>TC_PRESCALER_DIV102 - clock source divided by 1024 </li>
-</ul>
-</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if the TC was set up, false if instance was out of range (i.e. you asked for TC3, but the microcontroller only has two TCs). </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>if this function returns false, you shouldn't interact with this TC instance with any other functions; they don't do the bounds check that this does. </dd></dl>
 
 </div>
 </div>

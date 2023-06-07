@@ -122,9 +122,9 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a60f883f4de2c085c1e909285ad402c36"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a60f883f4de2c085c1e909285ad402c36">tcc_setup</a> (uint8_t instance, generic_clock_generator_t clocksource, tcc_prescaler_value_t prescaler)</td></tr>
-<tr class="memdesc:a60f883f4de2c085c1e909285ad402c36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the peripheral clock for the TCC and clocks it with the selected clock source. Also resets the TCC to its starting configuration.  <a href="tcc_8h.html#a60f883f4de2c085c1e909285ad402c36">More...</a><br /></td></tr>
-<tr class="separator:a60f883f4de2c085c1e909285ad402c36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55f68c3649be5d58b0e422ad94224b94"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a55f68c3649be5d58b0e422ad94224b94">tcc_init</a> (uint8_t instance, generic_clock_generator_t clocksource, tcc_prescaler_value_t prescaler)</td></tr>
+<tr class="memdesc:a55f68c3649be5d58b0e422ad94224b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the peripheral clock for the TCC and clocks it with the selected clock source. Also resets the TCC to its starting configuration.  <a href="tcc_8h.html#a55f68c3649be5d58b0e422ad94224b94">More...</a><br /></td></tr>
+<tr class="separator:a55f68c3649be5d58b0e422ad94224b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a273b5e8282d26fa117e00925e2a240cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a273b5e8282d26fa117e00925e2a240cc">tcc_set_run_in_standby</a> (uint8_t instance, bool runStandby)</td></tr>
 <tr class="memdesc:a273b5e8282d26fa117e00925e2a240cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether the TCC should run in standby mode.  <a href="tcc_8h.html#a273b5e8282d26fa117e00925e2a240cc">More...</a><br /></td></tr>
 <tr class="separator:a273b5e8282d26fa117e00925e2a240cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,7 +138,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:aa449988b4bea75a5e018c01e38d6c058"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the polarity of a channel.  <a href="tcc_8h.html#aa449988b4bea75a5e018c01e38d6c058">More...</a><br /></td></tr>
 <tr class="separator:aa449988b4bea75a5e018c01e38d6c058"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ac612aa1426900df32765fb71e79918"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a6ac612aa1426900df32765fb71e79918">tcc_enable</a> (uint8_t instance)</td></tr>
-<tr class="memdesc:a6ac612aa1426900df32765fb71e79918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the TCC. Make sure to call tcc_setup first to set it up.  <a href="tcc_8h.html#a6ac612aa1426900df32765fb71e79918">More...</a><br /></td></tr>
+<tr class="memdesc:a6ac612aa1426900df32765fb71e79918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the TCC. Make sure to call tcc_init first to set it up.  <a href="tcc_8h.html#a6ac612aa1426900df32765fb71e79918">More...</a><br /></td></tr>
 <tr class="separator:a6ac612aa1426900df32765fb71e79918"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5797bec545a165a39f092514139f5b1e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a5797bec545a165a39f092514139f5b1e">tcc_is_enabled</a> (uint8_t instance)</td></tr>
 <tr class="memdesc:a5797bec545a165a39f092514139f5b1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the TCC is enabled.  <a href="tcc_8h.html#a5797bec545a165a39f092514139f5b1e">More...</a><br /></td></tr>
@@ -213,7 +213,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enables the TCC. Make sure to call tcc_setup first to set it up. </p>
+<p>Enables the TCC. Make sure to call tcc_init first to set it up. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
@@ -247,6 +247,62 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The current value of the counter. </dd></dl>
+
+</div>
+</div>
+<a id="a55f68c3649be5d58b0e422ad94224b94" name="a55f68c3649be5d58b0e422ad94224b94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55f68c3649be5d58b0e422ad94224b94">&#9670;&#160;</a></span>tcc_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tcc_init </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">generic_clock_generator_t&#160;</td>
+          <td class="paramname"><em>clocksource</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">tcc_prescaler_value_t&#160;</td>
+          <td class="paramname"><em>prescaler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables the peripheral clock for the TCC and clocks it with the selected clock source. Also resets the TCC to its starting configuration. </p>
+<p >This just sets up the TCC in its reset state. You are still responsible for configuring it with the options you need for waveform output. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+    <tr><td class="paramname">clocksource</td><td>The clock source to use for the TCC. </td></tr>
+    <tr><td class="paramname">prescaler</td><td>The prescaler factor, which divides the clock source by a factor:<ul>
+<li>TCC_PRESCALER_DIV1 - clock source unchanged</li>
+<li>TCC_PRESCALER_DIV2 - clock source divided by 2</li>
+<li>TCC_PRESCALER_DIV4 - clock source divided by 4</li>
+<li>TCC_PRESCALER_DIV8 - clock source divided by 8</li>
+<li>TCC_PRESCALER_DIV16 - clock source divided by 16</li>
+<li>TCC_PRESCALER_DIV64 - clock source divided by 64</li>
+<li>TCC_PRESCALER_DIV256 - clock source divided by 256</li>
+<li>TCC_PRESCALER_DIV102 - clock source divided by 1024 </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the TCC was set up, false if instance was out of range (i.e. you asked for TCC2, but the microcontroller only has one TCC). </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>if this function returns false, you shouldn't interact with this TCC instance with any other functions; they don't do the bounds check that this does. </dd></dl>
 
 </div>
 </div>
@@ -596,62 +652,6 @@ Functions</h2></td></tr>
 </dd>
 <dd>
 <code><a class="el" href="tcc_8h.html#a5646c274366bca4fdbc220d732282f2e" title="Sets the output matrix for the TCC.">tcc_set_output_matrix</a></code> for other options). This mode results in a square wave with a frequency defined by the PER register, and a duty cycle defined by the CCn register. </dd></dl>
-
-</div>
-</div>
-<a id="a60f883f4de2c085c1e909285ad402c36" name="a60f883f4de2c085c1e909285ad402c36"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60f883f4de2c085c1e909285ad402c36">&#9670;&#160;</a></span>tcc_setup()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool tcc_setup </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">generic_clock_generator_t&#160;</td>
-          <td class="paramname"><em>clocksource</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">tcc_prescaler_value_t&#160;</td>
-          <td class="paramname"><em>prescaler</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enables the peripheral clock for the TCC and clocks it with the selected clock source. Also resets the TCC to its starting configuration. </p>
-<p >This just sets up the TCC in its reset state. You are still responsible for configuring it with the options you need for waveform output. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
-    <tr><td class="paramname">clocksource</td><td>The clock source to use for the TCC. </td></tr>
-    <tr><td class="paramname">prescaler</td><td>The prescaler factor, which divides the clock source by a factor:<ul>
-<li>TCC_PRESCALER_DIV1 - clock source unchanged</li>
-<li>TCC_PRESCALER_DIV2 - clock source divided by 2</li>
-<li>TCC_PRESCALER_DIV4 - clock source divided by 4</li>
-<li>TCC_PRESCALER_DIV8 - clock source divided by 8</li>
-<li>TCC_PRESCALER_DIV16 - clock source divided by 16</li>
-<li>TCC_PRESCALER_DIV64 - clock source divided by 64</li>
-<li>TCC_PRESCALER_DIV256 - clock source divided by 256</li>
-<li>TCC_PRESCALER_DIV102 - clock source divided by 1024 </li>
-</ul>
-</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if the TCC was set up, false if instance was out of range (i.e. you asked for TCC2, but the microcontroller only has one TCC). </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>if this function returns false, you shouldn't interact with this TCC instance with any other functions; they don't do the bounds check that this does. </dd></dl>
 
 </div>
 </div>
