@@ -17,7 +17,7 @@ void app_setup(void) {
 
     HAL_GPIO_D10_pmuxen(HAL_GPIO_PMUX_TC_TCC);
 
-    tc_setup(3, GENERIC_CLOCK_0, TC_PRESCALER_DIV8);
+    tc_init(3, GENERIC_CLOCK_0, TC_PRESCALER_DIV8);
     tc_set_counter_mode(3, TC_COUNTER_MODE_8BIT);
     tc_set_wavegen(3, TC_WAVEGEN_NORMAL_PWM);
     tc_count8_set_period(3, 250);

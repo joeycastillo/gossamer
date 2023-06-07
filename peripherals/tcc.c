@@ -30,7 +30,7 @@ static void tcc_sync(uint8_t instance) {
     while (TCC_Peripherals[instance].tcc->SYNCBUSY.reg);
 }
 
-bool tcc_setup(uint8_t instance, generic_clock_generator_t clocksource, tcc_prescaler_value_t prescaler) {
+bool tcc_init(uint8_t instance, generic_clock_generator_t clocksource, tcc_prescaler_value_t prescaler) {
     if (instance >= Num_TCC_Instances) return false;
 
 #if defined(_SAMD21_) || defined(_SAMD11_)

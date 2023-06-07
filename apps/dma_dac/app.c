@@ -20,7 +20,7 @@ void app_setup(void) {
     dac_init();
     dac_enable(0);
 
-    tc_setup(4, GENERIC_CLOCK_0, TC_PRESCALER_DIV1);
+    tc_init(4, GENERIC_CLOCK_0, TC_PRESCALER_DIV1);
     tc_set_wavegen(4, TC_WAVEGEN_MATCH_FREQUENCY);
     tc_count16_set_cc(4, 0, 20);
     tc_enable(4);

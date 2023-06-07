@@ -48,7 +48,7 @@ void app_setup(void) {
 
     HAL_GPIO_D1_pmuxen(HAL_GPIO_PMUX_TCC_ALT);
 
-    tcc_setup(0, GENERIC_CLOCK_0, TCC_PRESCALER_DIV1);
+    tcc_init(0, GENERIC_CLOCK_0, TCC_PRESCALER_DIV1);
     tcc_set_wavegen(0, TCC_WAVEGEN_MATCH_FREQUENCY);
     tcc_set_cc(0, 0, 256);
     tcc_set_cc(2, 0, 255);

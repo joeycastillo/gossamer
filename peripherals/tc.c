@@ -33,7 +33,7 @@ static void tc_sync(uint8_t instance) {
 #endif
 }
 
-bool tc_setup(uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler) {
+bool tc_init(uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler) {
     if ((instance - TC_First_Index) >= Num_TC_Instances) return false;
 
 #if defined(_SAMD21_) || defined(_SAMD11_)
