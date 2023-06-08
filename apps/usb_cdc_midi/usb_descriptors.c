@@ -90,8 +90,8 @@ enum {
 #define EPNUM_CDC_OUT     0x02
 #define EPNUM_CDC_IN      0x82
 
-#define EPNUM_MIDI_OUT   0x01
-#define EPNUM_MIDI_IN   0x01
+#define EPNUM_MIDI_OUT   0x05
+#define EPNUM_MIDI_IN   0x84
 
 uint8_t const desc_fs_configuration[] = {
   // Config number, interface count, string index, total length, attribute, power in mA
@@ -101,7 +101,7 @@ uint8_t const desc_fs_configuration[] = {
   TUD_CDC_DESCRIPTOR(ITF_NUM_CDC, 4, EPNUM_CDC_NOTIF, 8, EPNUM_CDC_OUT, EPNUM_CDC_IN, 64),
 
   // Interface number, string index, EP Out & EP In address, EP size
-  TUD_MIDI_DESCRIPTOR(ITF_NUM_MIDI, 5, EPNUM_MIDI_OUT, (0x80 | EPNUM_MIDI_IN), 64)
+  TUD_MIDI_DESCRIPTOR(ITF_NUM_MIDI, 5, EPNUM_MIDI_OUT, EPNUM_MIDI_IN, 64)
 };
 
 // Invoked when received GET CONFIGURATION DESCRIPTOR
