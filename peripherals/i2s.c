@@ -24,7 +24,7 @@
 
 #include "pins.h"
 #include "system.h"
-#include "I2S.h"
+#include "i2s.h"
 
 #ifdef I2S
 
