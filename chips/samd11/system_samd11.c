@@ -30,17 +30,28 @@
 #include "samd11.h"
 #include "system.h"
 
-TC_Instance_Details TC_Peripherals[] = {
+const TC_Instance_Details TC_Peripherals[] = {
     {TC1, PM_APBCMASK_TC1, GCLK_CLKCTRL_ID_TC1_TC2},
     {TC2, PM_APBCMASK_TC2, GCLK_CLKCTRL_ID_TC1_TC2},
 };
-uint8_t Num_TC_Instances = 2;
-uint8_t TC_First_Index = 1;
+const uint8_t Num_TC_Instances = TC_INST_NUM;
+const uint8_t TC_First_Index = 1;
 
-TCC_Instance_Details TCC_Peripherals[] = {
+const TCC_Instance_Details TCC_Peripherals[] = {
     {TCC0, PM_APBCMASK_TCC0, GCLK_CLKCTRL_ID_TCC0},
 };
-uint8_t Num_TCC_Instances = 1;
+const uint8_t Num_TCC_Instances = TCC_INST_NUM;
+
+const SERCOM_Instance_Details SERCOM_Peripherals[] = {
+    {SERCOM0, PM_APBCMASK_SERCOM0, SERCOM0_GCLK_ID_CORE},
+    {SERCOM1, PM_APBCMASK_SERCOM1, SERCOM1_GCLK_ID_CORE},
+#if defined(__SAMD11D14AM__) || defined(__ATSAMD11D14AM__) || \
+    defined(__SAMD11D14AS__) || defined(__ATSAMD11D14AS__) || \
+    defined(__SAMD11D14AU__) || defined(__ATSAMD11D14AU__)
+    {SERCOM2, PM_APBCMASK_SERCOM2, SERCOM2_GCLK_ID_CORE},
+#endif
+};
+const uint8_t Num_SERCOM_Instances = SERCOM_INST_NUM;
 
 //-----------------------------------------------------------------------------
 void sys_init(void) {

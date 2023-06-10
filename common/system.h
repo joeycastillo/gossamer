@@ -45,12 +45,21 @@ typedef struct {
     uint8_t gclk_id;
 } TCC_Instance_Details;
 
-extern TC_Instance_Details TC_Peripherals[];
-extern uint8_t Num_TC_Instances;
-extern uint8_t TC_First_Index;
+typedef struct {
+    Sercom* sercom;
+    uint32_t clock_enable_mask;
+    uint8_t gclk_id;
+} SERCOM_Instance_Details;
 
-extern TCC_Instance_Details TCC_Peripherals[];
-extern uint8_t Num_TCC_Instances;
+extern const TC_Instance_Details TC_Peripherals[];
+extern const uint8_t Num_TC_Instances;
+extern const uint8_t TC_First_Index;
+
+extern const TCC_Instance_Details TCC_Peripherals[];
+extern const uint8_t Num_TCC_Instances;
+
+extern const SERCOM_Instance_Details SERCOM_Peripherals[];
+extern const uint8_t Num_SERCOM_Instances;
 
 ////< @file system.h
 

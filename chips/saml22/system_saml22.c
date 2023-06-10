@@ -30,19 +30,37 @@
 #include "saml22.h"
 #include "system.h"
 
-TC_Instance_Details TC_Peripherals[] = {
+const TC_Instance_Details TC_Peripherals[] = {
     {TC0, MCLK_APBCMASK_TC0, TC0_GCLK_ID},
     {TC1, MCLK_APBCMASK_TC1, TC1_GCLK_ID},
     {TC2, MCLK_APBCMASK_TC2, TC2_GCLK_ID},
     {TC3, MCLK_APBCMASK_TC3, TC3_GCLK_ID},
 };
-uint8_t Num_TC_Instances = 4;
-uint8_t TC_First_Index = 0;
+const uint8_t Num_TC_Instances = TC_INST_NUM;
+const uint8_t TC_First_Index = 0;
 
-TCC_Instance_Details TCC_Peripherals[] = {
+const TCC_Instance_Details TCC_Peripherals[] = {
     {TCC0, MCLK_APBCMASK_TCC0, TCC0_GCLK_ID},
 };
-uint8_t Num_TCC_Instances = 1;
+const uint8_t Num_TCC_Instances = TCC_INST_NUM;
+
+const SERCOM_Instance_Details SERCOM_Peripherals[] = {
+    {SERCOM0, MCLK_APBCMASK_SERCOM0, SERCOM0_GCLK_ID_CORE},
+    {SERCOM1, MCLK_APBCMASK_SERCOM1, SERCOM1_GCLK_ID_CORE},
+    {SERCOM2, MCLK_APBCMASK_SERCOM2, SERCOM2_GCLK_ID_CORE},
+#if defined(__SAML22J16A__) || defined(__ATSAML22J16A__) || \
+    defined(__SAML22J17A__) || defined(__ATSAML22J17A__) || \
+    defined(__SAML22J18A__) || defined(__ATSAML22J18A__)
+    {SERCOM3, MCLK_APBCMASK_SERCOM3, SERCOM3_GCLK_ID_CORE},
+#endif
+#if defined(__SAML22N16A__) || defined(__ATSAML22N16A__) || \
+    defined(__SAML22N17A__) || defined(__ATSAML22N17A__) || \
+    defined(__SAML22N18A__) || defined(__ATSAML22N18A__)
+    {SERCOM4, MCLK_APBCMASK_SERCOM4, SERCOM4_GCLK_ID_CORE},
+    {SERCOM5, MCLK_APBCMASK_SERCOM5, SERCOM5_GCLK_ID_CORE},
+#endif
+};
+const uint8_t Num_SERCOM_Instances = SERCOM_INST_NUM;
 
 //-----------------------------------------------------------------------------
 void sys_init(void) {

@@ -31,7 +31,7 @@
 #include "system.h"
 #include "pins.h"
 
-TC_Instance_Details TC_Peripherals[] = {
+const TC_Instance_Details TC_Peripherals[] = {
     {TC0, MCLK_APBCMASK_TC0, TC0_GCLK_ID},
     {TC1, MCLK_APBCMASK_TC1, TC1_GCLK_ID},
 #if defined(__SAML21J15B__) || defined(__ATSAML21J15B__) || \
@@ -48,15 +48,26 @@ TC_Instance_Details TC_Peripherals[] = {
 #endif
     {TC4, MCLK_APBDMASK_TC4, TC4_GCLK_ID},
 };
-uint8_t Num_TC_Instances = 5;
-uint8_t TC_First_Index = 0;
+// we can't use TCC_INST_NUM here because the numbering is wacky on the L21.
+const uint8_t Num_TC_Instances = 5;
+const uint8_t TC_First_Index = 0;
 
-TCC_Instance_Details TCC_Peripherals[] = {
+const TCC_Instance_Details TCC_Peripherals[] = {
     {TCC0, MCLK_APBCMASK_TCC0, TCC0_GCLK_ID},
     {TCC1, MCLK_APBCMASK_TCC1, TCC1_GCLK_ID},
     {TCC2, MCLK_APBCMASK_TCC2, TCC2_GCLK_ID},
 };
-uint8_t Num_TCC_Instances = 3;
+const uint8_t Num_TCC_Instances = TCC_INST_NUM;
+
+const SERCOM_Instance_Details SERCOM_Peripherals[] = {
+    {SERCOM0, MCLK_APBCMASK_SERCOM0, SERCOM0_GCLK_ID_CORE},
+    {SERCOM1, MCLK_APBCMASK_SERCOM1, SERCOM1_GCLK_ID_CORE},
+    {SERCOM2, MCLK_APBCMASK_SERCOM2, SERCOM2_GCLK_ID_CORE},
+    {SERCOM3, MCLK_APBCMASK_SERCOM3, SERCOM3_GCLK_ID_CORE},
+    {SERCOM4, MCLK_APBCMASK_SERCOM4, SERCOM4_GCLK_ID_CORE},
+    {SERCOM5, MCLK_APBDMASK_SERCOM5, SERCOM5_GCLK_ID_CORE},
+};
+const uint8_t Num_SERCOM_Instances = SERCOM_INST_NUM;
 
 //-----------------------------------------------------------------------------
 void sys_init(void) {

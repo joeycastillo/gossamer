@@ -34,14 +34,7 @@
 #include "samd21.h"
 #include "system.h"
 
-TCC_Instance_Details TCC_Peripherals[] = {
-    {TCC0, PM_APBCMASK_TCC0, GCLK_CLKCTRL_ID_TCC0_TCC1},
-    {TCC1, PM_APBCMASK_TCC1, GCLK_CLKCTRL_ID_TCC0_TCC1},
-    {TCC2, PM_APBCMASK_TCC2, GCLK_CLKCTRL_ID_TCC2_TC3},
-};
-uint8_t Num_TCC_Instances = 3;
-
-TC_Instance_Details TC_Peripherals[] = {
+const TC_Instance_Details TC_Peripherals[] = {
     {TC3, PM_APBCMASK_TC3, GCLK_CLKCTRL_ID_TCC2_TC3},
     {TC4, PM_APBCMASK_TC4, GCLK_CLKCTRL_ID_TC4_TC5},
     {TC5, PM_APBCMASK_TC5, GCLK_CLKCTRL_ID_TC4_TC5},
@@ -54,16 +47,36 @@ TC_Instance_Details TC_Peripherals[] = {
 #endif
 };
 
-uint8_t TC_First_Index = 3;
+const uint8_t Num_TC_Instances = TC_INST_NUM;
+const uint8_t TC_First_Index = 3;
 
-#if defined(__SAMD21J15A__) || defined(__ATSAMD21J15A__) || \
+const TCC_Instance_Details TCC_Peripherals[] = {
+    {TCC0, PM_APBCMASK_TCC0, GCLK_CLKCTRL_ID_TCC0_TCC1},
+    {TCC1, PM_APBCMASK_TCC1, GCLK_CLKCTRL_ID_TCC0_TCC1},
+    {TCC2, PM_APBCMASK_TCC2, GCLK_CLKCTRL_ID_TCC2_TC3},
+};
+const uint8_t Num_TCC_Instances = TCC_INST_NUM;
+
+const SERCOM_Instance_Details SERCOM_Peripherals[] = {
+    {SERCOM0, PM_APBCMASK_SERCOM0, SERCOM0_GCLK_ID_CORE},
+    {SERCOM1, PM_APBCMASK_SERCOM1, SERCOM1_GCLK_ID_CORE},
+    {SERCOM2, PM_APBCMASK_SERCOM2, SERCOM2_GCLK_ID_CORE},
+    {SERCOM3, PM_APBCMASK_SERCOM3, SERCOM3_GCLK_ID_CORE},
+#if defined(__SAMD21G15A__) || defined(__ATSAMD21G15A__) || \
+    defined(__SAMD21G16A__) || defined(__ATSAMD21G16A__) || \
+    defined(__SAMD21G17A__) || defined(__ATSAMD21G17A__) || \
+    defined(__SAMD21G17AU__) || defined(__ATSAMD21G17AU__) || \
+    defined(__SAMD21G18A__) || defined(__ATSAMD21G18A__) || \
+    defined(__SAMD21G18AU__) || defined(__ATSAMD21G18AU__) || \
+    defined(__SAMD21J15A__) || defined(__ATSAMD21J15A__) || \
     defined(__SAMD21J16A__) || defined(__ATSAMD21J16A__) || \
     defined(__SAMD21J17A__) || defined(__ATSAMD21J17A__) || \
     defined(__SAMD21J18A__) || defined(__ATSAMD21J18A__)
-uint8_t Num_TC_Instances = 5;
-#else
-uint8_t Num_TC_Instances = 3;
+    {SERCOM4, PM_APBCMASK_SERCOM4, SERCOM4_GCLK_ID_CORE},
+    {SERCOM5, PM_APBCMASK_SERCOM5, SERCOM5_GCLK_ID_CORE},
 #endif
+};
+const uint8_t Num_SERCOM_Instances = SERCOM_INST_NUM;
 
 //-----------------------------------------------------------------------------
 void sys_init(void) {
