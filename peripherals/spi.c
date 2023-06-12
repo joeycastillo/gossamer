@@ -9,98 +9,93 @@
 #include "pins.h"
 #include "sam.h"
 #include "system.h"
+#include "sercom.h"
 #include "spi.h"
 
-#if defined(SPI_SERCOM_APBCMASK) && defined(SPI_GCLK_CLKCTRL_ID)
-
-#define BUSSTATE_UNKNOWN 0
-#define BUSSTATE_IDLE 1
-#define BUSSTATE_OWNER 2
-#define BUSSTATE_BUSY 3
+#if defined(SPI_SERCOM)
 
 void spi_init(spi_mode_t mode, uint32_t baud) {
-#if defined(_SAMD21_) || defined(_SAMD11_)
-    /* Enable the APB clock for SERCOM. */
-    PM->APBCMASK.reg |= SPI_SERCOM_APBCMASK;
-    /* Enable GCLK1 for the SERCOM */
-    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK0 | SPI_GCLK_CLKCTRL_ID;
-    /* Wait for bus synchronization. */
-    while (GCLK->STATUS.bit.SYNCBUSY) {};
-#else
-    /* Enable the APB clock for SERCOM. */
-#if defined(SPI_SERCOM_APBCMASK)
-    MCLK->APBCMASK.reg |= SPI_SERCOM_APBCMASK;
-#elif defined(SPI_SERCOM_APBDMASK)
-    MCLK->APBDMASK.reg |= SPI_SERCOM_APBDMASK;
+    spi_init_custom(SPI_SERCOM, SPI_SERCOM_DOPO, SPI_SERCOM_DIPO, mode, baud);
+}
+
+void spi_enable(void) {
+    spi_enable_custom(SPI_SERCOM);
+}
+
+uint8_t spi_transfer(uint8_t data) {
+    return spi_transfer_custom(SPI_SERCOM, data);
+}
+
+void spi_disable(void) {
+    spi_disable_custom(SPI_SERCOM);
+}
+
 #endif
-    /* Enable GCLK1 for the SERCOM */
-    GCLK->PCHCTRL[SPI_GCLK_CLKCTRL_ID].reg = GCLK_PCHCTRL_CHEN | GCLK_PCHCTRL_GEN_GCLK0_Val;
-    /* Wait for bus synchronization. */
-    while (GCLK->SYNCBUSY.bit.GENCTRL0) {};
-#endif
+
+void spi_init_custom(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, spi_mode_t mode, uint32_t baud) {
+    Sercom* SERCOM = SERCOM_Peripherals[sercom].sercom;
+
+    _sercom_clock_setup(sercom);
 
     /* Reset the SERCOM. */
-    SPI_SERCOM->SPI.CTRLA.bit.ENABLE = 0;
-    while (SPI_SERCOM->SPI.SYNCBUSY.bit.ENABLE) {};
-    SPI_SERCOM->SPI.CTRLA.bit.SWRST = 1;
-    while (SPI_SERCOM->SPI.SYNCBUSY.bit.SWRST || SPI_SERCOM->SPI.SYNCBUSY.bit.ENABLE) {};
+    SERCOM->SPI.CTRLA.bit.ENABLE = 0;
+    while (SERCOM->SPI.SYNCBUSY.bit.ENABLE) {};
+    SERCOM->SPI.CTRLA.bit.SWRST = 1;
+    while (SERCOM->SPI.SYNCBUSY.bit.SWRST || SERCOM->SPI.SYNCBUSY.bit.ENABLE) {};
 
     /* Setup SPI controller. */
-#if defined(_SAMD21_) || defined(_SAMD11_)
-    SPI_SERCOM->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_MODE_SPI_MASTER | SPI_SERCOM_DOPO | SPI_SERCOM_DIPO;
-#else
-    SPI_SERCOM->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_MODE(3) | SPI_SERCOM_DOPO | SPI_SERCOM_DIPO;
-#endif
+    if (dipo == SPI_DIPO_NONE) {
+        SERCOM->SPI.CTRLB.bit.RXEN = 0;
+        dipo = 0;
+    } else {
+        SERCOM->SPI.CTRLB.bit.RXEN = 1;
+    }
+    SERCOM->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_MODE(3) |
+                            SERCOM_SPI_CTRLA_DOPO(dopo) |
+                            SERCOM_SPI_CTRLA_DIPO(dipo);
 
     switch (mode) {
         case SPI_MODE_0:
-            SPI_SERCOM->SPI.CTRLA.bit.CPOL = 0;
-            SPI_SERCOM->SPI.CTRLA.bit.CPHA = 0;
+            SERCOM->SPI.CTRLA.bit.CPOL = 0;
+            SERCOM->SPI.CTRLA.bit.CPHA = 0;
             break;
         case SPI_MODE_1:
-            SPI_SERCOM->SPI.CTRLA.bit.CPOL = 0;
-            SPI_SERCOM->SPI.CTRLA.bit.CPHA = 1;
+            SERCOM->SPI.CTRLA.bit.CPOL = 0;
+            SERCOM->SPI.CTRLA.bit.CPHA = 1;
             break;
         case SPI_MODE_2:
-            SPI_SERCOM->SPI.CTRLA.bit.CPOL = 1;
-            SPI_SERCOM->SPI.CTRLA.bit.CPHA = 0;
+            SERCOM->SPI.CTRLA.bit.CPOL = 1;
+            SERCOM->SPI.CTRLA.bit.CPHA = 0;
             break;
         case SPI_MODE_3:
-            SPI_SERCOM->SPI.CTRLA.bit.CPOL = 1;
-            SPI_SERCOM->SPI.CTRLA.bit.CPHA = 1;
+            SERCOM->SPI.CTRLA.bit.CPOL = 1;
+            SERCOM->SPI.CTRLA.bit.CPHA = 1;
             break;
     }
-
-    SPI_SERCOM->SPI.CTRLB.bit.RXEN = 1;
 
     /* Set baud */
     uint32_t baudrate = baud;
     if (baudrate == get_cpu_frequency()) {
-        SPI_SERCOM->SPI.BAUD.reg = 0x1;
+        SERCOM->SPI.BAUD.reg = 0x1;
     } else {
-        SPI_SERCOM->SPI.BAUD.reg = get_cpu_frequency() / (2 * baudrate) - 1;
+        SERCOM->SPI.BAUD.reg = get_cpu_frequency() / (2 * baudrate) - 1;
     }
 }
 
-void spi_enable(void) {
-    /* Enable the SERCOM. */
-    SPI_SERCOM->SPI.CTRLA.bit.ENABLE = 1;
-    while (SPI_SERCOM->SPI.SYNCBUSY.bit.ENABLE) {}
+void spi_enable_custom(uint8_t sercom) {
+    _sercom_enable(sercom);
 }
 
-uint8_t spi_transfer(uint8_t data) {
-    while (!SPI_SERCOM->SPI.INTFLAG.bit.DRE) {}
+uint8_t spi_transfer_custom(uint8_t sercom, uint8_t data) {
+    while (!SERCOM_Peripherals[sercom].sercom->SPI.INTFLAG.bit.DRE) {}
 
-    SPI_SERCOM->SPI.DATA.bit.DATA = data;
+    SERCOM_Peripherals[sercom].sercom->SPI.DATA.bit.DATA = data;
 
-    while (!SPI_SERCOM->SPI.INTFLAG.bit.RXC) {}
+    while (!SERCOM_Peripherals[sercom].sercom->SPI.INTFLAG.bit.RXC) {}
 
-    return SPI_SERCOM->SPI.DATA.bit.DATA;
+    return SERCOM_Peripherals[sercom].sercom->SPI.DATA.bit.DATA;
 }
 
-void spi_disable(void) {
-    SPI_SERCOM->SPI.CTRLA.bit.ENABLE = 0;
-    while (SPI_SERCOM->SPI.SYNCBUSY.bit.ENABLE) {}
+void spi_disable_custom(uint8_t sercom) {
+    _sercom_disable(sercom);
 }
-
-#endif

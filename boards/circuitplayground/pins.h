@@ -1,6 +1,9 @@
 #pragma once
 
 #include "hal_gpio.h"
+#include "spi.h"
+#include "i2c.h"
+#include "uart.h"
 
 // Analog pins
 HAL_GPIO_PIN(A0,            A,  2)
@@ -36,18 +39,14 @@ HAL_GPIO_PIN(FLASH_CS,      B, 22)
 // I2C
 HAL_GPIO_PIN(SDA,           A,  0)
 HAL_GPIO_PIN(SCL,           A,  1)
-#define I2C_SERCOM SERCOM1
-#define I2C_SERCOM_APBCMASK PM_APBCMASK_SERCOM1
-#define I2C_GCLK_CLKCTRL_ID GCLK_CLKCTRL_ID_SERCOM1_CORE
+#define I2C_SERCOM 1
 
 // UART
 HAL_GPIO_PIN(RX,   B,  9)
 HAL_GPIO_PIN(TX,   B,  8)
-#define UART_SERCOM SERCOM4
-#define UART_SERCOM_APBCMASK PM_APBCMASK_SERCOM4
-#define UART_GCLK_CLKCTRL_ID GCLK_CLKCTRL_ID_SERCOM4_CORE
-#define UART_SERCOM_TXPO SERCOM_USART_CTRLA_TXPO(0)
-#define UART_SERCOM_RXPO SERCOM_USART_CTRLA_RXPO(1)
+#define UART_SERCOM 4
+#define UART_SERCOM_TXPO UART_TXPO_0
+#define UART_SERCOM_RXPO UART_RXPO_1
 
 // TFT Gizmo
 HAL_GPIO_PIN(TFT_SCK,       B,  3)

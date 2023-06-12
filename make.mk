@@ -82,6 +82,7 @@ SRCS += \
   $(TOP)/peripherals/opamp.c \
   $(TOP)/peripherals/ptc.c \
   $(TOP)/peripherals/rtc.c \
+  $(TOP)/peripherals/sercom.c \
   $(TOP)/peripherals/spi.c \
   $(TOP)/peripherals/tc.c \
   $(TOP)/peripherals/tcc.c \
