@@ -29,8 +29,8 @@ void app_setup(void) {
     oso_lcd_fill(0);
 
     // fire RTC alarm every minute
-    // rtc_date_time date_time = {0};
-    // rtc_enable_alarm_interrupt(date_time, ALARM_MATCH_SS);
+    rtc_date_time date_time = {0};
+    rtc_enable_alarm_interrupt(date_time, ALARM_MATCH_SS);
 
     HAL_GPIO_D5_in();
     HAL_GPIO_D5_pullup();

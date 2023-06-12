@@ -25,8 +25,6 @@
 #include "rtc.h"
 #include "sam.h"
 
-/// TODO: SAM L series has different register name (CTRLA) and setup
-
 #if defined(_SAMD21_) || defined(_SAMD11_)
 #define CTRLREG (RTC->MODE2.CTRL)
 #else
