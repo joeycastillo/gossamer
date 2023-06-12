@@ -224,9 +224,6 @@ static void enable_48mhz_clock(void) {
 }
 
 uint32_t get_cpu_frequency(void) {
-    GCLK->GENCTRL.bit.ID = 0;
-    while(GCLK->STATUS.bit.SYNCBUSY);
-
     // if GCLK0's source is the DFLL, we're running at 48 MHz
     if (GCLK->GENCTRL.bit.SRC == GCLK_GENCTRL_SRC_DFLL48M_Val) {
         return 48000000;
