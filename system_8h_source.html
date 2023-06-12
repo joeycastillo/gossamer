@@ -121,23 +121,33 @@ $(function() {
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    uint8_t gclk_id;</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <a class="code hl_struct" href="struct_t_c_c___instance___details.html">TCC_Instance_Details</a>;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_t_c___instance___details.html">TC_Instance_Details</a> TC_Peripherals[];</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">extern</span> uint8_t Num_TC_Instances;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">extern</span> uint8_t TC_First_Index;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_t_c_c___instance___details.html">TCC_Instance_Details</a> TCC_Peripherals[];</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">extern</span> uint8_t Num_TCC_Instances;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="system_8h.html#af411a8bc6b7ed4b0af9114e10c959448">   69</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="system_8h.html#af411a8bc6b7ed4b0af9114e10c959448">sys_init</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="system_8h.html#a96fa401b65736262fc29cc0537bed03e">   74</a></span>uint32_t <a class="code hl_function" href="system_8h.html#a96fa401b65736262fc29cc0537bed03e">get_cpu_frequency</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="system_8h.html#a4f33e5a16dba970fa7064ea27287fcba">   91</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="system_8h.html#a4f33e5a16dba970fa7064ea27287fcba">set_cpu_frequency</a>(uint32_t freq);</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="system_8h.html#a436af75ad5caf82faa3497787abf4321">   98</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="system_8h.html#a436af75ad5caf82faa3497787abf4321">_enter_standby_mode</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="struct_s_e_r_c_o_m___instance___details.html">   48</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    Sercom* sercom;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    uint32_t clock_enable_mask;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    uint8_t gclk_id;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>} <a class="code hl_struct" href="struct_s_e_r_c_o_m___instance___details.html">SERCOM_Instance_Details</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">extern</span> <span class="keyword">const</span> <a class="code hl_struct" href="struct_t_c___instance___details.html">TC_Instance_Details</a> TC_Peripherals[];</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t Num_TC_Instances;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t TC_First_Index;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">extern</span> <span class="keyword">const</span> <a class="code hl_struct" href="struct_t_c_c___instance___details.html">TCC_Instance_Details</a> TCC_Peripherals[];</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t Num_TCC_Instances;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">extern</span> <span class="keyword">const</span> <a class="code hl_struct" href="struct_s_e_r_c_o_m___instance___details.html">SERCOM_Instance_Details</a> SERCOM_Peripherals[];</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t Num_SERCOM_Instances;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="system_8h.html#af411a8bc6b7ed4b0af9114e10c959448">   78</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="system_8h.html#af411a8bc6b7ed4b0af9114e10c959448">sys_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="system_8h.html#a96fa401b65736262fc29cc0537bed03e">   83</a></span>uint32_t <a class="code hl_function" href="system_8h.html#a96fa401b65736262fc29cc0537bed03e">get_cpu_frequency</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="system_8h.html#a4f33e5a16dba970fa7064ea27287fcba">  100</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="system_8h.html#a4f33e5a16dba970fa7064ea27287fcba">set_cpu_frequency</a>(uint32_t freq);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="system_8h.html#a436af75ad5caf82faa3497787abf4321">  107</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="system_8h.html#a436af75ad5caf82faa3497787abf4321">_enter_standby_mode</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="ttc" id="astruct_s_e_r_c_o_m___instance___details_html"><div class="ttname"><a href="struct_s_e_r_c_o_m___instance___details.html">SERCOM_Instance_Details</a></div><div class="ttdef"><b>Definition:</b> system.h:48</div></div>
 <div class="ttc" id="astruct_t_c___instance___details_html"><div class="ttname"><a href="struct_t_c___instance___details.html">TC_Instance_Details</a></div><div class="ttdef"><b>Definition:</b> system.h:36</div></div>
 <div class="ttc" id="astruct_t_c_c___instance___details_html"><div class="ttname"><a href="struct_t_c_c___instance___details.html">TCC_Instance_Details</a></div><div class="ttdef"><b>Definition:</b> system.h:42</div></div>
 <div class="ttc" id="asystem_8h_html_a436af75ad5caf82faa3497787abf4321"><div class="ttname"><a href="system_8h.html#a436af75ad5caf82faa3497787abf4321">_enter_standby_mode</a></div><div class="ttdeci">void _enter_standby_mode(void)</div><div class="ttdoc">Enters the low-power STANDBY mode. Does not return until an interrupt fires.</div></div>

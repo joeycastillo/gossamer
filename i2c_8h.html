@@ -105,23 +105,87 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a5730d9445429351b9f750084c5cb5aae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#a5730d9445429351b9f750084c5cb5aae">i2c_init</a> (void)</td></tr>
-<tr class="memdesc:a5730d9445429351b9f750084c5cb5aae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the I2C peripheral.  <a href="i2c_8h.html#a5730d9445429351b9f750084c5cb5aae">More...</a><br /></td></tr>
+<tr class="memdesc:a5730d9445429351b9f750084c5cb5aae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the I2C peripheral for a board with defined SDA/SCL pins. Defaults to a bus speed of 400kHz.  <a href="i2c_8h.html#a5730d9445429351b9f750084c5cb5aae">More...</a><br /></td></tr>
 <tr class="separator:a5730d9445429351b9f750084c5cb5aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a1923e2271df541e858cb4e05d7b895"><td class="memItemLeft" align="right" valign="top"><a id="a5a1923e2271df541e858cb4e05d7b895" name="a5a1923e2271df541e858cb4e05d7b895"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>i2c_enable</b> (void)</td></tr>
-<tr class="memdesc:a5a1923e2271df541e858cb4e05d7b895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the I2C peripheral. <br /></td></tr>
+<tr class="memdesc:a5a1923e2271df541e858cb4e05d7b895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the I2C peripheral for a board with defined SDA/SCL pins. <br /></td></tr>
 <tr class="separator:a5a1923e2271df541e858cb4e05d7b895"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ecbbaf0c77591bc4a80e6ecd943e64c"><td class="memItemLeft" align="right" valign="top">I2CResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#a9ecbbaf0c77591bc4a80e6ecd943e64c">i2c_write</a> (uint8_t address, uint8_t *data, size_t len)</td></tr>
 <tr class="memdesc:a9ecbbaf0c77591bc4a80e6ecd943e64c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to an I2C device at the provided address.  <a href="i2c_8h.html#a9ecbbaf0c77591bc4a80e6ecd943e64c">More...</a><br /></td></tr>
 <tr class="separator:a9ecbbaf0c77591bc4a80e6ecd943e64c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe70f8fe4c72329b89ec526c749f50d7"><td class="memItemLeft" align="right" valign="top"><a id="abe70f8fe4c72329b89ec526c749f50d7" name="abe70f8fe4c72329b89ec526c749f50d7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>i2c_disable</b> (void)</td></tr>
-<tr class="memdesc:abe70f8fe4c72329b89ec526c749f50d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the I2C peripheral. <br /></td></tr>
+<tr class="memdesc:abe70f8fe4c72329b89ec526c749f50d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the I2C peripheral for a board with defined SDA/SCL pins. <br /></td></tr>
 <tr class="separator:abe70f8fe4c72329b89ec526c749f50d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4070841b773d898e8a7fb5fb27dab633"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#a4070841b773d898e8a7fb5fb27dab633">i2c_init_custom</a> (uint8_t sercom, uint32_t baud)</td></tr>
+<tr class="memdesc:a4070841b773d898e8a7fb5fb27dab633"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes an I2C peripheral on the given SERCOM.  <a href="i2c_8h.html#a4070841b773d898e8a7fb5fb27dab633">More...</a><br /></td></tr>
+<tr class="separator:a4070841b773d898e8a7fb5fb27dab633"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d1cd408436574ff30998079b76db7f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#a9d1cd408436574ff30998079b76db7f6">i2c_enable_custom</a> (uint8_t sercom)</td></tr>
+<tr class="memdesc:a9d1cd408436574ff30998079b76db7f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the I2C peripheral on the given SERCOM.  <a href="i2c_8h.html#a9d1cd408436574ff30998079b76db7f6">More...</a><br /></td></tr>
+<tr class="separator:a9d1cd408436574ff30998079b76db7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a680126a406db022e2566e01394237de7"><td class="memItemLeft" align="right" valign="top">I2CResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#a680126a406db022e2566e01394237de7">i2c_write_custom</a> (uint8_t sercom, uint8_t address, uint8_t *data, size_t len)</td></tr>
+<tr class="memdesc:a680126a406db022e2566e01394237de7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to an I2C device on the given SERCOM at the provided address.  <a href="i2c_8h.html#a680126a406db022e2566e01394237de7">More...</a><br /></td></tr>
+<tr class="separator:a680126a406db022e2566e01394237de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a5a5fb6391172e4af6dc8628b38b8c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#a8a5a5fb6391172e4af6dc8628b38b8c1">i2c_disable_custom</a> (uint8_t sercom)</td></tr>
+<tr class="memdesc:a8a5a5fb6391172e4af6dc8628b38b8c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the I2C peripheral on the given SERCOM.  <a href="i2c_8h.html#a8a5a5fb6391172e4af6dc8628b38b8c1">More...</a><br /></td></tr>
+<tr class="separator:a8a5a5fb6391172e4af6dc8628b38b8c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >I2C Peripheral. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a8a5a5fb6391172e4af6dc8628b38b8c1" name="a8a5a5fb6391172e4af6dc8628b38b8c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a5a5fb6391172e4af6dc8628b38b8c1">&#9670;&#160;</a></span>i2c_disable_custom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void i2c_disable_custom </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>sercom</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disables the I2C peripheral on the given SERCOM. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sercom</td><td>The SERCOM of the I2C peripheral, as numbered in the data sheet. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9d1cd408436574ff30998079b76db7f6" name="a9d1cd408436574ff30998079b76db7f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d1cd408436574ff30998079b76db7f6">&#9670;&#160;</a></span>i2c_enable_custom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void i2c_enable_custom </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>sercom</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables the I2C peripheral on the given SERCOM. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sercom</td><td>The SERCOM of the I2C peripheral, as numbered in the data sheet. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a5730d9445429351b9f750084c5cb5aae" name="a5730d9445429351b9f750084c5cb5aae"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5730d9445429351b9f750084c5cb5aae">&#9670;&#160;</a></span>i2c_init()</h2>
 
@@ -138,8 +202,46 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>i2c_disable</b> (void
       </table>
 </div><div class="memdoc">
 
-<p>Initializes the I2C peripheral. </p>
-<p >Initializes the peripheral with a bus speed of 400kHz. You are still responsible for setting the SDA and SCL pins to the correct peripheral pin mux. </p><dl class="section note"><dt>Note</dt><dd>Requires that your board have I2C_SERCOM_APBCMASK and I2C_GCLK_CLKCTRL_ID defined. </dd></dl>
+<p>Initializes the I2C peripheral for a board with defined SDA/SCL pins. Defaults to a bus speed of 400kHz. </p>
+<p >This function will only work if a board has pins named SDA and SCL, and relevant definitions for I2C_SERCOM. If you don't have these definitions, the build will fail at link time. </p>
+
+</div>
+</div>
+<a id="a4070841b773d898e8a7fb5fb27dab633" name="a4070841b773d898e8a7fb5fb27dab633"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4070841b773d898e8a7fb5fb27dab633">&#9670;&#160;</a></span>i2c_init_custom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void i2c_init_custom </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>sercom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baud</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes an I2C peripheral on the given SERCOM. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sercom</td><td>The SERCOM you wish to use, as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">baud</td><td>The baud rate you wish to use. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>You are responsible for setting the appropriate pin mux for the SDA and SCL pins. This function does not know which pins you intend to use, or whether they are on the SERCOM or SERCOM_ALT pin mux. </dd></dl>
 
 </div>
 </div>
@@ -178,6 +280,57 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>i2c_disable</b> (void
 <p>Writes data to an I2C device at the provided address. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">address</td><td>The I2C address of the device. </td></tr>
+    <tr><td class="paramname">data</td><td>The data to write. </td></tr>
+    <tr><td class="paramname">len</td><td>The length of the data to write. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a680126a406db022e2566e01394237de7" name="a680126a406db022e2566e01394237de7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a680126a406db022e2566e01394237de7">&#9670;&#160;</a></span>i2c_write_custom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">I2CResult i2c_write_custom </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>sercom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes data to an I2C device on the given SERCOM at the provided address. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sercom</td><td>The SERCOM of the I2C peripheral, as numbered in the data sheet. </td></tr>
     <tr><td class="paramname">address</td><td>The I2C address of the device. </td></tr>
     <tr><td class="paramname">data</td><td>The data to write. </td></tr>
     <tr><td class="paramname">len</td><td>The length of the data to write. </td></tr>

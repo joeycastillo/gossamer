@@ -75,6 +75,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">uart.h File Reference</div></div>
 </div><!--header-->
@@ -88,6 +89,25 @@ $(function() {
 </div>
 <p><a href="uart_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a201cbf904c8080f01165f93634d9603f"><td class="memItemLeft" align="right" valign="top"><a id="a201cbf904c8080f01165f93634d9603f" name="a201cbf904c8080f01165f93634d9603f"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>uart_txpo_t</b> { <b>UART_TXPO_0</b> = 0
+, <b>UART_TXPO_2</b>
+, <b>UART_TXPO_0_FLOW_CONTROL</b>
+, <b>UART_TXPO_NONE</b> = 0xff
+ }</td></tr>
+<tr class="separator:a201cbf904c8080f01165f93634d9603f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a689c8ada541f2cd1c4c0618eb428fa91"><td class="memItemLeft" align="right" valign="top"><a id="a689c8ada541f2cd1c4c0618eb428fa91" name="a689c8ada541f2cd1c4c0618eb428fa91"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>uart_rxpo_t</b> { <br />
+&#160;&#160;<b>UART_RXPO_0</b> = 0
+, <b>UART_RXPO_1</b>
+, <b>UART_RXPO_2</b>
+, <b>UART_RXPO_3</b>
+, <br />
+&#160;&#160;<b>UART_RXPO_NONE</b> = 0xff
+<br />
+ }</td></tr>
+<tr class="separator:a689c8ada541f2cd1c4c0618eb428fa91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ad8f6a793347af79ca41a3363dbd3fd96"><td class="memItemLeft" align="right" valign="top"><a id="ad8f6a793347af79ca41a3363dbd3fd96" name="ad8f6a793347af79ca41a3363dbd3fd96"></a>
@@ -105,6 +125,21 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>uart_read</b> (voi
 <tr class="memitem:a9dbcc0696f2607e16da1f55d3b4d6d94"><td class="memItemLeft" align="right" valign="top"><a id="a9dbcc0696f2607e16da1f55d3b4d6d94" name="a9dbcc0696f2607e16da1f55d3b4d6d94"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_disable</b> (void)</td></tr>
 <tr class="separator:a9dbcc0696f2607e16da1f55d3b4d6d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5968472adab00fba83f1e749d8a4470c"><td class="memItemLeft" align="right" valign="top"><a id="a5968472adab00fba83f1e749d8a4470c" name="a5968472adab00fba83f1e749d8a4470c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_init_custom</b> (uint8_t sercom, uart_txpo_t txpo, uart_rxpo_t rxpo, uint32_t baud)</td></tr>
+<tr class="separator:a5968472adab00fba83f1e749d8a4470c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a999ac3420527c8db2d20b8bdc591160c"><td class="memItemLeft" align="right" valign="top"><a id="a999ac3420527c8db2d20b8bdc591160c" name="a999ac3420527c8db2d20b8bdc591160c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_enable_custom</b> (uint8_t sercom)</td></tr>
+<tr class="separator:a999ac3420527c8db2d20b8bdc591160c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f37c85dfd695213df08799e698b1bb1"><td class="memItemLeft" align="right" valign="top"><a id="a6f37c85dfd695213df08799e698b1bb1" name="a6f37c85dfd695213df08799e698b1bb1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_write_custom</b> (uint8_t sercom, uint8_t *data, size_t length)</td></tr>
+<tr class="separator:a6f37c85dfd695213df08799e698b1bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a392dfd5186d513d178d5189fc0f3d83e"><td class="memItemLeft" align="right" valign="top"><a id="a392dfd5186d513d178d5189fc0f3d83e" name="a392dfd5186d513d178d5189fc0f3d83e"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>uart_read_custom</b> (uint8_t sercom)</td></tr>
+<tr class="separator:a392dfd5186d513d178d5189fc0f3d83e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d863c4f5c9b20e189d903a5a12268e6"><td class="memItemLeft" align="right" valign="top"><a id="a5d863c4f5c9b20e189d903a5a12268e6" name="a5d863c4f5c9b20e189d903a5a12268e6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_disable_custom</b> (uint8_t sercom)</td></tr>
+<tr class="separator:a5d863c4f5c9b20e189d903a5a12268e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >UART Peripheral. </p>
