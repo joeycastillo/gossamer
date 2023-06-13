@@ -78,11 +78,6 @@ void tcc_set_channel_polarity(uint8_t instance, uint8_t channel, tcc_channel_pol
 }
 
 void tcc_enable(uint8_t instance) {
-#if defined(_SAMD21_) || defined(_SAMD11_)
-    PM->APBCMASK.reg |= TCC_Peripherals[instance].clock_enable_mask;
-#else
-    MCLK->APBCMASK.reg |= TCC_Peripherals[instance].clock_enable_mask;
-#endif
     TCC_Peripherals[instance].tcc->CTRLA.bit.ENABLE = 1;
     tcc_sync(instance);
 }
@@ -93,14 +88,17 @@ bool tcc_is_enabled(uint8_t instance) {
 
 void tcc_set_period(uint8_t instance, uint32_t period) {
     TCC_Peripherals[instance].tcc->PER.bit.PER = period;
+    tcc_sync(instance);
 }
 
 void tcc_set_cc(uint8_t instance, uint8_t channel, uint32_t value) {
     TCC_Peripherals[instance].tcc->CC[channel].bit.CC = value;
+    tcc_sync(instance);
 }
 
 void tcc_set_count(uint8_t instance, uint32_t value) {
     TCC_Peripherals[instance].tcc->COUNT.bit.COUNT = value;
+    tcc_sync(instance);
 }
 
 uint32_t tcc_get_count(uint8_t instance) {
@@ -127,9 +125,15 @@ void tcc_update(uint8_t instance) {
 void tcc_disable(uint8_t instance) {
     TCC_Peripherals[instance].tcc->CTRLA.bit.ENABLE = 0;
     tcc_sync(instance);
+}
+
+// TODO: every peripheral should have a deinit function, make public when that's done
+/*
+void tcc_deinit(uint8_t instance) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
     PM->APBCMASK.reg &= ~(TCC_Peripherals[instance].clock_enable_mask);
 #else
     MCLK->APBCMASK.reg &= ~(TCC_Peripherals[instance].clock_enable_mask);
 #endif
 }
+*/

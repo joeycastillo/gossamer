@@ -103,11 +103,6 @@ void tc_set_channel_polarity(uint8_t instance, uint8_t channel, tc_channel_polar
 }
 
 void tc_enable(uint8_t instance) {
-#if defined(_SAMD21_) || defined(_SAMD11_)
-    PM->APBCMASK.reg |= TC_Peripherals[instance - TC_First_Index].clock_enable_mask;
-#else
-    MCLK->APBCMASK.reg |= TC_Peripherals[instance - TC_First_Index].clock_enable_mask;
-#endif
     TC_Peripherals[instance - TC_First_Index].tc->COUNT16.CTRLA.bit.ENABLE = 1;
     tc_sync(instance);
 }
@@ -180,9 +175,15 @@ void tc_retrigger(uint8_t instance) {
 void tc_disable(uint8_t instance) {
     TC_Peripherals[instance - TC_First_Index].tc->COUNT16.CTRLA.bit.ENABLE = 0;
     tc_sync(instance);
-#if defined(_SAMD21_) || defined(_SAMD11_)
-    PM->APBAMASK.reg &= ~(TC_Peripherals[instance - TC_First_Index].clock_enable_mask);
-#else
-    MCLK->APBCMASK.reg &= ~(TC_Peripherals[instance - TC_First_Index].clock_enable_mask);
-#endif
 }
+
+// TODO: every peripheral should have a deinit function, make public when that's done
+/*
+void tc_deinit(uint8_t instance) {
+    #if defined(_SAMD21_) || defined(_SAMD11_)
+        PM->APBAMASK.reg &= ~(TC_Peripherals[instance - TC_First_Index].clock_enable_mask);
+    #else
+        MCLK->APBCMASK.reg &= ~(TC_Peripherals[instance - TC_First_Index].clock_enable_mask);
+    #endif
+}
+*/
