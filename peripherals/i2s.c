@@ -26,7 +26,8 @@
 #include "system.h"
 #include "i2s.h"
 
-#ifdef I2S
+/// TODO: I2S on SAM D51
+#ifdef _SAMD21_
 
 void i2s_init(uint8_t instance, uint16_t sampleRate, uint8_t bitsPerSample, i2s_mode_t mode) {
     if (instance > 1) return;

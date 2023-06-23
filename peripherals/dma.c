@@ -36,6 +36,9 @@
 #include "system.h"
 #include "dma.h"
 
+/// TODO: DMA on SAM D51
+#ifndef _SAMD51_
+
 static volatile uint32_t _channelMask = 0; // Bitmask of allocated channels
 
 // DMA descriptor list entry point (and writeback buffer) per channel
@@ -294,3 +297,5 @@ void DMAC_Handler(void) {
 
     cpu_irq_leave_critical();
 }
+
+#endif

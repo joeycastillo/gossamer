@@ -32,7 +32,7 @@
 static void _dac_sync() {
 #if defined(_SAMD21_) || defined(_SAMD11_)
     while (DAC->STATUS.bit.SYNCBUSY);
-#else // SAM L21
+#else // SAM L21 / SAM D51
     while (DAC->SYNCBUSY.reg);
 #endif
 }
@@ -44,11 +44,17 @@ void dac_init(void) {
     // Configure DAC to use GCLK0 (the main 8 MHz oscillator)
     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(DAC_GCLK_ID) | GCLK_CLKCTRL_CLKEN |
                         GCLK_CLKCTRL_GEN(0);
-#else // SAM L21
+#elif defined(_SAML21_) || defined(_SAML22_)
     // enable the DAC's peripheral clock
     MCLK->APBCMASK.reg |= MCLK_APBCMASK_DAC;
     // Configure DAC to use GCLK0 (the main 8 MHz oscillator)
     GCLK->PCHCTRL[DAC_GCLK_ID].reg = GCLK_PCHCTRL_GEN_GCLK0 | GCLK_PCHCTRL_CHEN;
+#else
+    // enable the DAC's peripheral clock
+    MCLK->APBDMASK.reg |= MCLK_APBDMASK_DAC;
+    /// TODO: Figure out appropriate clock setup on SAM D51
+    // GCLK->PCHCTRL[DAC_GCLK_ID].reg = GCLK_PCHCTRL_GEN_GCLK0 |
+    //                                  GCLK_PCHCTRL_CHEN;
 #endif
     if (DAC->CTRLA.bit.ENABLE) {
         DAC->CTRLA.bit.ENABLE = 0;
@@ -61,7 +67,7 @@ void dac_init(void) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
     DAC->CTRLB.bit.REFSEL = DAC_CTRLB_REFSEL_AVCC_Val;
     DAC->CTRLB.bit.EOEN = 1;
-#else
+#else // SAM L21 / SAM D51
     DAC->CTRLB.bit.REFSEL = DAC_CTRLB_REFSEL_VDDANA_Val;
 #endif
 }
@@ -70,7 +76,7 @@ void dac_enable(uint16_t channel) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
     (void) channel;
     // Chips with a single DAC don't need to enable individual channels
-#else
+#else // SAM L21 / SAM D51
     DAC->CTRLA.bit.ENABLE = 0;
     _dac_sync();
     DAC->DACCTRL[channel].bit.ENABLE = 1;
@@ -85,7 +91,7 @@ void dac_set_analog_value(uint16_t channel, uint16_t value) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
     (void) channel; // these chips have only one DAC
     DAC->DATA.reg = value;
-#else // SAM L21
+#else // SAM L21 / SAM D51
     DAC->DACCTRL[channel].bit.ENABLE = 0;
     while (!(DAC->STATUS.bit.READY0));
     DAC->DATA[channel].reg = value;
@@ -102,7 +108,7 @@ void dac_disable(uint16_t channel) {
     _dac_sync();
 
     PM->APBAMASK.reg &= ~PM_APBCMASK_DAC;
-#else // SAM L21
+#else // SAM L21 / SAM D51
     DAC->DACCTRL[channel].bit.ENABLE = 0;
     _dac_sync();
 

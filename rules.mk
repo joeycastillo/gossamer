@@ -24,9 +24,15 @@ $(BUILD)/$(BIN).bin: $(BUILD)/$(BIN).elf
 	@echo OBJCOPY $@
 	@$(OBJCOPY) -O binary $^ $@
 
+ifeq ($(CHIP),samd51)
+$(BUILD)/$(BIN).uf2: $(BUILD)/$(BIN).bin
+	@echo UF2CONV $@
+	@$(UF2) $^ -b0x4000 -co $@
+else
 $(BUILD)/$(BIN).uf2: $(BUILD)/$(BIN).bin
 	@echo UF2CONV $@
 	@$(UF2) $^ -co $@
+endif
 
 $(BUILD)/$(BIN).dfu: $(BUILD)/$(BIN).elf
 	@echo DFUCONV $@

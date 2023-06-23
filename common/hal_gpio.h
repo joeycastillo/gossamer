@@ -47,6 +47,11 @@
 #define HAL_GPIO_PMUX_G      6
 #define HAL_GPIO_PMUX_H      7
 #define HAL_GPIO_PMUX_I      8
+#define HAL_GPIO_PMUX_J      9
+#define HAL_GPIO_PMUX_K      10
+#define HAL_GPIO_PMUX_L      11
+#define HAL_GPIO_PMUX_M      12
+#define HAL_GPIO_PMUX_N      13
 
 #define HAL_GPIO_PIN(name, port, pin)						\
   static inline void HAL_GPIO_##name##_set(void)				\

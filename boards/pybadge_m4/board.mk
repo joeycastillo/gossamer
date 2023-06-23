@@ -1,0 +1,6 @@
+CHIP = samd51
+LDSCRIPT = samd51j19
+
+DEFINES += \
+  -D__SAMD51J19A__ \
+  -DCRYSTALLESS \

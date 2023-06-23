@@ -27,6 +27,10 @@
 #include "system.h"
 #include "adc.h"
 
+#if defined(_SAMD51_)
+/// TODO: Deal with dual ADC situation on SAM D51
+#define ADC ADC0
+#endif
 #if !defined(ADC_INPUTCTRL_MUXNEG_GND_Val) && defined(_SAML22_)
 #define ADC_INPUTCTRL_MUXNEG_GND_Val (0x18)
 #endif
@@ -63,11 +67,16 @@ void adc_init(void) {
     MCLK->APBDMASK.reg |= MCLK_APBDMASK_ADC;
     // Configure ADC to use GCLK0 (the main 8 MHz oscillator)
     GCLK->PCHCTRL[ADC_GCLK_ID].reg = GCLK_PCHCTRL_GEN_GCLK0 | GCLK_PCHCTRL_CHEN;
-#else // SAM L22
+#elif defined(_SAML22_)
     // enable the ADC
     MCLK->APBCMASK.reg |= MCLK_APBCMASK_ADC;
     // Configure ADC to use GCLK0 (the main 8 MHz oscillator)
     GCLK->PCHCTRL[ADC_GCLK_ID].reg = GCLK_PCHCTRL_GEN_GCLK0 | GCLK_PCHCTRL_CHEN;
+#else // SAM D51
+    // enable the ADC
+    MCLK->APBDMASK.reg |= MCLK_APBDMASK_ADC0;
+    // Configure ADC to use GCLK0 (the main 8 MHz oscillator)
+    GCLK->PCHCTRL[ADC0_GCLK_ID].reg = GCLK_PCHCTRL_GEN_GCLK0 | GCLK_PCHCTRL_CHEN;
 #endif
 
     if (ADC->CTRLA.bit.ENABLE) {
@@ -77,7 +86,11 @@ void adc_init(void) {
     ADC->CTRLA.bit.SWRST = 1;
     _adc_sync();
 
+#if defined(_SAMD51_)
+    ADC->CTRLA.bit.PRESCALER = ADC_CTRLA_PRESCALER_DIV16_Val;
+#else
     ADC->CTRLB.bit.PRESCALER = ADC_CTRLB_PRESCALER_DIV16_Val;
+#endif
 
 #if defined(_SAMD21_) || defined(_SAMD11_)
     // set calibration data
@@ -95,7 +108,7 @@ void adc_init(void) {
     ADC->INPUTCTRL.bit.MUXNEG = ADC_INPUTCTRL_MUXNEG_GND_Val;
     // ...and divide by 2 since our reference is VDDANA / 2
     ADC->INPUTCTRL.bit.GAIN = ADC_INPUTCTRL_GAIN_DIV2_Val;
-#else
+#elif defined(_SAML22_) || defined(_SAML21_)
     // set calibration data
     ADC->CALIB.reg = ADC_CALIB_BIASREFBUF((*(uint32_t *)ADC_FUSES_BIASREFBUF_ADDR >> ADC_FUSES_BIASREFBUF_Pos)) |
                 ADC_CALIB_BIASCOMP((*(uint32_t *)ADC_FUSES_BIASCOMP_ADDR >> ADC_FUSES_BIASCOMP_Pos));
@@ -104,6 +117,17 @@ void adc_init(void) {
     ADC->REFCTRL.bit.REFSEL = ADC_REFCTRL_REFSEL_INTVCC2_Val;
     // oversample to 16 bits
     ADC->CTRLC.bit.RESSEL = ADC_CTRLC_RESSEL_16BIT_Val;
+    // compare input to GND
+    ADC->INPUTCTRL.bit.MUXNEG = ADC_INPUTCTRL_MUXNEG_GND_Val;
+#else
+    // set calibration data
+    ADC->CALIB.reg = ADC_CALIB_BIASREFBUF((*(uint32_t *)ADC0_FUSES_BIASREFBUF_ADDR >> ADC0_FUSES_BIASREFBUF_Pos)) |
+                     ADC_CALIB_BIASCOMP((*(uint32_t *)ADC0_FUSES_BIASCOMP_ADDR >> ADC0_FUSES_BIASCOMP_Pos));
+    _adc_sync();
+    // set reference voltage to VDDANA
+    ADC->REFCTRL.bit.REFSEL = ADC_REFCTRL_REFSEL_INTVCC1_Val;
+    // oversample to 16 bits
+    ADC->CTRLB.bit.RESSEL = ADC_CTRLB_RESSEL_16BIT_Val;
     // compare input to GND
     ADC->INPUTCTRL.bit.MUXNEG = ADC_INPUTCTRL_MUXNEG_GND_Val;
 #endif
@@ -127,7 +151,9 @@ void adc_disable(void) {
     PM->APBAMASK.reg &= ~PM_APBCMASK_ADC;
 #elif defined(_SAML21_)
     MCLK->APBDMASK.reg &= ~MCLK_APBDMASK_ADC;
-#else // SAM L22
+#elif defined(_SAML22_)
     MCLK->APBCMASK.reg &= ~MCLK_APBCMASK_ADC;
+#else // SAM D51
+    MCLK->APBDMASK.reg &= ~MCLK_APBDMASK_ADC0;
 #endif
 }

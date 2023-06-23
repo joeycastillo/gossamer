@@ -35,6 +35,8 @@
 #include <stdbool.h>
 #include "dma_util.h"
 
+#ifndef _SAMD51_
+
 typedef struct {
     uint8_t channel;                            // (0 to DMAC_CH_NUM-1, or 0xFF)
     volatile dma_status_t jobStatus;            // Last known DMA job status
@@ -100,3 +102,5 @@ bool dma_configure(gossamer_dma_job_t *dmaJob, uint8_t peripheralTrigger, dma_tr
 DmacDescriptor *dma_add_descriptor(gossamer_dma_job_t *dmaJob, void *src, void *dst, uint32_t count, dma_beat_size_t size, dma_address_increment_t addressIncrement, dma_stepsize_t stepSize, dma_stepsel_t stepSel);
 
 bool dma_start_job(gossamer_dma_job_t *dmaJob);
+
+#endif

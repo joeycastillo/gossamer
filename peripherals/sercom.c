@@ -13,6 +13,23 @@ void _sercom_clock_setup(uint8_t sercom) {
     /* SERCOM5 is on AHB-APB Bridge D (not C like everyone else) */
     if (sercom == 5) MCLK->APBDMASK.reg |= clock_mask;
     else MCLK->APBCMASK.reg |= clock_mask;
+#elif defined(_SAMD51_)
+    switch (sercom) {
+        case 0:
+        case 1:
+            MCLK->APBAMASK.reg |= clock_mask;
+            break;
+        case 2:
+        case 3:
+            MCLK->APBBMASK.reg |= clock_mask;
+            break;
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+            MCLK->APBDMASK.reg |= clock_mask;
+            break;
+    }
 #else
     /* Enable the APB clock for SERCOM. */
     MCLK->APBCMASK.reg |= clock_mask;

@@ -71,8 +71,12 @@ void eic_enable(void) {
     CTRLREG.bit.ENABLE = 1;
     _eic_sync();
 
+#if defined(_SAMD51_)
+    /// TODO: SAM D51 has interrupt lines for each channel
+#else
     NVIC_ClearPendingIRQ(EIC_IRQn);
     NVIC_EnableIRQ(EIC_IRQn);
+#endif
 }
 
 void eic_configure_channel(const uint8_t channel, eic_interrupt_trigger trigger) {
@@ -98,8 +102,12 @@ void eic_configure_channel(const uint8_t channel, eic_interrupt_trigger trigger)
 
 void eic_disable(void) {
     CTRLREG.bit.ENABLE = 0;
+#if defined(_SAMD51_)
+    /// TODO: SAM D51 has interrupt lines for each channel
+#else
     NVIC_DisableIRQ(EIC_IRQn);
     NVIC_ClearPendingIRQ(EIC_IRQn);
+#endif
 }
 
 void eic_configure_callback(eic_cb_t callback) {

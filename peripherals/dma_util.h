@@ -3,6 +3,9 @@
 
 #include "sam.h"
 
+/// TODO: DMA on SAMD51
+#ifndef _SAMD51_
+
 typedef enum {
     DMA_CONFIG_LOOP     = 1 << 0,
     DMA_CONFIG_RUNSTDBY = 1 << 1,
@@ -101,5 +104,7 @@ typedef enum {
     DMA_STATUS_ABORTED,
     DMA_STATUS_JOBSTATUS = -1 // For printStatus() function
 } dma_status_t;
+
+#endif
 
 #endif // DMA_UTIL_H_INCLUDED
