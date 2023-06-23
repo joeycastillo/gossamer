@@ -4,8 +4,6 @@
 #include "tc.h"
 #include <math.h>
 
-#define RUNTIME_MINUTES (60)
-
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
 
@@ -70,14 +68,14 @@ void app_setup(void) {
     tcc_enable(0);
 }
 
-const int maxLoops = 1400 * RUNTIME_MINUTES; // 1400 loops keeps the light on about a minute.
-int loops = 1400 * RUNTIME_MINUTES;
+bool on = true;
 int mode = 0;
 
 bool app_loop(void) {
     static int i = 0;
     static int j = 0;
     static int k = 0;
+    static int dir = 4;
 
     // In mode 0:
     // CC[0] controls all green LEDs
@@ -94,49 +92,62 @@ bool app_loop(void) {
     // while the PATT register controls the brightness.
     switch (mode) {
         case 0:
+            switch (k) {
+                case 0:
+                    i++;
+                    if (i == 255) k++;
+                    break;
+                case 1:
+                    j++;
+                    if (j == 255) k++;
+                    break;
+                case 2:
+                    i--;
+                    if (i == 0) k++;
+                    break;
+                case 3:
+                    j--;
+                    if (j == 0) k = 0;
+                    break;
+            }
+            tcc_set_cc(0, 0, j);
+            tcc_set_cc(0, 1, i);
+            delay_ms(2);
+            break;
         case 1:
-            tcc_set_cc(0, 0, (flicker[i + 0] / 6) >> MAX(maxLoops / loops - 1, 0));
-            tcc_set_cc(0, 1, (flicker[i + 0] / 2) >> MAX(maxLoops / loops - 1, 0));
-            // in mode 0, these will have no effect since CC0 and CC1 control everything.
-            tcc_set_cc(0, 2, (flicker[i + 2] / 6) >> MAX(maxLoops / loops - 1, 0));
-            tcc_set_cc(0, 3, (flicker[i + 2] / 2) >> MAX(maxLoops / loops - 1, 0));
+            tcc_set_cc(0, 0, (flicker[i + 0] / 6));
+            tcc_set_cc(0, 1, (flicker[i + 0] / 2));
+            tcc_set_cc(0, 2, (flicker[i + 2] / 6));
+            tcc_set_cc(0, 3, (flicker[i + 2] / 2));
 
             i = (i + 1) % (sizeof(flicker) - 2);
             delay_ms(50);
             break;
         case 2:
-            // we're moving too fast in this mode, disable naps.
-            loops = maxLoops;
-            if (i % 4 == 0) {
-                TCC0->PATT.reg = (!!((flicker[j + 0] >> (7 - k)) > 0)) << TCC_PATT_PGE0_Pos |
-                                 (!!((flicker[j + 0] >> (7 - k)) > 0)) << TCC_PATT_PGE1_Pos |
-                                 (!!((flicker[j + 2] >> (7 - k)) > 0)) << TCC_PATT_PGE2_Pos |
-                                 (!!((flicker[j + 2] >> (7 - k)) > 0)) << TCC_PATT_PGE3_Pos |
-                                 (!!((flicker[j + 4] >> (7 - k)) > 0)) << TCC_PATT_PGE4_Pos |
-                                 (!!((flicker[j + 4] >> (7 - k)) > 0)) << TCC_PATT_PGE5_Pos;
-            } else {
-                TCC0->PATT.reg = 0x000000FF;
+            TCC0->PATT.reg = (MAX(((i +   0) % 256), 52) < j) << TCC_PATT_PGE0_Pos |
+                             (MAX(((i +   0) % 256), 52) < j) << TCC_PATT_PGE1_Pos |
+                             (MAX(((i +  85) % 256), 52) < j) << TCC_PATT_PGE2_Pos |
+                             (MAX(((i +  85) % 256), 52) < j) << TCC_PATT_PGE3_Pos |
+                             (MAX(((i + 170) % 256), 52) < j) << TCC_PATT_PGE4_Pos |
+                             (MAX(((i + 170) % 256), 52) < j) << TCC_PATT_PGE5_Pos;
+            j = (j + 1) % 256;
+            if (j == 0) {
+                i += dir;
+                if (i <= 0) dir = 4;
+                else if (i >= 255) dir = -4;
             }
             while (TCC0->SYNCBUSY.bit.PATT);
-            if (i++ >= 1024) {
-                i = 0;
-                j++;
-            }
-            if (k++ > 7) {
-                k = 0;
-                j = (j + 4) % (sizeof(flicker) - 4);
-            }
     }
 
     if (HAL_GPIO_BUTTON1_read() == false) {
         mode = 0;
-        loops = 0;
+        on = false;
     }
     if (HAL_GPIO_BUTTON2_read() == false) {
         mode = (mode + 1) % 3;
-        loops = maxLoops;
         i = 0;
         j = 0;
+        k = 0;
         tcc_set_cc(0, 0, 0);
         tcc_set_cc(0, 1, 0);
         tcc_set_cc(0, 2, 0);
@@ -157,13 +168,13 @@ bool app_loop(void) {
         }
         tcc_enable(0);
         delay_ms(500);
-        tcc_set_cc(0, 0, 85);
+        tcc_set_cc(0, 0, 128);
         tcc_set_cc(0, 1, 255);
-        tcc_set_cc(0, 2, 85);
+        tcc_set_cc(0, 2, 128);
         tcc_set_cc(0, 3, 255);
     }
 
-    if (--loops <= 0) {
+    if (!on) {
         HAL_GPIO_RED1_pmuxdis();
         HAL_GPIO_GREEN1_pmuxdis();
         HAL_GPIO_RED2_pmuxdis();
