@@ -90,11 +90,58 @@ void eic_configure_channel(const uint8_t channel, eic_interrupt_trigger trigger)
     config &= ~(7 << sense_pos);
     config |= trigger << (sense_pos);
     EIC->CONFIG[config_index].reg = config;
+
+    CTRLREG.bit.ENABLE = 1;
+    _eic_sync();
+}
+
+void eic_enable_interrupt(const uint8_t channel) {
+    CTRLREG.bit.ENABLE = 0;
+    _eic_sync();
+
     EIC->INTENSET.reg = 1 << channel;
 #if defined(_SAMD21_) || defined(_SAMD11_)
     uint32_t wakeup = EIC->WAKEUP.reg;
     EIC->WAKEUP.reg = wakeup | (1 << channel);
 #endif
+
+    CTRLREG.bit.ENABLE = 1;
+    _eic_sync();
+}
+
+void eic_disable_interrupt(const uint8_t channel) {
+    CTRLREG.bit.ENABLE = 0;
+    _eic_sync();
+
+    EIC->INTENCLR.reg = 1 << channel;
+#if defined(_SAMD21_) || defined(_SAMD11_)
+    uint32_t wakeup = EIC->WAKEUP.reg;
+    EIC->WAKEUP.reg = wakeup & ~(1 << channel);
+#endif
+
+    CTRLREG.bit.ENABLE = 1;
+    _eic_sync();
+}
+
+void eic_enable_event(const uint8_t channel) {
+    CTRLREG.bit.ENABLE = 0;
+    _eic_sync();
+
+    EIC_EVCTRL_Type evctrl;
+    evctrl.reg = EIC->EVCTRL.reg | EIC_EVCTRL_EXTINTEO(1 << channel);
+    EIC->EVCTRL.reg = evctrl.reg;
+
+    CTRLREG.bit.ENABLE = 1;
+    _eic_sync();
+}
+
+void eic_disable_event(const uint8_t channel) {
+    CTRLREG.bit.ENABLE = 0;
+    _eic_sync();
+
+    EIC_EVCTRL_Type evctrl;
+    evctrl.reg = EIC->EVCTRL.reg & ~EIC_EVCTRL_EXTINTEO(1 << channel);
+    EIC->EVCTRL.reg = evctrl.reg;
 
     CTRLREG.bit.ENABLE = 1;
     _eic_sync();

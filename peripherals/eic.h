@@ -56,8 +56,30 @@ void eic_enable(void);
   *          is associated with that pin, and pass that channel number into this function.
   * @param channel The external interrupt channel associated with the pin (consult the data sheet).
   * @param trigger The condition on which you wish to trigger: rising, falling or both.
+  * @note This function does not enable generation of either an interrupt or an event. You must call
+  *       eic_enable_interrupt() or eic_enable_event() to do that.
   */
 void eic_configure_channel(const uint8_t channel, eic_interrupt_trigger trigger);
+
+/** @brief Enables an interrupt on the given interrupt channel.
+  * @param channel The external interrupt channel.
+  */
+void eic_enable_interrupt(const uint8_t channel);
+
+/** @brief Disables the interrupt on the given interrupt channel.
+  * @param channel The external interrupt channel.
+  */
+void eic_disable_interrupt(const uint8_t channel);
+
+/** @brief Enables an interrupt on the given interrupt channel.
+  * @param channel The external interrupt channel.
+  */
+void eic_enable_event(const uint8_t channel);
+
+/** @brief Disables the interrupt on the given interrupt channel.
+  * @param channel The external interrupt channel.
+  */
+void eic_disable_event(const uint8_t channel);
 
 /** @brief Configures an external interrupt callback.
   * @param callback The function that will be called when the interrupt fires.
