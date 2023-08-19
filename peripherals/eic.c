@@ -25,11 +25,28 @@
 #include <stddef.h>
 #include "eic.h"
 #include "sam.h"
+#include "hal_gpio.h"
 
 #if defined(_SAMD21_) || defined(_SAMD11_)
 #define CTRLREG (EIC->CTRL)
 #else
 #define CTRLREG (EIC->CTRLA)
+#endif
+
+#if defined(_SAMD11_)
+static const int8_t _eic_pin_to_channel[1][32] = {
+    {-1, -1, 2, 3, 4, 5, 6, 7, 6, 7, 2, 3, -1, -1, -1, 1, 0, 1, -1, -1, -1, -1, 6, 7, 4, 5, -1, 7, -1, -1, 2, 3},
+};
+#else
+#ifdef _SAMD51_
+/// TODO: Do mapping for SAM D51
+#warning "External Interrupt Controller not yet implemented for SAM D51"
+#endif
+static const int8_t _eic_pin_to_channel[3][32] = {
+    {0, 1, 2, 3, 4, 5, 6, 7, -1, 9, 10, 11, 12, 13, 14, 15, -1, 1, 2, 3, 4, 5, 6, 7, 12, 13, -1, 15, 8, -1, 10, 11},
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, -1, -1, -1, -1, 14, 15},
+    {8, 9, 10, 11, -1, 13, 14, 15, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, -1, -1, -1, 1, 2, 3, 4, -1, -1, -1}
+};
 #endif
 
 eic_cb_t _eic_callback = NULL;
@@ -79,12 +96,23 @@ void eic_enable(void) {
 #endif
 }
 
-void eic_configure_channel(const uint8_t channel, eic_interrupt_trigger trigger) {
+bool eic_configure_pin(const uint32_t pin, eic_interrupt_trigger trigger) {
+    uint16_t port = pin >> 8;
+    int8_t channel = _eic_pin_to_channel[port][pin % 32];
+    if (channel < 0) {
+        return false;
+    }
     uint8_t config_index = (channel > 7) ? 1 : 0;
     uint8_t sense_pos = 4 * (channel % 8);
 
     CTRLREG.bit.ENABLE = 0;
     _eic_sync();
+
+    PORT->Group[port].DIRCLR.reg = (1 << (pin % 32));
+    PORT->Group[port].PINCFG[pin % 32].reg |= PORT_PINCFG_INEN;
+    PORT->Group[port].PINCFG[pin % 32].reg |= PORT_PINCFG_PMUXEN;
+    if (pin & 1) PORT->Group[port].PMUX[(pin % 32) >> 1].bit.PMUXO = HAL_GPIO_PMUX_EIC;
+    else PORT->Group[port].PMUX[(pin % 32) >> 1].bit.PMUXE = HAL_GPIO_PMUX_EIC;
 
     uint32_t config = EIC->CONFIG[config_index].reg;
     config &= ~(7 << sense_pos);
@@ -93,9 +121,16 @@ void eic_configure_channel(const uint8_t channel, eic_interrupt_trigger trigger)
 
     CTRLREG.bit.ENABLE = 1;
     _eic_sync();
+
+    return true;
 }
 
-void eic_enable_interrupt(const uint8_t channel) {
+bool eic_enable_interrupt(const uint8_t pin) {
+    int8_t channel = _eic_pin_to_channel[pin / 32][pin % 32];
+    if (channel < 0) {
+        return false;
+    }
+
     CTRLREG.bit.ENABLE = 0;
     _eic_sync();
 
@@ -107,9 +142,16 @@ void eic_enable_interrupt(const uint8_t channel) {
 
     CTRLREG.bit.ENABLE = 1;
     _eic_sync();
+
+    return true;
 }
 
-void eic_disable_interrupt(const uint8_t channel) {
+bool eic_disable_interrupt(const uint8_t pin) {
+    int8_t channel = _eic_pin_to_channel[pin / 32][pin % 32];
+    if (channel < 0) {
+        return false;
+    }
+
     CTRLREG.bit.ENABLE = 0;
     _eic_sync();
 
@@ -121,9 +163,16 @@ void eic_disable_interrupt(const uint8_t channel) {
 
     CTRLREG.bit.ENABLE = 1;
     _eic_sync();
+
+    return true;
 }
 
-void eic_enable_event(const uint8_t channel) {
+bool eic_enable_event(const uint8_t pin) {
+    int8_t channel = _eic_pin_to_channel[pin / 32][pin % 32];
+    if (channel < 0) {
+        return false;
+    }
+
     CTRLREG.bit.ENABLE = 0;
     _eic_sync();
 
@@ -133,9 +182,16 @@ void eic_enable_event(const uint8_t channel) {
 
     CTRLREG.bit.ENABLE = 1;
     _eic_sync();
+
+    return true;
 }
 
-void eic_disable_event(const uint8_t channel) {
+bool eic_disable_event(const uint8_t pin) {
+    int8_t channel = _eic_pin_to_channel[pin / 32][pin % 32];
+    if (channel < 0) {
+        return false;
+    }
+
     CTRLREG.bit.ENABLE = 0;
     _eic_sync();
 
@@ -145,6 +201,8 @@ void eic_disable_event(const uint8_t channel) {
 
     CTRLREG.bit.ENABLE = 1;
     _eic_sync();
+
+    return true;
 }
 
 void eic_disable(void) {

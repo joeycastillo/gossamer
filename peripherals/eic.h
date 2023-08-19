@@ -49,40 +49,43 @@ void eic_init(void);
   */
 void eic_enable(void);
 
-/** @brief Configures an external interrupt on one of the external interrupt channels
-  * @details Note that this call does not deal with pins at all. Your external interrupt pin needs
-  *          to already be configured as an input, and assigned to the EIC peripheral function.
-  *          With that done, consult the pin mux table in the data sheet to see which EIC channel
-  *          is associated with that pin, and pass that channel number into this function.
-  * @param channel The external interrupt channel associated with the pin (consult the data sheet).
+/** @brief Configures an external interrupt on one of the external interrupt pins.
+  * @details This function configures the interrupt channel with the specified trigger, but it does not
+  *          set pin direction, mux or pull; you must set up the pin yourself. This function also does
+  *          not enable an interrupt or event generation. You must call eic_enable_interrupt() or
+  *          eic_enable_event() to either wake the processor or generate an event for a peripheral.
+  * @param pin The external interrupt pin you wish to configure
   * @param trigger The condition on which you wish to trigger: rising, falling or both.
-  * @note This function does not enable generation of either an interrupt or an event. You must call
-  *       eic_enable_interrupt() or eic_enable_event() to do that.
+  * @note Be sure to check your pin multiplexing table to ensure that you do not have multiple pins
+  *       assigned to the same interrupt channel.
   */
-void eic_configure_channel(const uint8_t channel, eic_interrupt_trigger trigger);
+bool eic_configure_pin(const uint32_t pin, eic_interrupt_trigger trigger);
 
 /** @brief Enables an interrupt on the given interrupt channel.
-  * @param channel The external interrupt channel.
+  * @param pin The external interrupt pin.
   */
-void eic_enable_interrupt(const uint8_t channel);
+bool eic_enable_interrupt(const uint8_t pin);
 
 /** @brief Disables the interrupt on the given interrupt channel.
-  * @param channel The external interrupt channel.
+  * @param pin The external interrupt pin.
   */
-void eic_disable_interrupt(const uint8_t channel);
+bool eic_disable_interrupt(const uint8_t pin);
 
 /** @brief Enables an interrupt on the given interrupt channel.
-  * @param channel The external interrupt channel.
+  * @param pin The external interrupt pin.
   */
-void eic_enable_event(const uint8_t channel);
+bool eic_enable_event(const uint8_t pin);
 
 /** @brief Disables the interrupt on the given interrupt channel.
-  * @param channel The external interrupt channel.
+  * @param pin The external interrupt pin.
   */
-void eic_disable_event(const uint8_t channel);
+bool eic_disable_event(const uint8_t pin);
 
 /** @brief Configures an external interrupt callback.
+  * @details You only get the one callback, so if you need to handle multiple interrupts, you'll need
+  *          to check the EIC->INTFLAG register in your callback to determine which interrupt fired.
   * @param callback The function that will be called when the interrupt fires.
+  * @note This function is called from the interrupt handler, so it should be as short as possible.
   */
 void eic_configure_callback(eic_cb_t callback);
 

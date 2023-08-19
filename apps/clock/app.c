@@ -20,8 +20,8 @@ void app_setup(void) {
     // set up the I²C peripheral...
     HAL_GPIO_SDA_out();
     HAL_GPIO_SCL_out();
-    HAL_GPIO_SDA_pmuxen(HAL_GPIO_PMUX_D);
-    HAL_GPIO_SCL_pmuxen(HAL_GPIO_PMUX_D);
+    HAL_GPIO_SDA_pmuxen(HAL_GPIO_PMUX_SERCOM_ALT);
+    HAL_GPIO_SCL_pmuxen(HAL_GPIO_PMUX_SERCOM_ALT);
     i2c_init();
     i2c_enable();
     // ...and the Oddly Specific LCD
@@ -34,18 +34,21 @@ void app_setup(void) {
 
     HAL_GPIO_D5_in();
     HAL_GPIO_D5_pullup();
-    HAL_GPIO_D5_pmuxen(HAL_GPIO_PMUX_A);
-    eic_configure_channel(15, INTERRUPT_TRIGGER_FALLING);
+    HAL_GPIO_D5_pmuxen(HAL_GPIO_PMUX_EIC);
+    eic_configure_pin(HAL_GPIO_D5_pin(), INTERRUPT_TRIGGER_FALLING);
+    eic_enable_interrupt(HAL_GPIO_D5_pin());
 
     HAL_GPIO_D6_in();
     HAL_GPIO_D6_pullup();
-    HAL_GPIO_D6_pmuxen(HAL_GPIO_PMUX_A);
-    eic_configure_channel(4, INTERRUPT_TRIGGER_FALLING);
+    HAL_GPIO_D6_pmuxen(HAL_GPIO_PMUX_EIC);
+    eic_configure_pin(HAL_GPIO_D6_pin(), INTERRUPT_TRIGGER_FALLING);
+    eic_enable_interrupt(HAL_GPIO_D6_pin());
 
     HAL_GPIO_D9_in();
     HAL_GPIO_D9_pullup();
-    HAL_GPIO_D9_pmuxen(HAL_GPIO_PMUX_A);
-    eic_configure_channel(7, INTERRUPT_TRIGGER_FALLING);
+    HAL_GPIO_D9_pmuxen(HAL_GPIO_PMUX_EIC);
+    eic_configure_pin(HAL_GPIO_D9_pin(), INTERRUPT_TRIGGER_FALLING);
+    eic_enable_interrupt(HAL_GPIO_D9_pin());
 }
 
 bool app_loop(void) {

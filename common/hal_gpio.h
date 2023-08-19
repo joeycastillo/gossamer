@@ -137,6 +137,13 @@
     PORT->Group[HAL_GPIO_PORT##port].PINCFG[pin].reg &= ~PORT_PINCFG_PMUXEN;	\
     (void)HAL_GPIO_##name##_pmuxdis;						\
   }										\
+										\
+  static inline uint16_t HAL_GPIO_##name##_pin(void)				\
+  {										\
+    return ((HAL_GPIO_PORT##port << 8) | pin);					\
+    (void)HAL_GPIO_##name##_pin;						\
+  }										\
+                    \
 
 #ifdef APP_USES_TINYUSB
 HAL_GPIO_PIN(USB_N, A, 24)
