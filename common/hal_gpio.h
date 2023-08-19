@@ -107,7 +107,7 @@
   {										\
     PORT->Group[HAL_GPIO_PORT##port].OUTCLR.reg = (1 << pin);			\
     PORT->Group[HAL_GPIO_PORT##port].PINCFG[pin].reg |= PORT_PINCFG_PULLEN;	\
-    (void)HAL_GPIO_##name##_pullup;						\
+    (void)HAL_GPIO_##name##_pulldown;						\
   }										\
 										\
   static inline int HAL_GPIO_##name##_read(void)				\
