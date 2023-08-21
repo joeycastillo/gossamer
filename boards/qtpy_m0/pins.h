@@ -1,0 +1,40 @@
+#pragma once
+
+#include "hal_gpio.h"
+#include "spi.h"
+#include "i2c.h"
+#include "uart.h"
+
+// Analog pins
+HAL_GPIO_PIN(A0,   A, 2)
+HAL_GPIO_PIN(A1,   A, 3)
+HAL_GPIO_PIN(A2,   A, 4)
+HAL_GPIO_PIN(A3,   A, 5)
+
+// SPI
+HAL_GPIO_PIN(SCK,  A, 11)
+HAL_GPIO_PIN(MOSI, A, 10)
+HAL_GPIO_PIN(MISO, A,  9)
+#define SPI_SERCOM 2
+#define SPI_SERCOM_DOPO SPI_DOPO_2_SCK_3
+#define SPI_SERCOM_DIPO SPI_DIPO_0
+
+// I2C
+HAL_GPIO_PIN(SDA,  A, 16)
+HAL_GPIO_PIN(SCL,  A, 17)
+#define I2C_SERCOM 1
+
+// UART
+HAL_GPIO_PIN(TX,   A, 6)
+HAL_GPIO_PIN(RX,   A, 7)
+#define UART_SERCOM 0
+#define UART_SERCOM_TXPO UART_TXPO_2
+#define UART_SERCOM_RXPO UART_RXPO_3
+
+// Express boards
+HAL_GPIO_PIN(FLASH_SCK,  A, 23)
+HAL_GPIO_PIN(FLASH_MOSI, A, 22)
+HAL_GPIO_PIN(FLASH_MISO, A, 19)
+HAL_GPIO_PIN(FLASH_CS,   A,  8)
+HAL_GPIO_PIN(NEOPIXEL,   A, 18)
+HAL_GPIO_PIN(NEOPWR,     A, 15)
