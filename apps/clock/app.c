@@ -2,7 +2,7 @@
 #include "i2c.h"
 #include "eic.h"
 #include "rtc.h"
-#include "drivers/oso_lcd.h"
+#include "../../drivers/lcd/oso_lcd.h"
 #include <stdio.h>
 
 static void _display_time(rtc_date_time date_time);

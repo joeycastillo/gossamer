@@ -11,7 +11,7 @@ include $(TOP)/make.mk
 # Add all your source files to compile after the app.c line.
 SRCS += \
   ./app.c \
-  ./drivers/oso_lcd.c \
+  ../../drivers/lcd/oso_lcd.c \
 
 # Finally, leave this line at the bottom of the file.
 include $(TOP)/rules.mk
