@@ -57,11 +57,12 @@ void adc_init(void);
 void adc_enable(void);
 
 /**
- * @brief Gets the analog value of the given ADC channel.
- * @param channel The ADC channel to read from (NOT the pin number).
- * @return The analog value of the given ADC channel, from 0-65535 by default.
+ * @brief Gets the analog value on the given ADC pin.
+ * @param pin The ADC pin you wish to read (i.e. `HAL_GPIO_A0_pin()`)
+ * @return The analog value of the given ADC pin, from 0-65535 by default.
+ *         If the pin is not an ADC pin, returns 0.
  */
-uint16_t adc_get_analog_value(uint16_t channel);
+uint16_t adc_get_analog_value(uint16_t pin);
 
 /**
  * @brief Disables the ADC peripheral

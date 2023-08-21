@@ -31,6 +31,35 @@
 /// TODO: Deal with dual ADC situation on SAM D51
 #define ADC ADC0
 #endif
+
+#if defined(_SAMD11_)
+static const int8_t _adc_pin_to_channel[1][32] = {
+    {-1, -1, 0, 1, 2, 3, 4, 5, -1, -1, 8, 9, 6, 7, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}
+};
+#elif defined(_SAMD21_)
+static const int8_t _adc_pin_to_channel[2][32] = {
+    {-1, -1, 0, 1, 4, 5, 6, 7, 16, 17, 18, 19, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+    {8, 9, 10, 11, 12, 13, 14, 15, 2, 3, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}
+};
+#elif defined(_SAML21_)
+static const int8_t _adc_pin_to_channel[2][32] = {
+    {-1, -1, 0, 1, 4, 5, 6, 7, 16, 17, 18, 19, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+    {8, 9, 10, 11, 12, 13, 14, 15, 2, 3, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}
+};
+#elif defined(_SAML22_)
+static const int8_t _adc_pin_to_channel[3][32] = {
+    {-1, -1, 0, 1, 4, 5, 6, 7, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+    {8, 9, 10, 11, 12, 13, 14, 15, 2, 3, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+    {16, 17, 18, 19, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}
+};
+#elif defined(_SAMD51_)
+/// TODO: Do mapping for SAM D51
+#warning "External Interrupt Controller not yet implemented for SAM D51"
+static const int8_t _eic_pin_to_channel[3][32] = {
+};
+#endif
+
+
 #if !defined(ADC_INPUTCTRL_MUXNEG_GND_Val) && defined(_SAML22_)
 #define ADC_INPUTCTRL_MUXNEG_GND_Val (0x18)
 #endif
@@ -43,7 +72,13 @@ static void _adc_sync(void) {
 #endif
 }
 
-uint16_t adc_get_analog_value(uint16_t channel) {
+uint16_t adc_get_analog_value(uint16_t pin) {
+    uint16_t port = pin >> 8;
+    int8_t channel = _adc_pin_to_channel[port][pin % 32];
+    if (channel < 0) {
+        return 0;
+    }
+
     if (ADC->INPUTCTRL.bit.MUXPOS != channel) {
         ADC->INPUTCTRL.bit.MUXPOS = channel;
         _adc_sync();
