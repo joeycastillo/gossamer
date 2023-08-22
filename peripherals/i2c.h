@@ -28,7 +28,7 @@ typedef enum {
 
 /**
  * @brief Initializes the I2C peripheral for a board with defined SDA/SCL pins.
- *        Defaults to a bus speed of 400kHz.
+ *        Defaults to a bus speed of 100kHz.
  * @details This function will only work if a board has pins named SDA and SCL,
  *          and relevant definitions for I2C_SERCOM. If you don't have these
  *          definitions, the build will fail at  link time.
@@ -47,6 +47,14 @@ void i2c_enable(void);
  * @param len The length of the data to write.
  */
 I2CResult i2c_write(uint8_t address, uint8_t* data, size_t len);
+
+/**
+ * @brief Reads data from an I2C device at the provided address.
+ * @param address The I2C address of the device.
+ * @param data A pointer to the buffer to read into.
+ * @param len The length of the data to read.
+ */
+I2CResult i2c_read(uint8_t address, uint8_t* data, size_t len);
 
 /**
  * @brief Disables the I2C peripheral for a board with defined SDA/SCL pins.
@@ -77,6 +85,15 @@ void i2c_enable_custom(uint8_t sercom);
  * @param len The length of the data to write.
  */
 I2CResult i2c_write_custom(uint8_t sercom, uint8_t address, uint8_t* data, size_t len);
+
+/**
+ * @brief Reads data from an I2C device on the given SERCOM at the provided address.
+ * @param sercom The SERCOM of the I2C peripheral, as numbered in the data sheet.
+ * @param address The I2C address of the device.
+ * @param data A pointer to the buffer to read into.
+ * @param len The length of the data to read.
+ */
+I2CResult i2c_read_custom(uint8_t sercom, uint8_t address, uint8_t* data, size_t len);
 
 /**
  * @brief Disables the I2C peripheral on the given SERCOM.

@@ -20,7 +20,7 @@
 #if defined(I2C_SERCOM)
 
 void i2c_init(void) {
-    i2c_init_custom(I2C_SERCOM, 400000);
+    i2c_init_custom(I2C_SERCOM, 100000);
 }
 
 void i2c_enable(void) {
@@ -29,6 +29,10 @@ void i2c_enable(void) {
 
 I2CResult i2c_write(uint8_t address, uint8_t* data, size_t len) {
     return i2c_write_custom(I2C_SERCOM, address, data, len);
+}
+
+I2CResult i2c_read(uint8_t address, uint8_t* data, size_t len) {
+    return i2c_read_custom(I2C_SERCOM, address, data, len);
 }
 
 void i2c_disable(void) {
@@ -62,7 +66,7 @@ void i2c_init_custom(uint8_t sercom, uint32_t baud) {
                                      SERCOM_I2CM_CTRLA_MODE(5);  // work as master
 #endif
     /* Enable smart mode */
-    SERCOM->I2CM.CTRLB.reg = SERCOM_I2CM_CTRLB_SMEN | SERCOM_I2CM_CTRLB_QCEN;
+    SERCOM->I2CM.CTRLB.reg = SERCOM_I2CM_CTRLB_SMEN;
     while (SERCOM->I2CM.SYNCBUSY.bit.SYSOP) {};
 
     /* Set baudrate.
@@ -133,6 +137,49 @@ I2CResult i2c_write_custom(uint8_t sercom, uint8_t address, uint8_t* data, size_
     /* Send STOP command. */
     SERCOM_Peripherals[sercom].sercom->I2CM.CTRLB.bit.CMD = 3;
     while (SERCOM_Peripherals[sercom].sercom->I2CM.SYNCBUSY.bit.SYSOP) {};
+
+    return I2C_RESULT_SUCCESS;
+}
+
+I2CResult i2c_read_custom(uint8_t sercom, uint8_t address, uint8_t* data, size_t len) {
+    Sercom* SERCOM = SERCOM_Peripherals[sercom].sercom;
+
+    /* Before trying to write, check to see if the bus is busy, if it is,
+       bail.
+    */
+    if (SERCOM->I2CM.STATUS.bit.BUSSTATE == BUSSTATE_BUSY) {
+        return I2C_RESULT_ERR_BUSSTATE;
+    }
+
+    /* Address + read flag. */
+    SERCOM->I2CM.ADDR.bit.ADDR = (address << 0x1ul) | 0x1ul;
+
+    /* This can hang forever, so put a timeout on it. */
+    size_t w = 0;
+    for (; w < 100000; w++) {
+        if (SERCOM->I2CM.INTFLAG.bit.SB) {
+            break;
+        }
+    }
+
+    /* Check for loss of bus or NACK - in either case we can't continue. */
+    if (SERCOM->I2CM.STATUS.bit.BUSSTATE != BUSSTATE_OWNER) {
+        return I2C_RESULT_ERR_BUSSTATE;
+    }
+    if (SERCOM->I2CM.STATUS.bit.RXNACK) {
+        return I2C_RESULT_ERR_ADDR_NACK;
+    }
+
+    /* Receive data bytes. */
+    for (size_t i = 0; i < len; i++) {
+        /* Receive data and wait for RX complete. */
+        data[i] = SERCOM->I2CM.DATA.bit.DATA;
+        while (!SERCOM->I2CM.INTFLAG.bit.SB);
+    }
+
+    /* Send STOP command. */
+    SERCOM->I2CM.CTRLB.bit.CMD = 3;
+    while (SERCOM->I2CM.SYNCBUSY.bit.SYSOP) {};
 
     return I2C_RESULT_SUCCESS;
 }
