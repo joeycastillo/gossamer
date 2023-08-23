@@ -22,8 +22,11 @@
  * SOFTWARE.
  */
 
+#include <stddef.h>
 #include "rtc.h"
 #include "sam.h"
+
+rtc_cb_t _rtc_callback = NULL;
 
 #if defined(_SAMD21_) || defined(_SAMD11_)
 #define CTRLREG (RTC->MODE2.CTRL)
@@ -92,6 +95,10 @@ void rtc_enable_alarm_interrupt(rtc_date_time alarm_time, rtc_alarm_match mask) 
     NVIC_EnableIRQ(RTC_IRQn);
 }
 
+void rtc_configure_callback(rtc_cb_t callback) {
+    _rtc_callback = callback;
+}
+
 void rtc_disable_alarm_interrupt(void) {
     RTC->MODE2.INTENCLR.reg = RTC_MODE2_INTENCLR_ALARM0;
     NVIC_ClearPendingIRQ(RTC_IRQn);
@@ -103,5 +110,9 @@ void irq_handler_rtc(void);
 void irq_handler_rtc(void) {
     if (RTC->MODE2.INTFLAG.bit.ALARM0) {
         RTC->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_ALARM0;
+        if (_rtc_callback != NULL) {
+            // TODO: Periodic events and tamper pins on supported devices
+            _rtc_callback(0);
+        }
     }
 }

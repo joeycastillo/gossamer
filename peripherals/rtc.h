@@ -52,6 +52,8 @@ typedef enum rtc_alarm_match {
     ALARM_MATCH_HHMMSS,
 } rtc_alarm_match;
 
+typedef void (*rtc_cb_t)(uint8_t source);
+
 /** @brief Initializes the RTC.
  *  @details Configures the RTC for 24-hour clock / calendar mode, with a 1 Hz
  *           tick derived from the 1024 Hz clock on GCLK3 (for SAM D devices)
@@ -93,3 +95,8 @@ void rtc_enable_alarm_interrupt(rtc_date_time alarm_time, rtc_alarm_match mask);
 /** @brief Disables the alarm callback.
   */
 void rtc_disable_alarm_interrupt(void);
+
+/** @brief Configures the RTC alarm callback.
+  * @param callback The function to call when an RTC interrupt occurs.
+  */
+void rtc_configure_callback(rtc_cb_t callback);
