@@ -36,7 +36,7 @@ void _sercom_clock_setup(uint8_t sercom) {
 #endif
 
 #if defined(_SAMD21_) || defined(_SAMD11_)
-    /* Enable GCLK1 for the SERCOM */
+    /* Enable GCLK0 for the SERCOM */
     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN |
                         GCLK_CLKCTRL_GEN_GCLK0 |
                         GCLK_CLKCTRL_ID(clock_id);
