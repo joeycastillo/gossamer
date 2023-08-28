@@ -1,7 +1,9 @@
 /*
-    Cribbed from the Castor & Pollux Gemini firmware:
-    https://github.com/wntrblm/Castor_and_Pollux/
-    Copyright (c) 2021 Alethea Katherine Flowers.
+    Bits cribbed from Alex Taradov's BSD-3 licensed UART peripheral,
+    Copyright (c) 2017-2023, Alex Taradov <alex@taradov.com>. All rights reserved.
+    Full text available at: https://opensource.org/licenses/BSD-3
+    Other stuff is MIT-licensed by me, Joey Castillo.
+    Copyright 2023 Joey Castillo for Oddly Specific Objects.
     Published under the standard MIT License.
     Full text available at: https://opensource.org/licenses/MIT
 */
@@ -12,7 +14,76 @@
 #include "sercom.h"
 #include "uart.h"
 
+#ifndef SERCOM_USART_CTRLA_MODE_USART_INT_CLK
+#define SERCOM_USART_CTRLA_MODE_USART_INT_CLK SERCOM_USART_CTRLA_MODE(1)
+#endif
+
 #if defined(UART_SERCOM)
+
+#define UART_BUF_SIZE 256
+
+typedef struct {
+    int     wr;
+    int     rd;
+    uint8_t data[UART_BUF_SIZE];
+} fifo_buffer_t;
+
+static volatile fifo_buffer_t uart_rx_fifo;
+static volatile fifo_buffer_t uart_tx_fifo;
+static volatile bool uart_fifo_overflow = false;
+
+static bool fifo_push(volatile fifo_buffer_t *fifo, uint8_t value) {
+    int next_wr = (fifo->wr + 1) % UART_BUF_SIZE;
+
+    if (next_wr == fifo->rd) return false;
+
+    fifo->data[fifo->wr] = value;
+    fifo->wr = next_wr;
+
+    return true;
+}
+
+static bool fifo_pop(volatile fifo_buffer_t *fifo, uint8_t *value) {
+    if (fifo->rd == fifo->wr) return false;
+
+    *value = fifo->data[fifo->rd];
+    fifo->rd = (fifo->rd + 1) % UART_BUF_SIZE;
+
+    return true;
+}
+
+static bool uart_write_byte(uint8_t sercom, uint8_t byte) {
+    Sercom* SERCOM = SERCOM_Peripherals[sercom].sercom;
+    bool res = false;
+
+    NVIC_DisableIRQ(SERCOM_Peripherals[sercom].interrupt_line);
+
+    if (fifo_push(&uart_tx_fifo, byte)) {
+        SERCOM->USART.INTENSET.reg = SERCOM_USART_INTENSET_DRE;
+        res = true;
+    }
+
+    NVIC_EnableIRQ(SERCOM_Peripherals[sercom].interrupt_line);
+
+    return res;
+}
+
+static bool uart_read_byte(uint8_t sercom, uint8_t *byte) {
+    bool res = false;
+
+    NVIC_DisableIRQ(SERCOM_Peripherals[sercom].interrupt_line);
+
+    if (uart_fifo_overflow) {
+        uart_fifo_overflow = false;
+        res = true;
+    } else if (fifo_pop(&uart_rx_fifo, byte)) {
+        res = true;
+    }
+
+    NVIC_EnableIRQ(SERCOM_Peripherals[sercom].interrupt_line);
+
+    return res;
+}
 
 void uart_init(uint32_t baud) {
     uart_init_custom(UART_SERCOM, UART_SERCOM_TXPO, UART_SERCOM_RXPO, baud);
@@ -26,8 +97,8 @@ void uart_write(uint8_t *data, size_t length) {
     uart_write_custom(UART_SERCOM, data, length);
 }
 
-uint8_t uart_read(void) {
-    return uart_read_custom(UART_SERCOM);
+size_t uart_read(uint8_t *data, size_t max_length) {
+    return uart_read_custom(UART_SERCOM, data, max_length);
 }
 
 void uart_disable(void) {
@@ -61,17 +132,29 @@ void uart_init_custom(uint8_t sercom, uart_txpo_t txpo, uart_rxpo_t rxpo, uint32
         SERCOM->USART.CTRLB.bit.RXEN = 1;
     }
 
-    /* Setup UART controller. */
-    SERCOM->USART.CTRLA.reg = SERCOM_USART_CTRLA_MODE(1) |
-                                   SERCOM_USART_CTRLA_SAMPR(0) |
-                                   SERCOM_USART_CTRLA_DORD |
-                                   SERCOM_USART_CTRLA_TXPO(txpo) |
-                                   SERCOM_USART_CTRLA_RXPO(rxpo);
+    SERCOM->USART.CTRLA.reg = SERCOM_USART_CTRLA_FORM(0) |
+                              SERCOM_USART_CTRLA_MODE_USART_INT_CLK |
+                              SERCOM_USART_CTRLA_DORD |
+                              SERCOM_USART_CTRLA_SAMPR(0) |
+                              SERCOM_USART_CTRLA_TXPO(txpo) |
+                              SERCOM_USART_CTRLA_RXPO(rxpo);
 
-    /* Set baud */
     uint32_t cpu_speed = get_cpu_frequency();
     uint64_t br = (uint64_t)65536 * (cpu_speed - 16 * baud) / cpu_speed;
     SERCOM->USART.BAUD.bit.BAUD = br + 1;
+
+    uart_tx_fifo.wr = 0;
+    uart_tx_fifo.rd = 0;
+
+    uart_rx_fifo.wr = 0;
+    uart_rx_fifo.rd = 0;
+
+    uart_fifo_overflow = false;
+
+    SERCOM->USART.INTENSET.reg = SERCOM_USART_INTENSET_RXC;
+
+    NVIC_ClearPendingIRQ(SERCOM_Peripherals[sercom].interrupt_line);
+    NVIC_EnableIRQ(SERCOM_Peripherals[sercom].interrupt_line);
 }
 
 void uart_enable_custom(uint8_t sercom) {
@@ -79,21 +162,42 @@ void uart_enable_custom(uint8_t sercom) {
 }
 
 void uart_write_custom(uint8_t sercom, uint8_t *data, size_t length) {
-    while (!SERCOM_Peripherals[sercom].sercom->USART.INTFLAG.bit.DRE) {}
-
     for (size_t i = 0; i < length; i++) {
-        SERCOM_Peripherals[sercom].sercom->USART.DATA.bit.DATA = data[i];
-        while (!SERCOM_Peripherals[sercom].sercom->USART.INTFLAG.bit.TXC) {}
+        uart_write_byte(sercom, data[i]);
     }
 }
 
-uint8_t uart_read_custom(uint8_t sercom) {
-    while (!SERCOM_Peripherals[sercom].sercom->USART.INTFLAG.bit.DRE) {}
+size_t uart_read_custom(uint8_t sercom, uint8_t *data, size_t max_length) {
+    size_t bytes_read;
+    for (bytes_read = 0; bytes_read < max_length; bytes_read++) {
+        if (!uart_read_byte(sercom, &data[bytes_read])) break;
+    }
 
-    while (!SERCOM_Peripherals[sercom].sercom->USART.INTFLAG.bit.RXC) {}
-    return SERCOM_Peripherals[sercom].sercom->USART.DATA.bit.DATA;
+    return bytes_read;
 }
 
 void uart_disable_custom(uint8_t sercom) {
     _sercom_disable(sercom);
+}
+
+void uart_irq_handler(uint8_t sercom) {
+    Sercom* SERCOM = SERCOM_Peripherals[sercom].sercom;
+
+    int flags = SERCOM->USART.INTFLAG.reg;
+
+    if (flags & SERCOM_USART_INTFLAG_RXC) {
+        int status = SERCOM->USART.STATUS.reg;
+        uint8_t byte = SERCOM->USART.DATA.reg;
+
+        SERCOM->USART.STATUS.reg = status;
+
+        if (!fifo_push(&uart_rx_fifo, byte)) uart_fifo_overflow = true;
+    }
+
+    if (flags & SERCOM_USART_INTFLAG_DRE) {
+        uint8_t byte;
+
+        if (fifo_pop(&uart_tx_fifo, &byte)) SERCOM->USART.DATA.reg = byte;
+        else SERCOM->USART.INTENCLR.reg = SERCOM_USART_INTENCLR_DRE;
+    }
 }

@@ -49,6 +49,7 @@ typedef struct {
     Sercom* sercom;
     uint32_t clock_enable_mask;
     uint8_t gclk_id;
+    uint8_t interrupt_line;
 } SERCOM_Instance_Details;
 
 extern const TC_Instance_Details TC_Peripherals[];
