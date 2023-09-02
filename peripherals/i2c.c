@@ -153,6 +153,9 @@ I2CResult i2c_read_custom(uint8_t sercom, uint8_t address, uint8_t* data, size_t
 
     /* Address + read flag. */
     SERCOM->I2CM.ADDR.bit.ADDR = (address << 0x1ul) | 0x1ul;
+    
+    // Prepare ACK
+    SERCOM->I2CM.CTRLB.reg &= ~SERCOM_I2CM_CTRLB_ACKACT;
 
     /* This can hang forever, so put a timeout on it. */
     size_t w = 0;
@@ -177,8 +180,8 @@ I2CResult i2c_read_custom(uint8_t sercom, uint8_t address, uint8_t* data, size_t
         while (!SERCOM->I2CM.INTFLAG.bit.SB);
     }
 
-    /* Send STOP command. */
-    SERCOM->I2CM.CTRLB.bit.CMD = 3;
+    /* Send STOP command, NACK */
+    SERCOM->I2CM.CTRLB.reg |= SERCOM_I2CM_CTRLB_ACKACT | SERCOM_I2CM_CTRLB_CMD(3);
     while (SERCOM->I2CM.SYNCBUSY.bit.SYSOP) {};
 
     return I2C_RESULT_SUCCESS;
