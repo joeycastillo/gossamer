@@ -69,36 +69,36 @@ static bool uart_write_byte(uint8_t sercom, uint8_t byte) {
 }
 
 bool uart_read_byte(uint8_t *byte) {
-    uart_read_byte_custom(UART_SERCOM, byte);
+    return uart_read_byte_instance(UART_SERCOM, byte);
 }
 
 void uart_init(uint32_t baud) {
-    uart_init_custom(UART_SERCOM, UART_SERCOM_TXPO, UART_SERCOM_RXPO, baud);
+    uart_init_instance(UART_SERCOM, UART_SERCOM_TXPO, UART_SERCOM_RXPO, baud);
 }
 
 void uart_set_run_in_standby(bool run_in_standby) {
-    uart_set_run_in_standby_custom(UART_SERCOM, run_in_standby);
+    uart_set_run_in_standby_instance(UART_SERCOM, run_in_standby);
 }
 
 void uart_enable(void) {
-    uart_enable_custom(UART_SERCOM);
+    uart_enable_instance(UART_SERCOM);
 }
 
 void uart_write(uint8_t *data, size_t length) {
-    uart_write_custom(UART_SERCOM, data, length);
+    uart_write_instance(UART_SERCOM, data, length);
 }
 
 size_t uart_read(uint8_t *data, size_t max_length) {
-    return uart_read_custom(UART_SERCOM, data, max_length);
+    return uart_read_instance(UART_SERCOM, data, max_length);
 }
 
 void uart_disable(void) {
-    uart_disable_custom(UART_SERCOM);
+    uart_disable_instance(UART_SERCOM);
 }
 
 #endif
 
-void uart_init_custom(uint8_t sercom, uart_txpo_t txpo, uart_rxpo_t rxpo, uint32_t baud) {
+void uart_init_instance(uint8_t sercom, uart_txpo_t txpo, uart_rxpo_t rxpo, uint32_t baud) {
     Sercom* SERCOM = SERCOM_Peripherals[sercom].sercom;
 
     _sercom_clock_setup(sercom);
@@ -148,30 +148,30 @@ void uart_init_custom(uint8_t sercom, uart_txpo_t txpo, uart_rxpo_t rxpo, uint32
     NVIC_EnableIRQ(SERCOM_Peripherals[sercom].interrupt_line);
 }
 
-void uart_set_run_in_standby_custom(uint8_t sercom, bool run_in_standby) {
+void uart_set_run_in_standby_instance(uint8_t sercom, bool run_in_standby) {
     SERCOM_Peripherals[sercom].sercom->USART.CTRLA.bit.RUNSTDBY = run_in_standby;
 }
 
-void uart_enable_custom(uint8_t sercom) {
+void uart_enable_instance(uint8_t sercom) {
     _sercom_enable(sercom);
 }
 
-void uart_write_custom(uint8_t sercom, uint8_t *data, size_t length) {
+void uart_write_instance(uint8_t sercom, uint8_t *data, size_t length) {
     for (size_t i = 0; i < length; i++) {
         uart_write_byte(sercom, data[i]);
     }
 }
 
-size_t uart_read_custom(uint8_t sercom, uint8_t *data, size_t max_length) {
+size_t uart_read_instance(uint8_t sercom, uint8_t *data, size_t max_length) {
     size_t bytes_read;
     for (bytes_read = 0; bytes_read < max_length; bytes_read++) {
-        if (!uart_read_byte_custom(sercom, &data[bytes_read])) break;
+        if (!uart_read_byte_instance(sercom, &data[bytes_read])) break;
     }
 
     return bytes_read;
 }
 
-bool uart_read_byte_custom(uint8_t sercom, uint8_t *byte) {
+bool uart_read_byte_instance(uint8_t sercom, uint8_t *byte) {
     bool res = false;
 
     NVIC_DisableIRQ(SERCOM_Peripherals[sercom].interrupt_line);
@@ -188,7 +188,7 @@ bool uart_read_byte_custom(uint8_t sercom, uint8_t *byte) {
     return res;
 }
 
-void uart_disable_custom(uint8_t sercom) {
+void uart_disable_instance(uint8_t sercom) {
     _sercom_disable(sercom);
 }
 

@@ -69,13 +69,13 @@ void i2c_disable(void);
  *       This function does not know which pins you intend to use, or whether they are on
  *       the SERCOM or SERCOM_ALT pin mux.
  */
-void i2c_init_custom(uint8_t sercom, uint32_t baud);
+void i2c_init_instance(uint8_t sercom, uint32_t baud);
 
 /**
  * @brief Enables the I2C peripheral on the given SERCOM.
  * @param sercom The SERCOM of the I2C peripheral, as numbered in the data sheet.
  */
-void i2c_enable_custom(uint8_t sercom);
+void i2c_enable_instance(uint8_t sercom);
 
 /**
  * @brief Writes data to an I2C device on the given SERCOM at the provided address.
@@ -84,7 +84,7 @@ void i2c_enable_custom(uint8_t sercom);
  * @param data The data to write.
  * @param len The length of the data to write.
  */
-I2CResult i2c_write_custom(uint8_t sercom, uint8_t address, uint8_t* data, size_t len);
+I2CResult i2c_write_instance(uint8_t sercom, uint8_t address, uint8_t* data, size_t len);
 
 /**
  * @brief Reads data from an I2C device on the given SERCOM at the provided address.
@@ -93,10 +93,10 @@ I2CResult i2c_write_custom(uint8_t sercom, uint8_t address, uint8_t* data, size_
  * @param data A pointer to the buffer to read into.
  * @param len The length of the data to read.
  */
-I2CResult i2c_read_custom(uint8_t sercom, uint8_t address, uint8_t* data, size_t len);
+I2CResult i2c_read_instance(uint8_t sercom, uint8_t address, uint8_t* data, size_t len);
 
 /**
  * @brief Disables the I2C peripheral on the given SERCOM.
  * @param sercom The SERCOM of the I2C peripheral, as numbered in the data sheet.
  */
-void i2c_disable_custom(uint8_t sercom);
+void i2c_disable_instance(uint8_t sercom);

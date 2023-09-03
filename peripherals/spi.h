@@ -48,10 +48,10 @@ uint8_t spi_transfer(uint8_t data);
 
 void spi_disable(void);
 
-void spi_init_custom(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, spi_mode_t mode, uint32_t baud);
+void spi_init_instance(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, spi_mode_t mode, uint32_t baud);
 
-void spi_enable_custom(uint8_t sercom);
+void spi_enable_instance(uint8_t sercom);
 
-uint8_t spi_transfer_custom(uint8_t sercom, uint8_t data);
+uint8_t spi_transfer_instance(uint8_t sercom, uint8_t data);
 
-void spi_disable_custom(uint8_t sercom);
+void spi_disable_instance(uint8_t sercom);

@@ -15,24 +15,24 @@
 #if defined(SPI_SERCOM)
 
 void spi_init(spi_mode_t mode, uint32_t baud) {
-    spi_init_custom(SPI_SERCOM, SPI_SERCOM_DOPO, SPI_SERCOM_DIPO, mode, baud);
+    spi_init_instance(SPI_SERCOM, SPI_SERCOM_DOPO, SPI_SERCOM_DIPO, mode, baud);
 }
 
 void spi_enable(void) {
-    spi_enable_custom(SPI_SERCOM);
+    spi_enable_instance(SPI_SERCOM);
 }
 
 uint8_t spi_transfer(uint8_t data) {
-    return spi_transfer_custom(SPI_SERCOM, data);
+    return spi_transfer_instance(SPI_SERCOM, data);
 }
 
 void spi_disable(void) {
-    spi_disable_custom(SPI_SERCOM);
+    spi_disable_instance(SPI_SERCOM);
 }
 
 #endif
 
-void spi_init_custom(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, spi_mode_t mode, uint32_t baud) {
+void spi_init_instance(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, spi_mode_t mode, uint32_t baud) {
     Sercom* SERCOM = SERCOM_Peripherals[sercom].sercom;
 
     _sercom_clock_setup(sercom);
@@ -82,11 +82,11 @@ void spi_init_custom(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, spi_mode_
     }
 }
 
-void spi_enable_custom(uint8_t sercom) {
+void spi_enable_instance(uint8_t sercom) {
     _sercom_enable(sercom);
 }
 
-uint8_t spi_transfer_custom(uint8_t sercom, uint8_t data) {
+uint8_t spi_transfer_instance(uint8_t sercom, uint8_t data) {
     while (!SERCOM_Peripherals[sercom].sercom->SPI.INTFLAG.bit.DRE) {}
 
     SERCOM_Peripherals[sercom].sercom->SPI.DATA.bit.DATA = data;
@@ -96,6 +96,6 @@ uint8_t spi_transfer_custom(uint8_t sercom, uint8_t data) {
     return SERCOM_Peripherals[sercom].sercom->SPI.DATA.bit.DATA;
 }
 
-void spi_disable_custom(uint8_t sercom) {
+void spi_disable_instance(uint8_t sercom) {
     _sercom_disable(sercom);
 }
