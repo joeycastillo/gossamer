@@ -68,25 +68,16 @@ static bool uart_write_byte(uint8_t sercom, uint8_t byte) {
     return res;
 }
 
-static bool uart_read_byte(uint8_t sercom, uint8_t *byte) {
-    bool res = false;
-
-    NVIC_DisableIRQ(SERCOM_Peripherals[sercom].interrupt_line);
-
-    if (uart_fifo_overflow) {
-        uart_fifo_overflow = false;
-        res = true;
-    } else if (fifo_pop(&uart_rx_fifo, byte)) {
-        res = true;
-    }
-
-    NVIC_EnableIRQ(SERCOM_Peripherals[sercom].interrupt_line);
-
-    return res;
+bool uart_read_byte(uint8_t *byte) {
+    uart_read_byte_custom(UART_SERCOM, byte);
 }
 
 void uart_init(uint32_t baud) {
     uart_init_custom(UART_SERCOM, UART_SERCOM_TXPO, UART_SERCOM_RXPO, baud);
+}
+
+void uart_set_run_in_standby(bool run_in_standby) {
+    uart_set_run_in_standby_custom(UART_SERCOM, run_in_standby);
 }
 
 void uart_enable(void) {
@@ -157,6 +148,10 @@ void uart_init_custom(uint8_t sercom, uart_txpo_t txpo, uart_rxpo_t rxpo, uint32
     NVIC_EnableIRQ(SERCOM_Peripherals[sercom].interrupt_line);
 }
 
+void uart_set_run_in_standby_custom(uint8_t sercom, bool run_in_standby) {
+    SERCOM_Peripherals[sercom].sercom->USART.CTRLA.bit.RUNSTDBY = run_in_standby;
+}
+
 void uart_enable_custom(uint8_t sercom) {
     _sercom_enable(sercom);
 }
@@ -170,10 +165,27 @@ void uart_write_custom(uint8_t sercom, uint8_t *data, size_t length) {
 size_t uart_read_custom(uint8_t sercom, uint8_t *data, size_t max_length) {
     size_t bytes_read;
     for (bytes_read = 0; bytes_read < max_length; bytes_read++) {
-        if (!uart_read_byte(sercom, &data[bytes_read])) break;
+        if (!uart_read_byte_custom(sercom, &data[bytes_read])) break;
     }
 
     return bytes_read;
+}
+
+bool uart_read_byte_custom(uint8_t sercom, uint8_t *byte) {
+    bool res = false;
+
+    NVIC_DisableIRQ(SERCOM_Peripherals[sercom].interrupt_line);
+
+    if (uart_fifo_overflow) {
+        uart_fifo_overflow = false;
+        res = true;
+    } else if (fifo_pop(&uart_rx_fifo, byte)) {
+        res = true;
+    }
+
+    NVIC_EnableIRQ(SERCOM_Peripherals[sercom].interrupt_line);
+
+    return res;
 }
 
 void uart_disable_custom(uint8_t sercom) {
