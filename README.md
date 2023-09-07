@@ -3,6 +3,10 @@
 gossamer: a very lightweight firmware framework for SAMD and SAML chips
 =======================================================================
 
+## WARNING: I am dramatically refactoring right now (Fall 2023) as I make use of this framework in a couple of real world projects. The API is subject to dramatic and breaking changes for the next few months as I work through what I want this to be. — Joey
+
+# Original README
+
 > gos·sa·mer noun  
 > \ ˈgä-sə-mər \  
 >  
