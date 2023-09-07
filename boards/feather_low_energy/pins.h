@@ -15,6 +15,9 @@ HAL_GPIO_PIN(A3,   B, 9)
 HAL_GPIO_PIN(A4,   A, 6)
 HAL_GPIO_PIN(A5,   A, 7)
 
+// battery temperature sensor on solar feather express
+HAL_GPIO_PIN(TS,   A, 3)
+
 #define HAL_GPIO_A0_DAC_CHANNEL 0
 #define HAL_GPIO_A1_DAC_CHANNEL 1
 
