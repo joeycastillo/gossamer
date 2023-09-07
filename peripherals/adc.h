@@ -57,6 +57,17 @@ void adc_init(void);
 void adc_enable(void);
 
 /**
+ * @brief Sets the sampling length for the ADC.
+ * @details The sampling length sets the number of ADC clock cycles for which the
+ *          ADC will sample the input, less 1 (so 0 represents 1 clock cycle).
+ *          The default is 0, which is a good choice for inputs with impedance
+ *          up to 28 kOhm. Each additional clock cycle of sampling time adds
+ *          about 32 kOhm to the maximum input impedance.
+ * @see https://blog.thea.codes/getting-the-most-out-of-the-samd21-adc/
+ */
+void adc_set_sampling_length(uint8_t length);
+
+/**
  * @brief Gets the analog value on the given ADC pin.
  * @param pin The ADC pin you wish to read (i.e. `HAL_GPIO_A0_pin()`)
  * @return The analog value of the given ADC pin, from 0-65535 by default.
