@@ -116,34 +116,77 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_init</b> (uint32
 <tr class="memitem:affcbd24efeade3b1444100dbbc614e88"><td class="memItemLeft" align="right" valign="top"><a id="affcbd24efeade3b1444100dbbc614e88" name="affcbd24efeade3b1444100dbbc614e88"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_enable</b> (void)</td></tr>
 <tr class="separator:affcbd24efeade3b1444100dbbc614e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa034660a70fb244c2e25187509985760"><td class="memItemLeft" align="right" valign="top"><a id="aa034660a70fb244c2e25187509985760" name="aa034660a70fb244c2e25187509985760"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_set_run_in_standby</b> (bool run_in_standby)</td></tr>
+<tr class="separator:aa034660a70fb244c2e25187509985760"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e0844dd68d04ca88f255b6c75326a70"><td class="memItemLeft" align="right" valign="top"><a id="a6e0844dd68d04ca88f255b6c75326a70" name="a6e0844dd68d04ca88f255b6c75326a70"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_write</b> (uint8_t *data, size_t length)</td></tr>
 <tr class="separator:a6e0844dd68d04ca88f255b6c75326a70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab497d11289820e1b33be1f6b8abb27d0"><td class="memItemLeft" align="right" valign="top"><a id="ab497d11289820e1b33be1f6b8abb27d0" name="ab497d11289820e1b33be1f6b8abb27d0"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>uart_read</b> (void)</td></tr>
-<tr class="separator:ab497d11289820e1b33be1f6b8abb27d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb00b8879d87fea2a41df7f2772c916c"><td class="memItemLeft" align="right" valign="top"><a id="acb00b8879d87fea2a41df7f2772c916c" name="acb00b8879d87fea2a41df7f2772c916c"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>uart_read</b> (uint8_t *data, size_t max_length)</td></tr>
+<tr class="separator:acb00b8879d87fea2a41df7f2772c916c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c3fa8ab576e34e015d469a2734d3292"><td class="memItemLeft" align="right" valign="top"><a id="a6c3fa8ab576e34e015d469a2734d3292" name="a6c3fa8ab576e34e015d469a2734d3292"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>uart_read_byte</b> (uint8_t *byte)</td></tr>
+<tr class="separator:a6c3fa8ab576e34e015d469a2734d3292"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dbcc0696f2607e16da1f55d3b4d6d94"><td class="memItemLeft" align="right" valign="top"><a id="a9dbcc0696f2607e16da1f55d3b4d6d94" name="a9dbcc0696f2607e16da1f55d3b4d6d94"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_disable</b> (void)</td></tr>
 <tr class="separator:a9dbcc0696f2607e16da1f55d3b4d6d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5968472adab00fba83f1e749d8a4470c"><td class="memItemLeft" align="right" valign="top"><a id="a5968472adab00fba83f1e749d8a4470c" name="a5968472adab00fba83f1e749d8a4470c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_init_custom</b> (uint8_t sercom, uart_txpo_t txpo, uart_rxpo_t rxpo, uint32_t baud)</td></tr>
-<tr class="separator:a5968472adab00fba83f1e749d8a4470c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a999ac3420527c8db2d20b8bdc591160c"><td class="memItemLeft" align="right" valign="top"><a id="a999ac3420527c8db2d20b8bdc591160c" name="a999ac3420527c8db2d20b8bdc591160c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_enable_custom</b> (uint8_t sercom)</td></tr>
-<tr class="separator:a999ac3420527c8db2d20b8bdc591160c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f37c85dfd695213df08799e698b1bb1"><td class="memItemLeft" align="right" valign="top"><a id="a6f37c85dfd695213df08799e698b1bb1" name="a6f37c85dfd695213df08799e698b1bb1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_write_custom</b> (uint8_t sercom, uint8_t *data, size_t length)</td></tr>
-<tr class="separator:a6f37c85dfd695213df08799e698b1bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a392dfd5186d513d178d5189fc0f3d83e"><td class="memItemLeft" align="right" valign="top"><a id="a392dfd5186d513d178d5189fc0f3d83e" name="a392dfd5186d513d178d5189fc0f3d83e"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>uart_read_custom</b> (uint8_t sercom)</td></tr>
-<tr class="separator:a392dfd5186d513d178d5189fc0f3d83e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d863c4f5c9b20e189d903a5a12268e6"><td class="memItemLeft" align="right" valign="top"><a id="a5d863c4f5c9b20e189d903a5a12268e6" name="a5d863c4f5c9b20e189d903a5a12268e6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_disable_custom</b> (uint8_t sercom)</td></tr>
-<tr class="separator:a5d863c4f5c9b20e189d903a5a12268e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e514ab7ce443e2fd91fbe99bf8cb207"><td class="memItemLeft" align="right" valign="top"><a id="a9e514ab7ce443e2fd91fbe99bf8cb207" name="a9e514ab7ce443e2fd91fbe99bf8cb207"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_init_instance</b> (uint8_t sercom, uart_txpo_t txpo, uart_rxpo_t rxpo, uint32_t baud)</td></tr>
+<tr class="separator:a9e514ab7ce443e2fd91fbe99bf8cb207"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94d5de1ee0878b0fb2d92c3626c3da22"><td class="memItemLeft" align="right" valign="top"><a id="a94d5de1ee0878b0fb2d92c3626c3da22" name="a94d5de1ee0878b0fb2d92c3626c3da22"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_set_run_in_standby_instance</b> (uint8_t sercom, bool run_in_standby)</td></tr>
+<tr class="separator:a94d5de1ee0878b0fb2d92c3626c3da22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad390de8c3b3ddcb3d03a36513262528d"><td class="memItemLeft" align="right" valign="top"><a id="ad390de8c3b3ddcb3d03a36513262528d" name="ad390de8c3b3ddcb3d03a36513262528d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_enable_instance</b> (uint8_t sercom)</td></tr>
+<tr class="separator:ad390de8c3b3ddcb3d03a36513262528d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad53a035557ef05336ff3e45547b65861"><td class="memItemLeft" align="right" valign="top"><a id="ad53a035557ef05336ff3e45547b65861" name="ad53a035557ef05336ff3e45547b65861"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_write_instance</b> (uint8_t sercom, uint8_t *data, size_t length)</td></tr>
+<tr class="separator:ad53a035557ef05336ff3e45547b65861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ab7120aad2e941879ac328479d40af3"><td class="memItemLeft" align="right" valign="top"><a id="a3ab7120aad2e941879ac328479d40af3" name="a3ab7120aad2e941879ac328479d40af3"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>uart_read_instance</b> (uint8_t sercom, uint8_t *data, size_t max_length)</td></tr>
+<tr class="separator:a3ab7120aad2e941879ac328479d40af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb3971f7bde4d345bc981b87866267c9"><td class="memItemLeft" align="right" valign="top"><a id="afb3971f7bde4d345bc981b87866267c9" name="afb3971f7bde4d345bc981b87866267c9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>uart_read_byte_instance</b> (uint8_t sercom, uint8_t *byte)</td></tr>
+<tr class="separator:afb3971f7bde4d345bc981b87866267c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22b6636b750bfa7669521d5be5baed82"><td class="memItemLeft" align="right" valign="top"><a id="a22b6636b750bfa7669521d5be5baed82" name="a22b6636b750bfa7669521d5be5baed82"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_disable_instance</b> (uint8_t sercom)</td></tr>
+<tr class="separator:a22b6636b750bfa7669521d5be5baed82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d2a4f57b803f517096c373734ffa78b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8h.html#a3d2a4f57b803f517096c373734ffa78b">uart_irq_handler</a> (uint8_t sercom)</td></tr>
+<tr class="memdesc:a3d2a4f57b803f517096c373734ffa78b"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART IRQ handler.  <a href="uart_8h.html#a3d2a4f57b803f517096c373734ffa78b">More...</a><br /></td></tr>
+<tr class="separator:a3d2a4f57b803f517096c373734ffa78b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >UART Peripheral. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a3d2a4f57b803f517096c373734ffa78b" name="a3d2a4f57b803f517096c373734ffa78b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d2a4f57b803f517096c373734ffa78b">&#9670;&#160;</a></span>uart_irq_handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uart_irq_handler </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>sercom</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>UART IRQ handler. </p>
+<p >Call this function from the IRQ handler for the UART SERCOM. For example, if you are using SERCOM5, you would do this: <code>void irq_handler_sercom5(void) { uart_irq_handler(5); }</code> UART transmssion and reception are interrupt driven, and nothing will work if this function is not called. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sercom</td><td>SERCOM number </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Really need to refactor this so it's called from the HAL, not the app. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5

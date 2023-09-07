@@ -107,6 +107,9 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a3c94bab30efe7e36ab159810e1ab4954"><td class="memItemLeft" align="right" valign="top"><a id="a3c94bab30efe7e36ab159810e1ab4954" name="a3c94bab30efe7e36ab159810e1ab4954"></a>
 typedef enum rtc_alarm_match&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_alarm_match</b></td></tr>
 <tr class="separator:a3c94bab30efe7e36ab159810e1ab4954"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71ed45e47f36f9518eefe8197b381d2a"><td class="memItemLeft" align="right" valign="top"><a id="a71ed45e47f36f9518eefe8197b381d2a" name="a71ed45e47f36f9518eefe8197b381d2a"></a>
+typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_cb_t</b>) (uint8_t source)</td></tr>
+<tr class="separator:a71ed45e47f36f9518eefe8197b381d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -142,10 +145,39 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_enable</b> (void)
 void&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_disable_alarm_interrupt</b> (void)</td></tr>
 <tr class="memdesc:a0b927833b5d5d87ec161a8c9cb14d633"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the alarm callback. <br /></td></tr>
 <tr class="separator:a0b927833b5d5d87ec161a8c9cb14d633"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dd6108752ed8c8e5dad649d650dc1d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtc_8h.html#a8dd6108752ed8c8e5dad649d650dc1d5">rtc_configure_callback</a> (rtc_cb_t callback)</td></tr>
+<tr class="memdesc:a8dd6108752ed8c8e5dad649d650dc1d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the RTC alarm callback.  <a href="rtc_8h.html#a8dd6108752ed8c8e5dad649d650dc1d5">More...</a><br /></td></tr>
+<tr class="separator:a8dd6108752ed8c8e5dad649d650dc1d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Real-Time Clock. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a8dd6108752ed8c8e5dad649d650dc1d5" name="a8dd6108752ed8c8e5dad649d650dc1d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dd6108752ed8c8e5dad649d650dc1d5">&#9670;&#160;</a></span>rtc_configure_callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtc_configure_callback </td>
+          <td>(</td>
+          <td class="paramtype">rtc_cb_t&#160;</td>
+          <td class="paramname"><em>callback</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configures the RTC alarm callback. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">callback</td><td>The function to call when an RTC interrupt occurs. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ada1a9dfed0eda109983cb46a9000b326" name="ada1a9dfed0eda109983cb46a9000b326"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ada1a9dfed0eda109983cb46a9000b326">&#9670;&#160;</a></span>rtc_enable_alarm_interrupt()</h2>
 

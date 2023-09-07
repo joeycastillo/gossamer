@@ -114,22 +114,26 @@ $(function() {
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &quot;dma_util.h&quot;</span></div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structgossamer__dma__job__t.html">   38</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    uint8_t channel;                            <span class="comment">// (0 to DMAC_CH_NUM-1, or 0xFF)</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">volatile</span> dma_status_t jobStatus;            <span class="comment">// Last known DMA job status</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">bool</span> hasDescriptors;                        <span class="comment">// &#39;true&#39; if one or more descriptors assigned</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">bool</span> loopFlag;                              <span class="comment">// &#39;true&#39; if descriptor chain loops back to start</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    void (*callbacks[DMA_CALLBACK_N])(<span class="keywordtype">void</span> *);  <span class="comment">// Callback function (is passed an instance of this struct)</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>} <a class="code hl_struct" href="structgossamer__dma__job__t.html">gossamer_dma_job_t</a>;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keywordtype">void</span> dma_init(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keywordtype">bool</span> dma_configure(<a class="code hl_struct" href="structgossamer__dma__job__t.html">gossamer_dma_job_t</a> *dmaJob, uint8_t peripheralTrigger, dma_trigger_action_t triggerAction, dma_configuration_flags_t flags);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>DmacDescriptor *dma_add_descriptor(<a class="code hl_struct" href="structgossamer__dma__job__t.html">gossamer_dma_job_t</a> *dmaJob, <span class="keywordtype">void</span> *src, <span class="keywordtype">void</span> *dst, uint32_t count, dma_beat_size_t size, dma_address_increment_t addressIncrement, dma_stepsize_t stepSize, dma_stepsel_t stepSel);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keywordtype">bool</span> dma_start_job(<a class="code hl_struct" href="structgossamer__dma__job__t.html">gossamer_dma_job_t</a> *dmaJob);</div>
-<div class="ttc" id="astructgossamer__dma__job__t_html"><div class="ttname"><a href="structgossamer__dma__job__t.html">gossamer_dma_job_t</a></div><div class="ttdef"><b>Definition:</b> dma.h:38</div></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#ifndef _SAMD51_</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structgossamer__dma__job__t.html">   40</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    uint8_t channel;                            <span class="comment">// (0 to DMAC_CH_NUM-1, or 0xFF)</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">volatile</span> dma_status_t jobStatus;            <span class="comment">// Last known DMA job status</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">bool</span> hasDescriptors;                        <span class="comment">// &#39;true&#39; if one or more descriptors assigned</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">bool</span> loopFlag;                              <span class="comment">// &#39;true&#39; if descriptor chain loops back to start</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    void (*callbacks[DMA_CALLBACK_N])(<span class="keywordtype">void</span> *);  <span class="comment">// Callback function (is passed an instance of this struct)</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <a class="code hl_struct" href="structgossamer__dma__job__t.html">gossamer_dma_job_t</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keywordtype">void</span> dma_init(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keywordtype">bool</span> dma_configure(<a class="code hl_struct" href="structgossamer__dma__job__t.html">gossamer_dma_job_t</a> *dmaJob, uint8_t peripheralTrigger, dma_trigger_action_t triggerAction, dma_configuration_flags_t flags);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>DmacDescriptor *dma_add_descriptor(<a class="code hl_struct" href="structgossamer__dma__job__t.html">gossamer_dma_job_t</a> *dmaJob, <span class="keywordtype">void</span> *src, <span class="keywordtype">void</span> *dst, uint32_t count, dma_beat_size_t size, dma_address_increment_t addressIncrement, dma_stepsize_t stepSize, dma_stepsel_t stepSel);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keywordtype">bool</span> dma_start_job(<a class="code hl_struct" href="structgossamer__dma__job__t.html">gossamer_dma_job_t</a> *dmaJob);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astructgossamer__dma__job__t_html"><div class="ttname"><a href="structgossamer__dma__job__t.html">gossamer_dma_job_t</a></div><div class="ttdef"><b>Definition:</b> dma.h:40</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

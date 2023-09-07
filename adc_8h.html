@@ -96,9 +96,12 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>adc_enable</b> (void)</td></tr>
 <tr class="memdesc:a3afdea3b7c9b91013c270f1a1a669782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the ADC peripheral. <br /></td></tr>
 <tr class="separator:a3afdea3b7c9b91013c270f1a1a669782"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdf9ce1e2c41b0ec24037168737dd1ad"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adc_8h.html#afdf9ce1e2c41b0ec24037168737dd1ad">adc_get_analog_value</a> (uint16_t channel)</td></tr>
-<tr class="memdesc:afdf9ce1e2c41b0ec24037168737dd1ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the analog value of the given ADC channel.  <a href="adc_8h.html#afdf9ce1e2c41b0ec24037168737dd1ad">More...</a><br /></td></tr>
-<tr class="separator:afdf9ce1e2c41b0ec24037168737dd1ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b33d0d9bd2841354f016f8c64be3e15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adc_8h.html#a1b33d0d9bd2841354f016f8c64be3e15">adc_set_sampling_length</a> (uint8_t length)</td></tr>
+<tr class="memdesc:a1b33d0d9bd2841354f016f8c64be3e15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the sampling length for the ADC.  <a href="adc_8h.html#a1b33d0d9bd2841354f016f8c64be3e15">More...</a><br /></td></tr>
+<tr class="separator:a1b33d0d9bd2841354f016f8c64be3e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c8f49eff87c1a55de3b11afe59cae37"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="adc_8h.html#a2c8f49eff87c1a55de3b11afe59cae37">adc_get_analog_value</a> (uint16_t pin)</td></tr>
+<tr class="memdesc:a2c8f49eff87c1a55de3b11afe59cae37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the analog value on the given ADC pin.  <a href="adc_8h.html#a2c8f49eff87c1a55de3b11afe59cae37">More...</a><br /></td></tr>
+<tr class="separator:a2c8f49eff87c1a55de3b11afe59cae37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b4b977d0665b5346849f3b892ac5106"><td class="memItemLeft" align="right" valign="top"><a id="a3b4b977d0665b5346849f3b892ac5106" name="a3b4b977d0665b5346849f3b892ac5106"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>adc_disable</b> (void)</td></tr>
 <tr class="memdesc:a3b4b977d0665b5346849f3b892ac5106"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the ADC peripheral. <br /></td></tr>
@@ -107,8 +110,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>adc_disable</b> (void
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Analog to Digital Converter. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="afdf9ce1e2c41b0ec24037168737dd1ad" name="afdf9ce1e2c41b0ec24037168737dd1ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afdf9ce1e2c41b0ec24037168737dd1ad">&#9670;&#160;</a></span>adc_get_analog_value()</h2>
+<a id="a2c8f49eff87c1a55de3b11afe59cae37" name="a2c8f49eff87c1a55de3b11afe59cae37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c8f49eff87c1a55de3b11afe59cae37">&#9670;&#160;</a></span>adc_get_analog_value()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -117,20 +120,20 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>adc_disable</b> (void
           <td class="memname">uint16_t adc_get_analog_value </td>
           <td>(</td>
           <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>channel</em></td><td>)</td>
+          <td class="paramname"><em>pin</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the analog value of the given ADC channel. </p>
+<p>Gets the analog value on the given ADC pin. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">channel</td><td>The ADC channel to read from (NOT the pin number). </td></tr>
+    <tr><td class="paramname">pin</td><td>The ADC pin you wish to read (i.e. <code>HAL_GPIO_A0_pin()</code>) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The analog value of the given ADC channel, from 0-65535 by default. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The analog value of the given ADC pin, from 0-65535 by default. If the pin is not an ADC pin, returns 0. </dd></dl>
 
 </div>
 </div>
@@ -159,6 +162,27 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>adc_disable</b> (void
 <li>On SAM L21 and L22, sets the reference voltage to VDDANA, which allows use of the full 0-3.3V range.</li>
 <li>On SAM D11 and D21, sets the reference voltage to VDDANA / 2 and the gain to 1/2, which also allows use of the full 0-3.3V range. </li>
 </ul>
+
+</div>
+</div>
+<a id="a1b33d0d9bd2841354f016f8c64be3e15" name="a1b33d0d9bd2841354f016f8c64be3e15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b33d0d9bd2841354f016f8c64be3e15">&#9670;&#160;</a></span>adc_set_sampling_length()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void adc_set_sampling_length </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>length</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the sampling length for the ADC. </p>
+<p >The sampling length sets the number of ADC clock cycles for which the ADC will sample the input, less 1 (so 0 represents 1 clock cycle). The default is 0, which is a good choice for inputs with impedance up to 28 kOhm. Each additional clock cycle of sampling time adds about 32 kOhm to the maximum input impedance. </p><dl class="section see"><dt>See also</dt><dd><a href="https://blog.thea.codes/getting-the-most-out-of-the-samd21-adc/">https://blog.thea.codes/getting-the-most-out-of-the-samd21-adc/</a> </dd></dl>
 
 </div>
 </div>
