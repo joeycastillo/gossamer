@@ -29,24 +29,19 @@ uint16_t pm10_this_hour[60] = {0};
 uint16_t pm25_this_hour[60] = {0};
 uint16_t pm100_this_hour[60] = {0};
 
+float battery_voltage;
+
 typedef enum weather_station_display_mode_t {
-    DISPLAY_MODE_PENDING_MESSAGES = 0,
-    DISPLAY_MODE_TIME,
-    DISPLAY_MODE_TEMP,
-    DISPLAY_MODE_HUMID,
-    DISPLAY_MODE_PRESSURE,
-    DISPLAY_MODE_WIND_SPEED,
-    DISPLAY_MODE_WIND_DIRECTION,
-    DISPLAY_MODE_RAINFALL_THIS_HOUR,
+    DISPLAY_MODE_TIME = 0,
+    DISPLAY_MODE_PENDING_MESSAGES,
     DISPLAY_MODE_BATTERY_VOLTAGE,
-    DISPLAY_MODE_BATTERY_TEMPERATURE,
-    DISPLAY_MODE_LIGHT_LEVEL,
+    DISPLAY_MODE_TEMP,
     DISPLAY_MODE_SEND_TEST_MESSAGE,
     DISPLAY_MODE_CLEAR_QUEUE,
     DISPLAY_MODE_NUMBER_OF_MODES
 } weather_station_display_mode_t;
 
-weather_station_display_mode_t display_mode = DISPLAY_MODE_HUMID;
+weather_station_display_mode_t display_mode = 0;
 
 typedef enum wind_direction_t {
     WIND_DIRECTION_NORTH = 0,
@@ -143,8 +138,26 @@ static uint16_t get_mean_value_for_hour(uint16_t *datapoints) {
 }
 
 void app_init(void) {
+    // Confugure brown-out detector to put us into
+    // BACKUP mode when main power fails
+    SUPC->BOD33.bit.ACTION = SUPC_BOD33_ACTION_BKUP_Val;
+    // Enable sampling in BACKUP mode
+    SUPC->BOD33.bit.PSEL = SUPC_BOD33_PSEL_DIV256_Val;
+    // Run brown-out detector in backup mode, so that
+    // we can detect power restoration
+    SUPC->BOD33.bit.RUNBKUP = 1;
+    // Enable brown-out detector
+    SUPC->BOD33.bit.ENABLE = 1;
+
+    // Setting WAKEEN in will ensure that we wake up
+    // when power is restored.
+    SUPC->BBPS.bit.WAKEEN = 1;    
+
+    // init the RTC    
     rtc_init();
     rtc_enable();
+
+    swarm_m138_get_date_time();
 }
 
 void app_setup(void) {
@@ -191,6 +204,7 @@ void app_setup(void) {
     HAL_GPIO_D10_pullup();
     eic_configure_pin(HAL_GPIO_D10_pin(), INTERRUPT_TRIGGER_FALLING);
     // eic_enable_interrupt(HAL_GPIO_D10_pin()); // Debug purposes only: wakes with each revolution of the anemometer
+
     // Have the External Interrupt Controller generate an event when the anemometer switch (on EIC channel 3) closes.
     eic_enable_event(HAL_GPIO_D10_pin());
     // TC4's event 0 input is the user of the event. Connect this user to the Event System's channel 0.
@@ -279,6 +293,8 @@ static void update_display(void) {
     oso_lcd_fill(0);
     switch (display_mode) {
         case DISPLAY_MODE_PENDING_MESSAGES:
+            oso_lcd_set_indicator(OSO_LCD_INDICATOR_DATA);
+            oso_lcd_print("     ");
             swarm_m138_get_transmit_status();
             break;
         case DISPLAY_MODE_TIME:
@@ -298,57 +314,44 @@ static void update_display(void) {
             sprintf(buf, "te:%3.1f", bme_reading.temperature);
             oso_lcd_print(buf);
             break;
-        case DISPLAY_MODE_HUMID:
-        {
-            bme280_read(&bme_reading);
-            sprintf(buf, "hu:%3.1f", bme_reading.humidity);
-            oso_lcd_print(buf);
-            break;
-        }
-        case DISPLAY_MODE_PRESSURE:
-        {
-            bme280_read(&bme_reading);
-            sprintf(buf, "%5.1f", bme_reading.pressure);
-            oso_lcd_print(buf);
-            break;
-        }
-        case DISPLAY_MODE_WIND_SPEED:
-                TC4->COUNT16.CTRLBSET.reg = TC_CTRLBSET_CMD_READSYNC;
-                while (TC4->COUNT16.SYNCBUSY.bit.CTRLB);
-                while (TC4->COUNT16.SYNCBUSY.bit.COUNT);
-                sprintf(buf, "$J:%3d", TC4->COUNT16.COUNT.reg);
-                oso_lcd_print(buf);
-            break;
-        case DISPLAY_MODE_WIND_DIRECTION:
-            if (datetime.unit.minute == 0) {
-                oso_lcd_print("nodata");
-            } else {
-                sprintf(buf, "$J:d%2d", wind_directions_this_hour[datetime.unit.minute - 1]);
-                oso_lcd_print(buf);
-            }
-            break;
-        case DISPLAY_MODE_RAINFALL_THIS_HOUR:
-            sprintf(buf, "rf:%3d", rain_this_hour);
-            oso_lcd_print(buf);
-            break;
+        // case DISPLAY_MODE_HUMID:
+        // {
+        //     bme280_read(&bme_reading);
+        //     sprintf(buf, "hu:%3.1f", bme_reading.humidity);
+        //     oso_lcd_print(buf);
+        //     break;
+        // }
+        // case DISPLAY_MODE_PRESSURE:
+        // {
+        //     bme280_read(&bme_reading);
+        //     sprintf(buf, "%5.1f", bme_reading.pressure);
+        //     oso_lcd_print(buf);
+        //     break;
+        // }
+        // case DISPLAY_MODE_WIND_SPEED:
+        //         TC4->COUNT16.CTRLBSET.reg = TC_CTRLBSET_CMD_READSYNC;
+        //         while (TC4->COUNT16.SYNCBUSY.bit.CTRLB);
+        //         while (TC4->COUNT16.SYNCBUSY.bit.COUNT);
+        //         sprintf(buf, "$J:%3d", TC4->COUNT16.COUNT.reg);
+        //         oso_lcd_print(buf);
+        //     break;
+        // case DISPLAY_MODE_WIND_DIRECTION:
+        //     if (datetime.unit.minute == 0) {
+        //         oso_lcd_print("nodata");
+        //     } else {
+        //         sprintf(buf, "$J:d%2d", wind_directions_this_hour[datetime.unit.minute - 1]);
+        //         oso_lcd_print(buf);
+        //     }
+        //     break;
+        // case DISPLAY_MODE_RAINFALL_THIS_HOUR:
+        //     sprintf(buf, "rf:%3d", rain_this_hour);
+        //     oso_lcd_print(buf);
+        //     break;
         case DISPLAY_MODE_BATTERY_VOLTAGE:
         {
-            adc_enable();
-            HAL_GPIO_A5_pmuxen(HAL_GPIO_PMUX_ADC);
-            float battery_voltage = adc_get_analog_value(HAL_GPIO_A5_pin());
-            HAL_GPIO_A5_pmuxdis();
-            adc_disable();
-
-            sprintf(buf, "vb:%3.1f", 3.3 * battery_voltage / 65535.0);
+            sprintf(buf, "bt:%03.1f", 2 * 3.3 * battery_voltage / 65535.0);
             oso_lcd_print(buf);
         }
-            break;
-        case DISPLAY_MODE_BATTERY_TEMPERATURE:
-            sprintf(buf, "bt: nc");
-            oso_lcd_print(buf);
-        case DISPLAY_MODE_LIGHT_LEVEL:
-            sprintf(buf, "Li: nc");
-            oso_lcd_print(buf);
             break;
         case DISPLAY_MODE_SEND_TEST_MESSAGE:
             oso_lcd_print("Test.?");
@@ -362,8 +365,38 @@ static void update_display(void) {
     }
 }
 
-static void commit_action(void) {
+static void add_checksum(weather_data_t *data) {
+    uint8_t checksum = 0;
+    uint8_t *dataptr = (uint8_t *)data;
+    for (uint8_t i = 0; i < sizeof(weather_data_t) - 1; i++) {
+        checksum += dataptr[i];
+    }
 
+    data->checksum = checksum;
+}
+
+static void commit_action(void) {
+    char buf[20];
+    rtc_date_time datetime = rtc_get_date_time();
+    bme280_reading_t bme_reading;
+
+    oso_lcd_fill(0);
+    switch (display_mode) {
+        case DISPLAY_MODE_SEND_TEST_MESSAGE:
+        {
+            weather_data_t test_data = {0};
+            test_data.magic = 0x54534554; // "TEST"
+            test_data.timestamp = datetime.reg;
+            add_checksum(&test_data);
+            swarm_m138_transmit_data((uint8_t *)&test_data, sizeof(test_data));
+        }
+            break;
+        case DISPLAY_MODE_CLEAR_QUEUE:
+            // TODO: clear queue
+            break;
+        default:
+            break;
+    }
 }
 
 bool app_loop(void) {
@@ -391,6 +424,7 @@ bool app_loop(void) {
     // on button C press, execute mode if needed
     if (HAL_GPIO_D5_read() == 0) {
         display_needs_update = true;
+        commit_action();
         delay_ms(100);
     }
 
@@ -402,6 +436,13 @@ bool app_loop(void) {
         // enable ADC
         adc_init();
         adc_enable(); // disabled below
+
+        // get battery voltage on A5
+        HAL_GPIO_A5_pmuxen(HAL_GPIO_PMUX_ADC);
+        adc_set_sampling_length(63);
+        battery_voltage = adc_get_analog_value(HAL_GPIO_A5_pin());
+        battery_voltage = 2 * 3.3 * battery_voltage / 65535.0;
+        HAL_GPIO_A5_pmuxdis();
 
         // enable wind direction pin
         HAL_GPIO_A1_pmuxen(HAL_GPIO_PMUX_ADC);
@@ -446,26 +487,23 @@ bool app_loop(void) {
         // Reset the wind speed count
         tc_count16_set_count(4, 0);
 
+        // at top of hour, sync clock with satellite
+        if (datetime.unit.minute == 0) {
+                swarm_m138_get_date_time();
+        }
+
         // at the end of each hour, uplink data to the satellite
         if (datetime.unit.minute == 59) {
-            // get battery voltage on A5
-            HAL_GPIO_A5_pmuxen(HAL_GPIO_PMUX_ADC);
-            adc_set_sampling_length(63);
-            float battery_voltage = adc_get_analog_value(HAL_GPIO_A5_pin());
-            battery_voltage = 2 * 3.3 * battery_voltage / 65535.0;
-            HAL_GPIO_A5_pmuxdis();
-
-            // get battery temperature on A5
-            /// TODO: add TS mux for this
+            // get battery temperature on TS
             HAL_GPIO_TS_pmuxen(HAL_GPIO_PMUX_ADC);
             uint16_t battery_temperature = adc_get_analog_value(HAL_GPIO_TS_pin());
             HAL_GPIO_TS_pmuxdis();
 
             // assemble the data
             weather_data_t outgoing_data = {0};
-            outgoing_data.magic = 0x5343594E; // "NYCS"
+            // outgoing_data.magic = 0x5343594E; // "NYCS"
             // outgoing_data.magic = 0x53434C53; // "SLCS"
-            // outgoing_data.magic = 0x5351415A; // "ZAQS"
+            outgoing_data.magic = 0x5351415A; // "ZAQS"
             outgoing_data.timestamp = datetime.reg;
             outgoing_data.battery_voltage = (uint16_t)(battery_voltage * 1000);
             outgoing_data.battery_temperature = battery_temperature; 
@@ -490,8 +528,15 @@ bool app_loop(void) {
             for (uint8_t i = 0; i < 60; i += 2) {
                 uint8_t wind_direction_0 = wind_directions_this_hour[i];
                 uint8_t wind_direction_1 = wind_directions_this_hour[i + 1];
-                if (wind_direction_0 == WIND_DIRECTION_UNKNOWN) outgoing_data.bad_wind_readings++;
-                if (wind_direction_1 == WIND_DIRECTION_UNKNOWN) outgoing_data.bad_wind_readings++;
+                if (wind_direction_0 == WIND_DIRECTION_UNKNOWN) {
+                    outgoing_data.bad_wind_readings++;
+                    // if we have a bad reading, use the previous reading
+                    wind_direction_0 = i ? wind_directions_this_hour[i - 1] : 0;
+                }
+                if (wind_direction_1 == WIND_DIRECTION_UNKNOWN) {
+                    outgoing_data.bad_wind_readings++;
+                    wind_direction_1 = wind_directions_this_hour[i];
+                }
                 outgoing_data.wind_directions[i / 2] = ((wind_direction_0 & 0xF) << 4) | (wind_direction_1 & 0xF);
             }
             outgoing_data.rainfall = rain_this_hour;
@@ -504,6 +549,9 @@ bool app_loop(void) {
             outgoing_data.particles_10_0_min = get_min_value_for_hour(pm100_this_hour);
             outgoing_data.particles_10_0_max = get_max_value_for_hour(pm100_this_hour);
             outgoing_data.particles_10_0_average = get_mean_value_for_hour(pm100_this_hour);
+
+            // add checksum
+            add_checksum(&outgoing_data);
 
             // uplink data
             swarm_m138_transmit_data((uint8_t *)&outgoing_data, sizeof(weather_data_t));
@@ -540,7 +588,6 @@ void rtc_callback(uint8_t source) {
     (void) source;
     woke_for_measurement = true;
     display_needs_update = true;
-    HAL_GPIO_LED_toggle();
 }
 
 void swarm_m138_get_device_id_callback(int32_t device_id) {

@@ -190,7 +190,7 @@ void swarm_m138_begin(void) {
     HAL_GPIO_RX_in();
     HAL_GPIO_RX_pullup();
     HAL_GPIO_RX_pmuxen(HAL_GPIO_PMUX_SERCOM);
-    uart_init(9600);
+    uart_init(115200);
     uart_set_run_in_standby(true);
     uart_enable();
 }
