@@ -109,7 +109,7 @@ void rtc_callback(uint8_t source);
 static uint16_t get_max_value_for_hour(uint16_t *datapoints) {
     uint16_t max = 0;
     for (uint8_t i = 0; i < 60; i++) {
-        if (datapoints[i] > max) {
+        if ((datapoints[i] != 0xFFFF) && (datapoints[i] > max)) {
             max = datapoints[i];
         }
     }
@@ -120,7 +120,7 @@ static uint16_t get_max_value_for_hour(uint16_t *datapoints) {
 static uint16_t get_min_value_for_hour(uint16_t *datapoints) {
     uint16_t min = 0xffff;
     for (uint8_t i = 0; i < 60; i++) {
-        if (datapoints[i] < min) {
+        if ((datapoints[i] != 0xFFFF) && (datapoints[i] < min)) {
             min = datapoints[i];
         }
     }
@@ -130,11 +130,14 @@ static uint16_t get_min_value_for_hour(uint16_t *datapoints) {
 
 static uint16_t get_mean_value_for_hour(uint16_t *datapoints) {
     uint32_t sum = 0;
+    uint8_t denominator = 0;
     for (uint8_t i = 0; i < 60; i++) {
         sum += datapoints[i];
+        denominator++;
     }
 
-    return sum / 60;
+    if (denominator) return sum / denominator;
+    else return 0;
 }
 
 void app_init(void) {
@@ -558,6 +561,19 @@ bool app_loop(void) {
 
             // reset all the hourly data
             rain_this_hour = 0;
+            for (size_t i = 0; i < 60; i++) {
+                wind_speeds_this_hour[i] = 0xFFFF;
+                wind_directions_this_hour[i] = WIND_DIRECTION_UNKNOWN;
+                visible_light_this_hour[i] = 0xFFFF;
+                uv_light_this_hour[i] = 0xFFFF;
+                temperature_this_hour[i] = 0xFFFF;
+                humidity_this_hour[i] = 0xFFFF;
+                pressure_this_hour[i] = 0xFFFF;
+                pm10_this_hour[i] = 0xFFFF;
+                pm25_this_hour[i] = 0xFFFF;
+                pm100_this_hour[i] = 0xFFFF;
+            }
+            
             memset(wind_speeds_this_hour, 0, sizeof(wind_speeds_this_hour));
             memset(wind_directions_this_hour, 0, sizeof(wind_directions_this_hour));
             memset(visible_light_this_hour, 0, sizeof(visible_light_this_hour));
