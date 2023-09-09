@@ -16,6 +16,7 @@
 bool woke_for_measurement = false;
 bool woke_for_rainfall = false;
 bool display_needs_update = true;
+bool time_synced = false;
 
 uint16_t rain_this_hour = 0;
 uint16_t wind_speeds_this_hour[60] = {0};
@@ -302,7 +303,7 @@ static void update_display(void) {
             break;
         case DISPLAY_MODE_TIME:
         {
-            uint8_t hour = datetime.unit.hour % 12;
+            uint8_t hour = (datetime.unit.hour + 18) % 12;
             sprintf(buf, "%2d:%02d ", hour ? hour : 12, datetime.unit.minute);
             oso_lcd_print(buf);
             if (datetime.unit.hour < 12) {
@@ -456,7 +457,7 @@ bool app_loop(void) {
 
         // get temperature and humidity
         bme280_reading_t bme_reading;
-        bme280_read(&bme_reading);
+        // bme280_read(&bme_reading);
         float temperature = bme_reading.temperature;
         float humidity = bme_reading.humidity;
         float pressure = bme_reading.pressure;
@@ -490,9 +491,9 @@ bool app_loop(void) {
         // Reset the wind speed count
         tc_count16_set_count(4, 0);
 
-        // at top of hour, sync clock with satellite
-        if (datetime.unit.minute == 0) {
-                swarm_m138_get_date_time();
+        // 5 minutes after the top of the hour, sync clock with satellite
+        if (!time_synced || datetime.unit.minute == 5) {
+            swarm_m138_get_date_time();
         }
 
         // at the end of each hour, uplink data to the satellite
@@ -628,6 +629,7 @@ void swarm_m138_date_time_callback(Swarm_M138_DateTimeData_t datetime) {
         }
     };
     rtc_set_date_time(rtcDatetime);
+    time_synced = true;
 }
 
 void swarm_m138_transmit_data_callback(bool success) {

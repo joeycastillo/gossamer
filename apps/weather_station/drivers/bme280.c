@@ -198,6 +198,10 @@ static float compensate_pressure(uint32_t rawp, float t_fine) {
 static float compensate_humidity(uint32_t rawh, float t_fine) {
     float h = t_fine - 76800.0f;
 
+    if (h == 0) {
+        return 0; // avoid exception caused by division by zero
+    }
+
     h = ((float) rawh - ((float) calibration.dig_H4 * 64.0f + (float) calibration.dig_H5 / 16384.0f * h)) *
         ((float) calibration.dig_H2 / 65536.0f * (1.0f + (float) calibration.dig_H6 / 67108864.0f * h * (1.0f + (float) calibration.dig_H3 / 67108864.0f * h)));
 
