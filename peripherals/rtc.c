@@ -47,8 +47,6 @@ static void _rtc_sync(void) {
 }
 
 void rtc_init(void) {
-    // if (rtc_is_enabled()) return; // don't reset the RTC if it's already set up.
-
 #if defined(_SAMD21_) || defined(_SAMD11_)
     // enable the RTC
     PM->APBAMASK.reg |= PM_APBAMASK_RTC;
@@ -58,12 +56,14 @@ void rtc_init(void) {
     MCLK->APBAMASK.reg |= MCLK_APBAMASK_RTC;
 #endif
 
+    if (rtc_is_enabled()) return; // don't reset the RTC if it's already set up.
+
     _rtc_sync();
     CTRLREG.bit.SWRST = 1;
     _rtc_sync();
 
     CTRLREG.bit.MODE = 2; // Mode 2 Clock
-    CTRLREG.bit.PRESCALER = 0xA; // 1024 Hz prescaler
+    CTRLREG.bit.PRESCALER = 0xA; // 1024
 }
 
 void rtc_enable(void) {

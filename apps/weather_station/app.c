@@ -121,7 +121,7 @@ static uint16_t get_max_value_for_hour(uint16_t *datapoints) {
 static uint16_t get_min_value_for_hour(uint16_t *datapoints) {
     uint16_t min = 0xffff;
     for (uint8_t i = 0; i < 60; i++) {
-        if ((datapoints[i] != 0xFFFF) && (datapoints[i] < min)) {
+        if ((datapoints[i] != 0xFFFF) && (datapoints[i] != 0) && (datapoints[i] < min)) {
             min = datapoints[i];
         }
     }
@@ -303,7 +303,7 @@ static void update_display(void) {
             break;
         case DISPLAY_MODE_TIME:
         {
-            uint8_t hour = (datetime.unit.hour + 18) % 12;
+            uint8_t hour = (datetime.unit.hour + 30) % 12;
             sprintf(buf, "%2d:%02d ", hour ? hour : 12, datetime.unit.minute);
             oso_lcd_print(buf);
             if (datetime.unit.hour < 12) {
@@ -457,7 +457,7 @@ bool app_loop(void) {
 
         // get temperature and humidity
         bme280_reading_t bme_reading;
-        // bme280_read(&bme_reading);
+        bme280_read(&bme_reading);
         float temperature = bme_reading.temperature;
         float humidity = bme_reading.humidity;
         float pressure = bme_reading.pressure;
