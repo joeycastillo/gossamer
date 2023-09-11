@@ -303,10 +303,10 @@ static void update_display(void) {
             break;
         case DISPLAY_MODE_TIME:
         {
-            uint8_t hour = (datetime.unit.hour + 30) % 12;
+            uint8_t hour = (datetime.unit.hour + 18) % 12;
             sprintf(buf, "%2d:%02d ", hour ? hour : 12, datetime.unit.minute);
             oso_lcd_print(buf);
-            if (datetime.unit.hour < 12) {
+            if (((datetime.unit.hour + 18) % 24) < 12) {
                 oso_lcd_set_indicator(OSO_LCD_INDICATOR_AM);
             } else {
                 oso_lcd_set_indicator(OSO_LCD_INDICATOR_PM);
