@@ -76,6 +76,13 @@ void adc_set_sampling_length(uint8_t length);
 uint16_t adc_get_analog_value(uint16_t pin);
 
 /**
+ * @brief Gets the analog value on the given ADC channel.
+ * @param channel The ADC channel you wish to read (this will come from the datasheet)
+ * @return The analog value of the given ADC channel, from 0-65535 by default.
+ */
+uint16_t adc_get_analog_value_for_channel(uint8_t channel);
+
+/**
  * @brief Disables the ADC peripheral
  */
 void adc_disable(void);

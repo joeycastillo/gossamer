@@ -78,11 +78,7 @@ void adc_set_sampling_length(uint8_t length) {
     while (ADC->SYNCBUSY.bit.SAMPCTRL);
 }
 
-static uint16_t _adc_get_analog_value_on_channel(uint8_t channel) {
-    if (channel < 0) {
-        return 0;
-    }
-
+uint16_t adc_get_analog_value_for_channel(uint8_t channel) {
     if (ADC->INPUTCTRL.bit.MUXPOS != channel) {
         ADC->INPUTCTRL.bit.MUXPOS = channel;
         _adc_sync();
@@ -97,8 +93,11 @@ static uint16_t _adc_get_analog_value_on_channel(uint8_t channel) {
 uint16_t adc_get_analog_value(uint16_t pin) {
     uint16_t port = pin >> 8;
     int8_t channel = _adc_pin_to_channel[port][pin % 32];
+    if (channel < 0) {
+        return 0;
+    }
 
-    return _adc_get_analog_value_on_channel(channel);
+    return adc_get_analog_value_for_channel(channel);
 }
 
 void adc_init(void) {
@@ -186,7 +185,7 @@ void adc_enable(void) {
     ADC->CTRLA.bit.ENABLE = 1;
     _adc_sync();
     // throw away one measurement after reference change (the channel doesn't matter).
-    _adc_get_analog_value_on_channel(ADC_INPUTCTRL_MUXPOS_SCALEDCOREVCC_Val);
+    adc_get_analog_value_for_channel(ADC_INPUTCTRL_MUXPOS_SCALEDCOREVCC_Val);
 }
 
 void adc_disable(void) {
