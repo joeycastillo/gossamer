@@ -18,8 +18,6 @@
 #define SERCOM_USART_CTRLA_MODE_USART_INT_CLK SERCOM_USART_CTRLA_MODE(1)
 #endif
 
-#if defined(UART_SERCOM)
-
 #define UART_BUF_SIZE 256
 
 typedef struct {
@@ -67,6 +65,8 @@ static bool uart_write_byte(uint8_t sercom, uint8_t byte) {
 
     return res;
 }
+
+#if defined(UART_SERCOM)
 
 bool uart_read_byte(uint8_t *byte) {
     return uart_read_byte_instance(UART_SERCOM, byte);
