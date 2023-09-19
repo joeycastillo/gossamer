@@ -63,7 +63,7 @@ void rtc_init(void) {
     _rtc_sync();
 
     CTRLREG.bit.MODE = 2; // Mode 2 Clock
-    CTRLREG.bit.PRESCALER = 0xA; // 1024
+    CTRLREG.bit.PRESCALER = RTC_MODE2_CTRLA_PRESCALER_DIV1024_Val; // 1024 Hz input / 1024 = 1 Hz
 }
 
 void rtc_enable(void) {
