@@ -80,6 +80,7 @@ void rtc_set_date_time(rtc_date_time date_time) {
 rtc_date_time rtc_get_date_time(void) {
     rtc_date_time retval;
 
+    CTRLREG.bit.CLOCKSYNC = 1;
     _rtc_sync();
     retval.reg = RTC->MODE2.CLOCK.reg;
 
