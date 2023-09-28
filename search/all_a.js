@@ -1,10 +1,18 @@
 var searchData=
 [
-  ['last_5flba_0',['last_lba',['../structscsi__read__capacity10__resp__t.html#a18adc42538b12b9eeb01b33933de0d63',1,'scsi_read_capacity10_resp_t']]],
-  ['lba_1',['lba',['../struct_t_u___a_t_t_r___p_a_c_k_e_d.html#af0056eac809f3dcada4a8c3ab3545110',1,'TU_ATTR_PACKED']]],
-  ['len_5flin_2',['len_lin',['../structtu__fifo__buffer__info__t.html#a61da28c3f7987407d7b42e3cc6ca1f42',1,'tu_fifo_buffer_info_t']]],
-  ['len_5fwrap_3',['len_wrap',['../structtu__fifo__buffer__info__t.html#abab93b90630c4a59ec97e9b9d219fc5f',1,'tu_fifo_buffer_info_t']]],
-  ['length_4',['length',['../structrndis__msg__initialize__t.html#a76968acb7c1fa681f31f7baca6c11edb',1,'rndis_msg_initialize_t::length()'],['../structrndis__msg__initialize__cmplt__t.html#ac205673f57608b77f23d72a426817bf6',1,'rndis_msg_initialize_cmplt_t::length()'],['../structrndis__msg__query__t.html#ac961ff2cf6ae7a70531c3b94f4231c6d',1,'rndis_msg_query_t::length()'],['../structrndis__msg__query__cmplt__t.html#aff2d5013304338ede7628021b2db6376',1,'rndis_msg_query_cmplt_t::length()'],['../structrndis__msg__reset__t.html#ad0a48b8d029c8194e4351c9eed125fad',1,'rndis_msg_reset_t::length()'],['../structrndis__msg__reset__cmplt__t.html#a3e1cdd149498d325ca20b8290db3afe0',1,'rndis_msg_reset_cmplt_t::length()'],['../structrndis__msg__keep__alive__t.html#a2d489ca19fe6fbe53af1e2b35c9ccd59',1,'rndis_msg_keep_alive_t::length()'],['../structrndis__msg__set__cmplt__t.html#a9f647ad076178716f31e76f8e5eb4b6f',1,'rndis_msg_set_cmplt_t::length()'],['../structrndis__msg__packet__t.html#ac0f2f5c4affc6ab052689df44e438c98',1,'rndis_msg_packet_t::length()']]],
-  ['line_5fstate_5fchange_5',['line_state_change',['../group___class_driver___c_d_c.html#ga66e80779c2dd00cc024786a14c87ee68',1,'TU_ATTR_PACKED::line_state_change()'],['../group___class_driver___c_d_c.html#ga3a3f105d494d100dc81668a93ee1d629',1,'TU_ATTR_PACKED::@10::line_state_change()']]],
-  ['lun_6',['lun',['../struct_t_u___a_t_t_r___p_a_c_k_e_d.html#a4ae4d10781dcb029c248bb78fdcb5d63',1,'TU_ATTR_PACKED']]]
+  ['keyboard_0',['Keyboard',['../group___class_driver___h_i_d___keyboard.html',1,'']]],
+  ['keyboard_5fled_5fcapslock_1',['KEYBOARD_LED_CAPSLOCK',['../group___class_driver___h_i_d___keyboard.html#gga7cef2aea3178da2aa5fe0d4bf298c5b7a08aeef4be7cedcb39ae600e60e9ca56a',1,'hid.h']]],
+  ['keyboard_5fled_5fcompose_2',['KEYBOARD_LED_COMPOSE',['../group___class_driver___h_i_d___keyboard.html#gga7cef2aea3178da2aa5fe0d4bf298c5b7a83cb33ad101242024227d6305a8aebd7',1,'hid.h']]],
+  ['keyboard_5fled_5fkana_3',['KEYBOARD_LED_KANA',['../group___class_driver___h_i_d___keyboard.html#gga7cef2aea3178da2aa5fe0d4bf298c5b7a0acd73324bf3a3e846176e8086c0c42b',1,'hid.h']]],
+  ['keyboard_5fled_5fnumlock_4',['KEYBOARD_LED_NUMLOCK',['../group___class_driver___h_i_d___keyboard.html#gga7cef2aea3178da2aa5fe0d4bf298c5b7ab146281c88fca97cf36501b8edf33e67',1,'hid.h']]],
+  ['keyboard_5fled_5fscrolllock_5',['KEYBOARD_LED_SCROLLLOCK',['../group___class_driver___h_i_d___keyboard.html#gga7cef2aea3178da2aa5fe0d4bf298c5b7a6caf03695f69ca241058b5c24a6f6658',1,'hid.h']]],
+  ['keyboard_5fmodifier_5fleftalt_6',['KEYBOARD_MODIFIER_LEFTALT',['../group___class_driver___h_i_d___keyboard.html#gga267dfef61bb13db0254ac75246ace393ab9ebbe3a0e41b345916007e15e55a049',1,'hid.h']]],
+  ['keyboard_5fmodifier_5fleftctrl_7',['KEYBOARD_MODIFIER_LEFTCTRL',['../group___class_driver___h_i_d___keyboard.html#gga267dfef61bb13db0254ac75246ace393a7e9e8e6537bf9dbb329076c3c2ba84d2',1,'hid.h']]],
+  ['keyboard_5fmodifier_5fleftgui_8',['KEYBOARD_MODIFIER_LEFTGUI',['../group___class_driver___h_i_d___keyboard.html#gga267dfef61bb13db0254ac75246ace393a79ebd97b69b7c9b27bb3d8737c26ace6',1,'hid.h']]],
+  ['keyboard_5fmodifier_5fleftshift_9',['KEYBOARD_MODIFIER_LEFTSHIFT',['../group___class_driver___h_i_d___keyboard.html#gga267dfef61bb13db0254ac75246ace393ae2312b1713c1e7a5e30fcdeba30ea588',1,'hid.h']]],
+  ['keyboard_5fmodifier_5frightalt_10',['KEYBOARD_MODIFIER_RIGHTALT',['../group___class_driver___h_i_d___keyboard.html#gga267dfef61bb13db0254ac75246ace393a366c02214e8a02fdc692f2ed2703eb2c',1,'hid.h']]],
+  ['keyboard_5fmodifier_5frightctrl_11',['KEYBOARD_MODIFIER_RIGHTCTRL',['../group___class_driver___h_i_d___keyboard.html#gga267dfef61bb13db0254ac75246ace393a75de72a0eafd0de3f5f5634640aff776',1,'hid.h']]],
+  ['keyboard_5fmodifier_5frightgui_12',['KEYBOARD_MODIFIER_RIGHTGUI',['../group___class_driver___h_i_d___keyboard.html#gga267dfef61bb13db0254ac75246ace393a55bff59ddf845ab7ddb26e14a61abfe5',1,'hid.h']]],
+  ['keyboard_5fmodifier_5frightshift_13',['KEYBOARD_MODIFIER_RIGHTSHIFT',['../group___class_driver___h_i_d___keyboard.html#gga267dfef61bb13db0254ac75246ace393aa7e0c865fe5c779d651391b43474c32f',1,'hid.h']]],
+  ['keycode_14',['keycode',['../struct_t_u___a_t_t_r___p_a_c_k_e_d.html#a71d09c038e0dd4d1596cfa26aa0f714d',1,'TU_ATTR_PACKED']]]
 ];

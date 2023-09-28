@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gossamer_5fdma_5fjob_5ft_0',['gossamer_dma_job_t',['../structgossamer__dma__job__t.html',1,'']]]
+  ['fifo_5fbuffer_5ft_0',['fifo_buffer_t',['../structfifo__buffer__t.html',1,'']]]
 ];
