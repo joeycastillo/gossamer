@@ -6,7 +6,6 @@
 #include "uart.h"
 
 // Analog pins
-
 HAL_GPIO_PIN(AREF, A, 4)
 HAL_GPIO_PIN(A0,   A, 2)
 HAL_GPIO_PIN(A1,   A, 5)
@@ -14,25 +13,6 @@ HAL_GPIO_PIN(A2,   B, 8)
 HAL_GPIO_PIN(A3,   B, 9)
 HAL_GPIO_PIN(A4,   A, 6)
 HAL_GPIO_PIN(A5,   A, 7)
-
-// battery temperature sensor on solar feather express
-HAL_GPIO_PIN(TS,   A, 3)
-
-#define HAL_GPIO_A0_DAC_CHANNEL 0
-#define HAL_GPIO_A1_DAC_CHANNEL 1
-
-#define HAL_GPIO_AREF_ADC_CHANNEL 4
-#define HAL_GPIO_A0_ADC_CHANNEL 0
-#define HAL_GPIO_A1_ADC_CHANNEL 5
-#define HAL_GPIO_A2_ADC_CHANNEL 2
-#define HAL_GPIO_A3_ADC_CHANNEL 3
-#define HAL_GPIO_A4_ADC_CHANNEL 6
-#define HAL_GPIO_A5_ADC_CHANNEL 7
-
-#define HAL_GPIO_AREF_AC_CHANNEL 0
-#define HAL_GPIO_A1_AC_CHANNEL 1
-#define HAL_GPIO_A4_AC_CHANNEL 2
-#define HAL_GPIO_A5_AC_CHANNEL 3
 
 // Op amp pins (same as analog, but with different names for clarity)
 HAL_GPIO_PIN(OPAMP0_POS, A, 6)
@@ -54,12 +34,6 @@ HAL_GPIO_PIN(D10,  A, 19)
 HAL_GPIO_PIN(D11,  A,  8)
 HAL_GPIO_PIN(D12,  A,  9)
 HAL_GPIO_PIN(D13,  A, 10)
-
-#define HAL_GPIO_D1_ADC_CHANNEL 10
-#define HAL_GPIO_D4_ADC_CHANNEL 11
-#define HAL_GPIO_D11_ADC_CHANNEL 16
-#define HAL_GPIO_D12_ADC_CHANNEL 17
-#define HAL_GPIO_D13_ADC_CHANNEL 18
 
 // LED
 HAL_GPIO_PIN(LED,  A, 10)
