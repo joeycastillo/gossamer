@@ -31,6 +31,14 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+// channel mask enum for dac_enable
+typedef enum {
+    DAC_CHANNEL_NONE = 0,
+    DAC_CHANNEL_0 = 1,
+    DAC_CHANNEL_1 = 2,
+    DAC_CHANNEL_BOTH = 3
+} dac_channel_mask_t;
+
 /**
  * @brief Initializes the DAC peripheral, but does not enable it.
  * @param channel The DAC channel to enable.
@@ -39,9 +47,12 @@
 void dac_init(void);
 
 /**
- * @brief Enables the given DAC channel.
+ * @brief Enables the DAC channels specified in the mask, and disables others.
+ * @param channelmask A bitmask of the channels to enable:
+ *        1 for channel 0, 2 for channel 1, 3 for both channels.
+ *        For MCUs with only one DAC channel, this parameter is ignored.
  */
-void dac_enable(uint16_t channel);
+void dac_enable(dac_channel_mask_t channelmask);
 
 /**
  * @brief Set the analog value of the DAC.

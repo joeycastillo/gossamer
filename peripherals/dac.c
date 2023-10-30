@@ -72,16 +72,23 @@ void dac_init(void) {
 #endif
 }
 
-void dac_enable(uint16_t channel) {
+void dac_enable(dac_channel_mask_t channelmask) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
     (void) channel;
     // Chips with a single DAC don't need to enable individual channels
 #else // SAM L21 / SAM D51
     DAC->CTRLA.bit.ENABLE = 0;
     _dac_sync();
-    DAC->DACCTRL[channel].bit.ENABLE = 1;
-    DAC->DACCTRL[channel].bit.CCTRL = DAC_DACCTRL_CCTRL_CC1M_Val;
-    DAC->DACCTRL[channel].bit.REFRESH = 2;
+    if (channelmask & 1) {
+        DAC->DACCTRL[0].bit.ENABLE = 1;
+        DAC->DACCTRL[0].bit.CCTRL = DAC_DACCTRL_CCTRL_CC1M_Val;
+        DAC->DACCTRL[0].bit.REFRESH = 2;
+    }
+    if (channelmask & 2) {
+        DAC->DACCTRL[1].bit.ENABLE = 1;
+        DAC->DACCTRL[1].bit.CCTRL = DAC_DACCTRL_CCTRL_CC1M_Val;
+        DAC->DACCTRL[1].bit.REFRESH = 2;
+    }
 #endif
     DAC->CTRLA.bit.ENABLE = 1;
     _dac_sync();
