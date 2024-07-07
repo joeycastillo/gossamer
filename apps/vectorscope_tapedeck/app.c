@@ -20,6 +20,14 @@ int getentropy(void *buffer, size_t length) {
     return 0;
 }
 
+// enum for modes
+typedef enum {
+    MODE_TOUCH = 0,
+    MODE_SAWTOOTH,
+    MODE_SOMETHING,
+    NUM_MODES
+} vectorscope_mode_t;
+
 // x and y values are a union of two 16-bit values
 typedef union {
     struct {
@@ -139,21 +147,44 @@ void app_setup(void) {
     touch_init();
 }
 
-double i = 0;
+int i = 0;
+vectorscope_mode_t mode = MODE_TOUCH;
 
 bool app_loop(void) {
-    touch_process();
-	if (measurement_done_touch == 1) {
-		measurement_done_touch = 0;
-	}
+    switch (mode) {
+        case MODE_TOUCH:
+            touch_process();
+            if (measurement_done_touch == 1) {
+                measurement_done_touch = 0;
+            }
 
-    uint8_t status = get_surface_status();
-    if (status & 1) {
-        live_touch_value.position.x = get_surface_position(HOR_POS) >> 4;
-        live_touch_value.position.y = get_surface_position(VER_POS) >> 4;
-    } else {
-        live_touch_value.position.x = arc4random() % 4096;
-        live_touch_value.position.y = arc4random() % 4096;
+            uint8_t status = get_surface_status();
+            if (status & 1) {
+                live_touch_value.position.x = get_surface_position(HOR_POS) >> 4;
+                live_touch_value.position.y = get_surface_position(VER_POS) >> 4;
+            } else {
+                live_touch_value.position.x = arc4random() % 4096;
+                live_touch_value.position.y = arc4random() % 4096;
+            }
+            break;
+        case MODE_SAWTOOTH:
+            dac_set_analog_value(0, i);
+            dac_set_analog_value(1, i);
+            i += 1;
+            if (i > 4096) {
+                i = 0;
+            }
+            delay_ms(1);
+            break;
+        case MODE_SOMETHING:
+            dac_set_analog_value(0, (sin(i / 100.0) + 1) * 2048);
+            dac_set_analog_value(1, (cos(i / 100.0) + 1) * 2048);
+            i += 10;
+            if (i > 628) {
+                i = 0;
+            }
+            delay_ms(10);
+            break;
     }
 
     if (HAL_GPIO_PLAY_PAUSE_read()) {
@@ -189,6 +220,8 @@ void eic_callback(uint8_t channel) {
             }
             break;
         case 3: // faster
+            mode = (mode + 1) % NUM_MODES;
+            i = 0;
             break;
         case 0: // slower
             break;

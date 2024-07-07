@@ -1,0 +1,101 @@
+
+
+
+B,1,1,FrameCounter
+
+
+
+
+
+
+
+
+
+
+
+
+D,2,1,Signal0
+D,3,1,Reference0
+-D,4,1,Delta0
+D,5,1,Compensation0,F,(variable & 0x0F)*0.00675+((variable >> 4) & 0x0F)*0.0675+((variable >> 8) & 0x0F)*0.675+((variable >> 12) & 0x3) * 6.75
+B,6,1,State0
+B,7,1,Threshold0
+D,2,2,Signal1
+D,3,2,Reference1
+-D,4,2,Delta1
+D,5,2,Compensation1,F,(variable & 0x0F)*0.00675+((variable >> 4) & 0x0F)*0.0675+((variable >> 8) & 0x0F)*0.675+((variable >> 12) & 0x3) * 6.75
+B,6,2,State1
+B,7,2,Threshold1
+D,2,3,Signal2
+D,3,3,Reference2
+-D,4,3,Delta2
+D,5,3,Compensation2,F,(variable & 0x0F)*0.00675+((variable >> 4) & 0x0F)*0.0675+((variable >> 8) & 0x0F)*0.675+((variable >> 12) & 0x3) * 6.75
+B,6,3,State2
+B,7,3,Threshold2
+D,2,4,Signal3
+D,3,4,Reference3
+-D,4,4,Delta3
+D,5,4,Compensation3,F,(variable & 0x0F)*0.00675+((variable >> 4) & 0x0F)*0.0675+((variable >> 8) & 0x0F)*0.675+((variable >> 12) & 0x3) * 6.75
+B,6,4,State3
+B,7,4,Threshold3
+D,2,5,Signal4
+D,3,5,Reference4
+-D,4,5,Delta4
+D,5,5,Compensation4,F,(variable & 0x0F)*0.00675+((variable >> 4) & 0x0F)*0.0675+((variable >> 8) & 0x0F)*0.675+((variable >> 12) & 0x3) * 6.75
+B,6,5,State4
+B,7,5,Threshold4
+D,2,6,Signal5
+D,3,6,Reference5
+-D,4,6,Delta5
+D,5,6,Compensation5,F,(variable & 0x0F)*0.00675+((variable >> 4) & 0x0F)*0.0675+((variable >> 8) & 0x0F)*0.675+((variable >> 12) & 0x3) * 6.75
+B,6,6,State5
+B,7,6,Threshold5
+D,2,7,Signal6
+D,3,7,Reference6
+-D,4,7,Delta6
+D,5,7,Compensation6,F,(variable & 0x0F)*0.00675+((variable >> 4) & 0x0F)*0.0675+((variable >> 8) & 0x0F)*0.675+((variable >> 12) & 0x3) * 6.75
+B,6,7,State6
+B,7,7,Threshold6
+D,2,8,Signal7
+D,3,8,Reference7
+-D,4,8,Delta7
+D,5,8,Compensation7,F,(variable & 0x0F)*0.00675+((variable >> 4) & 0x0F)*0.0675+((variable >> 8) & 0x0F)*0.675+((variable >> 12) & 0x3) * 6.75
+B,6,8,State7
+B,7,8,Threshold7
+D,2,9,Signal8
+D,3,9,Reference8
+-D,4,9,Delta8
+D,5,9,Compensation8,F,(variable & 0x0F)*0.00675+((variable >> 4) & 0x0F)*0.0675+((variable >> 8) & 0x0F)*0.675+((variable >> 12) & 0x3) * 6.75
+B,6,9,State8
+B,7,9,Threshold8
+D,2,10,Signal9
+D,3,10,Reference9
+-D,4,10,Delta9
+D,5,10,Compensation9,F,(variable & 0x0F)*0.00675+((variable >> 4) & 0x0F)*0.0675+((variable >> 8) & 0x0F)*0.675+((variable >> 12) & 0x3) * 6.75
+B,6,10,State9
+B,7,10,Threshold9
+D,2,11,Signal10
+D,3,11,Reference10
+-D,4,11,Delta10
+D,5,11,Compensation10,F,(variable & 0x0F)*0.00675+((variable >> 4) & 0x0F)*0.0675+((variable >> 8) & 0x0F)*0.675+((variable >> 12) & 0x3) * 6.75
+B,6,11,State10
+B,7,11,Threshold10
+D,2,12,Signal11
+D,3,12,Reference11
+-D,4,12,Delta11
+D,5,12,Compensation11,F,(variable & 0x0F)*0.00675+((variable >> 4) & 0x0F)*0.0675+((variable >> 8) & 0x0F)*0.675+((variable >> 12) & 0x3) * 6.75
+B,6,12,State11
+B,7,12,Threshold11
+
+
+
+
+
+
+
+
+
+
+B,9,1,QTouchLibError
+
+B,1,2,FRAME_END

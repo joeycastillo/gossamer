@@ -74,7 +74,7 @@ void dac_init(void) {
 
 void dac_enable(dac_channel_mask_t channelmask) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
-    (void) channel;
+    (void) channelmask;
     // Chips with a single DAC don't need to enable individual channels
 #else // SAM L21 / SAM D51
     DAC->CTRLA.bit.ENABLE = 0;

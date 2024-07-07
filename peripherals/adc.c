@@ -75,7 +75,7 @@ static void _adc_sync(void) {
 void adc_set_sampling_length(uint8_t length) {
     if (length > 63) length = 63;
     ADC->SAMPCTRL.bit.SAMPLEN = length;
-    while (ADC->SYNCBUSY.bit.SAMPCTRL);
+    _adc_sync();
 }
 
 uint16_t adc_get_analog_value_for_channel(uint8_t channel) {
