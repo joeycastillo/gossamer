@@ -63,7 +63,11 @@ void rtc_init(void) {
     _rtc_sync();
 
     CTRLREG.bit.MODE = 2; // Mode 2 Clock
+#if defined(_SAMD21_) || defined(_SAMD11_)
+    CTRLREG.bit.PRESCALER = RTC_MODE2_CTRL_PRESCALER_DIV1024_Val; // 1024 Hz input / 1024 = 1 Hz
+#else
     CTRLREG.bit.PRESCALER = RTC_MODE2_CTRLA_PRESCALER_DIV1024_Val; // 1024 Hz input / 1024 = 1 Hz
+#endif
 }
 
 void rtc_enable(void) {
@@ -80,7 +84,9 @@ void rtc_set_date_time(rtc_date_time date_time) {
 rtc_date_time rtc_get_date_time(void) {
     rtc_date_time retval;
 
+#if defined(_SAML21_) || defined(_SAML22_) || defined(_SAMD51_)
     CTRLREG.bit.CLOCKSYNC = 1;
+#endif
     _rtc_sync();
     retval.reg = RTC->MODE2.CLOCK.reg;
 
