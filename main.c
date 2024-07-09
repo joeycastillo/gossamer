@@ -15,7 +15,7 @@ int main(void) {
     sys_init();
 
     // set up system tick
-    systick_init();
+    delay_init();
 
     // allow application to do its own initialization
     app_init();

@@ -12,7 +12,7 @@
  * @brief Initializes the system tick peripheral. This is required to use the delay functions.
  * @details The system tick only runs while the CPU is running, and does not fire in STANDBY mode.
  */
-void systick_init(void);
+void delay_init(void);
 
 /**
  * @brief Delays for the given number of milliseconds.

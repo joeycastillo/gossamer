@@ -2,7 +2,7 @@
 #include "sam.h"
 #include "system.h"
 
-void systick_init(void) {
+void delay_init(void) {
     SysTick->LOAD = SysTick_LOAD_RELOAD_Msk;
     SysTick->CTRL = SysTick_CTRL_ENABLE_Msk | SysTick_CTRL_CLKSOURCE_Msk;
 }
