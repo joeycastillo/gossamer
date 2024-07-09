@@ -1,10 +1,4 @@
 var searchData=
 [
-  ['last_5flba_0',['last_lba',['../structscsi__read__capacity10__resp__t.html#a18adc42538b12b9eeb01b33933de0d63',1,'scsi_read_capacity10_resp_t']]],
-  ['lba_1',['lba',['../struct_t_u___a_t_t_r___p_a_c_k_e_d.html#af0056eac809f3dcada4a8c3ab3545110',1,'TU_ATTR_PACKED']]],
-  ['len_5flin_2',['len_lin',['../structtu__fifo__buffer__info__t.html#a61da28c3f7987407d7b42e3cc6ca1f42',1,'tu_fifo_buffer_info_t']]],
-  ['len_5fwrap_3',['len_wrap',['../structtu__fifo__buffer__info__t.html#abab93b90630c4a59ec97e9b9d219fc5f',1,'tu_fifo_buffer_info_t']]],
-  ['length_4',['length',['../structrndis__msg__initialize__t.html#a76968acb7c1fa681f31f7baca6c11edb',1,'rndis_msg_initialize_t::length()'],['../structrndis__msg__initialize__cmplt__t.html#ac205673f57608b77f23d72a426817bf6',1,'rndis_msg_initialize_cmplt_t::length()'],['../structrndis__msg__query__t.html#ac961ff2cf6ae7a70531c3b94f4231c6d',1,'rndis_msg_query_t::length()'],['../structrndis__msg__query__cmplt__t.html#aff2d5013304338ede7628021b2db6376',1,'rndis_msg_query_cmplt_t::length()'],['../structrndis__msg__reset__t.html#ad0a48b8d029c8194e4351c9eed125fad',1,'rndis_msg_reset_t::length()'],['../structrndis__msg__reset__cmplt__t.html#a3e1cdd149498d325ca20b8290db3afe0',1,'rndis_msg_reset_cmplt_t::length()'],['../structrndis__msg__keep__alive__t.html#a2d489ca19fe6fbe53af1e2b35c9ccd59',1,'rndis_msg_keep_alive_t::length()'],['../structrndis__msg__set__cmplt__t.html#a9f647ad076178716f31e76f8e5eb4b6f',1,'rndis_msg_set_cmplt_t::length()'],['../structrndis__msg__packet__t.html#ac0f2f5c4affc6ab052689df44e438c98',1,'rndis_msg_packet_t::length()']]],
-  ['line_5fstate_5fchange_5',['line_state_change',['../group___class_driver___c_d_c.html#ga66e80779c2dd00cc024786a14c87ee68',1,'TU_ATTR_PACKED::line_state_change()'],['../group___class_driver___c_d_c.html#ga3a3f105d494d100dc81668a93ee1d629',1,'TU_ATTR_PACKED::@10::line_state_change()']]],
-  ['lun_6',['lun',['../struct_t_u___a_t_t_r___p_a_c_k_e_d.html#a4ae4d10781dcb029c248bb78fdcb5d63',1,'TU_ATTR_PACKED']]]
+  ['joey_0',['WARNING: I am dramatically refactoring right now (Fall 2023) as I make use of this framework in a couple of real world projects. The API is subject to dramatic and breaking changes for the next few months as I work through what I want this to be. — Joey',['../index.html#autotoc_md1',1,'']]]
 ];

@@ -9,5 +9,5 @@ var searchData=
   ['device_5fflags_6',['device_flags',['../structrndis__msg__initialize__cmplt__t.html#ac6a9a2ab47a2449b0629fcee8178c7f8',1,'rndis_msg_initialize_cmplt_t']]],
   ['dir_7',['dir',['../struct_t_u___a_t_t_r___p_a_c_k_e_d.html#a57253a58547249719bef1ff12e2eecd5',1,'TU_ATTR_PACKED']]],
   ['direction_8',['direction',['../struct_t_u___a_t_t_r___p_a_c_k_e_d.html#a86d99694f12d21fa149cff53b1889c79',1,'TU_ATTR_PACKED']]],
-  ['dual_5ftone_5fmulti_5ffreq_9',['dual_tone_multi_freq',['../group___class_driver___c_d_c.html#ga00aea78426e0964f4236f1281a728078',1,'TU_ATTR_PACKED::dual_tone_multi_freq()'],['../group___class_driver___c_d_c.html#ga3608e16b4fb74ffcbe63fb03df1183cf',1,'TU_ATTR_PACKED::@10::dual_tone_multi_freq()']]]
+  ['dual_5ftone_5fmulti_5ffreq_9',['dual_tone_multi_freq',['../group___class_driver___c_d_c.html#ga00aea78426e0964f4236f1281a728078',1,'TU_ATTR_PACKED::dual_tone_multi_freq'],['../group___class_driver___c_d_c.html#ga3608e16b4fb74ffcbe63fb03df1183cf',1,'TU_ATTR_PACKED::@10::dual_tone_multi_freq']]]
 ];
