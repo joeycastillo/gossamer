@@ -54,8 +54,8 @@ static const int8_t _adc_pin_to_channel[3][32] = {
 };
 #elif defined(_SAMD51_)
 /// TODO: Do mapping for SAM D51
-#warning "External Interrupt Controller not yet implemented for SAM D51"
-static const int8_t _eic_pin_to_channel[3][32] = {
+#warning "ADC not yet implemented for SAM D51"
+static const int8_t _adc_pin_to_channel[3][32] = {
 };
 #endif
 
