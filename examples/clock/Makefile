@@ -1,12 +1,12 @@
 # Keep this first line.
-TOP = ../..
+GOSSAMER_PATH = ../..
 
 # If your firmware targets a specific board, specify it here,
 # or omit it and provide it on the command line (make BOARD=foo).
 BOARD=feather_m0
 
 # Leave this line here.
-include $(TOP)/make.mk
+include $(GOSSAMER_PATH)/make.mk
 
 # Add all your source files to compile after the app.c line.
 SRCS += \
@@ -14,4 +14,4 @@ SRCS += \
   ../../drivers/lcd/oso_lcd.c \
 
 # Finally, leave this line at the bottom of the file.
-include $(TOP)/rules.mk
+include $(GOSSAMER_PATH)/rules.mk

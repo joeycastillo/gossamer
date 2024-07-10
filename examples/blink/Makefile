@@ -1,15 +1,15 @@
 # Keep this first line.
-TOP = ../..
+GOSSAMER_PATH = ../..
 
 # If your firmware targets a specific board, specify it here,
 # or omit it and provide it on the command line (make BOARD=foo).
 BOARD=feather_low_energy
 
 # Leave this line here.
-include $(TOP)/make.mk
+include $(GOSSAMER_PATH)/make.mk
 
 SRCS += \
   ./app.c \
 
 # Finally, leave this line at the bottom of the file.
-include $(TOP)/rules.mk
+include $(GOSSAMER_PATH)/rules.mk
