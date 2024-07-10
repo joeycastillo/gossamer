@@ -96,6 +96,13 @@
     (void)HAL_GPIO_##name##_out;						\
   }										\
 										\
+  static inline void HAL_GPIO_##name##_off(void)				\
+  {										\
+    PORT->Group[HAL_GPIO_PORT##port].DIRSET.reg = (1 << pin);			\
+    PORT->Group[HAL_GPIO_PORT##port].PINCFG[pin].reg &= ~(PORT_PINCFG_PULLEN | PORT_PINCFG_INEN);	\
+    (void)HAL_GPIO_##name##_off;						\
+  }										\
+										\
   static inline void HAL_GPIO_##name##_pullup(void)				\
   {										\
     PORT->Group[HAL_GPIO_PORT##port].OUTSET.reg = (1 << pin);			\
