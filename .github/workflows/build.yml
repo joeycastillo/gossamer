@@ -16,6 +16,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Work around CVE-2022-24765
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Bulld DFU utility
+        run: make
+        working-directory: 'utils/dfu'
       - name: Validate changes on SAM D11
         run: make
         working-directory: 'tests/blink_samd11'

@@ -31,7 +31,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
 
 #define USB_VENDOR_ID  0x1209
