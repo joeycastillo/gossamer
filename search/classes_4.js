@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['osal_5fqueue_5fdef_5ft_0',['osal_queue_def_t',['../structosal__queue__def__t.html',1,'']]],
-  ['osal_5fsemaphore_5fdef_5ft_1',['osal_semaphore_def_t',['../structosal__semaphore__def__t.html',1,'']]]
+  ['tc_5finstance_5fdetails_0',['TC_Instance_Details',['../struct_t_c___instance___details.html',1,'']]],
+  ['tcc_5finstance_5fdetails_1',['TCC_Instance_Details',['../struct_t_c_c___instance___details.html',1,'']]]
 ];

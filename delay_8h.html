@@ -90,9 +90,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac816b9d61dad1fe749c8eb4c625320dd" id="r_ac816b9d61dad1fe749c8eb4c625320dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="delay_8h.html#ac816b9d61dad1fe749c8eb4c625320dd">systick_init</a> (void)</td></tr>
-<tr class="memdesc:ac816b9d61dad1fe749c8eb4c625320dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the system tick peripheral. This is required to use the delay functions.  <br /></td></tr>
-<tr class="separator:ac816b9d61dad1fe749c8eb4c625320dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3c040fe31e69be32855715a75e0cda4" id="r_af3c040fe31e69be32855715a75e0cda4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="delay_8h.html#af3c040fe31e69be32855715a75e0cda4">delay_init</a> (void)</td></tr>
+<tr class="memdesc:af3c040fe31e69be32855715a75e0cda4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the system tick peripheral. This is required to use the delay functions.  <br /></td></tr>
+<tr class="separator:af3c040fe31e69be32855715a75e0cda4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2dd6e794004b50917d231195c324ce5" id="r_ad2dd6e794004b50917d231195c324ce5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="delay_8h.html#ad2dd6e794004b50917d231195c324ce5">delay_ms</a> (const uint16_t ms)</td></tr>
 <tr class="memdesc:ad2dd6e794004b50917d231195c324ce5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delays for the given number of milliseconds.  <br /></td></tr>
 <tr class="separator:ad2dd6e794004b50917d231195c324ce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,6 +103,27 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Delay routines. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="af3c040fe31e69be32855715a75e0cda4" name="af3c040fe31e69be32855715a75e0cda4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3c040fe31e69be32855715a75e0cda4">&#9670;&#160;</a></span>delay_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void delay_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the system tick peripheral. This is required to use the delay functions. </p>
+<p>The system tick only runs while the CPU is running, and does not fire in STANDBY mode. </p>
+
+</div>
+</div>
 <a id="ad2dd6e794004b50917d231195c324ce5" name="ad2dd6e794004b50917d231195c324ce5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad2dd6e794004b50917d231195c324ce5">&#9670;&#160;</a></span>delay_ms()</h2>
 
@@ -152,27 +173,6 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="ac816b9d61dad1fe749c8eb4c625320dd" name="ac816b9d61dad1fe749c8eb4c625320dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac816b9d61dad1fe749c8eb4c625320dd">&#9670;&#160;</a></span>systick_init()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void systick_init </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initializes the system tick peripheral. This is required to use the delay functions. </p>
-<p>The system tick only runs while the CPU is running, and does not fire in STANDBY mode. </p>
 
 </div>
 </div>

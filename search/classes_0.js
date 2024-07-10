@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['custom_5finterface_5finfo_5ft_0',['custom_interface_info_t',['../structcustom__interface__info__t.html',1,'']]]
+  ['fifo_5fbuffer_5ft_0',['fifo_buffer_t',['../structfifo__buffer__t.html',1,'']]]
 ];

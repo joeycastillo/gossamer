@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gossamer_5fdma_5fjob_5ft_0',['gossamer_dma_job_t',['../structgossamer__dma__job__t.html',1,'']]]
+  ['rtc_5fdate_5ftime_0',['rtc_date_time',['../unionrtc__date__time.html',1,'']]]
 ];
