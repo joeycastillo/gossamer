@@ -166,6 +166,13 @@ bool tcc_is_enabled(uint8_t instance);
 void tcc_set_period(uint8_t instance, uint32_t period);
 
 /**
+ * @brief Gets the period of the TCC.
+ * @param instance The TCC peripheral instance as numbered in the data sheet, or 0.
+ * @return The current period of value.
+ */
+uint32_t tcc_get_period(uint8_t instance);
+
+/**
  * @brief Sets the value of a compare channel.
  * @param instance The TCC peripheral instance as numbered in the data sheet, or 0.
  * @param channel The compare channel to set, from 0 to 3 (or 0-1 on some TCCs; check

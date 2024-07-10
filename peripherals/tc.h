@@ -173,6 +173,13 @@ bool tc_is_enabled(uint8_t instance);
 void tc_count8_set_period(uint8_t instance, uint8_t period);
 
 /**
+ * @brief Gets the TC's period or PER register in 8-bit mode.
+ * @param instance The TC peripheral instance as numbered in the data sheet.
+ * @return The current period value.
+ */
+uint8_t tc_count8_get_period(uint8_t instance);
+
+/**
  * @brief Sets the TC's compare channel CC0 or CC1 register in 8-bit mode.
  * @param instance The TC peripheral instance as numbered in the data sheet.
  * @param channel The compare channel whose value set. This value must be 0 or 1.

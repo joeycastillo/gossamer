@@ -91,6 +91,10 @@ void tcc_set_period(uint8_t instance, uint32_t period) {
     tcc_sync(instance);
 }
 
+uint32_t tcc_get_period(uint8_t instance) {
+    return TCC_Peripherals[instance].tcc->PER.bit.PER;
+}
+
 void tcc_set_cc(uint8_t instance, uint8_t channel, uint32_t value) {
     TCC_Peripherals[instance].tcc->CC[channel].bit.CC = value;
     tcc_sync(instance);

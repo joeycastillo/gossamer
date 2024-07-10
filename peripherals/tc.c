@@ -115,6 +115,10 @@ void tc_count8_set_period(uint8_t instance, uint8_t period) {
     TC_Peripherals[instance - TC_First_Index].tc->COUNT8.PER.reg = period;
 }
 
+uint8_t tc_count8_get_period(uint8_t instance) {
+    return TC_Peripherals[instance - TC_First_Index].tc->COUNT8.PER.reg;
+}
+
 void tc_count8_set_cc(uint8_t instance, uint8_t channel, uint8_t value) {
     TC_Peripherals[instance - TC_First_Index].tc->COUNT8.CC[channel].reg = value;
 }
