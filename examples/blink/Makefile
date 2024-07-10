@@ -3,7 +3,7 @@ GOSSAMER_PATH = ../..
 
 # If your firmware targets a specific board, specify it here,
 # or omit it and provide it on the command line (make BOARD=foo).
-BOARD=feather_low_energy
+BOARD=sensorwatch_green
 
 # Leave this line here.
 include $(GOSSAMER_PATH)/make.mk
