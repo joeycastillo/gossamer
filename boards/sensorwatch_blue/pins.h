@@ -28,9 +28,12 @@ HAL_GPIO_PIN(SCL,  B, 31)
 HAL_GPIO_PIN(BLUE, A, 20)
 HAL_GPIO_PIN(RED,  A, 21)
 HAL_GPIO_PIN(LED,  A, 21)   // Default to red LED for blinky tests
+#define WATCH_RED_TCC_CHANNEL 3
+#define WATCH_BLUE_TCC_CHANNEL 2
 
 // Sound
 HAL_GPIO_PIN(BUZZER,  A, 27)
+#define WATCH_BUZZER_TCC_CHANNEL 1
 
 // Buttons
 HAL_GPIO_PIN(BTN_LIGHT, A, 22)
