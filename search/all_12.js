@@ -37,9 +37,10 @@ var searchData=
   ['sh110x_5fsetvcomdetect_34',['SH110X_SETVCOMDETECT',['../sh1107_8h.html#a790498436deaf2d54f8db57419bf5f2a',1,'sh1107.h']]],
   ['simple_20framework_20for_20writing_20firmware_35',['Simple framework for writing firmware',['../index.html#autotoc_md6',1,'']]],
   ['simple_20to_20get_20started_36',['Simple to get started!',['../index.html#autotoc_md7',1,'']]],
-  ['spi_2eh_37',['spi.h',['../spi_8h.html',1,'']]],
-  ['started_38',['Simple to get started!',['../index.html#autotoc_md7',1,'']]],
-  ['subject_20to_20dramatic_20and_20breaking_20changes_20for_20the_20next_20few_20months_20as_20i_20work_20through_20what_20i_20want_20this_20to_20be_20—_20joey_39',['WARNING: I am dramatically refactoring right now (Fall 2023) as I make use of this framework in a couple of real world projects. The API is subject to dramatic and breaking changes for the next few months as I work through what I want this to be. — Joey',['../index.html#autotoc_md1',1,'']]],
-  ['sys_5finit_40',['sys_init',['../system_8h.html#af411a8bc6b7ed4b0af9114e10c959448',1,'system.h']]],
-  ['system_2eh_41',['system.h',['../system_8h.html',1,'']]]
+  ['slcd_2eh_37',['slcd.h',['../slcd_8h.html',1,'']]],
+  ['spi_2eh_38',['spi.h',['../spi_8h.html',1,'']]],
+  ['started_39',['Simple to get started!',['../index.html#autotoc_md7',1,'']]],
+  ['subject_20to_20dramatic_20and_20breaking_20changes_20for_20the_20next_20few_20months_20as_20i_20work_20through_20what_20i_20want_20this_20to_20be_20—_20joey_40',['WARNING: I am dramatically refactoring right now (Fall 2023) as I make use of this framework in a couple of real world projects. The API is subject to dramatic and breaking changes for the next few months as I work through what I want this to be. — Joey',['../index.html#autotoc_md1',1,'']]],
+  ['sys_5finit_41',['sys_init',['../system_8h.html#af411a8bc6b7ed4b0af9114e10c959448',1,'system.h']]],
+  ['system_2eh_42',['system.h',['../system_8h.html',1,'']]]
 ];
