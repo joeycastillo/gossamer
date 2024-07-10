@@ -133,7 +133,14 @@ void slcd_set_frame_counter_enabled(uint8_t fc, bool enabled) {
 }
 
 void slcd_configure_blink(bool blink_all, uint8_t bss0, uint8_t bss1, uint8_t fc) {
-    /// TODO: Implement blinking
+    SLCD->BCFG.bit.FCS = fc;
+    if (blink_all) {
+        SLCD->BCFG.bit.MODE = 0;
+    } else {
+        SLCD->BCFG.bit.MODE = 1;
+        SLCD->BCFG.bit.BSS0 = bss0;
+        SLCD->BCFG.bit.BSS1 = bss1;
+    }
 }
 
 void slcd_set_blink_enabled(bool enabled) {
@@ -142,7 +149,10 @@ void slcd_set_blink_enabled(bool enabled) {
 }
 
 void slcd_configure_circular_shift_animation(uint16_t initial_value, uint8_t size, slcd_csrshift_value_t shift_dir, uint8_t fc) {
-    /// TODO: Implement circular shift animation
+    SLCD->CSRCFG.bit.FCS = fc;
+    SLCD->CSRCFG.bit.SIZE = size;
+    SLCD->CSRCFG.bit.DIR = shift_dir;
+    SLCD->CSRCFG.bit.DATA = initial_value;
 }
 
 void slcd_set_circular_shift_animation_enabled(bool enabled) {
