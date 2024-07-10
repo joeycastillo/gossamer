@@ -143,12 +143,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a5797bec545a165a39f092514139f5b1e" id="r_a5797bec545a165a39f092514139f5b1e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a5797bec545a165a39f092514139f5b1e">tcc_is_enabled</a> (uint8_t instance)</td></tr>
 <tr class="memdesc:a5797bec545a165a39f092514139f5b1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the TCC is enabled.  <br /></td></tr>
 <tr class="separator:a5797bec545a165a39f092514139f5b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4a80f7c23f094986cfb470068e16f52" id="r_ae4a80f7c23f094986cfb470068e16f52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#ae4a80f7c23f094986cfb470068e16f52">tcc_set_period</a> (uint8_t instance, uint32_t period)</td></tr>
-<tr class="memdesc:ae4a80f7c23f094986cfb470068e16f52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the period of the TCC.  <br /></td></tr>
-<tr class="separator:ae4a80f7c23f094986cfb470068e16f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a528d1b24d468c56e5ae231213abd9898" id="r_a528d1b24d468c56e5ae231213abd9898"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a528d1b24d468c56e5ae231213abd9898">tcc_set_cc</a> (uint8_t instance, uint8_t channel, uint32_t value)</td></tr>
-<tr class="memdesc:a528d1b24d468c56e5ae231213abd9898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value of a compare channel.  <br /></td></tr>
-<tr class="separator:a528d1b24d468c56e5ae231213abd9898"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e0c7fc6f5730d54bea797616d2471fc" id="r_a0e0c7fc6f5730d54bea797616d2471fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a0e0c7fc6f5730d54bea797616d2471fc">tcc_set_period</a> (uint8_t instance, uint32_t period, bool buffered)</td></tr>
+<tr class="memdesc:a0e0c7fc6f5730d54bea797616d2471fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the period of the TCC.  <br /></td></tr>
+<tr class="separator:a0e0c7fc6f5730d54bea797616d2471fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4123d9f15758b550c9f47ae3bf851a23" id="r_a4123d9f15758b550c9f47ae3bf851a23"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a4123d9f15758b550c9f47ae3bf851a23">tcc_get_period</a> (uint8_t instance)</td></tr>
+<tr class="memdesc:a4123d9f15758b550c9f47ae3bf851a23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the period of the TCC.  <br /></td></tr>
+<tr class="separator:a4123d9f15758b550c9f47ae3bf851a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbe2f7d3ec62ef888d0c905b03470531" id="r_abbe2f7d3ec62ef888d0c905b03470531"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#abbe2f7d3ec62ef888d0c905b03470531">tcc_set_cc</a> (uint8_t instance, uint8_t channel, uint32_t value, bool buffered)</td></tr>
+<tr class="memdesc:abbe2f7d3ec62ef888d0c905b03470531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value of a compare channel.  <br /></td></tr>
+<tr class="separator:abbe2f7d3ec62ef888d0c905b03470531"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a287f26e06ce521f40c6f25190c1098c1" id="r_a287f26e06ce521f40c6f25190c1098c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcc_8h.html#a287f26e06ce521f40c6f25190c1098c1">tcc_set_count</a> (uint8_t instance, uint32_t value)</td></tr>
 <tr class="memdesc:a287f26e06ce521f40c6f25190c1098c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value of the counter.  <br /></td></tr>
 <tr class="separator:a287f26e06ce521f40c6f25190c1098c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -247,6 +250,33 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The current value of the counter. </dd></dl>
+
+</div>
+</div>
+<a id="a4123d9f15758b550c9f47ae3bf851a23" name="a4123d9f15758b550c9f47ae3bf851a23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4123d9f15758b550c9f47ae3bf851a23">&#9670;&#160;</a></span>tcc_get_period()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t tcc_get_period </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the period of the TCC. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The current period of value. </dd></dl>
 
 </div>
 </div>
@@ -359,8 +389,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a528d1b24d468c56e5ae231213abd9898" name="a528d1b24d468c56e5ae231213abd9898"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a528d1b24d468c56e5ae231213abd9898">&#9670;&#160;</a></span>tcc_set_cc()</h2>
+<a id="abbe2f7d3ec62ef888d0c905b03470531" name="abbe2f7d3ec62ef888d0c905b03470531"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbe2f7d3ec62ef888d0c905b03470531">&#9670;&#160;</a></span>tcc_set_cc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -381,7 +411,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>buffered</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -396,6 +432,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
     <tr><td class="paramname">channel</td><td>The compare channel to set, from 0 to 3 (or 0-1 on some TCCs; check the data sheet) </td></tr>
+    <tr><td class="paramname">buffered</td><td>If true, sets the CC value in the buffered register, which will be loaded at the next UPDATE condition. If false, sets the period directly. Note that double buffering is not available on the SAM D11 and SAM D21, and a value of true on those platforms will be ignored. </td></tr>
     <tr><td class="paramname">value</td><td>The value to set the compare channel to. Max 24 bits (16,777,215). </td></tr>
   </table>
   </dd>
@@ -533,8 +570,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae4a80f7c23f094986cfb470068e16f52" name="ae4a80f7c23f094986cfb470068e16f52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4a80f7c23f094986cfb470068e16f52">&#9670;&#160;</a></span>tcc_set_period()</h2>
+<a id="a0e0c7fc6f5730d54bea797616d2471fc" name="a0e0c7fc6f5730d54bea797616d2471fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e0c7fc6f5730d54bea797616d2471fc">&#9670;&#160;</a></span>tcc_set_period()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -549,7 +586,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>period</em>&#160;</td>
+          <td class="paramname"><em>period</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>buffered</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -563,7 +606,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>The TCC peripheral instance as numbered in the data sheet, or 0. </td></tr>
-    <tr><td class="paramname">period</td><td>The period to set.</td></tr>
+    <tr><td class="paramname">period</td><td>The period to set. </td></tr>
+    <tr><td class="paramname">buffered</td><td>If true, sets the period in the buffered register, which will be loaded at the next UPDATE condition. If false, sets the period directly. Note that double buffering is not available on the SAM D11 and SAM D21, and a value of true on those platforms will be ignored.</td></tr>
   </table>
   </dd>
 </dl>

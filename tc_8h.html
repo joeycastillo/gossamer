@@ -147,6 +147,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ab18ace8a5dd07d75cb9e6957d9e2658c" id="r_ab18ace8a5dd07d75cb9e6957d9e2658c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#ab18ace8a5dd07d75cb9e6957d9e2658c">tc_count8_set_period</a> (uint8_t instance, uint8_t period)</td></tr>
 <tr class="memdesc:ab18ace8a5dd07d75cb9e6957d9e2658c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's period or PER register in 8-bit mode.  <br /></td></tr>
 <tr class="separator:ab18ace8a5dd07d75cb9e6957d9e2658c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a993860f6b38c672f9ca6ae1b60452282" id="r_a993860f6b38c672f9ca6ae1b60452282"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a993860f6b38c672f9ca6ae1b60452282">tc_count8_get_period</a> (uint8_t instance)</td></tr>
+<tr class="memdesc:a993860f6b38c672f9ca6ae1b60452282"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the TC's period or PER register in 8-bit mode.  <br /></td></tr>
+<tr class="separator:a993860f6b38c672f9ca6ae1b60452282"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8862d572676201371406b19746198c45" id="r_a8862d572676201371406b19746198c45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a8862d572676201371406b19746198c45">tc_count8_set_cc</a> (uint8_t instance, uint8_t channel, uint8_t value)</td></tr>
 <tr class="memdesc:a8862d572676201371406b19746198c45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's compare channel CC0 or CC1 register in 8-bit mode.  <br /></td></tr>
 <tr class="separator:a8862d572676201371406b19746198c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -427,6 +430,33 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a993860f6b38c672f9ca6ae1b60452282" name="a993860f6b38c672f9ca6ae1b60452282"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a993860f6b38c672f9ca6ae1b60452282">&#9670;&#160;</a></span>tc_count8_get_period()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t tc_count8_get_period </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the TC's period or PER register in 8-bit mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The current period value. </dd></dl>
 
 </div>
 </div>
