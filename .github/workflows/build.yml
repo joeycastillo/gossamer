@@ -16,6 +16,18 @@ jobs:
         uses: actions/checkout@v4
       - name: Work around CVE-2022-24765
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-      - name: Compile blink app
+      - name: Validate changes on SAM D11
         run: make
-        working-directory: 'examples/blink'
+        working-directory: 'tests/blink_samd11'
+      - name: Validate changes on SAM D21
+        run: make
+        working-directory: 'tests/blink_samd21'
+      - name: Validate changes on SAM D51
+        run: make
+        working-directory: 'tests/blink_samd51'
+      - name: Validate changes on SAM L21
+        run: make
+        working-directory: 'tests/blink_saml21'
+      - name: Validate changes on SAM L22
+        run: make
+        working-directory: 'tests/blink_saml22'
