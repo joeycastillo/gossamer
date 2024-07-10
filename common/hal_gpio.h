@@ -152,8 +152,8 @@
   }										\
                     \
 
-#define SWCLK GPIO(GPIO_PORTA, 30)
-#define SWDIO GPIO(GPIO_PORTA, 31)
+HAL_GPIO_PIN(SWCLK, A, 30)
+HAL_GPIO_PIN(SWDIO, A, 31)
 
 #ifdef APP_USES_TINYUSB
 HAL_GPIO_PIN(USB_N, A, 24)
