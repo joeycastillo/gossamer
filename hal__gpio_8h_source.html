@@ -233,10 +233,13 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">  }                                     \</span></div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">                    \</span></div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="preprocessor"></span> </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">#ifdef APP_USES_TINYUSB</span></div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>HAL_GPIO_PIN(USB_N, A, 24)</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>HAL_GPIO_PIN(USB_P, A, 25)</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">#define SWCLK GPIO(GPIO_PORTA, 30)</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">#define SWDIO GPIO(GPIO_PORTA, 31)</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">#ifdef APP_USES_TINYUSB</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>HAL_GPIO_PIN(USB_N, A, 24)</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>HAL_GPIO_PIN(USB_P, A, 25)</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
