@@ -2,6 +2,8 @@
 
 #include "hal_gpio.h"
 
+// Detects if we are on USB power.
+HAL_GPIO_PIN(VBUS_DET, A, 3)
 
 // Analog pins
 HAL_GPIO_PIN(A0,   B, 4)
