@@ -83,6 +83,7 @@ SRCS += \
   $(GOSSAMER_PATH)/peripherals/ptc.c \
   $(GOSSAMER_PATH)/peripherals/rtc.c \
   $(GOSSAMER_PATH)/peripherals/sercom.c \
+  $(GOSSAMER_PATH)/peripherals/slcd.c \
   $(GOSSAMER_PATH)/peripherals/spi.c \
   $(GOSSAMER_PATH)/peripherals/tc.c \
   $(GOSSAMER_PATH)/peripherals/tcc.c \
