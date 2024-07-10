@@ -152,7 +152,7 @@ void app_setup(void) {
     // normal PWM: a duty cycle for the LEDs
     tcc_set_wavegen(0, TCC_WAVEGEN_NORMAL_PWM);
     // Periods based on a count to 100 (makes it easy set a percentage of full power)
-    tcc_set_period(0, 100);
+    tcc_set_period(0, 100, false);
     // run the LEDs in standby mode
     tcc_set_run_in_standby(0, true);
 
@@ -359,11 +359,11 @@ bool app_loop(void) {
         lights_need_update = false;
         if (serpent_is_lit) {
             for (uint8_t i = 0; i < 4; i++) {
-                tcc_set_cc(0, i, brightness[i]);
+                tcc_set_cc(0, i, brightness[i], false);
             }
         } else {
             for (uint8_t i = 0; i < 4; i++) {
-                tcc_set_cc(0, i, i == 3 ? brightness[i] : 0);
+                tcc_set_cc(0, i, i == 3 ? brightness[i] : 0, false);
             }
         }
     }

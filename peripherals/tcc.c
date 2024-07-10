@@ -86,8 +86,17 @@ bool tcc_is_enabled(uint8_t instance) {
     return TCC_Peripherals[instance].tcc->CTRLA.bit.ENABLE;
 }
 
-void tcc_set_period(uint8_t instance, uint32_t period) {
+void tcc_set_period(uint8_t instance, uint32_t period, bool buffered) {
+// no double buffering on SAMD21 or SAMD11
+#if defined(_SAMD21_) || defined(_SAMD11_)
     TCC_Peripherals[instance].tcc->PER.bit.PER = period;
+#else
+    if (buffered) {
+        TCC_Peripherals[instance].tcc->PERBUF.bit.PERBUF = period;
+    } else {
+        TCC_Peripherals[instance].tcc->PER.bit.PER = period;
+    }
+#endif
     tcc_sync(instance);
 }
 
@@ -95,8 +104,17 @@ uint32_t tcc_get_period(uint8_t instance) {
     return TCC_Peripherals[instance].tcc->PER.bit.PER;
 }
 
-void tcc_set_cc(uint8_t instance, uint8_t channel, uint32_t value) {
+void tcc_set_cc(uint8_t instance, uint8_t channel, uint32_t value, bool buffered) {
+// no double buffering on SAMD21 or SAMD11
+#if defined(_SAMD21_) || defined(_SAMD11_)
     TCC_Peripherals[instance].tcc->CC[channel].bit.CC = value;
+#else
+    if (buffered) {
+        TCC_Peripherals[instance].tcc->CCBUF[channel].bit.CCBUF = value;
+    } else {
+        TCC_Peripherals[instance].tcc->CC[channel].bit.CC = value;
+    }
+#endif
     tcc_sync(instance);
 }
 

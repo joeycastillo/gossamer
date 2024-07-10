@@ -160,10 +160,14 @@ bool tcc_is_enabled(uint8_t instance);
  * @brief Sets the period of the TCC.
  * @param instance The TCC peripheral instance as numbered in the data sheet, or 0.
  * @param period The period to set.
+ * @param buffered If true, sets the period in the buffered register, which will be loaded
+ *                 at the next UPDATE condition. If false, sets the period directly.
+ *                 Note that double buffering is not available on the SAM D11 and SAM D21,
+ *                 and a value of true on those platforms will be ignored.
  * @details The period is the value that the counter counts up to before resetting. The
  *          frequency of the timer is determined by the period and the prescaler value.
  */
-void tcc_set_period(uint8_t instance, uint32_t period);
+void tcc_set_period(uint8_t instance, uint32_t period, bool buffered);
 
 /**
  * @brief Gets the period of the TCC.
@@ -177,9 +181,13 @@ uint32_t tcc_get_period(uint8_t instance);
  * @param instance The TCC peripheral instance as numbered in the data sheet, or 0.
  * @param channel The compare channel to set, from 0 to 3 (or 0-1 on some TCCs; check
  *                the data sheet)
+ * @param buffered If true, sets the CC value in the buffered register, which will be
+ *                 loaded at the next UPDATE condition. If false, sets the period directly.
+ *                 Note that double buffering is not available on the SAM D11 and SAM D21,
+ *                 and a value of true on those platforms will be ignored.
  * @param value The value to set the compare channel to. Max 24 bits (16,777,215).
 */
-void tcc_set_cc(uint8_t instance, uint8_t channel, uint32_t value);
+void tcc_set_cc(uint8_t instance, uint8_t channel, uint32_t value, bool buffered);
 
 /**
  * @brief Sets the value of the counter.
