@@ -100,6 +100,7 @@ A consistent setup at boot</h2>
 <p>Gossamer simplifies this by giving you a consistent environment on all four platforms:</p>
 <ul>
 <li>GCLK0, the main system clock, is set to 8 MHz at boot. You can change this in <code>app_init</code> using the <code>set_cpu_frequency</code> function.</li>
+<li>GCLK1 is reserved for the 48 MHz DFLL clock, which is only configured if the USB peripheral is enabled.</li>
 <li>GCLK2 is a low-power, low-accuracy 32 kHz clock sourced from OSCULP32K.</li>
 <li>GCLK3 is a 1024 Hz clock, derived from the most accurate source available.</li>
 </ul>

@@ -111,6 +111,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a4f33e5a16dba970fa7064ea27287fcba" id="r_a4f33e5a16dba970fa7064ea27287fcba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_8h.html#a4f33e5a16dba970fa7064ea27287fcba">set_cpu_frequency</a> (uint32_t freq)</td></tr>
 <tr class="memdesc:a4f33e5a16dba970fa7064ea27287fcba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the CPU frequency.  <br /></td></tr>
 <tr class="separator:a4f33e5a16dba970fa7064ea27287fcba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6d6cb9ca08e26e456d9ed1d425453e8" id="r_af6d6cb9ca08e26e456d9ed1d425453e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_8h.html#af6d6cb9ca08e26e456d9ed1d425453e8">_enable_48mhz_gclk1</a> (void)</td></tr>
+<tr class="memdesc:af6d6cb9ca08e26e456d9ed1d425453e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the 48 MHz clock on GCLK1 for USB operation.  <br /></td></tr>
+<tr class="separator:af6d6cb9ca08e26e456d9ed1d425453e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a436af75ad5caf82faa3497787abf4321" id="r_a436af75ad5caf82faa3497787abf4321"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_8h.html#a436af75ad5caf82faa3497787abf4321">_enter_standby_mode</a> (void)</td></tr>
 <tr class="memdesc:a436af75ad5caf82faa3497787abf4321"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enters the low-power STANDBY mode. Does not return until an interrupt fires.  <br /></td></tr>
 <tr class="separator:a436af75ad5caf82faa3497787abf4321"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,6 +145,27 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>Num_SERCOM_I
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Gossamer system routines. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="af6d6cb9ca08e26e456d9ed1d425453e8" name="af6d6cb9ca08e26e456d9ed1d425453e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6d6cb9ca08e26e456d9ed1d425453e8">&#9670;&#160;</a></span>_enable_48mhz_gclk1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _enable_48mhz_gclk1 </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables the 48 MHz clock on GCLK1 for USB operation. </p>
+<p>This function is called by the USB stack when it is initialized. </p><dl class="section warning"><dt>Warning</dt><dd>At this time, the 48 MHz clock is hard-coded to use USB Clock Recovery Mode, and as such will only be available if your device is plugged into a USB host. It is possible to derive the 48 MHz DFLL from an external 32kHz crystal, but this is not currently implemented in Gossamer. </dd></dl>
+
+</div>
+</div>
 <a id="a436af75ad5caf82faa3497787abf4321" name="a436af75ad5caf82faa3497787abf4321"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a436af75ad5caf82faa3497787abf4321">&#9670;&#160;</a></span>_enter_standby_mode()</h2>
 
@@ -235,7 +259,7 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>Num_SERCOM_I
 <p>Gossamer aims for consistency at system startup, no matter which chip you are working with. To that end:</p><ul>
 <li>GCLK0, the main system clock, is set to 8 MHz.</li>
 <li>GCLK2 is the low-power 32768 Hz clock, OSCULP32K</li>
-<li>GCLK3 is a 1024 Hz clock, derived from the most accurate source available. GCLK0 is set to ONDEMAND with RUNSTDBY off, so the main clock remains off when in standby mode. GCLK2 and GCLK3 are also ONDEMAND, but RUNSTDBY is on. This ensures that if a peripheral requests it, the clock will remain on in standby, but if no peripheral requests it, it will not run at all. </li>
+<li>GCLK3 is a 1024 Hz clock, derived from the most accurate source available. GCLK0 is set to ONDEMAND with RUNSTDBY off, so the main clock remains off when in standby mode. GCLK2 and GCLK3 are also ONDEMAND, but RUNSTDBY is on. This ensures that if a peripheral requests it, the clock will remain on in standby, but if no peripheral requests it, it will not run at all. Also note that while GCLK1 is not turned on at startup, it may be reserved for internal use depending on your use case. If you intend to use USB, the <code>usb_init</code> function will claim GCLK1 for the 48 MHz DFLL clock. </li>
 </ul>
 
 </div>
