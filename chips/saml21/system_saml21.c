@@ -117,10 +117,7 @@ void sys_init(void) {
 #endif
 }
 
-static void enable_48mhz_clock(void) {
-    NVMCTRL->CTRLB.bit.RWS = 1;
-
-#if defined(CRYSTALLESS)
+void _enable_48mhz_gclk1(void) {
     // reset flags and disable DFLL
     OSCCTRL->INTFLAG.reg = OSCCTRL_INTFLAG_DFLLRDY;
     OSCCTRL->DFLLCTRL.reg = 0;
@@ -130,56 +127,35 @@ static void enable_48mhz_clock(void) {
     uint32_t coarse =(*((uint32_t *)NVMCTRL_OTP5)) >> 26;
     OSCCTRL->DFLLVAL.reg = OSCCTRL_DFLLVAL_COARSE(coarse) |
                            OSCCTRL_DFLLVAL_FINE(0x200);
-    // set coarse and fine steps, and multiplier (48 MHz = 32768 Hz * 1465)
-    OSCCTRL->DFLLMUL.reg = OSCCTRL_DFLLMUL_CSTEP( 1 ) |
-                           OSCCTRL_DFLLMUL_FSTEP( 1 ) |
-                           OSCCTRL_DFLLMUL_MUL( 1465 );
-    // set closed loop mode, chill cycle disable and USB clock recovery mode, and enable the DFLL.
-    OSCCTRL->DFLLCTRL.reg = OSCCTRL_DFLLCTRL_MODE | OSCCTRL_DFLLCTRL_CCDIS | OSCCTRL_DFLLCTRL_ONDEMAND | OSCCTRL_DFLLCTRL_RUNSTDBY | OSCCTRL_DFLLCTRL_USBCRM | OSCCTRL_DFLLCTRL_ENABLE;
+
+    // set USB clock recovery mode, closed loop mode and chill cycle disable.
+    // USB clock recovery mode recovers a 1 kHz clock from the USB start of frame packets.
+    OSCCTRL->DFLLCTRL.reg = OSCCTRL_DFLLCTRL_USBCRM |
+                            OSCCTRL_DFLLCTRL_MODE |
+                            OSCCTRL_DFLLCTRL_CCDIS;
+
+    // set coarse and fine steps, and multiplier (48 MHz = 1000 Hz * 48000)
+    OSCCTRL->DFLLMUL.reg = OSCCTRL_DFLLMUL_CSTEP(1) |
+                           OSCCTRL_DFLLMUL_FSTEP(1) |
+                           OSCCTRL_DFLLMUL_MUL(48000);
+
+    // Wait for the write to complete
     while (!(OSCCTRL->STATUS.reg & OSCCTRL_STATUS_DFLLRDY));
 
-#else
-    /* Setup GCLK1 using the external 32.768 kHz oscillator */
-    GCLK->GENCTRL[1].reg =
-        GCLK_GENCTRL_SRC_XOSC32K |
-        GCLK_GENCTRL_DIV(1) |
-        /* Improve the duty cycle. */
-        GCLK_GENCTRL_IDC |
-        GCLK_GENCTRL_GENEN;
+    // enable the DFLL
+    OSCCTRL->DFLLCTRL.bit.ENABLE = 1;
 
-    /* Wait for the write to complete */
-    while(GCLK->SYNCBUSY.bit.GENCTRL1);
+    // assign DFLL to GCLK1
+    GCLK->GENCTRL[1].reg = GCLK_GENCTRL_SRC_DFLL48M |
+                           GCLK_GENCTRL_DIV(1) |
+                           GCLK_GENCTRL_IDC |
+                           GCLK_GENCTRL_GENEN;
 
-    // Configure CLK_DFLL48M_REF to use GCLK1 as its source
-    GCLK->PCHCTRL[0].reg = GCLK_PCHCTRL_GEN_GCLK1 | GCLK_PCHCTRL_CHEN;
-
-    OSCCTRL->DFLLCTRL.reg = 0;
-    while (!(OSCCTRL->STATUS.reg & OSCCTRL_STATUS_DFLLRDY));
-
-    // set the coarse and fine values to speed up frequency lock.
-    uint32_t coarse =(*((uint32_t *)NVMCTRL_OTP5)) >> 26;
-    OSCCTRL->DFLLVAL.reg = OSCCTRL_DFLLVAL_COARSE(coarse) |
-                           OSCCTRL_DFLLVAL_FINE(0x200);
-    // set coarse and fine steps, and multiplier (48 MHz = 32768 Hz * 1465)
-    OSCCTRL->DFLLMUL.reg = OSCCTRL_DFLLMUL_CSTEP( 1 ) |
-                           OSCCTRL_DFLLMUL_FSTEP( 1 ) |
-                           OSCCTRL_DFLLMUL_MUL( 1465 );
-    // set closed loop mode, chill cycle disable and USB clock recovery mode, and enable the DFLL.
-    OSCCTRL->DFLLCTRL.reg = OSCCTRL_DFLLCTRL_ONDEMAND | OSCCTRL_DFLLCTRL_RUNSTDBY | OSCCTRL_DFLLCTRL_USBCRM | OSCCTRL_DFLLCTRL_ENABLE;
-    while (!(OSCCTRL->STATUS.reg & OSCCTRL_STATUS_DFLLRDY));
-#endif
-
-    // assign DFLL to GCLK0
-    GCLK->GENCTRL[0].reg = GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_DFLL48M) | GCLK_GENCTRL_DIV(1) | GCLK_GENCTRL_GENEN;
-    while (GCLK->SYNCBUSY.bit.GENCTRL0); // wait for generator control 1 to sync
+    // wait for generator control 1 to sync
+    while (GCLK->SYNCBUSY.bit.GENCTRL1);
 }
 
 uint32_t get_cpu_frequency(void) {
-    // if GCLK0's source is the DFLL, we're running at 48 MHz
-    if (GCLK->GENCTRL[0].bit.SRC == GCLK_GENCTRL_SRC_DFLL48M_Val) {
-        return 48000000;
-    }
-
     // otherwise, we're running at 16 MHz divided by the prescaler
     switch (OSCCTRL->OSC16MCTRL.bit.FSEL) {
     case 0:
@@ -196,11 +172,6 @@ uint32_t get_cpu_frequency(void) {
 }
 
 bool set_cpu_frequency(uint32_t freq) {
-    if (freq == 48000000) {
-        enable_48mhz_clock();
-        return true;
-    }
-
     if (GCLK->GENCTRL[0].bit.SRC == GCLK_GENCTRL_SRC_DFLL48M_Val) {
         GCLK->GENCTRL[0].bit.SRC = GCLK_GENCTRL_SRC_OSC16M_Val;
         while(GCLK->SYNCBUSY.bit.GENCTRL0);

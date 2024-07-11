@@ -75,6 +75,9 @@ extern const uint8_t Num_SERCOM_Instances;
   *          off when in standby mode. GCLK2 and GCLK3 are also ONDEMAND, but RUNSTDBY
   *          is on. This ensures that if a peripheral requests it, the clock will remain
   *          on in standby, but if no peripheral requests it, it will not run at all.
+  *          Also note that while GCLK1 is not turned on at startup, it may be reserved for
+  *          internal use depending on your use case. If you intend to use USB, the
+  *          `usb_init` function will claim GCLK1 for the 48 MHz DFLL clock.
   */
 void sys_init(void);
 
@@ -99,6 +102,16 @@ uint32_t get_cpu_frequency(void);
   *       GCLK0 before calling set_cpu_frequency, and then re-enable them after.
   */
 bool set_cpu_frequency(uint32_t freq);
+
+/** @brief Enables the 48 MHz clock on GCLK1 for USB operation.
+  * @details This function is called by the USB stack when it is initialized.
+  * @warning At this time, the 48 MHz clock is hard-coded to use USB Clock
+  *          Recovery Mode, and as such will only be available if your device
+  *          is plugged into a USB host. It is possible to derive the 48 MHz
+  *          DFLL from an external 32kHz crystal, but this is not currently
+  *          implemented in Gossamer.
+  */
+void _enable_48mhz_gclk1(void);
 
 /** @brief Enters the low-power STANDBY mode. Does not return until an interrupt fires.
   * @details You should not generally need to call this function; at the end of every

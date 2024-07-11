@@ -30,21 +30,23 @@
 
 #ifdef APP_USES_TINYUSB
 
- void usb_init(void) {
+void usb_init(void) {
+    _enable_48mhz_gclk1();
 #if defined(_SAMD21_) || defined(_SAMD11_)
     // Enable USB clocks...
     PM->AHBMASK.reg |= PM_AHBMASK_USB;
     PM->APBBMASK.reg |= PM_APBBMASK_USB;
 
-    // ...and assign GCLK0 to USB
-    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(USB_GCLK_ID) | GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN(0);
+    // ...and assign GCLK1 to USB
+    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(USB_GCLK_ID) | GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN(1);
 #else
     // Enable USB clocks...
     MCLK->AHBMASK.reg |= MCLK_AHBMASK_USB;
     MCLK->APBBMASK.reg |= MCLK_APBBMASK_USB;
 
-    // ...and assign GCLK0 to USB
-    GCLK->PCHCTRL[USB_GCLK_ID].reg = GCLK_PCHCTRL_GEN_GCLK0 | GCLK_PCHCTRL_CHEN;
+    // ...and assign GCLK1 to USB
+    GCLK->PCHCTRL[USB_GCLK_ID].reg = GCLK_PCHCTRL_GEN_GCLK1 | GCLK_PCHCTRL_CHEN;
+    while (GCLK->PCHCTRL[USB_GCLK_ID].bit.CHEN == 0);
 #endif
 
     // USB Pin Init

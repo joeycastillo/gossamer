@@ -25,21 +25,16 @@
 // WORK IN PROGRESS, not yet functional.
 #ifdef APP_USES_TINYUSB
 
-#if defined(_SAML22_)
-#error "USB is not currently supported on SAM L22"
-#endif
-
 #pragma once
 
 #include <stdint.h>
 #include <stdbool.h>
 #include "tusb.h"
 
-/** @brief Enables the peripheral clock for USB and clocks it with GCLK0. Also
-  *         sets up the USB pins. For USB to work, the CPU speed must be 48 MHz.
-  * @warning You MUST call `cpu_set_frequency(48000000)` before calling this
-  *          function. The USB peripheral depends on a 48 MHz clock on GCLK0.
-  */
+/** @brief Initializes the USB preipheral, and assigns the USB pins to their
+ *         relevant functions. In the process, this function also sets up the
+ *         48 MHz DFLL clock on GCLK1.
+ */
 void usb_init(void);
 
 /**

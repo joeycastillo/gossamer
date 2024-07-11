@@ -29,6 +29,7 @@
 //-----------------------------------------------------------------------------
 #include "saml22.h"
 #include "system.h"
+#include "pins.h"
 
 const TC_Instance_Details TC_Peripherals[] = {
     {TC0, MCLK_APBCMASK_TC0, TC0_GCLK_ID},
@@ -97,6 +98,44 @@ void sys_init(void) {
                            GCLK_GENCTRL_RUNSTDBY |
                            GCLK_GENCTRL_GENEN;
 #endif
+}
+
+void _enable_48mhz_gclk1(void) {
+    // reset flags and disable DFLL
+    OSCCTRL->INTFLAG.reg = OSCCTRL_INTFLAG_DFLLRDY;
+    OSCCTRL->DFLLCTRL.reg = 0;
+    while (!(OSCCTRL->STATUS.reg & OSCCTRL_STATUS_DFLLRDY));
+
+    // set the coarse and fine values to speed up frequency lock.
+    uint32_t coarse =(*((uint32_t *)NVMCTRL_OTP5)) >> 26;
+    OSCCTRL->DFLLVAL.reg = OSCCTRL_DFLLVAL_COARSE(coarse) |
+                           OSCCTRL_DFLLVAL_FINE(0x200);
+
+    // set USB clock recovery mode, closed loop mode and chill cycle disable.
+    // USB clock recovery mode recovers a 1 kHz clock from the USB start of frame packets.
+    OSCCTRL->DFLLCTRL.reg = OSCCTRL_DFLLCTRL_USBCRM |
+                            OSCCTRL_DFLLCTRL_MODE |
+                            OSCCTRL_DFLLCTRL_CCDIS;
+
+    // set coarse and fine steps, and multiplier (48 MHz = 1000 Hz * 48000)
+    OSCCTRL->DFLLMUL.reg = OSCCTRL_DFLLMUL_CSTEP(1) |
+                           OSCCTRL_DFLLMUL_FSTEP(1) |
+                           OSCCTRL_DFLLMUL_MUL(48000);
+
+    // Wait for the write to complete
+    while (!(OSCCTRL->STATUS.reg & OSCCTRL_STATUS_DFLLRDY));
+
+    // enable the DFLL
+    OSCCTRL->DFLLCTRL.bit.ENABLE = 1;
+
+    // assign DFLL to GCLK1
+    GCLK->GENCTRL[1].reg = GCLK_GENCTRL_SRC_DFLL48M |
+                           GCLK_GENCTRL_DIV(1) |
+                           GCLK_GENCTRL_IDC |
+                           GCLK_GENCTRL_GENEN;
+
+    // wait for generator control 1 to sync
+    while (GCLK->SYNCBUSY.bit.GENCTRL1);
 }
 
 uint32_t get_cpu_frequency(void) {
