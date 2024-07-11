@@ -47,7 +47,7 @@ DFU_CONV = $(GOSSAMER_PATH)/utils/dfu/dx1elf2dfu
 DFU_UTIL = dfu-util
 
 CFLAGS += -W -Wall -Wextra -Wmissing-prototypes -Wmissing-declarations
-CFLAGS += --std=gnu99 -Os
+CFLAGS += --std=c99 -Os
 CFLAGS += -fno-diagnostics-show-caret
 CFLAGS += -fdata-sections -ffunction-sections
 CFLAGS += -funsigned-char -funsigned-bitfields
