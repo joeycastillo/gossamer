@@ -77,6 +77,8 @@ void rtc_enable(void) {
 }
 
 void rtc_set_date_time(rtc_date_time date_time) {
+    // syncing before and after was found to increase reliability on Sensor Watch
+    _rtc_sync();
     RTC->MODE2.CLOCK.reg = date_time.reg;
     _rtc_sync();
 }
