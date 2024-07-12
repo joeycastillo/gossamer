@@ -102,6 +102,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>app_setup</b> (void)<
 <tr class="memitem:ad1cfce0ef962cd2afe2d8b2d2d13482a" id="r_ad1cfce0ef962cd2afe2d8b2d2d13482a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="app_8h.html#ad1cfce0ef962cd2afe2d8b2d2d13482a">app_loop</a> (void)</td></tr>
 <tr class="memdesc:ad1cfce0ef962cd2afe2d8b2d2d13482a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function you will implement to serve as the app's main run loop. This method will be called repeatedly, or if you enter STANDBY mode, as soon as the device wakes from that mode.  <br /></td></tr>
 <tr class="separator:ad1cfce0ef962cd2afe2d8b2d2d13482a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb51f5c2b5cad3766f19eb69c92793b" id="r_a7cb51f5c2b5cad3766f19eb69c92793b"><td class="memItemLeft" align="right" valign="top"><a id="a7cb51f5c2b5cad3766f19eb69c92793b" name="a7cb51f5c2b5cad3766f19eb69c92793b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>yield</b> (void)</td></tr>
+<tr class="memdesc:a7cb51f5c2b5cad3766f19eb69c92793b"><td class="mdescLeft">&#160;</td><td class="mdescRight">OPTIONAL: A function to yield control of the CPU to other tasks. This function is called in the delay function to allow other tasks to run while the CPU is busy waiting. By default, this function does nothing, but if you are using the USB peripheral, you should implement this function and call <code>tud_task</code> at minumum, along with any other USB-related tasks you need to run. <br /></td></tr>
+<tr class="separator:a7cb51f5c2b5cad3766f19eb69c92793b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Gossamer application framework. </p>
