@@ -61,6 +61,12 @@ void usb_init(void);
 void usb_enable(void);
 
 /**
+ * @brief Checks if the USB peripheral is enabled.
+ * @return true if the USB peripheral is enabled, false otherwise.
+ */
+bool usb_is_enabled(void);
+
+/**
  * @brief Disables the USB peripheral.
  * @note Has not been extensively tested, TinyUSB may not like this.
  */

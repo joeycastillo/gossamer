@@ -62,6 +62,10 @@ void usb_enable(void) {
     tusb_init();
 }
 
+bool usb_is_enabled(void) {
+    return USB->DEVICE.CTRLA.bit.ENABLE;
+}
+
 void usb_disable(void) {
     USB->DEVICE.CTRLA.bit.ENABLE = 0;
     while (USB->DEVICE.SYNCBUSY.bit.ENABLE);
