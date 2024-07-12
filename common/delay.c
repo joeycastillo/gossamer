@@ -2,6 +2,12 @@
 #include "sam.h"
 #include "system.h"
 
+static void __empty() {
+	// Empty
+}
+
+void yield(void) __attribute__ ((weak, alias("__empty")));
+
 void delay_init(void) {
     SysTick->LOAD = SysTick_LOAD_RELOAD_Msk;
     SysTick->CTRL = SysTick_CTRL_ENABLE_Msk | SysTick_CTRL_CLKSOURCE_Msk;
@@ -14,14 +20,14 @@ static void _delay_cycles(uint32_t cycles) {
     while (n--) {
         SysTick->LOAD = 0xFFFFFF;
         SysTick->VAL  = 0xFFFFFF;
-        while (!(SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk));
+        while (!(SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk)) yield();
 
         buf -= 0xFFFFFF;
     }
 
     SysTick->LOAD = buf;
     SysTick->VAL  = buf;
-    while (!(SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk));
+    while (!(SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk)) yield();
 }
 
 static uint32_t _cycles_for_ms(const uint16_t ms) {

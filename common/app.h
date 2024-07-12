@@ -59,3 +59,10 @@ void app_setup(void);
   *         app_loop method will be called again immediately.
   */
 bool app_loop(void);
+
+/** @brief OPTIONAL: A function to yield control of the CPU to other tasks. This function is called in the delay
+ *                   function to allow other tasks to run while the CPU is busy waiting.  By default, this function
+ *                   does nothing, but if you are using the USB peripheral, you should implement this function and call
+ *                   `tud_task` at minumum, along with any other USB-related tasks you need to run.
+*/
+void yield(void);
