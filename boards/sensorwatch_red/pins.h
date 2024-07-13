@@ -45,8 +45,8 @@ HAL_GPIO_PIN(SLCD0,  B,  6)
 HAL_GPIO_PIN(SLCD1,  B,  7)
 HAL_GPIO_PIN(SLCD2,  B,  8)
 HAL_GPIO_PIN(SLCD3,  B,  9)
-HAL_GPIO_PIN(SLCD4,  A,  5)
-HAL_GPIO_PIN(SLCD5,  A,  4)
+HAL_GPIO_PIN(SLCD4,  A,  4)
+HAL_GPIO_PIN(SLCD5,  A,  5)
 HAL_GPIO_PIN(SLCD6,  A,  6)
 HAL_GPIO_PIN(SLCD7,  A,  7)
 HAL_GPIO_PIN(SLCD8,  A,  8)
@@ -68,3 +68,32 @@ HAL_GPIO_PIN(SLCD23, A, 18)
 HAL_GPIO_PIN(SLCD24, A, 19)
 HAL_GPIO_PIN(SLCD25, B, 16)
 HAL_GPIO_PIN(SLCD26, B, 17)
+
+#define LCD_PIN_ENABLE (\
+    (uint64_t)1 <<  0 | \
+    (uint64_t)1 <<  1 | \
+    (uint64_t)1 <<  2 | \
+    (uint64_t)1 <<  3 | \
+    (uint64_t)1 <<  4 | \
+    (uint64_t)1 <<  5 | \
+    (uint64_t)1 <<  6 | \
+    (uint64_t)1 <<  7 | \
+    (uint64_t)1 << 11 | \
+    (uint64_t)1 << 12 | \
+    (uint64_t)1 << 13 | \
+    (uint64_t)1 << 14 | \
+    (uint64_t)1 << 21 | \
+    (uint64_t)1 << 22 | \
+    (uint64_t)1 << 23 | \
+    (uint64_t)1 << 24 | \
+    (uint64_t)1 << 25 | \
+    (uint64_t)1 << 28 | \
+    (uint64_t)1 << 29 | \
+    (uint64_t)1 << 30 | \
+    (uint64_t)1 << 31 | \
+    (uint64_t)1 << 32 | \
+    (uint64_t)1 << 33 | \
+    (uint64_t)1 << 34 | \
+    (uint64_t)1 << 35 | \
+    (uint64_t)1 << 42 | \
+    (uint64_t)1 << 43 | 0)
