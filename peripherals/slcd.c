@@ -26,7 +26,7 @@
 
 #ifdef SLCD
 
-static void _sync_slcd(uint32_t reg) {
+static void _slcd_sync(uint32_t reg) {
     // wait for sync of whichever flags were passed in.
     while (SLCD->SYNCBUSY.reg & reg);
 }
@@ -36,10 +36,10 @@ void slcd_init(uint64_t lcd_pins, slcd_bias_value_t bias, slcd_duty_value_t duty
     MCLK->APBCMASK.reg |= MCLK_APBCMASK_SLCD;
     if (SLCD->CTRLA.bit.ENABLE) {
         SLCD->CTRLA.bit.ENABLE = 0;
-        _sync_slcd(SLCD_SYNCBUSY_ENABLE);
+        _slcd_sync(SLCD_SYNCBUSY_ENABLE);
     }
     SLCD->CTRLA.bit.SWRST = 1;
-    _sync_slcd(SLCD_SYNCBUSY_SWRST);
+    _slcd_sync(SLCD_SYNCBUSY_SWRST);
 
     // Tell the LCD driver which pins are connected to the LCD
     SLCD->LPENL.reg = (uint32_t)lcd_pins;
@@ -57,7 +57,7 @@ void slcd_init(uint64_t lcd_pins, slcd_bias_value_t bias, slcd_duty_value_t duty
     SLCD->CTRLB.reg = SLCD_CTRLB_BBEN |             // enable bias buffer
                       SLCD_CTRLB_BBD(1);            // configure bias buffer
     SLCD->CTRLD.reg = SLCD_CTRLD_DISPEN;            // enable the COM/SEG waveform outputs
-    _sync_slcd(SLCD_SYNCBUSY_CTRLD);
+    _slcd_sync(SLCD_SYNCBUSY_CTRLD);
 }
 
 void slcd_set_contrast(uint8_t contrast) {
@@ -66,7 +66,7 @@ void slcd_set_contrast(uint8_t contrast) {
 
 void slcd_enable(void) {
     SLCD->CTRLA.bit.ENABLE = 1;
-    _sync_slcd(SLCD_SYNCBUSY_ENABLE);
+    _slcd_sync(SLCD_SYNCBUSY_ENABLE);
 }
 
 void slcd_clear(void) {
@@ -129,7 +129,7 @@ void slcd_set_frame_counter_enabled(uint8_t fc, bool enabled) {
     default:
         break;
     }
-    _sync_slcd(SLCD_SYNCBUSY_CTRLD);
+    _slcd_sync(SLCD_SYNCBUSY_CTRLD);
 }
 
 void slcd_configure_blink(bool blink_all, uint8_t bss0, uint8_t bss1, uint8_t fc) {
@@ -145,7 +145,7 @@ void slcd_configure_blink(bool blink_all, uint8_t bss0, uint8_t bss1, uint8_t fc
 
 void slcd_set_blink_enabled(bool enabled) {
     SLCD->CTRLD.bit.BLINK = enabled ? 1 : 0;
-    _sync_slcd(SLCD_SYNCBUSY_CTRLD);
+    _slcd_sync(SLCD_SYNCBUSY_CTRLD);
 }
 
 void slcd_configure_circular_shift_animation(uint16_t initial_value, uint8_t size, slcd_csrshift_value_t shift_dir, uint8_t fc) {
@@ -157,12 +157,12 @@ void slcd_configure_circular_shift_animation(uint16_t initial_value, uint8_t siz
 
 void slcd_set_circular_shift_animation_enabled(bool enabled) {
     SLCD->CTRLD.bit.CSREN = enabled ? 1 : 0;
-    _sync_slcd(SLCD_SYNCBUSY_CTRLD);
+    _slcd_sync(SLCD_SYNCBUSY_CTRLD);
 }
 
 void slcd_disable(void) {
     SLCD->CTRLA.bit.ENABLE = 0;
-    _sync_slcd(SLCD_SYNCBUSY_ENABLE);
+    _slcd_sync(SLCD_SYNCBUSY_ENABLE);
 }
 
 #endif // SLCD
