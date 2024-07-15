@@ -69,12 +69,12 @@ void tcc_set_channel_polarity(uint8_t instance, uint8_t channel, tcc_channel_pol
     uint8_t value = TCC_Peripherals[instance].tcc->DRVCTRL.reg;
 
     if (polarity == TCC_CHANNEL_POLARITY_INVERTED) {
-        value |= (1 << channel);
+        value |= TCC_DRVCTRL_INVEN((1 << channel));
     } else {
-        value &= ~(1 << channel);
+        value &= TCC_DRVCTRL_INVEN(~(1 << channel));
     }
 
-    TCC_Peripherals[instance].tcc->DRVCTRL.reg |= TCC_DRVCTRL_INVEN(value);
+    TCC_Peripherals[instance].tcc->DRVCTRL.reg = value;
 }
 
 void tcc_enable(uint8_t instance) {
