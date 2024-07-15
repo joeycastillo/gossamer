@@ -180,13 +180,6 @@ void slcd_configure_frame_counter(uint8_t fc, uint8_t overflow_count, bool presc
 void slcd_set_frame_counter_enabled(uint8_t fc, bool enabled);
 
 /**
- * @brief Disables one of the three frame counters.
- * @note You can disable a frame counter at any time; there is no need to disable the SLCD first.
- * @param fc The frame counter to disable. Valid options are 0, 1, or 2.
- */
-void slcd_disable_frame_counter(uint8_t fc);
-
-/**
  * @brief Configures the blink mode, but does not start blinking.
  * @note SLCD must be disabled to configure the blinking mode.
  * @param blink_all If true, all segments will blink. If false, only the segments
