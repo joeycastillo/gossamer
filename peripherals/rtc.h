@@ -52,7 +52,7 @@ typedef enum rtc_alarm_match {
     ALARM_MATCH_HHMMSS,
 } rtc_alarm_match;
 
-typedef void (*rtc_cb_t)(uint8_t source);
+typedef void (*rtc_cb_t)(uint16_t intflag);
 
 /** @brief Initializes the RTC.
  *  @details Configures the RTC for 24-hour clock / calendar mode, with a 1 Hz
@@ -97,6 +97,8 @@ void rtc_enable_alarm_interrupt(rtc_date_time alarm_time, rtc_alarm_match mask);
 void rtc_disable_alarm_interrupt(void);
 
 /** @brief Configures the RTC alarm callback.
-  * @param callback The function to call when an RTC interrupt occurs.
+  * @param callback The function to call when an RTC interrupt occurs. The callback
+  *                 will be passed a bitmask of the interrupt flags, the full contents
+  *                 of the RTC peripheral's INTFLAG register.
   */
 void rtc_configure_callback(rtc_cb_t callback);

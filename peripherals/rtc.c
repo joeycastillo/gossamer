@@ -117,11 +117,7 @@ void rtc_disable_alarm_interrupt(void) {
 void irq_handler_rtc(void);
 
 void irq_handler_rtc(void) {
-    if (RTC->MODE2.INTFLAG.bit.ALARM0) {
-        RTC->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_ALARM0;
-        if (_rtc_callback != NULL) {
-            // TODO: Periodic events and tamper pins on supported devices
-            _rtc_callback(0);
-        }
+    if (_rtc_callback != NULL) {
+        _rtc_callback(RTC->MODE2.INTFLAG.reg);
     }
 }
