@@ -2,6 +2,8 @@
 
 #include "hal_gpio.h"
 
+#define STATIC_FREQCORR (22)
+
 // Detects if we are on USB power.
 HAL_GPIO_PIN(VBUS_DET, A, 3)
 
