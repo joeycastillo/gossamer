@@ -58,7 +58,7 @@ void eic_enable(void);
   * @param trigger The condition on which you wish to trigger: rising, falling or both.
   * @return the EIC channel number associated with the pin, or -1 if the pin is not an interrupt pin.
   * @note Be sure to check your pin multiplexing table to ensure that you do not have multiple pins
-  *       assigned to the same interrupt channel.
+  *       assigned to the same interrupt channel. Also note that the NMI pin is not currently supported.
   */
 int8_t eic_configure_pin(const uint32_t pin, eic_interrupt_trigger trigger);
 
