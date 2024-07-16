@@ -179,7 +179,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">                                        \</span></div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="preprocessor">  static inline void HAL_GPIO_##name##_off(void)                \</span></div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="preprocessor">  {                                     \</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">    PORT-&gt;Group[HAL_GPIO_PORT##port].DIRSET.reg = (1 &lt;&lt; pin);           \</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">    PORT-&gt;Group[HAL_GPIO_PORT##port].DIRCLR.reg = (1 &lt;&lt; pin);           \</span></div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">    PORT-&gt;Group[HAL_GPIO_PORT##port].PINCFG[pin].reg &amp;= ~(PORT_PINCFG_PULLEN | PORT_PINCFG_INEN);   \</span></div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">    (void)HAL_GPIO_##name##_off;                        \</span></div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">  }                                     \</span></div>
