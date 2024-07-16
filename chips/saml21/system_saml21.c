@@ -101,7 +101,7 @@ void sys_init(void) {
                            GCLK_GENCTRL_RUNSTDBY |
                            GCLK_GENCTRL_GENEN;
 #else
-    OSC32KCTRL->XOSC32K.reg = OSC32KCTRL_XOSC32K_STARTUP(0x6) |
+    OSC32KCTRL->XOSC32K.reg = OSC32KCTRL_XOSC32K_STARTUP(0x3) |
                               OSC32KCTRL_XOSC32K_XTALEN |
                               OSC32KCTRL_XOSC32K_EN1K |
                               OSC32KCTRL_XOSC32K_EN32K |

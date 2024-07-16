@@ -84,7 +84,7 @@ void sys_init(void) {
     // use the internal OSCULP32K. This means timekeeping will be less accurate.
     OSC32KCTRL->RTCCTRL.reg = OSC32KCTRL_RTCCTRL_RTCSEL_ULP1K;
 #else
-    OSC32KCTRL->XOSC32K.reg = OSC32KCTRL_XOSC32K_STARTUP(0x6) |
+    OSC32KCTRL->XOSC32K.reg = OSC32KCTRL_XOSC32K_STARTUP(0x3) |
                               OSC32KCTRL_XOSC32K_XTALEN |
                               OSC32KCTRL_XOSC32K_EN1K |
                               OSC32KCTRL_XOSC32K_EN32K |
