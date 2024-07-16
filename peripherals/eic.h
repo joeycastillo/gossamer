@@ -56,10 +56,11 @@ void eic_enable(void);
   *          eic_enable_event() to either wake the processor or generate an event for a peripheral.
   * @param pin The external interrupt pin you wish to configure
   * @param trigger The condition on which you wish to trigger: rising, falling or both.
+  * @return the EIC channel number associated with the pin, or -1 if the pin is not an interrupt pin.
   * @note Be sure to check your pin multiplexing table to ensure that you do not have multiple pins
   *       assigned to the same interrupt channel.
   */
-bool eic_configure_pin(const uint32_t pin, eic_interrupt_trigger trigger);
+int8_t eic_configure_pin(const uint32_t pin, eic_interrupt_trigger trigger);
 
 /** @brief Enables an interrupt on the given interrupt channel.
   * @param pin The external interrupt pin.

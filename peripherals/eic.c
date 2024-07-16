@@ -96,11 +96,11 @@ void eic_enable(void) {
 #endif
 }
 
-bool eic_configure_pin(const uint32_t pin, eic_interrupt_trigger trigger) {
+int8_t eic_configure_pin(const uint32_t pin, eic_interrupt_trigger trigger) {
     uint16_t port = pin >> 8;
     int8_t channel = _eic_pin_to_channel[port][pin % 32];
     if (channel < 0) {
-        return false;
+        return -1;
     }
     uint8_t config_index = (channel > 7) ? 1 : 0;
     uint8_t sense_pos = 4 * (channel % 8);
@@ -122,7 +122,7 @@ bool eic_configure_pin(const uint32_t pin, eic_interrupt_trigger trigger) {
     CTRLREG.bit.ENABLE = 1;
     _eic_sync();
 
-    return true;
+    return channel;
 }
 
 bool eic_enable_interrupt(const uint8_t pin) {
