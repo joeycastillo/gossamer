@@ -2,7 +2,7 @@ var searchData=
 [
   ['eic_2eh_0',['eic.h',['../eic_8h.html',1,'']]],
   ['eic_5fconfigure_5fcallback_1',['eic_configure_callback',['../eic_8h.html#a5695270545c3f5b6a24682447108e6cd',1,'eic.c']]],
-  ['eic_5fconfigure_5fpin_2',['eic_configure_pin',['../eic_8h.html#aab1848d3f328f7efa563ecd5519d84d2',1,'eic.c']]],
+  ['eic_5fconfigure_5fpin_2',['eic_configure_pin',['../eic_8h.html#ad19e237babbd74992a6975ef9cf939e5',1,'eic.c']]],
   ['eic_5fdisable_3',['eic_disable',['../eic_8h.html#abaae85c8706e41bb2cc2b7aa7be956e6',1,'eic.c']]],
   ['eic_5fdisable_5fevent_4',['eic_disable_event',['../eic_8h.html#a21e4b3925d449c25fe3831b167845161',1,'eic.c']]],
   ['eic_5fdisable_5finterrupt_5',['eic_disable_interrupt',['../eic_8h.html#a48015b16099d943fad32302fad6114a1',1,'eic.c']]],

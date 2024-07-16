@@ -119,9 +119,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>eic_init</b> (void)</
 void&#160;</td><td class="memItemRight" valign="bottom"><b>eic_enable</b> (void)</td></tr>
 <tr class="memdesc:afd8706ad3219397c91636524d2149eb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the external interrupt controller. <br /></td></tr>
 <tr class="separator:afd8706ad3219397c91636524d2149eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab1848d3f328f7efa563ecd5519d84d2" id="r_aab1848d3f328f7efa563ecd5519d84d2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eic_8h.html#aab1848d3f328f7efa563ecd5519d84d2">eic_configure_pin</a> (const uint32_t pin, <a class="el" href="eic_8h.html#a64ab58f4cc1141f8b023f0f96f58f980">eic_interrupt_trigger</a> trigger)</td></tr>
-<tr class="memdesc:aab1848d3f328f7efa563ecd5519d84d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures an external interrupt on one of the external interrupt pins.  <br /></td></tr>
-<tr class="separator:aab1848d3f328f7efa563ecd5519d84d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad19e237babbd74992a6975ef9cf939e5" id="r_ad19e237babbd74992a6975ef9cf939e5"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eic_8h.html#ad19e237babbd74992a6975ef9cf939e5">eic_configure_pin</a> (const uint32_t pin, <a class="el" href="eic_8h.html#a64ab58f4cc1141f8b023f0f96f58f980">eic_interrupt_trigger</a> trigger)</td></tr>
+<tr class="memdesc:ad19e237babbd74992a6975ef9cf939e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures an external interrupt on one of the external interrupt pins.  <br /></td></tr>
+<tr class="separator:ad19e237babbd74992a6975ef9cf939e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95932a1b8c5442120cd6caa7a5cb0733" id="r_a95932a1b8c5442120cd6caa7a5cb0733"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eic_8h.html#a95932a1b8c5442120cd6caa7a5cb0733">eic_enable_interrupt</a> (const uint8_t pin)</td></tr>
 <tr class="memdesc:a95932a1b8c5442120cd6caa7a5cb0733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables an interrupt on the given interrupt channel.  <br /></td></tr>
 <tr class="separator:a95932a1b8c5442120cd6caa7a5cb0733"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,14 +172,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>eic_disable</b> (void
 
 </div>
 </div>
-<a id="aab1848d3f328f7efa563ecd5519d84d2" name="aab1848d3f328f7efa563ecd5519d84d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab1848d3f328f7efa563ecd5519d84d2">&#9670;&#160;</a></span>eic_configure_pin()</h2>
+<a id="ad19e237babbd74992a6975ef9cf939e5" name="ad19e237babbd74992a6975ef9cf939e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad19e237babbd74992a6975ef9cf939e5">&#9670;&#160;</a></span>eic_configure_pin()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool eic_configure_pin </td>
+          <td class="memname">int8_t eic_configure_pin </td>
           <td>(</td>
           <td class="paramtype">const uint32_t&#160;</td>
           <td class="paramname"><em>pin</em>, </td>
@@ -206,6 +206,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>eic_disable</b> (void
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>the EIC channel number associated with the pin, or -1 if the pin is not an interrupt pin. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Be sure to check your pin multiplexing table to ensure that you do not have multiple pins assigned to the same interrupt channel. </dd></dl>
 
 </div>
