@@ -96,7 +96,7 @@ void eic_enable(void) {
 #endif
 }
 
-int8_t eic_configure_pin(const uint32_t pin, eic_interrupt_trigger trigger) {
+int8_t eic_configure_pin(const uint16_t pin, eic_interrupt_trigger trigger) {
     uint16_t port = pin >> 8;
     int8_t channel = _eic_pin_to_channel[port][pin % 32];
     if (channel < 0) {
@@ -125,7 +125,7 @@ int8_t eic_configure_pin(const uint32_t pin, eic_interrupt_trigger trigger) {
     return channel;
 }
 
-bool eic_enable_interrupt(const uint8_t pin) {
+bool eic_enable_interrupt(const uint16_t pin) {
     int8_t channel = _eic_pin_to_channel[pin / 32][pin % 32];
     if (channel < 0) {
         return false;
@@ -146,7 +146,7 @@ bool eic_enable_interrupt(const uint8_t pin) {
     return true;
 }
 
-bool eic_disable_interrupt(const uint8_t pin) {
+bool eic_disable_interrupt(const uint16_t pin) {
     int8_t channel = _eic_pin_to_channel[pin / 32][pin % 32];
     if (channel < 0) {
         return false;
@@ -167,7 +167,7 @@ bool eic_disable_interrupt(const uint8_t pin) {
     return true;
 }
 
-bool eic_enable_event(const uint8_t pin) {
+bool eic_enable_event(const uint16_t pin) {
     int8_t channel = _eic_pin_to_channel[pin / 32][pin % 32];
     if (channel < 0) {
         return false;
@@ -186,7 +186,7 @@ bool eic_enable_event(const uint8_t pin) {
     return true;
 }
 
-bool eic_disable_event(const uint8_t pin) {
+bool eic_disable_event(const uint16_t pin) {
     int8_t channel = _eic_pin_to_channel[pin / 32][pin % 32];
     if (channel < 0) {
         return false;
