@@ -8,8 +8,6 @@
 #include "system.h"
 #include "delay.h"
 
-void _enter_standby_mode(void);
-
 int main(void) {
     // set up system clocks
     sys_init();
@@ -20,7 +18,8 @@ int main(void) {
     // allow application to do its own initialization
     app_init();
 
-    // TODO: restore from BACKUP state
+    // restore from BACKUP state
+    app_wake_from_backup();
 
     // allow application to do its initial setup
     app_setup();
@@ -35,3 +34,11 @@ int main(void) {
 
     return 0;
 }
+
+static void __empty() {
+	// Empty
+}
+
+void app_wake_from_backup(void) __attribute__ ((weak, alias("__empty")));
+
+void yield(void) __attribute__ ((weak, alias("__empty")));

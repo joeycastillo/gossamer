@@ -1,12 +1,7 @@
 #include "delay.h"
 #include "sam.h"
 #include "system.h"
-
-static void __empty() {
-	// Empty
-}
-
-void yield(void) __attribute__ ((weak, alias("__empty")));
+#include "app.h"
 
 void delay_init(void) {
     SysTick->LOAD = SysTick_LOAD_RELOAD_Msk;
