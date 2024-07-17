@@ -175,5 +175,8 @@ bool set_cpu_frequency(uint32_t freq) {
 
 void _enter_standby_mode() {
     PM->SLEEPCFG.bit.SLEEPMODE = PM_SLEEPCFG_SLEEPMODE_STANDBY_Val;
+    while (PM->SLEEPCFG.bit.SLEEPMODE != PM_SLEEPCFG_SLEEPMODE_STANDBY_Val);
+
+    __DSB();
     __WFI();
 }
