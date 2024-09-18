@@ -5,7 +5,7 @@
 #define STATIC_FREQCORR (11)
 
 // Detects if we are on USB power.
-HAL_GPIO_PIN(VBUS_DET, A, 3)
+HAL_GPIO_PIN(VBUS_DET, B, 5)
 
 // Analog pins
 HAL_GPIO_PIN(A0,   B, 4)
