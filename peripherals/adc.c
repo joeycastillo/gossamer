@@ -90,9 +90,8 @@ uint16_t adc_get_analog_value_for_channel(uint8_t channel) {
     return ADC->RESULT.reg;
 }
 
-uint16_t adc_get_analog_value(uint16_t pin) {
-    uint16_t port = pin >> 8;
-    int8_t channel = _adc_pin_to_channel[port][pin % 32];
+uint16_t adc_get_analog_value(uint8_t pin) {
+    int8_t channel = _adc_pin_to_channel[pin >> 5][pin & 0x1F];
     if (channel < 0) {
         return 0;
     }

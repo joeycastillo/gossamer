@@ -145,9 +145,9 @@
     (void)HAL_GPIO_##name##_pmuxdis;						\
   }										\
 										\
-  static inline uint16_t HAL_GPIO_##name##_pin(void)				\
+  static inline uint8_t HAL_GPIO_##name##_pin(void)				\
   {										\
-    return ((HAL_GPIO_PORT##port << 8) | pin);					\
+    return ((HAL_GPIO_PORT##port << 5) | (pin & 0x1f));					\
     (void)HAL_GPIO_##name##_pin;						\
   }										\
                     \

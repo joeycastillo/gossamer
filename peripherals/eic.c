@@ -96,9 +96,9 @@ void eic_enable(void) {
 #endif
 }
 
-int8_t eic_configure_pin(const uint16_t pin, eic_interrupt_trigger trigger) {
-    uint16_t port = pin >> 8;
-    int8_t channel = _eic_pin_to_channel[port][pin % 32];
+int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger trigger) {
+    uint16_t port = pin >> 5;
+    int8_t channel = _eic_pin_to_channel[port][pin & 0x1F];
     if (channel < 0) {
         return -1;
     }
@@ -108,11 +108,12 @@ int8_t eic_configure_pin(const uint16_t pin, eic_interrupt_trigger trigger) {
     CTRLREG.bit.ENABLE = 0;
     _eic_sync();
 
-    PORT->Group[port].DIRCLR.reg = (1 << (pin % 32));
-    PORT->Group[port].PINCFG[pin % 32].reg |= PORT_PINCFG_INEN;
-    PORT->Group[port].PINCFG[pin % 32].reg |= PORT_PINCFG_PMUXEN;
-    if (pin & 1) PORT->Group[port].PMUX[(pin % 32) >> 1].bit.PMUXO = HAL_GPIO_PMUX_EIC;
-    else PORT->Group[port].PMUX[(pin % 32) >> 1].bit.PMUXE = HAL_GPIO_PMUX_EIC;
+    /// FIXME: Should we have macros for this that accept a port / pin?
+    PORT->Group[port].DIRCLR.reg = (1 << (pin & 0x1F));
+    PORT->Group[port].PINCFG[pin & 0x1F].reg |= PORT_PINCFG_INEN;
+    PORT->Group[port].PINCFG[pin & 0x1F].reg |= PORT_PINCFG_PMUXEN;
+    if (pin & 1) PORT->Group[port].PMUX[(pin & 0x1F) >> 1].bit.PMUXO = HAL_GPIO_PMUX_EIC;
+    else PORT->Group[port].PMUX[(pin & 0x1F) >> 1].bit.PMUXE = HAL_GPIO_PMUX_EIC;
 
     uint32_t config = EIC->CONFIG[config_index].reg;
     config &= ~(7 << sense_pos);
@@ -125,8 +126,8 @@ int8_t eic_configure_pin(const uint16_t pin, eic_interrupt_trigger trigger) {
     return channel;
 }
 
-bool eic_enable_interrupt(const uint16_t pin) {
-    int8_t channel = _eic_pin_to_channel[pin / 32][pin % 32];
+bool eic_enable_interrupt(const uint8_t pin) {
+    int8_t channel = _eic_pin_to_channel[pin >> 5][pin & 0x1F];
     if (channel < 0) {
         return false;
     }
@@ -146,8 +147,8 @@ bool eic_enable_interrupt(const uint16_t pin) {
     return true;
 }
 
-bool eic_disable_interrupt(const uint16_t pin) {
-    int8_t channel = _eic_pin_to_channel[pin / 32][pin % 32];
+bool eic_disable_interrupt(const uint8_t pin) {
+    int8_t channel = _eic_pin_to_channel[pin >> 5][pin & 0x1F];
     if (channel < 0) {
         return false;
     }
@@ -167,8 +168,8 @@ bool eic_disable_interrupt(const uint16_t pin) {
     return true;
 }
 
-bool eic_enable_event(const uint16_t pin) {
-    int8_t channel = _eic_pin_to_channel[pin / 32][pin % 32];
+bool eic_enable_event(const uint8_t pin) {
+    int8_t channel = _eic_pin_to_channel[pin >> 5][pin & 0x1F];
     if (channel < 0) {
         return false;
     }
@@ -186,8 +187,8 @@ bool eic_enable_event(const uint16_t pin) {
     return true;
 }
 
-bool eic_disable_event(const uint16_t pin) {
-    int8_t channel = _eic_pin_to_channel[pin / 32][pin % 32];
+bool eic_disable_event(const uint8_t pin) {
+    int8_t channel = _eic_pin_to_channel[pin >> 5][pin & 0x1F];
     if (channel < 0) {
         return false;
     }

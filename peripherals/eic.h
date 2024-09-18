@@ -54,33 +54,33 @@ void eic_enable(void);
   *          set pin direction, mux or pull; you must set up the pin yourself. This function also does
   *          not enable an interrupt or event generation. You must call eic_enable_interrupt() or
   *          eic_enable_event() to either wake the processor or generate an event for a peripheral.
-  * @param pin The external interrupt pin you wish to configure
+  * @param pin The external interrupt pin you wish to configure — use HAL_GPIO_xxx_PIN() macro.
   * @param trigger The condition on which you wish to trigger: rising, falling or both.
   * @return the EIC channel number associated with the pin, or -1 if the pin is not an interrupt pin.
   * @note Be sure to check your pin multiplexing table to ensure that you do not have multiple pins
   *       assigned to the same interrupt channel. Also note that the NMI pin is not currently supported.
   */
-int8_t eic_configure_pin(const uint16_t pin, eic_interrupt_trigger trigger);
+int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger trigger);
 
 /** @brief Enables an interrupt on the given interrupt channel.
   * @param pin The external interrupt pin.
   */
-bool eic_enable_interrupt(const uint16_t pin);
+bool eic_enable_interrupt(const uint8_t pin);
 
 /** @brief Disables the interrupt on the given interrupt channel.
   * @param pin The external interrupt pin.
   */
-bool eic_disable_interrupt(const uint16_t pin);
+bool eic_disable_interrupt(const uint8_t pin);
 
 /** @brief Enables an interrupt on the given interrupt channel.
   * @param pin The external interrupt pin.
   */
-bool eic_enable_event(const uint16_t pin);
+bool eic_enable_event(const uint8_t pin);
 
 /** @brief Disables the interrupt on the given interrupt channel.
   * @param pin The external interrupt pin.
   */
-bool eic_disable_event(const uint16_t pin);
+bool eic_disable_event(const uint8_t pin);
 
 /** @brief Configures an external interrupt callback.
   * @details You only get the one callback, so if you need to handle multiple interrupts, you'll need

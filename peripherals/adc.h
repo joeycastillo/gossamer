@@ -73,7 +73,7 @@ void adc_set_sampling_length(uint8_t length);
  * @return The analog value of the given ADC pin, from 0-65535 by default.
  *         If the pin is not an ADC pin, returns 0.
  */
-uint16_t adc_get_analog_value(uint16_t pin);
+uint16_t adc_get_analog_value(uint8_t pin);
 
 /**
  * @brief Gets the analog value on the given ADC channel.
