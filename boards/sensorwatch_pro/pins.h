@@ -47,6 +47,7 @@ HAL_GPIO_PIN(LED,   A, 12)  // Default to red LED for blinky tests
 // Sound
 HAL_GPIO_PIN(BUZZER,  A, 27)
 #define WATCH_BUZZER_TCC_CHANNEL 5
+#define WATCH_BUZZER_IS_BOOSTED
 
 // Buttons
 HAL_GPIO_PIN(BTN_LIGHT, A, 30)
