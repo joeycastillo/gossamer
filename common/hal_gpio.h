@@ -81,6 +81,15 @@
     (void)HAL_GPIO_##name##_write;						\
   }										\
 										\
+  static inline void HAL_GPIO_##name##_drvstr(int value)				\
+  {										\
+    if (value)									\
+      PORT->Group[HAL_GPIO_PORT##port].PINCFG[pin].reg |= PORT_PINCFG_DRVSTR;	\
+    else									\
+      PORT->Group[HAL_GPIO_PORT##port].PINCFG[pin].reg &= ~PORT_PINCFG_DRVSTR;	\
+    (void)HAL_GPIO_##name##_write;						\
+  }										\
+										\
   static inline void HAL_GPIO_##name##_in(void)					\
   {										\
     PORT->Group[HAL_GPIO_PORT##port].DIRCLR.reg = (1 << pin);			\
