@@ -31,7 +31,10 @@ static void _slcd_sync(uint32_t reg) {
     while (SLCD->SYNCBUSY.reg & reg);
 }
 
-void slcd_init(uint64_t lcd_pins, slcd_bias_value_t bias, slcd_duty_value_t duty, slcd_prescaler_value_t prescaler, slcd_clockdiv_value_t clkdiv) {
+void slcd_init(uint64_t lcd_pins, slcd_bias_value_t bias, slcd_duty_value_t duty, slcd_clocksource_value_t clocksource, slcd_prescaler_value_t prescaler, slcd_clockdiv_value_t clkdiv) {
+    // select the correct clock for the SLCD peripheral
+    OSC32KCTRL->SLCDCTRL.bit.SLCDSEL = clocksource & 1;
+
     // Enable the clocks for the SLCD peripheral
     MCLK->APBCMASK.reg |= MCLK_APBCMASK_SLCD;
     if (SLCD->CTRLA.bit.ENABLE) {

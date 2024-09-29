@@ -59,6 +59,11 @@ typedef enum {
 } slcd_prescaler_value_t;
 
 typedef enum {
+    SLCD_CLOCKSOURCE_ULP = 0,
+    SLCD_CLOCKSOURCE_XOSC = 1,
+} slcd_clocksource_value_t;
+
+typedef enum {
     SLCD_CLOCKDIV_1 = 0,
     SLCD_CLOCKDIV_2 = 1,
     SLCD_CLOCKDIV_3 = 2,
@@ -108,6 +113,10 @@ typedef enum {
  *             * SLCD_DUTY_4_COMMON for four common lines and a 1/4 duty cycle
  *             * SLCD_DUTY_6_COMMON for six common lines and a 1/6 duty cycle
  *             * SLCD_DUTY_8_COMMON for eight common lines and a 1/8 duty cycle
+ * @param clocksource The clock source for the SLCD.
+ *                  Valid options are:
+ *                  * SLCD_CLOCKSOURCE_ULP for the low-accuracy, low-power internal 32kHz oscillator
+ *                  * SLCD_CLOCKSOURCE_XOSC for an external 32kHz crystal oscillator
  * @param prescaler The prescaler factor, which initially divides the 32kHz clock.
  *                  Valid options are: 
  *                  * SLCD_CTRLA_PRESC_PRESC16_Val - Divide by 16
@@ -125,7 +134,7 @@ typedef enum {
  *                      * SLCD_CLOCKDIV_7 to divide by 7
  *                      * SLCD_CLOCKDIV_8 to divide by 8
  */
-void slcd_init(uint64_t lcd_pins, slcd_bias_value_t bias, slcd_duty_value_t duty, slcd_prescaler_value_t prescaler, slcd_clockdiv_value_t clkdiv);
+void slcd_init(uint64_t lcd_pins, slcd_bias_value_t bias, slcd_duty_value_t duty, slcd_clocksource_value_t clocksource, slcd_prescaler_value_t prescaler, slcd_clockdiv_value_t clkdiv);
 
 /**
  * @brief Sets the contrast level for the display. Valid values are from 0-15.
