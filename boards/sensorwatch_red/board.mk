@@ -3,3 +3,7 @@ LDSCRIPT = saml22n18
 
 DEFINES += \
   -D__SAML22J18A__ \
+
+ifeq ($(DISPLAY), CUSTOM)
+  DEFINES += -DUSE_CUSTOM_LCD
+endif
