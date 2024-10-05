@@ -93,7 +93,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionrtc__date__time.html">rtc_date_time</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionrtc__date__time__t.html">rtc_date_time_t</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
@@ -104,21 +104,21 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a3c94bab30efe7e36ab159810e1ab4954" id="r_a3c94bab30efe7e36ab159810e1ab4954"><td class="memItemLeft" align="right" valign="top"><a id="a3c94bab30efe7e36ab159810e1ab4954" name="a3c94bab30efe7e36ab159810e1ab4954"></a>
-typedef enum rtc_alarm_match&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_alarm_match</b></td></tr>
-<tr class="separator:a3c94bab30efe7e36ab159810e1ab4954"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c7992a24e334a4b18ea89025e5d8689" id="r_a8c7992a24e334a4b18ea89025e5d8689"><td class="memItemLeft" align="right" valign="top"><a id="a8c7992a24e334a4b18ea89025e5d8689" name="a8c7992a24e334a4b18ea89025e5d8689"></a>
+typedef enum rtc_alarm_match_t&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_alarm_match_t</b></td></tr>
+<tr class="separator:a8c7992a24e334a4b18ea89025e5d8689"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04fb46d903d942c391505750dbd3539b" id="r_a04fb46d903d942c391505750dbd3539b"><td class="memItemLeft" align="right" valign="top"><a id="a04fb46d903d942c391505750dbd3539b" name="a04fb46d903d942c391505750dbd3539b"></a>
 typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_cb_t</b>) (uint16_t intflag)</td></tr>
 <tr class="separator:a04fb46d903d942c391505750dbd3539b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a0a08d4947227178b4fd843222e40bedb" id="r_a0a08d4947227178b4fd843222e40bedb"><td class="memItemLeft" align="right" valign="top"><a id="a0a08d4947227178b4fd843222e40bedb" name="a0a08d4947227178b4fd843222e40bedb"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>rtc_alarm_match</b> { <b>ALARM_MATCH_DISABLED</b> = 0
+<tr class="memitem:a4655ea5d1bcd98992d207f0bc3e0f358" id="r_a4655ea5d1bcd98992d207f0bc3e0f358"><td class="memItemLeft" align="right" valign="top"><a id="a4655ea5d1bcd98992d207f0bc3e0f358" name="a4655ea5d1bcd98992d207f0bc3e0f358"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>rtc_alarm_match_t</b> { <b>ALARM_MATCH_DISABLED</b> = 0
 , <b>ALARM_MATCH_SS</b>
 , <b>ALARM_MATCH_MMSS</b>
 , <b>ALARM_MATCH_HHMMSS</b>
  }</td></tr>
-<tr class="separator:a0a08d4947227178b4fd843222e40bedb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a4655ea5d1bcd98992d207f0bc3e0f358"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -132,15 +132,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_enable</b> (void)
 <tr class="memitem:a72309e05f8aa147cfdd0eb6ac2037889" id="r_a72309e05f8aa147cfdd0eb6ac2037889"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtc_8h.html#a72309e05f8aa147cfdd0eb6ac2037889">rtc_is_enabled</a> (void)</td></tr>
 <tr class="memdesc:a72309e05f8aa147cfdd0eb6ac2037889"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the RTC is enabled.  <br /></td></tr>
 <tr class="separator:a72309e05f8aa147cfdd0eb6ac2037889"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e68bc38011f721147d9258714a72cb8" id="r_a0e68bc38011f721147d9258714a72cb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtc_8h.html#a0e68bc38011f721147d9258714a72cb8">rtc_set_date_time</a> (<a class="el" href="unionrtc__date__time.html">rtc_date_time</a> date_time)</td></tr>
-<tr class="memdesc:a0e68bc38011f721147d9258714a72cb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the date and time.  <br /></td></tr>
-<tr class="separator:a0e68bc38011f721147d9258714a72cb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9717bce042fde654956334b7b89194f" id="r_ae9717bce042fde654956334b7b89194f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionrtc__date__time.html">rtc_date_time</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtc_8h.html#ae9717bce042fde654956334b7b89194f">rtc_get_date_time</a> (void)</td></tr>
-<tr class="memdesc:ae9717bce042fde654956334b7b89194f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the date and time.  <br /></td></tr>
-<tr class="separator:ae9717bce042fde654956334b7b89194f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada1a9dfed0eda109983cb46a9000b326" id="r_ada1a9dfed0eda109983cb46a9000b326"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtc_8h.html#ada1a9dfed0eda109983cb46a9000b326">rtc_enable_alarm_interrupt</a> (<a class="el" href="unionrtc__date__time.html">rtc_date_time</a> alarm_time, rtc_alarm_match mask)</td></tr>
-<tr class="memdesc:ada1a9dfed0eda109983cb46a9000b326"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the alarm interrupt.  <br /></td></tr>
-<tr class="separator:ada1a9dfed0eda109983cb46a9000b326"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16c55e20ebca1f6501626e39a38c6425" id="r_a16c55e20ebca1f6501626e39a38c6425"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtc_8h.html#a16c55e20ebca1f6501626e39a38c6425">rtc_set_date_time</a> (<a class="el" href="unionrtc__date__time__t.html">rtc_date_time_t</a> date_time)</td></tr>
+<tr class="memdesc:a16c55e20ebca1f6501626e39a38c6425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the date and time.  <br /></td></tr>
+<tr class="separator:a16c55e20ebca1f6501626e39a38c6425"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a728694478350f90fa205569ee72a4d55" id="r_a728694478350f90fa205569ee72a4d55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionrtc__date__time__t.html">rtc_date_time_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtc_8h.html#a728694478350f90fa205569ee72a4d55">rtc_get_date_time</a> (void)</td></tr>
+<tr class="memdesc:a728694478350f90fa205569ee72a4d55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the date and time.  <br /></td></tr>
+<tr class="separator:a728694478350f90fa205569ee72a4d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ed60d3c6eddb662a798903454a60f5c" id="r_a7ed60d3c6eddb662a798903454a60f5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtc_8h.html#a7ed60d3c6eddb662a798903454a60f5c">rtc_enable_alarm_interrupt</a> (<a class="el" href="unionrtc__date__time__t.html">rtc_date_time_t</a> alarm_time, rtc_alarm_match_t mask)</td></tr>
+<tr class="memdesc:a7ed60d3c6eddb662a798903454a60f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the alarm interrupt.  <br /></td></tr>
+<tr class="separator:a7ed60d3c6eddb662a798903454a60f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b927833b5d5d87ec161a8c9cb14d633" id="r_a0b927833b5d5d87ec161a8c9cb14d633"><td class="memItemLeft" align="right" valign="top"><a id="a0b927833b5d5d87ec161a8c9cb14d633" name="a0b927833b5d5d87ec161a8c9cb14d633"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_disable_alarm_interrupt</b> (void)</td></tr>
 <tr class="memdesc:a0b927833b5d5d87ec161a8c9cb14d633"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the alarm callback. <br /></td></tr>
@@ -178,8 +178,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_disable_alarm_int
 
 </div>
 </div>
-<a id="ada1a9dfed0eda109983cb46a9000b326" name="ada1a9dfed0eda109983cb46a9000b326"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada1a9dfed0eda109983cb46a9000b326">&#9670;&#160;</a></span>rtc_enable_alarm_interrupt()</h2>
+<a id="a7ed60d3c6eddb662a798903454a60f5c" name="a7ed60d3c6eddb662a798903454a60f5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ed60d3c6eddb662a798903454a60f5c">&#9670;&#160;</a></span>rtc_enable_alarm_interrupt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -187,13 +187,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_disable_alarm_int
         <tr>
           <td class="memname">void rtc_enable_alarm_interrupt </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="unionrtc__date__time.html">rtc_date_time</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="unionrtc__date__time__t.html">rtc_date_time_t</a>&#160;</td>
           <td class="paramname"><em>alarm_time</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">rtc_alarm_match&#160;</td>
+          <td class="paramtype">rtc_alarm_match_t&#160;</td>
           <td class="paramname"><em>mask</em>&#160;</td>
         </tr>
         <tr>
@@ -208,21 +208,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_disable_alarm_int
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">alarm_time</td><td>The time that you wish to match. The date is currently ignored. </td></tr>
-    <tr><td class="paramname">mask</td><td>One of the values in rtc_alarm_match indicating which values to check. </td></tr>
+    <tr><td class="paramname">mask</td><td>One of the values in rtc_alarm_match_t indicating which values to check. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="ae9717bce042fde654956334b7b89194f" name="ae9717bce042fde654956334b7b89194f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9717bce042fde654956334b7b89194f">&#9670;&#160;</a></span>rtc_get_date_time()</h2>
+<a id="a728694478350f90fa205569ee72a4d55" name="a728694478350f90fa205569ee72a4d55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a728694478350f90fa205569ee72a4d55">&#9670;&#160;</a></span>rtc_get_date_time()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="unionrtc__date__time.html">rtc_date_time</a> rtc_get_date_time </td>
+          <td class="memname"><a class="el" href="unionrtc__date__time__t.html">rtc_date_time_t</a> rtc_get_date_time </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -232,8 +232,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_disable_alarm_int
 </div><div class="memdoc">
 
 <p>Returns the date and time. </p>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="unionrtc__date__time.html">rtc_date_time</a> with the current date and time, with a year value from 0-63 representing 2020-2083. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="rtc_8h.html#a0e68bc38011f721147d9258714a72cb8" title="Sets the date and time.">rtc_set_date_time</a> for notes about how the year is stored. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="unionrtc__date__time__t.html">rtc_date_time_t</a> with the current date and time, with a year value from 0-63 representing 2020-2083. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="rtc_8h.html#a16c55e20ebca1f6501626e39a38c6425" title="Sets the date and time.">rtc_set_date_time</a> for notes about how the year is stored. </dd></dl>
 
 </div>
 </div>
@@ -279,8 +279,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_disable_alarm_int
 
 </div>
 </div>
-<a id="a0e68bc38011f721147d9258714a72cb8" name="a0e68bc38011f721147d9258714a72cb8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e68bc38011f721147d9258714a72cb8">&#9670;&#160;</a></span>rtc_set_date_time()</h2>
+<a id="a16c55e20ebca1f6501626e39a38c6425" name="a16c55e20ebca1f6501626e39a38c6425"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16c55e20ebca1f6501626e39a38c6425">&#9670;&#160;</a></span>rtc_set_date_time()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,7 +288,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rtc_disable_alarm_int
         <tr>
           <td class="memname">void rtc_set_date_time </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="unionrtc__date__time.html">rtc_date_time</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="unionrtc__date__time__t.html">rtc_date_time_t</a>&#160;</td>
           <td class="paramname"><em>date_time</em></td><td>)</td>
           <td></td>
         </tr>

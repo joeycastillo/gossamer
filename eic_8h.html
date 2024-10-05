@@ -91,23 +91,23 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a747988f19d99d6e6bedfb0849e51e43d" id="r_a747988f19d99d6e6bedfb0849e51e43d"><td class="memItemLeft" align="right" valign="top"><a id="a747988f19d99d6e6bedfb0849e51e43d" name="a747988f19d99d6e6bedfb0849e51e43d"></a>
-typedef enum <a class="el" href="eic_8h.html#a64ab58f4cc1141f8b023f0f96f58f980">eic_interrupt_trigger</a>&#160;</td><td class="memItemRight" valign="bottom"><b>eic_interrupt_trigger</b></td></tr>
-<tr class="memdesc:a747988f19d99d6e6bedfb0849e51e43d"><td class="mdescLeft">&#160;</td><td class="mdescRight">An enum defining the types of interrupt trigger you wish to scan for. <br /></td></tr>
-<tr class="separator:a747988f19d99d6e6bedfb0849e51e43d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dcfd365c180eb12af23e9f125089244" id="r_a2dcfd365c180eb12af23e9f125089244"><td class="memItemLeft" align="right" valign="top"><a id="a2dcfd365c180eb12af23e9f125089244" name="a2dcfd365c180eb12af23e9f125089244"></a>
+typedef enum <a class="el" href="eic_8h.html#ac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>eic_interrupt_trigger_t</b></td></tr>
+<tr class="memdesc:a2dcfd365c180eb12af23e9f125089244"><td class="mdescLeft">&#160;</td><td class="mdescRight">An enum defining the types of interrupt trigger you wish to scan for. <br /></td></tr>
+<tr class="separator:a2dcfd365c180eb12af23e9f125089244"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1307c9386c44cc522cdb656102218ad7" id="r_a1307c9386c44cc522cdb656102218ad7"><td class="memItemLeft" align="right" valign="top"><a id="a1307c9386c44cc522cdb656102218ad7" name="a1307c9386c44cc522cdb656102218ad7"></a>
 typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>eic_cb_t</b>) (uint8_t channel)</td></tr>
 <tr class="separator:a1307c9386c44cc522cdb656102218ad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a64ab58f4cc1141f8b023f0f96f58f980" id="r_a64ab58f4cc1141f8b023f0f96f58f980"><td class="memItemLeft" align="right" valign="top"><a id="a64ab58f4cc1141f8b023f0f96f58f980" name="a64ab58f4cc1141f8b023f0f96f58f980"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eic_8h.html#a64ab58f4cc1141f8b023f0f96f58f980">eic_interrupt_trigger</a> { <b>INTERRUPT_TRIGGER_NONE</b> = 0
+<tr class="memitem:ac1fe47482a1a2c642408f50c2db9469f" id="r_ac1fe47482a1a2c642408f50c2db9469f"><td class="memItemLeft" align="right" valign="top"><a id="ac1fe47482a1a2c642408f50c2db9469f" name="ac1fe47482a1a2c642408f50c2db9469f"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eic_8h.html#ac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a> { <b>INTERRUPT_TRIGGER_NONE</b> = 0
 , <b>INTERRUPT_TRIGGER_RISING</b>
 , <b>INTERRUPT_TRIGGER_FALLING</b>
 , <b>INTERRUPT_TRIGGER_BOTH</b>
  }</td></tr>
-<tr class="memdesc:a64ab58f4cc1141f8b023f0f96f58f980"><td class="mdescLeft">&#160;</td><td class="mdescRight">An enum defining the types of interrupt trigger you wish to scan for. <br /></td></tr>
-<tr class="separator:a64ab58f4cc1141f8b023f0f96f58f980"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ac1fe47482a1a2c642408f50c2db9469f"><td class="mdescLeft">&#160;</td><td class="mdescRight">An enum defining the types of interrupt trigger you wish to scan for. <br /></td></tr>
+<tr class="separator:ac1fe47482a1a2c642408f50c2db9469f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -119,9 +119,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>eic_init</b> (void)</
 void&#160;</td><td class="memItemRight" valign="bottom"><b>eic_enable</b> (void)</td></tr>
 <tr class="memdesc:afd8706ad3219397c91636524d2149eb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the external interrupt controller. <br /></td></tr>
 <tr class="separator:afd8706ad3219397c91636524d2149eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a5edab4766fd37fafd1ef2f8dc82702" id="r_a2a5edab4766fd37fafd1ef2f8dc82702"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eic_8h.html#a2a5edab4766fd37fafd1ef2f8dc82702">eic_configure_pin</a> (const uint8_t pin, <a class="el" href="eic_8h.html#a64ab58f4cc1141f8b023f0f96f58f980">eic_interrupt_trigger</a> trigger)</td></tr>
-<tr class="memdesc:a2a5edab4766fd37fafd1ef2f8dc82702"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures an external interrupt on one of the external interrupt pins.  <br /></td></tr>
-<tr class="separator:a2a5edab4766fd37fafd1ef2f8dc82702"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a034f0e472fc0d955b11de053a263e8cd" id="r_a034f0e472fc0d955b11de053a263e8cd"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eic_8h.html#a034f0e472fc0d955b11de053a263e8cd">eic_configure_pin</a> (const uint8_t pin, <a class="el" href="eic_8h.html#ac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a> trigger)</td></tr>
+<tr class="memdesc:a034f0e472fc0d955b11de053a263e8cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures an external interrupt on one of the external interrupt pins.  <br /></td></tr>
+<tr class="separator:a034f0e472fc0d955b11de053a263e8cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95932a1b8c5442120cd6caa7a5cb0733" id="r_a95932a1b8c5442120cd6caa7a5cb0733"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eic_8h.html#a95932a1b8c5442120cd6caa7a5cb0733">eic_enable_interrupt</a> (const uint8_t pin)</td></tr>
 <tr class="memdesc:a95932a1b8c5442120cd6caa7a5cb0733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables an interrupt on the given interrupt channel.  <br /></td></tr>
 <tr class="separator:a95932a1b8c5442120cd6caa7a5cb0733"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,8 +172,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>eic_disable</b> (void
 
 </div>
 </div>
-<a id="a2a5edab4766fd37fafd1ef2f8dc82702" name="a2a5edab4766fd37fafd1ef2f8dc82702"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a5edab4766fd37fafd1ef2f8dc82702">&#9670;&#160;</a></span>eic_configure_pin()</h2>
+<a id="a034f0e472fc0d955b11de053a263e8cd" name="a034f0e472fc0d955b11de053a263e8cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a034f0e472fc0d955b11de053a263e8cd">&#9670;&#160;</a></span>eic_configure_pin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -187,7 +187,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>eic_disable</b> (void
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="eic_8h.html#a64ab58f4cc1141f8b023f0f96f58f980">eic_interrupt_trigger</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="eic_8h.html#ac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a>&#160;</td>
           <td class="paramname"><em>trigger</em>&#160;</td>
         </tr>
         <tr>

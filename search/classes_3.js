@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sercom_5finstance_5fdetails_0',['SERCOM_Instance_Details',['../struct_s_e_r_c_o_m___instance___details.html',1,'']]]
+  ['sercom_5finstance_5fdetails_5ft_0',['sercom_instance_details_t',['../structsercom__instance__details__t.html',1,'']]]
 ];

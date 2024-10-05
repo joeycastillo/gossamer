@@ -1,7 +1,7 @@
 var searchData=
 [
   ['eic_5fconfigure_5fcallback_0',['eic_configure_callback',['../eic_8h.html#a5695270545c3f5b6a24682447108e6cd',1,'eic.c']]],
-  ['eic_5fconfigure_5fpin_1',['eic_configure_pin',['../eic_8h.html#a2a5edab4766fd37fafd1ef2f8dc82702',1,'eic.c']]],
+  ['eic_5fconfigure_5fpin_1',['eic_configure_pin',['../eic_8h.html#a034f0e472fc0d955b11de053a263e8cd',1,'eic.c']]],
   ['eic_5fdisable_2',['eic_disable',['../eic_8h.html#abaae85c8706e41bb2cc2b7aa7be956e6',1,'eic.c']]],
   ['eic_5fdisable_5fevent_3',['eic_disable_event',['../eic_8h.html#a21e4b3925d449c25fe3831b167845161',1,'eic.c']]],
   ['eic_5fdisable_5finterrupt_4',['eic_disable_interrupt',['../eic_8h.html#a48015b16099d943fad32302fad6114a1',1,'eic.c']]],

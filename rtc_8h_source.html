@@ -115,7 +115,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#define RTC_REFERENCE_YEAR (2020)</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="unionrtc__date__time.html">   36</a></span><span class="keyword">typedef</span> <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="unionrtc__date__time__t.html">   36</a></span><span class="keyword">typedef</span> <span class="keyword">union </span>{</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">struct </span>{</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        uint32_t second : 6;    <span class="comment">// 0-59</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        uint32_t minute : 6;    <span class="comment">// 0-59</span></div>
@@ -125,15 +125,15 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        uint32_t year : 6;      <span class="comment">// 0-63 (representing 2020-2083)</span></div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    } unit;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    uint32_t reg;               <span class="comment">// the bit-packed value as expected by the RTC peripheral&#39;s CLOCK register.</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <a class="code hl_union" href="unionrtc__date__time.html">rtc_date_time</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <a class="code hl_union" href="unionrtc__date__time__t.html">rtc_date_time_t</a>;</div>
 </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">typedef</span> <span class="keyword">enum</span> rtc_alarm_match {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">typedef</span> <span class="keyword">enum</span> rtc_alarm_match_t {</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    ALARM_MATCH_DISABLED = 0,</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    ALARM_MATCH_SS,</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    ALARM_MATCH_MMSS,</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    ALARM_MATCH_HHMMSS,</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>} rtc_alarm_match;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>} rtc_alarm_match_t;</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">typedef</span> void (*rtc_cb_t)(uint16_t intflag);</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
@@ -143,24 +143,24 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keywordtype">bool</span> <a class="code hl_function" href="rtc_8h.html#a72309e05f8aa147cfdd0eb6ac2037889">rtc_is_enabled</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keywordtype">void</span> <a class="code hl_function" href="rtc_8h.html#a0e68bc38011f721147d9258714a72cb8">rtc_set_date_time</a>(<a class="code hl_union" href="unionrtc__date__time.html">rtc_date_time</a> date_time);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keywordtype">void</span> <a class="code hl_function" href="rtc_8h.html#a16c55e20ebca1f6501626e39a38c6425">rtc_set_date_time</a>(<a class="code hl_union" href="unionrtc__date__time__t.html">rtc_date_time_t</a> date_time);</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><a class="code hl_union" href="unionrtc__date__time.html">rtc_date_time</a> <a class="code hl_function" href="rtc_8h.html#ae9717bce042fde654956334b7b89194f">rtc_get_date_time</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><a class="code hl_union" href="unionrtc__date__time__t.html">rtc_date_time_t</a> <a class="code hl_function" href="rtc_8h.html#a728694478350f90fa205569ee72a4d55">rtc_get_date_time</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keywordtype">void</span> <a class="code hl_function" href="rtc_8h.html#ada1a9dfed0eda109983cb46a9000b326">rtc_enable_alarm_interrupt</a>(<a class="code hl_union" href="unionrtc__date__time.html">rtc_date_time</a> alarm_time, rtc_alarm_match mask);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keywordtype">void</span> <a class="code hl_function" href="rtc_8h.html#a7ed60d3c6eddb662a798903454a60f5c">rtc_enable_alarm_interrupt</a>(<a class="code hl_union" href="unionrtc__date__time__t.html">rtc_date_time_t</a> alarm_time, rtc_alarm_match_t mask);</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keywordtype">void</span> <a class="code hl_function" href="rtc_8h.html#a0b927833b5d5d87ec161a8c9cb14d633">rtc_disable_alarm_interrupt</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keywordtype">void</span> <a class="code hl_function" href="rtc_8h.html#a8dd6108752ed8c8e5dad649d650dc1d5">rtc_configure_callback</a>(rtc_cb_t callback);</div>
 <div class="ttc" id="artc_8h_html_a0b927833b5d5d87ec161a8c9cb14d633"><div class="ttname"><a href="rtc_8h.html#a0b927833b5d5d87ec161a8c9cb14d633">rtc_disable_alarm_interrupt</a></div><div class="ttdeci">void rtc_disable_alarm_interrupt(void)</div><div class="ttdoc">Disables the alarm callback.</div><div class="ttdef"><b>Definition</b> rtc.c:111</div></div>
-<div class="ttc" id="artc_8h_html_a0e68bc38011f721147d9258714a72cb8"><div class="ttname"><a href="rtc_8h.html#a0e68bc38011f721147d9258714a72cb8">rtc_set_date_time</a></div><div class="ttdeci">void rtc_set_date_time(rtc_date_time date_time)</div><div class="ttdoc">Sets the date and time.</div><div class="ttdef"><b>Definition</b> rtc.c:79</div></div>
+<div class="ttc" id="artc_8h_html_a16c55e20ebca1f6501626e39a38c6425"><div class="ttname"><a href="rtc_8h.html#a16c55e20ebca1f6501626e39a38c6425">rtc_set_date_time</a></div><div class="ttdeci">void rtc_set_date_time(rtc_date_time_t date_time)</div><div class="ttdoc">Sets the date and time.</div><div class="ttdef"><b>Definition</b> rtc.c:79</div></div>
 <div class="ttc" id="artc_8h_html_a72309e05f8aa147cfdd0eb6ac2037889"><div class="ttname"><a href="rtc_8h.html#a72309e05f8aa147cfdd0eb6ac2037889">rtc_is_enabled</a></div><div class="ttdeci">bool rtc_is_enabled(void)</div><div class="ttdoc">Checks if the RTC is enabled.</div><div class="ttdef"><b>Definition</b> rtc.c:37</div></div>
+<div class="ttc" id="artc_8h_html_a728694478350f90fa205569ee72a4d55"><div class="ttname"><a href="rtc_8h.html#a728694478350f90fa205569ee72a4d55">rtc_get_date_time</a></div><div class="ttdeci">rtc_date_time_t rtc_get_date_time(void)</div><div class="ttdoc">Returns the date and time.</div><div class="ttdef"><b>Definition</b> rtc.c:86</div></div>
+<div class="ttc" id="artc_8h_html_a7ed60d3c6eddb662a798903454a60f5c"><div class="ttname"><a href="rtc_8h.html#a7ed60d3c6eddb662a798903454a60f5c">rtc_enable_alarm_interrupt</a></div><div class="ttdeci">void rtc_enable_alarm_interrupt(rtc_date_time_t alarm_time, rtc_alarm_match_t mask)</div><div class="ttdoc">Enables the alarm interrupt.</div><div class="ttdef"><b>Definition</b> rtc.c:98</div></div>
 <div class="ttc" id="artc_8h_html_a8dd6108752ed8c8e5dad649d650dc1d5"><div class="ttname"><a href="rtc_8h.html#a8dd6108752ed8c8e5dad649d650dc1d5">rtc_configure_callback</a></div><div class="ttdeci">void rtc_configure_callback(rtc_cb_t callback)</div><div class="ttdoc">Configures the RTC alarm callback.</div><div class="ttdef"><b>Definition</b> rtc.c:107</div></div>
 <div class="ttc" id="artc_8h_html_abec68bd2863d22f5a8e12ab89f8134f4"><div class="ttname"><a href="rtc_8h.html#abec68bd2863d22f5a8e12ab89f8134f4">rtc_enable</a></div><div class="ttdeci">void rtc_enable(void)</div><div class="ttdoc">Enables the RTC.</div><div class="ttdef"><b>Definition</b> rtc.c:73</div></div>
 <div class="ttc" id="artc_8h_html_acf9024748b942a7ae375cf75951afa9c"><div class="ttname"><a href="rtc_8h.html#acf9024748b942a7ae375cf75951afa9c">rtc_init</a></div><div class="ttdeci">void rtc_init(void)</div><div class="ttdoc">Initializes the RTC.</div><div class="ttdef"><b>Definition</b> rtc.c:49</div></div>
-<div class="ttc" id="artc_8h_html_ada1a9dfed0eda109983cb46a9000b326"><div class="ttname"><a href="rtc_8h.html#ada1a9dfed0eda109983cb46a9000b326">rtc_enable_alarm_interrupt</a></div><div class="ttdeci">void rtc_enable_alarm_interrupt(rtc_date_time alarm_time, rtc_alarm_match mask)</div><div class="ttdoc">Enables the alarm interrupt.</div><div class="ttdef"><b>Definition</b> rtc.c:98</div></div>
-<div class="ttc" id="artc_8h_html_ae9717bce042fde654956334b7b89194f"><div class="ttname"><a href="rtc_8h.html#ae9717bce042fde654956334b7b89194f">rtc_get_date_time</a></div><div class="ttdeci">rtc_date_time rtc_get_date_time(void)</div><div class="ttdoc">Returns the date and time.</div><div class="ttdef"><b>Definition</b> rtc.c:86</div></div>
-<div class="ttc" id="aunionrtc__date__time_html"><div class="ttname"><a href="unionrtc__date__time.html">rtc_date_time</a></div><div class="ttdef"><b>Definition</b> rtc.h:36</div></div>
+<div class="ttc" id="aunionrtc__date__time__t_html"><div class="ttname"><a href="unionrtc__date__time__t.html">rtc_date_time_t</a></div><div class="ttdef"><b>Definition</b> rtc.h:36</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

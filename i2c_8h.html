@@ -91,7 +91,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a2fd2e5926c0bb656d91f74f8dea6f1cd" id="r_a2fd2e5926c0bb656d91f74f8dea6f1cd"><td class="memItemLeft" align="right" valign="top"><a id="a2fd2e5926c0bb656d91f74f8dea6f1cd" name="a2fd2e5926c0bb656d91f74f8dea6f1cd"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>I2CResult</b> { <br />
+<tr class="memitem:ac79d442faf1b23d96c02e325dc4340d0" id="r_ac79d442faf1b23d96c02e325dc4340d0"><td class="memItemLeft" align="right" valign="top"><a id="ac79d442faf1b23d96c02e325dc4340d0" name="ac79d442faf1b23d96c02e325dc4340d0"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>i2c_result_t</b> { <br />
 &#160;&#160;<b>I2C_RESULT_SUCCESS</b> = 0
 , <b>I2C_RESULT_ERR_ADDR_NACK</b> = -1
 , <b>I2C_RESULT_ERR_BUSSTATE</b> = -2
@@ -100,7 +100,7 @@ Enumerations</h2></td></tr>
 &#160;&#160;<b>I2C_RESULT_ERR_DATA_NACK</b> = -4
 <br />
  }</td></tr>
-<tr class="separator:a2fd2e5926c0bb656d91f74f8dea6f1cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ac79d442faf1b23d96c02e325dc4340d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -111,12 +111,12 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>i2c_enable</b> (void)</td></tr>
 <tr class="memdesc:a5a1923e2271df541e858cb4e05d7b895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the I2C peripheral for a board with defined SDA/SCL pins. <br /></td></tr>
 <tr class="separator:a5a1923e2271df541e858cb4e05d7b895"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ecbbaf0c77591bc4a80e6ecd943e64c" id="r_a9ecbbaf0c77591bc4a80e6ecd943e64c"><td class="memItemLeft" align="right" valign="top">I2CResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#a9ecbbaf0c77591bc4a80e6ecd943e64c">i2c_write</a> (uint8_t address, uint8_t *data, size_t len)</td></tr>
-<tr class="memdesc:a9ecbbaf0c77591bc4a80e6ecd943e64c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to an I2C device at the provided address.  <br /></td></tr>
-<tr class="separator:a9ecbbaf0c77591bc4a80e6ecd943e64c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad884534844a9c94b62da7cd14fb0fce3" id="r_ad884534844a9c94b62da7cd14fb0fce3"><td class="memItemLeft" align="right" valign="top">I2CResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#ad884534844a9c94b62da7cd14fb0fce3">i2c_read</a> (uint8_t address, uint8_t *data, size_t len)</td></tr>
-<tr class="memdesc:ad884534844a9c94b62da7cd14fb0fce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data from an I2C device at the provided address.  <br /></td></tr>
-<tr class="separator:ad884534844a9c94b62da7cd14fb0fce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e6b5b5c02987f6b23765799809d9b25" id="r_a5e6b5b5c02987f6b23765799809d9b25"><td class="memItemLeft" align="right" valign="top">i2c_result_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#a5e6b5b5c02987f6b23765799809d9b25">i2c_write</a> (uint8_t address, uint8_t *data, size_t len)</td></tr>
+<tr class="memdesc:a5e6b5b5c02987f6b23765799809d9b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to an I2C device at the provided address.  <br /></td></tr>
+<tr class="separator:a5e6b5b5c02987f6b23765799809d9b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5074c1f6733c42bf7ccbd771ad2496c" id="r_ae5074c1f6733c42bf7ccbd771ad2496c"><td class="memItemLeft" align="right" valign="top">i2c_result_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#ae5074c1f6733c42bf7ccbd771ad2496c">i2c_read</a> (uint8_t address, uint8_t *data, size_t len)</td></tr>
+<tr class="memdesc:ae5074c1f6733c42bf7ccbd771ad2496c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data from an I2C device at the provided address.  <br /></td></tr>
+<tr class="separator:ae5074c1f6733c42bf7ccbd771ad2496c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe70f8fe4c72329b89ec526c749f50d7" id="r_abe70f8fe4c72329b89ec526c749f50d7"><td class="memItemLeft" align="right" valign="top"><a id="abe70f8fe4c72329b89ec526c749f50d7" name="abe70f8fe4c72329b89ec526c749f50d7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>i2c_disable</b> (void)</td></tr>
 <tr class="memdesc:abe70f8fe4c72329b89ec526c749f50d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the I2C peripheral for a board with defined SDA/SCL pins. <br /></td></tr>
@@ -127,12 +127,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>i2c_disable</b> (void
 <tr class="memitem:a88da4919a13ca41408ae8eafdab3855f" id="r_a88da4919a13ca41408ae8eafdab3855f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#a88da4919a13ca41408ae8eafdab3855f">i2c_enable_instance</a> (uint8_t sercom)</td></tr>
 <tr class="memdesc:a88da4919a13ca41408ae8eafdab3855f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the I2C peripheral on the given SERCOM.  <br /></td></tr>
 <tr class="separator:a88da4919a13ca41408ae8eafdab3855f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6272d10e9fd2a2bce65459b365f7e3d9" id="r_a6272d10e9fd2a2bce65459b365f7e3d9"><td class="memItemLeft" align="right" valign="top">I2CResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#a6272d10e9fd2a2bce65459b365f7e3d9">i2c_write_instance</a> (uint8_t sercom, uint8_t address, uint8_t *data, size_t len)</td></tr>
-<tr class="memdesc:a6272d10e9fd2a2bce65459b365f7e3d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to an I2C device on the given SERCOM at the provided address.  <br /></td></tr>
-<tr class="separator:a6272d10e9fd2a2bce65459b365f7e3d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad486d307f39cf1edfec3618b38b51b12" id="r_ad486d307f39cf1edfec3618b38b51b12"><td class="memItemLeft" align="right" valign="top">I2CResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#ad486d307f39cf1edfec3618b38b51b12">i2c_read_instance</a> (uint8_t sercom, uint8_t address, uint8_t *data, size_t len)</td></tr>
-<tr class="memdesc:ad486d307f39cf1edfec3618b38b51b12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data from an I2C device on the given SERCOM at the provided address.  <br /></td></tr>
-<tr class="separator:ad486d307f39cf1edfec3618b38b51b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f2ad75c678b2e0ebafd9c9686d38674" id="r_a2f2ad75c678b2e0ebafd9c9686d38674"><td class="memItemLeft" align="right" valign="top">i2c_result_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#a2f2ad75c678b2e0ebafd9c9686d38674">i2c_write_instance</a> (uint8_t sercom, uint8_t address, uint8_t *data, size_t len)</td></tr>
+<tr class="memdesc:a2f2ad75c678b2e0ebafd9c9686d38674"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to an I2C device on the given SERCOM at the provided address.  <br /></td></tr>
+<tr class="separator:a2f2ad75c678b2e0ebafd9c9686d38674"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64cffaf51a6050fb5e58cb35a52e5179" id="r_a64cffaf51a6050fb5e58cb35a52e5179"><td class="memItemLeft" align="right" valign="top">i2c_result_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#a64cffaf51a6050fb5e58cb35a52e5179">i2c_read_instance</a> (uint8_t sercom, uint8_t address, uint8_t *data, size_t len)</td></tr>
+<tr class="memdesc:a64cffaf51a6050fb5e58cb35a52e5179"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data from an I2C device on the given SERCOM at the provided address.  <br /></td></tr>
+<tr class="separator:a64cffaf51a6050fb5e58cb35a52e5179"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cc8d8299e418b944243a96fa8adc996" id="r_a9cc8d8299e418b944243a96fa8adc996"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8h.html#a9cc8d8299e418b944243a96fa8adc996">i2c_disable_instance</a> (uint8_t sercom)</td></tr>
 <tr class="memdesc:a9cc8d8299e418b944243a96fa8adc996"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the I2C peripheral on the given SERCOM.  <br /></td></tr>
 <tr class="separator:a9cc8d8299e418b944243a96fa8adc996"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -251,14 +251,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>i2c_disable</b> (void
 
 </div>
 </div>
-<a id="ad884534844a9c94b62da7cd14fb0fce3" name="ad884534844a9c94b62da7cd14fb0fce3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad884534844a9c94b62da7cd14fb0fce3">&#9670;&#160;</a></span>i2c_read()</h2>
+<a id="ae5074c1f6733c42bf7ccbd771ad2496c" name="ae5074c1f6733c42bf7ccbd771ad2496c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5074c1f6733c42bf7ccbd771ad2496c">&#9670;&#160;</a></span>i2c_read()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">I2CResult i2c_read </td>
+          <td class="memname">i2c_result_t i2c_read </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>address</em>, </td>
@@ -295,14 +295,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>i2c_disable</b> (void
 
 </div>
 </div>
-<a id="ad486d307f39cf1edfec3618b38b51b12" name="ad486d307f39cf1edfec3618b38b51b12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad486d307f39cf1edfec3618b38b51b12">&#9670;&#160;</a></span>i2c_read_instance()</h2>
+<a id="a64cffaf51a6050fb5e58cb35a52e5179" name="a64cffaf51a6050fb5e58cb35a52e5179"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64cffaf51a6050fb5e58cb35a52e5179">&#9670;&#160;</a></span>i2c_read_instance()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">I2CResult i2c_read_instance </td>
+          <td class="memname">i2c_result_t i2c_read_instance </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>sercom</em>, </td>
@@ -346,14 +346,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>i2c_disable</b> (void
 
 </div>
 </div>
-<a id="a9ecbbaf0c77591bc4a80e6ecd943e64c" name="a9ecbbaf0c77591bc4a80e6ecd943e64c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ecbbaf0c77591bc4a80e6ecd943e64c">&#9670;&#160;</a></span>i2c_write()</h2>
+<a id="a5e6b5b5c02987f6b23765799809d9b25" name="a5e6b5b5c02987f6b23765799809d9b25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e6b5b5c02987f6b23765799809d9b25">&#9670;&#160;</a></span>i2c_write()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">I2CResult i2c_write </td>
+          <td class="memname">i2c_result_t i2c_write </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>address</em>, </td>
@@ -390,14 +390,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>i2c_disable</b> (void
 
 </div>
 </div>
-<a id="a6272d10e9fd2a2bce65459b365f7e3d9" name="a6272d10e9fd2a2bce65459b365f7e3d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6272d10e9fd2a2bce65459b365f7e3d9">&#9670;&#160;</a></span>i2c_write_instance()</h2>
+<a id="a2f2ad75c678b2e0ebafd9c9686d38674" name="a2f2ad75c678b2e0ebafd9c9686d38674"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f2ad75c678b2e0ebafd9c9686d38674">&#9670;&#160;</a></span>i2c_write_instance()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">I2CResult i2c_write_instance </td>
+          <td class="memname">i2c_result_t i2c_write_instance </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>sercom</em>, </td>

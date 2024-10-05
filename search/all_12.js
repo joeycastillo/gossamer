@@ -3,7 +3,7 @@ var searchData=
   ['samd_20and_20saml_20chips_0',['gossamer: a very lightweight firmware framework for SAMD and SAML chips',['../index.html#autotoc_md0',1,'']]],
   ['saml_20chips_1',['gossamer: a very lightweight firmware framework for SAMD and SAML chips',['../index.html#autotoc_md0',1,'']]],
   ['sercom_2eh_2',['sercom.h',['../sercom_8h.html',1,'']]],
-  ['sercom_5finstance_5fdetails_3',['SERCOM_Instance_Details',['../struct_s_e_r_c_o_m___instance___details.html',1,'']]],
+  ['sercom_5finstance_5fdetails_5ft_3',['sercom_instance_details_t',['../structsercom__instance__details__t.html',1,'']]],
   ['set_5fcpu_5ffrequency_4',['set_cpu_frequency',['../system_8h.html#a4f33e5a16dba970fa7064ea27287fcba',1,'system.h']]],
   ['setup_20at_20boot_5',['A consistent setup at boot',['../index.html#autotoc_md3',1,'']]],
   ['sh1107_2eh_6',['sh1107.h',['../sh1107_8h.html',1,'']]],
