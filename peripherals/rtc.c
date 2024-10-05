@@ -76,15 +76,15 @@ void rtc_enable(void) {
     _rtc_sync();
 }
 
-void rtc_set_date_time(rtc_date_time date_time) {
+void rtc_set_date_time(rtc_date_time_t date_time) {
     // syncing before and after was found to increase reliability on Sensor Watch
     _rtc_sync();
     RTC->MODE2.CLOCK.reg = date_time.reg;
     _rtc_sync();
 }
 
-rtc_date_time rtc_get_date_time(void) {
-    rtc_date_time retval;
+rtc_date_time_t rtc_get_date_time(void) {
+    rtc_date_time_t retval;
 
 #if defined(_SAML21_) || defined(_SAML22_) || defined(_SAMD51_)
     CTRLREG.bit.CLOCKSYNC = 1;
@@ -95,7 +95,7 @@ rtc_date_time rtc_get_date_time(void) {
     return retval;
 }
 
-void rtc_enable_alarm_interrupt(rtc_date_time alarm_time, rtc_alarm_match mask) {
+void rtc_enable_alarm_interrupt(rtc_date_time_t alarm_time, rtc_alarm_match_t mask) {
     RTC->MODE2.Mode2Alarm[0].ALARM.reg = alarm_time.reg;
     RTC->MODE2.Mode2Alarm[0].MASK.reg = mask;
     _rtc_sync();

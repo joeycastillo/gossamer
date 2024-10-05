@@ -24,7 +24,7 @@ typedef enum {
     I2C_RESULT_ERR_BUSSTATE = -2,
     I2C_RESULT_ERR_BUSERR = -3,
     I2C_RESULT_ERR_DATA_NACK = -4,
-} I2CResult;
+} i2c_result_t;
 
 /**
  * @brief Initializes the I2C peripheral for a board with defined SDA/SCL pins.
@@ -46,7 +46,7 @@ void i2c_enable(void);
  * @param data The data to write.
  * @param len The length of the data to write.
  */
-I2CResult i2c_write(uint8_t address, uint8_t* data, size_t len);
+i2c_result_t i2c_write(uint8_t address, uint8_t* data, size_t len);
 
 /**
  * @brief Reads data from an I2C device at the provided address.
@@ -54,7 +54,7 @@ I2CResult i2c_write(uint8_t address, uint8_t* data, size_t len);
  * @param data A pointer to the buffer to read into.
  * @param len The length of the data to read.
  */
-I2CResult i2c_read(uint8_t address, uint8_t* data, size_t len);
+i2c_result_t i2c_read(uint8_t address, uint8_t* data, size_t len);
 
 /**
  * @brief Disables the I2C peripheral for a board with defined SDA/SCL pins.
@@ -84,7 +84,7 @@ void i2c_enable_instance(uint8_t sercom);
  * @param data The data to write.
  * @param len The length of the data to write.
  */
-I2CResult i2c_write_instance(uint8_t sercom, uint8_t address, uint8_t* data, size_t len);
+i2c_result_t i2c_write_instance(uint8_t sercom, uint8_t address, uint8_t* data, size_t len);
 
 /**
  * @brief Reads data from an I2C device on the given SERCOM at the provided address.
@@ -93,7 +93,7 @@ I2CResult i2c_write_instance(uint8_t sercom, uint8_t address, uint8_t* data, siz
  * @param data A pointer to the buffer to read into.
  * @param len The length of the data to read.
  */
-I2CResult i2c_read_instance(uint8_t sercom, uint8_t address, uint8_t* data, size_t len);
+i2c_result_t i2c_read_instance(uint8_t sercom, uint8_t address, uint8_t* data, size_t len);
 
 /**
  * @brief Disables the I2C peripheral on the given SERCOM.

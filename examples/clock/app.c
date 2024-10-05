@@ -5,7 +5,7 @@
 #include "../../drivers/lcd/oso_lcd.h"
 #include <stdio.h>
 
-static void _display_time(rtc_date_time date_time);
+static void _display_time(rtc_date_time_t date_time);
 
 void app_init(void) {
     rtc_init();
@@ -29,7 +29,7 @@ void app_setup(void) {
     oso_lcd_fill(0);
 
     // fire RTC alarm every minute
-    rtc_date_time date_time = {0};
+    rtc_date_time_t date_time = {0};
     rtc_enable_alarm_interrupt(date_time, ALARM_MATCH_SS);
 
     HAL_GPIO_D5_in();
@@ -52,7 +52,7 @@ void app_setup(void) {
 }
 
 bool app_loop(void) {
-    rtc_date_time date_time = rtc_get_date_time();
+    rtc_date_time_t date_time = rtc_get_date_time();
 
     if (!HAL_GPIO_D9_read()) {
         date_time.unit.hour = (date_time.unit.hour + 1) % 24;
@@ -70,7 +70,7 @@ bool app_loop(void) {
     return true;
 }
 
-static void _display_time(rtc_date_time date_time) {
+static void _display_time(rtc_date_time_t date_time) {
     int8_t hour_12 = date_time.unit.hour % 12;
     if (!hour_12) hour_12 += 12;
     char buf[7];

@@ -35,7 +35,7 @@ bool pmsa003i_get_data(pms_aqi_data_t *data) {
     uint8_t buffer[32];
     uint16_t sum = 0;
 
-    I2CResult result = i2c_read(PMSA003I_ADDRESS, (uint8_t *)&buffer, 32);
+    i2c_result_t result = i2c_read(PMSA003I_ADDRESS, (uint8_t *)&buffer, 32);
 
     if (result != I2C_RESULT_SUCCESS) {
         return false;

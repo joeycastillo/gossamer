@@ -34,7 +34,7 @@
 #include "samd51.h"
 #include "system.h"
 
-const TC_Instance_Details TC_Peripherals[] = {
+const tc_instance_details_t TC_Peripherals[] = {
     {TC0, MCLK_APBAMASK_TC0, TC0_GCLK_ID},
     {TC1, MCLK_APBAMASK_TC1, TC1_GCLK_ID},
     {TC2, MCLK_APBBMASK_TC2, TC2_GCLK_ID},
@@ -64,7 +64,7 @@ const TC_Instance_Details TC_Peripherals[] = {
 const uint8_t Num_TC_Instances = TC_INST_NUM;
 const uint8_t TC_First_Index = 0;
 
-const TCC_Instance_Details TCC_Peripherals[] = {
+const tcc_instance_details_t TCC_Peripherals[] = {
 #if defined(__SAMD51J18A__) || defined(__ATSAMD51J18A__) || \
     defined(__SAMD51J19A__) || defined(__ATSAMD51J19A__) || \
     defined(__SAMD51J19B__) || defined(__ATSAMD51J19B__) || \
@@ -81,7 +81,7 @@ const TCC_Instance_Details TCC_Peripherals[] = {
 };
 const uint8_t Num_TCC_Instances = TCC_INST_NUM;
 
-const SERCOM_Instance_Details SERCOM_Peripherals[] = {
+const sercom_instance_details_t SERCOM_Peripherals[] = {
     {SERCOM0, MCLK_APBAMASK_SERCOM0, SERCOM0_GCLK_ID_CORE},
     {SERCOM1, MCLK_APBAMASK_SERCOM1, SERCOM1_GCLK_ID_CORE},
     {SERCOM2, MCLK_APBBMASK_SERCOM2, SERCOM2_GCLK_ID_CORE},

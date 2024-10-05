@@ -32,12 +32,12 @@
 #include <stdbool.h>
 
 ///@brief An enum defining the types of interrupt trigger you wish to scan for.
-typedef enum eic_interrupt_trigger {
+typedef enum eic_interrupt_trigger_t {
     INTERRUPT_TRIGGER_NONE = 0,
     INTERRUPT_TRIGGER_RISING,
     INTERRUPT_TRIGGER_FALLING,
     INTERRUPT_TRIGGER_BOTH,
-} eic_interrupt_trigger;
+} eic_interrupt_trigger_t;
 
 typedef void (*eic_cb_t)(uint8_t channel);
 
@@ -60,7 +60,7 @@ void eic_enable(void);
   * @note Be sure to check your pin multiplexing table to ensure that you do not have multiple pins
   *       assigned to the same interrupt channel. Also note that the NMI pin is not currently supported.
   */
-int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger trigger);
+int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger_t trigger);
 
 /** @brief Enables an interrupt on the given interrupt channel.
   * @param pin The external interrupt pin.

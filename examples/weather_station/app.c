@@ -169,7 +169,7 @@ void app_setup(void) {
     swarm_m138_begin();
 
     // set up a wake every minute
-    rtc_date_time alarm_time = {0};
+    rtc_date_time_t alarm_time = {0};
     rtc_enable_alarm_interrupt(alarm_time, ALARM_MATCH_SS);
     rtc_configure_callback(rtc_callback);
 
@@ -291,7 +291,7 @@ static wind_direction_t direction_from_adc_get_analog_value(uint16_t value) {
 
 static void update_display(void) {
     char buf[20];
-    rtc_date_time datetime = rtc_get_date_time();
+    rtc_date_time_t datetime = rtc_get_date_time();
     bme280_reading_t bme_reading;
 
     oso_lcd_fill(0);
@@ -381,7 +381,7 @@ static void add_checksum(weather_data_t *data) {
 
 static void commit_action(void) {
     char buf[20];
-    rtc_date_time datetime = rtc_get_date_time();
+    rtc_date_time_t datetime = rtc_get_date_time();
     bme280_reading_t bme_reading;
 
     oso_lcd_fill(0);
@@ -434,7 +434,7 @@ bool app_loop(void) {
 
     if (woke_for_measurement) {
         woke_for_measurement = false;
-        rtc_date_time datetime = rtc_get_date_time();
+        rtc_date_time_t datetime = rtc_get_date_time();
         char buf[20];
 
         // enable ADC
@@ -618,7 +618,7 @@ void swarm_m138_date_time_callback(Swarm_M138_DateTimeData_t datetime) {
     if (datetime.valid == 0) {
         return;
     }
-    rtc_date_time rtcDatetime = {
+    rtc_date_time_t rtcDatetime = {
         .unit = {
             .year = datetime.YYYY,
             .month = datetime.MM,

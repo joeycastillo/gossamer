@@ -96,7 +96,7 @@ void eic_enable(void) {
 #endif
 }
 
-int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger trigger) {
+int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger_t trigger) {
     uint16_t port = pin >> 5;
     int8_t channel = _eic_pin_to_channel[port][pin & 0x1F];
     if (channel < 0) {

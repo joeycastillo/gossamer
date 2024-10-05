@@ -43,14 +43,14 @@ typedef union {
         uint32_t year : 6;      // 0-63 (representing 2020-2083)
     } unit;
     uint32_t reg;               // the bit-packed value as expected by the RTC peripheral's CLOCK register.
-} rtc_date_time;
+} rtc_date_time_t;
 
-typedef enum rtc_alarm_match {
+typedef enum rtc_alarm_match_t {
     ALARM_MATCH_DISABLED = 0,
     ALARM_MATCH_SS,
     ALARM_MATCH_MMSS,
     ALARM_MATCH_HHMMSS,
-} rtc_alarm_match;
+} rtc_alarm_match_t;
 
 typedef void (*rtc_cb_t)(uint16_t intflag);
 
@@ -78,19 +78,19 @@ bool rtc_is_enabled(void);
   *       1 means 2021, 2 means 2022, etc. **You will be responsible for handling this offset in your code**,
   *       if the calendar year is needed for timestamp calculation logic or display purposes.
   */
-void rtc_set_date_time(rtc_date_time date_time);
+void rtc_set_date_time(rtc_date_time_t date_time);
 
 /** @brief Returns the date and time.
-  * @return A rtc_date_time with the current date and time, with a year value from 0-63 representing 2020-2083.
+  * @return A rtc_date_time_t with the current date and time, with a year value from 0-63 representing 2020-2083.
   * @see rtc_set_date_time for notes about how the year is stored.
   */
-rtc_date_time rtc_get_date_time(void);
+rtc_date_time_t rtc_get_date_time(void);
 
 /** @brief Enables the alarm interrupt.
   * @param alarm_time The time that you wish to match. The date is currently ignored.
-  * @param mask One of the values in rtc_alarm_match indicating which values to check.
+  * @param mask One of the values in rtc_alarm_match_t indicating which values to check.
   */
-void rtc_enable_alarm_interrupt(rtc_date_time alarm_time, rtc_alarm_match mask);
+void rtc_enable_alarm_interrupt(rtc_date_time_t alarm_time, rtc_alarm_match_t mask);
 
 /** @brief Disables the alarm callback.
   */

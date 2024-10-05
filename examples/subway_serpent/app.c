@@ -35,16 +35,16 @@ typedef enum {
 
 static void rtc_alarm_callback(uint8_t source);
 
-static void _display_time(rtc_date_time date_time);
-static void _display_year(rtc_date_time date_time);
-static void _display_month(rtc_date_time date_time);
-static void _display_day(rtc_date_time date_time);
+static void _display_time(rtc_date_time_t date_time);
+static void _display_year(rtc_date_time_t date_time);
+static void _display_month(rtc_date_time_t date_time);
+static void _display_day(rtc_date_time_t date_time);
 static void _display_main_voltage(void);
 static void _display_battery_voltage(void);
 static void _display_led_value(uint8_t channel);
 static void _recalculate_riset(void);
 
-uint32_t date_time_to_unix_time(rtc_date_time date_time, uint32_t utc_offset);
+uint32_t date_time_to_unix_time(rtc_date_time_t date_time, uint32_t utc_offset);
 
 serpent_mode_t mode = DEFAULT_MODE;
 int8_t brightness[4] = {0, 15, 15, 50};
@@ -91,7 +91,7 @@ void app_setup(void) {
     HAL_GPIO_LED_clr();
 
     // fire RTC alarm every minute
-    rtc_date_time date_time = {0};
+    rtc_date_time_t date_time = {0};
     rtc_enable_alarm_interrupt(date_time, ALARM_MATCH_SS);
     rtc_configure_callback(rtc_alarm_callback);
 
@@ -175,7 +175,7 @@ void app_setup(void) {
 }
 
 bool app_loop(void) {
-    rtc_date_time date_time = rtc_get_date_time();
+    rtc_date_time_t date_time = rtc_get_date_time();
     uint32_t timestamp = date_time_to_unix_time(date_time, EST_OFFSET_MINUTES * 60);
 
     if (riset_needs_update) {
@@ -373,7 +373,7 @@ bool app_loop(void) {
     return true;    
 }
 
-static void _display_time(rtc_date_time date_time) {
+static void _display_time(rtc_date_time_t date_time) {
     int8_t hour_12 = date_time.unit.hour % 12;
     if (!hour_12) hour_12 += 12;
     char buf[7];
@@ -388,21 +388,21 @@ static void _display_time(rtc_date_time date_time) {
     }
 }
 
-static void _display_year(rtc_date_time date_time) {
+static void _display_year(rtc_date_time_t date_time) {
     char buf[7];
     oso_lcd_clear_indicator(OSO_LCD_INDICATOR_ALL);
     sprintf(buf, "Yr:%2d ", date_time.unit.year + REFERENCE_YEAR - 2000);
     oso_lcd_print(buf);
 }
 
-static void _display_month(rtc_date_time date_time) {
+static void _display_month(rtc_date_time_t date_time) {
     char buf[7];
     oso_lcd_clear_indicator(OSO_LCD_INDICATOR_ALL);
     sprintf(buf, "&7:%2d ", date_time.unit.month);
     oso_lcd_print(buf);
 }
 
-static void _display_day(rtc_date_time date_time) {
+static void _display_day(rtc_date_time_t date_time) {
     char buf[7];
     oso_lcd_clear_indicator(OSO_LCD_INDICATOR_ALL);
     sprintf(buf, "Dy:%2d ", date_time.unit.day);
@@ -444,9 +444,9 @@ static void _display_led_value(uint8_t channel) {
 #define DAYS_PER_100Y (365*100 + 24)
 #define DAYS_PER_4Y   (365*4   + 1)
 
-rtc_date_time _date_time_from_unix_time(uint32_t timestamp, uint32_t utc_offset);
-rtc_date_time _date_time_from_unix_time(uint32_t timestamp, uint32_t utc_offset) {
-    rtc_date_time retval;
+rtc_date_time_t _date_time_from_unix_time(uint32_t timestamp, uint32_t utc_offset);
+rtc_date_time_t _date_time_from_unix_time(uint32_t timestamp, uint32_t utc_offset) {
+    rtc_date_time_t retval;
     retval.reg = 0;
     int32_t days, secs;
     int32_t remdays, remsecs, remyears;
@@ -556,11 +556,11 @@ uint32_t _convert_to_unix_time(uint16_t year, uint8_t month, uint8_t day, uint8_
     return timestamp;
 }
 
-uint32_t date_time_to_unix_time(rtc_date_time date_time, uint32_t utc_offset) {
+uint32_t date_time_to_unix_time(rtc_date_time_t date_time, uint32_t utc_offset) {
     return _convert_to_unix_time(date_time.unit.year + REFERENCE_YEAR, date_time.unit.month, date_time.unit.day, date_time.unit.hour, date_time.unit.minute, date_time.unit.second, utc_offset);
 }
 
-static rtc_date_time _convert_zone(rtc_date_time date_time, uint32_t origin_utc_offset, uint32_t destination_utc_offset) {
+static rtc_date_time_t _convert_zone(rtc_date_time_t date_time, uint32_t origin_utc_offset, uint32_t destination_utc_offset) {
     uint32_t timestamp = date_time_to_unix_time(date_time, origin_utc_offset);
     return _date_time_from_unix_time(timestamp, destination_utc_offset);
 }
@@ -568,11 +568,11 @@ static rtc_date_time _convert_zone(rtc_date_time date_time, uint32_t origin_utc_
 static void _recalculate_riset(void) {
     double rise, set, minutes, seconds;
 
-    rtc_date_time date_time = rtc_get_date_time(); // the current local date / time
+    rtc_date_time_t date_time = rtc_get_date_time(); // the current local date / time
     date_time.unit.hour = 6;
     date_time.unit.minute = 0;
-    rtc_date_time utc_today = _convert_zone(date_time, EST_OFFSET_MINUTES * 60, 0); // the current date / time in UTC
-    rtc_date_time scratch_time; // scratchpad, contains different values at different times
+    rtc_date_time_t utc_today = _convert_zone(date_time, EST_OFFSET_MINUTES * 60, 0); // the current date / time in UTC
+    rtc_date_time_t scratch_time; // scratchpad, contains different values at different times
     scratch_time.reg = utc_today.reg;
 
     // Beach 60th
@@ -580,8 +580,8 @@ static void _recalculate_riset(void) {
     double lon = -73.78927690293212;
 
     // sunriset returns the rise/set times as signed decimal hours in UTC.
-    // this can mean hours below 0 or above 31, which won't fit into a rtc_date_time struct.
-    // to deal with this, we set aside the offset in hours, and add it back before converting it to a rtc_date_time.
+    // this can mean hours below 0 or above 31, which won't fit into a rtc_date_time_t struct.
+    // to deal with this, we set aside the offset in hours, and add it back before converting it to a rtc_date_time_t.
     double hours_from_utc = ((double)EST_OFFSET_MINUTES) / 60.0;
 
     sun_rise_set(scratch_time.unit.year + REFERENCE_YEAR, scratch_time.unit.month, scratch_time.unit.day, lon, lat, &rise, &set);

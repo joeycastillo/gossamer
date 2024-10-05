@@ -34,7 +34,7 @@
 #include "samd21.h"
 #include "system.h"
 
-const TC_Instance_Details TC_Peripherals[] = {
+const tc_instance_details_t TC_Peripherals[] = {
     {TC3, PM_APBCMASK_TC3, GCLK_CLKCTRL_ID_TCC2_TC3},
     {TC4, PM_APBCMASK_TC4, GCLK_CLKCTRL_ID_TC4_TC5},
     {TC5, PM_APBCMASK_TC5, GCLK_CLKCTRL_ID_TC4_TC5},
@@ -50,14 +50,14 @@ const TC_Instance_Details TC_Peripherals[] = {
 const uint8_t Num_TC_Instances = TC_INST_NUM;
 const uint8_t TC_First_Index = 3;
 
-const TCC_Instance_Details TCC_Peripherals[] = {
+const tcc_instance_details_t TCC_Peripherals[] = {
     {TCC0, PM_APBCMASK_TCC0, GCLK_CLKCTRL_ID_TCC0_TCC1},
     {TCC1, PM_APBCMASK_TCC1, GCLK_CLKCTRL_ID_TCC0_TCC1},
     {TCC2, PM_APBCMASK_TCC2, GCLK_CLKCTRL_ID_TCC2_TC3},
 };
 const uint8_t Num_TCC_Instances = TCC_INST_NUM;
 
-const SERCOM_Instance_Details SERCOM_Peripherals[] = {
+const sercom_instance_details_t SERCOM_Peripherals[] = {
     {SERCOM0, PM_APBCMASK_SERCOM0, SERCOM0_GCLK_ID_CORE, SERCOM0_IRQn},
     {SERCOM1, PM_APBCMASK_SERCOM1, SERCOM1_GCLK_ID_CORE, SERCOM1_IRQn},
     {SERCOM2, PM_APBCMASK_SERCOM2, SERCOM2_GCLK_ID_CORE, SERCOM2_IRQn},

@@ -30,19 +30,19 @@
 #include "samd11.h"
 #include "system.h"
 
-const TC_Instance_Details TC_Peripherals[] = {
+const tc_instance_details_t TC_Peripherals[] = {
     {TC1, PM_APBCMASK_TC1, GCLK_CLKCTRL_ID_TC1_TC2},
     {TC2, PM_APBCMASK_TC2, GCLK_CLKCTRL_ID_TC1_TC2},
 };
 const uint8_t Num_TC_Instances = TC_INST_NUM;
 const uint8_t TC_First_Index = 1;
 
-const TCC_Instance_Details TCC_Peripherals[] = {
+const tcc_instance_details_t TCC_Peripherals[] = {
     {TCC0, PM_APBCMASK_TCC0, GCLK_CLKCTRL_ID_TCC0},
 };
 const uint8_t Num_TCC_Instances = TCC_INST_NUM;
 
-const SERCOM_Instance_Details SERCOM_Peripherals[] = {
+const sercom_instance_details_t SERCOM_Peripherals[] = {
     {SERCOM0, PM_APBCMASK_SERCOM0, SERCOM0_GCLK_ID_CORE, SERCOM0_IRQn},
     {SERCOM1, PM_APBCMASK_SERCOM1, SERCOM1_GCLK_ID_CORE, SERCOM1_IRQn},
 #if defined(__SAMD11D14AM__) || defined(__ATSAMD11D14AM__) || \

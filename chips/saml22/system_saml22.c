@@ -31,7 +31,7 @@
 #include "system.h"
 #include "pins.h"
 
-const TC_Instance_Details TC_Peripherals[] = {
+const tc_instance_details_t TC_Peripherals[] = {
     {TC0, MCLK_APBCMASK_TC0, TC0_GCLK_ID},
     {TC1, MCLK_APBCMASK_TC1, TC1_GCLK_ID},
     {TC2, MCLK_APBCMASK_TC2, TC2_GCLK_ID},
@@ -40,12 +40,12 @@ const TC_Instance_Details TC_Peripherals[] = {
 const uint8_t Num_TC_Instances = TC_INST_NUM;
 const uint8_t TC_First_Index = 0;
 
-const TCC_Instance_Details TCC_Peripherals[] = {
+const tcc_instance_details_t TCC_Peripherals[] = {
     {TCC0, MCLK_APBCMASK_TCC0, TCC0_GCLK_ID},
 };
 const uint8_t Num_TCC_Instances = TCC_INST_NUM;
 
-const SERCOM_Instance_Details SERCOM_Peripherals[] = {
+const sercom_instance_details_t SERCOM_Peripherals[] = {
     {SERCOM0, MCLK_APBCMASK_SERCOM0, SERCOM0_GCLK_ID_CORE, SERCOM0_IRQn},
     {SERCOM1, MCLK_APBCMASK_SERCOM1, SERCOM1_GCLK_ID_CORE, SERCOM1_IRQn},
     {SERCOM2, MCLK_APBCMASK_SERCOM2, SERCOM2_GCLK_ID_CORE, SERCOM2_IRQn},

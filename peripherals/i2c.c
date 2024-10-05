@@ -27,11 +27,11 @@ void i2c_enable(void) {
     i2c_enable_instance(I2C_SERCOM);
 }
 
-I2CResult i2c_write(uint8_t address, uint8_t* data, size_t len) {
+i2c_result_t i2c_write(uint8_t address, uint8_t* data, size_t len) {
     return i2c_write_instance(I2C_SERCOM, address, data, len);
 }
 
-I2CResult i2c_read(uint8_t address, uint8_t* data, size_t len) {
+i2c_result_t i2c_read(uint8_t address, uint8_t* data, size_t len) {
     return i2c_read_instance(I2C_SERCOM, address, data, len);
 }
 
@@ -88,7 +88,7 @@ void i2c_enable_instance(uint8_t sercom) {
     while (SERCOM_Peripherals[sercom].sercom->I2CM.SYNCBUSY.bit.SYSOP) {};
 }
 
-I2CResult i2c_write_instance(uint8_t sercom, uint8_t address, uint8_t* data, size_t len) {
+i2c_result_t i2c_write_instance(uint8_t sercom, uint8_t address, uint8_t* data, size_t len) {
     /* Before trying to write, check to see if the bus is busy, if it is,
        bail.
     */
@@ -141,7 +141,7 @@ I2CResult i2c_write_instance(uint8_t sercom, uint8_t address, uint8_t* data, siz
     return I2C_RESULT_SUCCESS;
 }
 
-I2CResult i2c_read_instance(uint8_t sercom, uint8_t address, uint8_t* data, size_t len) {
+i2c_result_t i2c_read_instance(uint8_t sercom, uint8_t address, uint8_t* data, size_t len) {
     Sercom* SERCOM = SERCOM_Peripherals[sercom].sercom;
 
     /* Before trying to write, check to see if the bus is busy, if it is,
