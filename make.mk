@@ -28,6 +28,9 @@ else
   MKDIR = mkdir
 endif
 
+ifndef EMSCRIPTEN
+# Settings and flags for building on hardware
+
 ifeq ($(DETECTED_OS), LINUX)
   MAKEFLAGS += -j $(shell nproc)
 endif
@@ -39,7 +42,6 @@ ifeq ($(DETECTED_OS), WINDOWS)
   MAKEFLAGS += -j $(NUMBER_OF_PROCESSORS)
 endif
 
-ifndef EMSCRIPTEN
 CC = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
 SIZE = arm-none-eabi-size
@@ -88,6 +90,7 @@ SRCS += \
   $(GOSSAMER_PATH)/peripherals/uart.c \
 
 else
+# Settings and flags for building with Emscripten
 
 BUILD = ./build-sim
 CC = emcc
@@ -127,6 +130,9 @@ SRCS += \
   $(GOSSAMER_PATH)/main.c \
   $(GOSSAMER_PATH)/drivers/gfx/gfx.c \
   $(GOSSAMER_PATH)/drivers/gfx/sh1107.c \
+
+ifndef EMSCRIPTEN
+# Do not compile tinyusb for Emscripten
 
 ifdef TINYUSB_CDC
 CFLAGS += -DAPP_USES_TINYUSB -DCFG_TUD_CDC=$(TINYUSB_CDC)
@@ -180,6 +186,8 @@ SRCS += \
   $(GOSSAMER_PATH)/peripherals/usb.c \
 
 endif
+
+endif # End of tinyusb exclusion
 
 DEFINES += \
   -DDONT_USE_CMSIS_INIT
