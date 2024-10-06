@@ -119,6 +119,7 @@ SRCS += \
   $(GOSSAMER_PATH)/dummy/peripherals/tc.c \
   $(GOSSAMER_PATH)/dummy/peripherals/tcc.c \
   $(GOSSAMER_PATH)/dummy/peripherals/uart.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/usb.c \
 
 endif
 

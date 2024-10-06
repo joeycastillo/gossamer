@@ -27,8 +27,6 @@
 #include "usb.h"
 #include "tc.h"
 
-#ifdef APP_USES_TINYUSB
-
 void usb_init(void) {
 }
 
@@ -45,5 +43,3 @@ void usb_disable(void) {
 void irq_handler_usb(void);
 void irq_handler_usb(void) {
 }
-
-#endif

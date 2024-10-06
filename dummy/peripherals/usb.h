@@ -22,9 +22,6 @@
  * SOFTWARE.
  */
 
-// WORK IN PROGRESS, not yet functional.
-#ifdef APP_USES_TINYUSB
-
 #pragma once
 
 #include <stdint.h>
@@ -71,5 +68,3 @@ bool usb_is_enabled(void);
  * @note Has not been extensively tested, TinyUSB may not like this.
  */
 void usb_disable(void);
-
-#endif
