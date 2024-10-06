@@ -39,6 +39,7 @@ ifeq ($(DETECTED_OS), WINDOWS)
   MAKEFLAGS += -j $(NUMBER_OF_PROCESSORS)
 endif
 
+ifndef EMSCRIPTEN
 CC = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
 SIZE = arm-none-eabi-size
@@ -64,14 +65,11 @@ LIBS += -lm
 INCLUDES += \
   -I$(GOSSAMER_PATH)/common/ \
   -I$(GOSSAMER_PATH)/peripherals/ \
-  -I$(GOSSAMER_PATH)/drivers/ \
-  -I$(GOSSAMER_PATH)/boards/$(BOARD)/ \
   -I$(GOSSAMER_PATH)/chips/$(CHIP)/include/ \
 
 SRCS += \
   $(GOSSAMER_PATH)/chips/$(CHIP)/startup_$(CHIP).c \
   $(GOSSAMER_PATH)/chips/$(CHIP)/system_$(CHIP).c \
-  $(GOSSAMER_PATH)/main.c \
   $(GOSSAMER_PATH)/common/delay.c \
   $(GOSSAMER_PATH)/peripherals/adc.c \
   $(GOSSAMER_PATH)/peripherals/dac.c \
@@ -88,6 +86,45 @@ SRCS += \
   $(GOSSAMER_PATH)/peripherals/tc.c \
   $(GOSSAMER_PATH)/peripherals/tcc.c \
   $(GOSSAMER_PATH)/peripherals/uart.c \
+
+else
+
+BUILD = ./build-sim
+CC = emcc
+
+INCLUDES += \
+  -I$(GOSSAMER_PATH)/dummy/common/ \
+  -I$(GOSSAMER_PATH)/dummy/peripherals/ \
+  -I$(GOSSAMER_PATH)/dummy/chips/$(CHIP)/include/ \
+
+SRCS += \
+  $(GOSSAMER_PATH)/dummy/chips/$(CHIP)/startup_$(CHIP).c \
+  $(GOSSAMER_PATH)/dummy/chips/$(CHIP)/system_$(CHIP).c \
+  $(GOSSAMER_PATH)/dummy/common/delay.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/adc.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/dac.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/dma.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/eic.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/i2c.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/i2s.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/opamp.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/ptc.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/rtc.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/sercom.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/slcd.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/spi.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/tc.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/tcc.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/uart.c \
+
+endif
+
+INCLUDES += \
+  -I$(GOSSAMER_PATH)/drivers/ \
+  -I$(GOSSAMER_PATH)/boards/$(BOARD)/ \
+
+SRCS += \
+  $(GOSSAMER_PATH)/main.c \
   $(GOSSAMER_PATH)/drivers/gfx/gfx.c \
   $(GOSSAMER_PATH)/drivers/gfx/sh1107.c \
 

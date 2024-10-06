@@ -6,10 +6,14 @@ SUBMODULES = tinyusb
 
 COBRA = cobra -f
 
+ifndef EMSCRIPTEN
+
 ifeq ($(DFU), 1)
 all: $(BUILD)/$(BIN).elf $(BUILD)/$(BIN).hex $(BUILD)/$(BIN).bin $(BUILD)/$(BIN).dfu size
 else
 all: $(BUILD)/$(BIN).elf $(BUILD)/$(BIN).hex $(BUILD)/$(BIN).bin $(BUILD)/$(BIN).uf2 size
+endif
+
 endif
 
 $(BUILD)/$(BIN).elf: $(OBJS)
