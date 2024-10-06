@@ -22,7 +22,6 @@
  * SOFTWARE.
  */
 
-// WORK IN PROGRESS, not yet functional.
 #ifdef APP_USES_TINYUSB
 
 #pragma once
