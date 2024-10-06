@@ -26,7 +26,6 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "tusb.h"
 
 /** @brief Initializes the USB preipheral, and assigns the USB pins to their
  *         relevant functions. In the process, this function also sets up the

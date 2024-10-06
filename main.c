@@ -8,6 +8,10 @@
 #include "system.h"
 #include "delay.h"
 
+#if __EMSCRIPTEN__
+void resume_main_loop(void);
+#endif
+
 int main(void) {
     // set up system clocks
     sys_init();
@@ -24,6 +28,9 @@ int main(void) {
     // allow application to do its initial setup
     app_setup();
 
+#if __EMSCRIPTEN__
+    resume_main_loop();
+#else
     while (1) {
         bool can_sleep = app_loop();
 
@@ -31,6 +38,7 @@ int main(void) {
             _enter_standby_mode();
         }
     }
+#endif
 
     return 0;
 }
