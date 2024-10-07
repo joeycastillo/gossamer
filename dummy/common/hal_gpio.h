@@ -128,7 +128,7 @@
                     \
   static inline uint8_t HAL_GPIO_##name##_pin(void)        \
   {                    \
-    return 0; \
+    return ((HAL_GPIO_PORT##port << 5) | (pin & 0x1f));					\
     (void)HAL_GPIO_##name##_pin;            \
   }                    \
                     \
