@@ -10,6 +10,7 @@
 
 static bool sleeping = true;
 static volatile long animation_frame_id = ANIMATION_FRAME_ID_INVALID;
+bool pin_levels[3][32];
 
 // make compiler happy
 bool main_loop_is_sleeping(void);

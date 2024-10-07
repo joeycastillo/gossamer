@@ -54,7 +54,7 @@
 #define HAL_GPIO_PMUX_M      12
 #define HAL_GPIO_PMUX_N      13
 
-static bool pin_levels[3][32];
+extern bool pin_levels[3][32];
 
 #define HAL_GPIO_PIN(name, port, pin)            \
   static inline void HAL_GPIO_##name##_set(void)        \
