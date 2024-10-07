@@ -30,6 +30,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #include <stdint.h>
+#include <stdbool.h>
 
 #pragma once
 
@@ -53,24 +54,30 @@
 #define HAL_GPIO_PMUX_M      12
 #define HAL_GPIO_PMUX_N      13
 
+static bool pin_levels[3][32];
+
 #define HAL_GPIO_PIN(name, port, pin)            \
   static inline void HAL_GPIO_##name##_set(void)        \
   {                    \
+    pin_levels[HAL_GPIO_PORT##port][pin] = true; \
     (void)HAL_GPIO_##name##_set;            \
   }                    \
                     \
   static inline void HAL_GPIO_##name##_clr(void)        \
   {                    \
+    pin_levels[HAL_GPIO_PORT##port][pin] = false; \
     (void)HAL_GPIO_##name##_clr;            \
   }                    \
                     \
   static inline void HAL_GPIO_##name##_toggle(void)        \
   {                    \
+    pin_levels[HAL_GPIO_PORT##port][pin] = !pin_levels[HAL_GPIO_PORT##port][pin]; \
     (void)HAL_GPIO_##name##_toggle;            \
   }                    \
                     \
   static inline void HAL_GPIO_##name##_write(int value)        \
   {                    \
+    pin_levels[HAL_GPIO_PORT##port][pin] = !!value; \
     (void)HAL_GPIO_##name##_write;            \
   }                    \
                     \
@@ -106,7 +113,7 @@
                     \
   static inline int HAL_GPIO_##name##_read(void)        \
   {                    \
-    return 0; \
+    return pin_levels[HAL_GPIO_PORT##port][pin]; \
     (void)HAL_GPIO_##name##_read;            \
   }                    \
                     \
