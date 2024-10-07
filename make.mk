@@ -103,7 +103,7 @@ INCLUDES += \
 SRCS += \
   $(GOSSAMER_PATH)/dummy/chips/$(CHIP)/startup_$(CHIP).c \
   $(GOSSAMER_PATH)/dummy/chips/$(CHIP)/system_$(CHIP).c \
-  $(GOSSAMER_PATH)/dummy/common/delay.c \
+  $(GOSSAMER_PATH)/dummy/common/emscripten_loop.c \
   $(GOSSAMER_PATH)/dummy/peripherals/adc.c \
   $(GOSSAMER_PATH)/dummy/peripherals/dac.c \
   $(GOSSAMER_PATH)/dummy/peripherals/dma.c \
