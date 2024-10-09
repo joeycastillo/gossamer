@@ -129,8 +129,6 @@ INCLUDES += \
 
 SRCS += \
   $(GOSSAMER_PATH)/main.c \
-  $(GOSSAMER_PATH)/drivers/gfx/gfx.c \
-  $(GOSSAMER_PATH)/drivers/gfx/sh1107.c \
 
 ifndef EMSCRIPTEN
 # Do not compile tinyusb for Emscripten
