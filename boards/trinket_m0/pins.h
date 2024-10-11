@@ -1,0 +1,42 @@
+#pragma once
+
+#include "hal_gpio.h"
+#include "spi.h"
+#include "i2c.h"
+#include "uart.h"
+
+// LED
+HAL_GPIO_PIN(LED, A, 10)
+
+// Digital pins
+HAL_GPIO_PIN(D0,   A, 8)
+HAL_GPIO_PIN(D1,   A, 2)
+HAL_GPIO_PIN(D2,   A, 9)
+HAL_GPIO_PIN(D3,   A, 7)
+HAL_GPIO_PIN(D4,   A, 6)
+
+// SPI
+HAL_GPIO_PIN(SCK,  A, 7)
+HAL_GPIO_PIN(MOSI, A, 6)
+HAL_GPIO_PIN(MISO, A, 9)
+#define SPI_SERCOM 0
+#define SPI_SERCOM_DOPO SPI_DOPO_2_SCK_3
+#define SPI_SERCOM_DIPO SPI_DIPO_1
+
+// I2C
+HAL_GPIO_PIN(SDA, A, 8)
+HAL_GPIO_PIN(SCL, A, 9)
+#define I2C_SERCOM 2
+
+// UART
+HAL_GPIO_PIN(TX, A, 6)
+HAL_GPIO_PIN(RX, A, 7)
+#define UART_SERCOM 0
+#define UART_SERCOM_TXPO UART_TXPO_2
+#define UART_SERCOM_RXPO UART_RXPO_3
+
+// Dotstar LED
+HAL_GPIO_PIN(APA102_MOSI, A, 0)
+HAL_GPIO_PIN(APA102_SCK,  A, 1)
+#define DOTSTAR_SERCOM 1
+#define DOTSTAR_SERCOM_DOPO SPI_DOPO_0_SCK_1
