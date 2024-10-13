@@ -30,6 +30,8 @@ void uart_enable(void);
 
 void uart_set_run_in_standby(bool run_in_standby);
 
+void uart_set_irda_mode(bool irda);
+
 void uart_write(uint8_t *data, size_t length);
 
 size_t uart_read(uint8_t *data, size_t max_length);
@@ -41,6 +43,8 @@ void uart_disable(void);
 void uart_init_instance(uint8_t sercom, uart_txpo_t txpo, uart_rxpo_t rxpo, uint32_t baud);
 
 void uart_set_run_in_standby_instance(uint8_t sercom, bool run_in_standby);
+
+void uart_set_irda_mode_instance(uint8_t sercom, bool irda);
 
 void uart_enable_instance(uint8_t sercom);
 

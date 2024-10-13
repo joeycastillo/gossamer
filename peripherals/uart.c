@@ -80,6 +80,10 @@ void uart_set_run_in_standby(bool run_in_standby) {
     uart_set_run_in_standby_instance(UART_SERCOM, run_in_standby);
 }
 
+void uart_set_irda_mode(bool irda) {
+    uart_set_irda_mode_instance(UART_SERCOM, irda);
+}
+
 void uart_enable(void) {
     uart_enable_instance(UART_SERCOM);
 }
@@ -150,6 +154,11 @@ void uart_init_instance(uint8_t sercom, uart_txpo_t txpo, uart_rxpo_t rxpo, uint
 
 void uart_set_run_in_standby_instance(uint8_t sercom, bool run_in_standby) {
     SERCOM_Peripherals[sercom].sercom->USART.CTRLA.bit.RUNSTDBY = run_in_standby;
+}
+
+void uart_set_irda_mode_instance(uint8_t sercom, bool irda) {
+    SERCOM_Peripherals[sercom].sercom->USART.CTRLB.bit.ENC = irda;
+    while (SERCOM_Peripherals[sercom].sercom->USART.SYNCBUSY.bit.CTRLB);
 }
 
 void uart_enable_instance(uint8_t sercom) {
