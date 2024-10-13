@@ -69,10 +69,14 @@ const sercom_instance_details_t SERCOM_Peripherals[] = {
 };
 const uint8_t Num_SERCOM_Instances = SERCOM_INST_NUM;
 
+static uint32_t _cpu_frequency;
+
 //-----------------------------------------------------------------------------
 void sys_init(void) {
     // Switch to 8MHz clock
     OSCCTRL->OSC16MCTRL.reg = OSCCTRL_OSC16MCTRL_ENABLE | OSCCTRL_OSC16MCTRL_FSEL_8;
+    // stash the current CPU frequency
+    _cpu_frequency = 8000000;
 
     // Switch to the highest performance level
     PM->INTFLAG.reg = PM_INTFLAG_PLRDY;
@@ -156,19 +160,7 @@ void _enable_48mhz_gclk1(void) {
 }
 
 uint32_t get_cpu_frequency(void) {
-    // otherwise, we're running at 16 MHz divided by the prescaler
-    switch (OSCCTRL->OSC16MCTRL.bit.FSEL) {
-    case 0:
-        return 4000000;
-    case 1:
-        return 8000000;
-    case 2:
-        return 12000000;
-    case 3:
-        return 16000000;
-    default:
-        return 0;
-    }
+    return _cpu_frequency;
 }
 
 bool set_cpu_frequency(uint32_t freq) {
@@ -193,6 +185,9 @@ bool set_cpu_frequency(uint32_t freq) {
     default:
         return false;
     }
+
+    _cpu_frequency = freq;
+
     return true;
 }
 

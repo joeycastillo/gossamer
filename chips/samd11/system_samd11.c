@@ -53,10 +53,14 @@ const sercom_instance_details_t SERCOM_Peripherals[] = {
 };
 const uint8_t Num_SERCOM_Instances = SERCOM_INST_NUM;
 
+static uint32_t _cpu_frequency;
+
 //-----------------------------------------------------------------------------
 void sys_init(void) {
     // Switch GCLK0 to 8MHz clock (disable prescaler)
     SYSCTRL->OSC8M.bit.PRESC = 0;
+    // stash the current CPU frequency
+    _cpu_frequency = 8000000;
     // make sure main oscillator stays off in standby
     SYSCTRL->OSC8M.bit.RUNSTDBY = 0;
 
@@ -147,19 +151,7 @@ void _enable_48mhz_gclk1(void) {
 }
 
 uint32_t get_cpu_frequency(void) {
-    // otherwise, we're running at 8 MHz divided by the prescaler
-    switch (SYSCTRL->OSC8M.bit.PRESC) {
-    case 3:
-        return 1000000;
-    case 2:
-        return 2000000;
-    case 1:
-        return 4000000;
-    case 0:
-        return 8000000;
-    default:
-        return 0;
-    }
+    return _cpu_frequency;
 }
 
 bool set_cpu_frequency(uint32_t freq) {
@@ -187,6 +179,9 @@ bool set_cpu_frequency(uint32_t freq) {
     default:
         return false;
     }
+
+    _cpu_frequency = freq;
+
     return true;
 }
 
