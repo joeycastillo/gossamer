@@ -151,6 +151,5 @@ void uart_disable_instance(uint8_t sercom);
  *          UART transmssion and reception are interrupt driven, and
  *          nothing will work if this function is not called.
  * @param sercom SERCOM number
- * @todo Really need to refactor this so it's called from the HAL, not the app.
 */
 void uart_irq_handler(uint8_t sercom);
