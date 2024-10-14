@@ -83,61 +83,77 @@ $(document).ready(function() { init_codefold(0); });
 </div><!--header-->
 <div class="contents">
 <a href="uart_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    UART_TXPO_0 = 0,</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    UART_TXPO_2,</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    UART_TXPO_0_FLOW_CONTROL,</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    UART_TXPO_NONE = 0xff</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>} uart_txpo_t;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    UART_RXPO_0 = 0,</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    UART_RXPO_1,</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    UART_RXPO_2,</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    UART_RXPO_3,</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    UART_RXPO_NONE = 0xff</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>} uart_rxpo_t;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keywordtype">void</span> uart_init(uint32_t baud);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    UART_TXPO_0 = 0,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    UART_TXPO_2,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    UART_TXPO_0_FLOW_CONTROL,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    UART_TXPO_NONE = 0xff</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>} uart_txpo_t;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keywordtype">void</span> uart_enable(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keywordtype">void</span> uart_set_run_in_standby(<span class="keywordtype">bool</span> run_in_standby);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keywordtype">void</span> uart_set_irda_mode(<span class="keywordtype">bool</span> irda);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keywordtype">void</span> uart_write(uint8_t *data, <span class="keywordtype">size_t</span> length);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    UART_RXPO_0 = 0,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    UART_RXPO_1,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    UART_RXPO_2,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    UART_RXPO_3,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    UART_RXPO_NONE = 0xff</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>} uart_rxpo_t;</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keywordtype">size_t</span> uart_read(uint8_t *data, <span class="keywordtype">size_t</span> max_length);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keywordtype">bool</span> uart_read_byte(uint8_t *<span class="keywordtype">byte</span>);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keywordtype">void</span> uart_disable(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="uart_8h.html#ad8f6a793347af79ca41a3363dbd3fd96">   41</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="uart_8h.html#ad8f6a793347af79ca41a3363dbd3fd96">uart_init</a>(uint32_t baud);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keywordtype">void</span> uart_init_instance(uint8_t sercom, uart_txpo_t txpo, uart_rxpo_t rxpo, uint32_t baud);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keywordtype">void</span> uart_set_run_in_standby_instance(uint8_t sercom, <span class="keywordtype">bool</span> run_in_standby);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keywordtype">void</span> uart_set_irda_mode_instance(uint8_t sercom, <span class="keywordtype">bool</span> irda);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keywordtype">void</span> uart_enable_instance(uint8_t sercom);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keywordtype">void</span> uart_write_instance(uint8_t sercom, uint8_t *data, <span class="keywordtype">size_t</span> length);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keywordtype">size_t</span> uart_read_instance(uint8_t sercom, uint8_t *data, <span class="keywordtype">size_t</span> max_length);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keywordtype">bool</span> uart_read_byte_instance(uint8_t sercom, uint8_t *<span class="keywordtype">byte</span>);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keywordtype">void</span> uart_disable_instance(uint8_t sercom);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keywordtype">void</span> <a class="code hl_function" href="uart_8h.html#a3d2a4f57b803f517096c373734ffa78b">uart_irq_handler</a>(uint8_t sercom);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="uart_8h.html#affcbd24efeade3b1444100dbbc614e88">   46</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="uart_8h.html#affcbd24efeade3b1444100dbbc614e88">uart_enable</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="uart_8h.html#aa034660a70fb244c2e25187509985760">   52</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="uart_8h.html#aa034660a70fb244c2e25187509985760">uart_set_run_in_standby</a>(<span class="keywordtype">bool</span> run_in_standby);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="uart_8h.html#afdbbf43dd9af325b1cae5d5318853a8d">   58</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="uart_8h.html#afdbbf43dd9af325b1cae5d5318853a8d">uart_set_irda_mode</a>(<span class="keywordtype">bool</span> irda);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="uart_8h.html#a6e0844dd68d04ca88f255b6c75326a70">   65</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="uart_8h.html#a6e0844dd68d04ca88f255b6c75326a70">uart_write</a>(uint8_t *data, <span class="keywordtype">size_t</span> length);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="uart_8h.html#acb00b8879d87fea2a41df7f2772c916c">   73</a></span><span class="keywordtype">size_t</span> <a class="code hl_function" href="uart_8h.html#acb00b8879d87fea2a41df7f2772c916c">uart_read</a>(uint8_t *data, <span class="keywordtype">size_t</span> max_length);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="uart_8h.html#a6c3fa8ab576e34e015d469a2734d3292">   80</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="uart_8h.html#a6c3fa8ab576e34e015d469a2734d3292">uart_read_byte</a>(uint8_t *<span class="keywordtype">byte</span>);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="uart_8h.html#a9dbcc0696f2607e16da1f55d3b4d6d94">   85</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="uart_8h.html#a9dbcc0696f2607e16da1f55d3b4d6d94">uart_disable</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="keywordtype">void</span> <a class="code hl_function" href="uart_8h.html#a9e514ab7ce443e2fd91fbe99bf8cb207">uart_init_instance</a>(uint8_t sercom, uart_txpo_t txpo, uart_rxpo_t rxpo, uint32_t baud);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="keywordtype">void</span> <a class="code hl_function" href="uart_8h.html#a94d5de1ee0878b0fb2d92c3626c3da22">uart_set_run_in_standby_instance</a>(uint8_t sercom, <span class="keywordtype">bool</span> run_in_standby);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keywordtype">void</span> <a class="code hl_function" href="uart_8h.html#a84eca02c048700d3f3ea086ff1e93451">uart_set_irda_mode_instance</a>(uint8_t sercom, <span class="keywordtype">bool</span> irda);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keywordtype">void</span> <a class="code hl_function" href="uart_8h.html#ad390de8c3b3ddcb3d03a36513262528d">uart_enable_instance</a>(uint8_t sercom);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keywordtype">void</span> <a class="code hl_function" href="uart_8h.html#ad53a035557ef05336ff3e45547b65861">uart_write_instance</a>(uint8_t sercom, uint8_t *data, <span class="keywordtype">size_t</span> length);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="keywordtype">size_t</span> <a class="code hl_function" href="uart_8h.html#a3ab7120aad2e941879ac328479d40af3">uart_read_instance</a>(uint8_t sercom, uint8_t *data, <span class="keywordtype">size_t</span> max_length);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="keywordtype">bool</span> <a class="code hl_function" href="uart_8h.html#afb3971f7bde4d345bc981b87866267c9">uart_read_byte_instance</a>(uint8_t sercom, uint8_t *<span class="keywordtype">byte</span>);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="keywordtype">void</span> <a class="code hl_function" href="uart_8h.html#a22b6636b750bfa7669521d5be5baed82">uart_disable_instance</a>(uint8_t sercom);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="keywordtype">void</span> <a class="code hl_function" href="uart_8h.html#a3d2a4f57b803f517096c373734ffa78b">uart_irq_handler</a>(uint8_t sercom);</div>
+<div class="ttc" id="auart_8h_html_a22b6636b750bfa7669521d5be5baed82"><div class="ttname"><a href="uart_8h.html#a22b6636b750bfa7669521d5be5baed82">uart_disable_instance</a></div><div class="ttdeci">void uart_disable_instance(uint8_t sercom)</div><div class="ttdoc">Disables a specific SERCOM UART instance.</div><div class="ttdef"><b>Definition</b> uart.c:200</div></div>
+<div class="ttc" id="auart_8h_html_a3ab7120aad2e941879ac328479d40af3"><div class="ttname"><a href="uart_8h.html#a3ab7120aad2e941879ac328479d40af3">uart_read_instance</a></div><div class="ttdeci">size_t uart_read_instance(uint8_t sercom, uint8_t *data, size_t max_length)</div><div class="ttdoc">Reads data from a specific SERCOM UART instance.</div><div class="ttdef"><b>Definition</b> uart.c:174</div></div>
 <div class="ttc" id="auart_8h_html_a3d2a4f57b803f517096c373734ffa78b"><div class="ttname"><a href="uart_8h.html#a3d2a4f57b803f517096c373734ffa78b">uart_irq_handler</a></div><div class="ttdeci">void uart_irq_handler(uint8_t sercom)</div><div class="ttdoc">UART IRQ handler.</div><div class="ttdef"><b>Definition</b> uart.c:204</div></div>
+<div class="ttc" id="auart_8h_html_a6c3fa8ab576e34e015d469a2734d3292"><div class="ttname"><a href="uart_8h.html#a6c3fa8ab576e34e015d469a2734d3292">uart_read_byte</a></div><div class="ttdeci">bool uart_read_byte(uint8_t *byte)</div><div class="ttdoc">Reads a single byte from the UART peripheral for a board with a defined UART_SERCOM.</div></div>
+<div class="ttc" id="auart_8h_html_a6e0844dd68d04ca88f255b6c75326a70"><div class="ttname"><a href="uart_8h.html#a6e0844dd68d04ca88f255b6c75326a70">uart_write</a></div><div class="ttdeci">void uart_write(uint8_t *data, size_t length)</div><div class="ttdoc">Writes data to the UART peripheral for a board with a defined UART_SERCOM.</div></div>
+<div class="ttc" id="auart_8h_html_a84eca02c048700d3f3ea086ff1e93451"><div class="ttname"><a href="uart_8h.html#a84eca02c048700d3f3ea086ff1e93451">uart_set_irda_mode_instance</a></div><div class="ttdeci">void uart_set_irda_mode_instance(uint8_t sercom, bool irda)</div><div class="ttdoc">Sets IRDA mode for a specific SERCOM instance.</div><div class="ttdef"><b>Definition</b> uart.c:159</div></div>
+<div class="ttc" id="auart_8h_html_a94d5de1ee0878b0fb2d92c3626c3da22"><div class="ttname"><a href="uart_8h.html#a94d5de1ee0878b0fb2d92c3626c3da22">uart_set_run_in_standby_instance</a></div><div class="ttdeci">void uart_set_run_in_standby_instance(uint8_t sercom, bool run_in_standby)</div><div class="ttdoc">Enables a specific SERCOM UART instance.</div><div class="ttdef"><b>Definition</b> uart.c:155</div></div>
+<div class="ttc" id="auart_8h_html_a9dbcc0696f2607e16da1f55d3b4d6d94"><div class="ttname"><a href="uart_8h.html#a9dbcc0696f2607e16da1f55d3b4d6d94">uart_disable</a></div><div class="ttdeci">void uart_disable(void)</div><div class="ttdoc">Disables the UART peripheral for a board with a defined UART_SERCOM.</div></div>
+<div class="ttc" id="auart_8h_html_a9e514ab7ce443e2fd91fbe99bf8cb207"><div class="ttname"><a href="uart_8h.html#a9e514ab7ce443e2fd91fbe99bf8cb207">uart_init_instance</a></div><div class="ttdeci">void uart_init_instance(uint8_t sercom, uart_txpo_t txpo, uart_rxpo_t rxpo, uint32_t baud)</div><div class="ttdoc">initializes a specific SERCOM UART instance.</div><div class="ttdef"><b>Definition</b> uart.c:105</div></div>
+<div class="ttc" id="auart_8h_html_aa034660a70fb244c2e25187509985760"><div class="ttname"><a href="uart_8h.html#aa034660a70fb244c2e25187509985760">uart_set_run_in_standby</a></div><div class="ttdeci">void uart_set_run_in_standby(bool run_in_standby)</div><div class="ttdoc">Sets whether the UART_SERCOM should run in standby mode.</div></div>
+<div class="ttc" id="auart_8h_html_acb00b8879d87fea2a41df7f2772c916c"><div class="ttname"><a href="uart_8h.html#acb00b8879d87fea2a41df7f2772c916c">uart_read</a></div><div class="ttdeci">size_t uart_read(uint8_t *data, size_t max_length)</div><div class="ttdoc">Reads data from the UART peripheral for a board with a defined UART_SERCOM.</div></div>
+<div class="ttc" id="auart_8h_html_ad390de8c3b3ddcb3d03a36513262528d"><div class="ttname"><a href="uart_8h.html#ad390de8c3b3ddcb3d03a36513262528d">uart_enable_instance</a></div><div class="ttdeci">void uart_enable_instance(uint8_t sercom)</div><div class="ttdoc">Enables a specific SERCOM UART instance.</div><div class="ttdef"><b>Definition</b> uart.c:164</div></div>
+<div class="ttc" id="auart_8h_html_ad53a035557ef05336ff3e45547b65861"><div class="ttname"><a href="uart_8h.html#ad53a035557ef05336ff3e45547b65861">uart_write_instance</a></div><div class="ttdeci">void uart_write_instance(uint8_t sercom, uint8_t *data, size_t length)</div><div class="ttdoc">Writes data to a specific SERCOM UART instance.</div><div class="ttdef"><b>Definition</b> uart.c:168</div></div>
+<div class="ttc" id="auart_8h_html_ad8f6a793347af79ca41a3363dbd3fd96"><div class="ttname"><a href="uart_8h.html#ad8f6a793347af79ca41a3363dbd3fd96">uart_init</a></div><div class="ttdeci">void uart_init(uint32_t baud)</div><div class="ttdoc">Initializes the UART peripheral for a board with a defined UART_SERCOM.</div></div>
+<div class="ttc" id="auart_8h_html_afb3971f7bde4d345bc981b87866267c9"><div class="ttname"><a href="uart_8h.html#afb3971f7bde4d345bc981b87866267c9">uart_read_byte_instance</a></div><div class="ttdeci">bool uart_read_byte_instance(uint8_t sercom, uint8_t *byte)</div><div class="ttdoc">Reads a single byte from a specific SERCOM UART instance.</div><div class="ttdef"><b>Definition</b> uart.c:183</div></div>
+<div class="ttc" id="auart_8h_html_afdbbf43dd9af325b1cae5d5318853a8d"><div class="ttname"><a href="uart_8h.html#afdbbf43dd9af325b1cae5d5318853a8d">uart_set_irda_mode</a></div><div class="ttdeci">void uart_set_irda_mode(bool irda)</div><div class="ttdoc">Sets IRDA mode for the UART_SERCOM.</div></div>
+<div class="ttc" id="auart_8h_html_affcbd24efeade3b1444100dbbc614e88"><div class="ttname"><a href="uart_8h.html#affcbd24efeade3b1444100dbbc614e88">uart_enable</a></div><div class="ttdeci">void uart_enable(void)</div><div class="ttdoc">Enables the UART peripheral for a board with a defined UART_SERCOM.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

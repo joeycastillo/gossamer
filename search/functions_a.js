@@ -1,4 +1,20 @@
 var searchData=
 [
-  ['uart_5firq_5fhandler_0',['uart_irq_handler',['../uart_8h.html#a3d2a4f57b803f517096c373734ffa78b',1,'uart.c']]]
+  ['uart_5fdisable_0',['uart_disable',['../uart_8h.html#a9dbcc0696f2607e16da1f55d3b4d6d94',1,'uart.h']]],
+  ['uart_5fdisable_5finstance_1',['uart_disable_instance',['../uart_8h.html#a22b6636b750bfa7669521d5be5baed82',1,'uart.c']]],
+  ['uart_5fenable_2',['uart_enable',['../uart_8h.html#affcbd24efeade3b1444100dbbc614e88',1,'uart.h']]],
+  ['uart_5fenable_5finstance_3',['uart_enable_instance',['../uart_8h.html#ad390de8c3b3ddcb3d03a36513262528d',1,'uart.c']]],
+  ['uart_5finit_4',['uart_init',['../uart_8h.html#ad8f6a793347af79ca41a3363dbd3fd96',1,'uart.h']]],
+  ['uart_5finit_5finstance_5',['uart_init_instance',['../uart_8h.html#a9e514ab7ce443e2fd91fbe99bf8cb207',1,'uart.c']]],
+  ['uart_5firq_5fhandler_6',['uart_irq_handler',['../uart_8h.html#a3d2a4f57b803f517096c373734ffa78b',1,'uart.c']]],
+  ['uart_5fread_7',['uart_read',['../uart_8h.html#acb00b8879d87fea2a41df7f2772c916c',1,'uart.h']]],
+  ['uart_5fread_5fbyte_8',['uart_read_byte',['../uart_8h.html#a6c3fa8ab576e34e015d469a2734d3292',1,'uart.h']]],
+  ['uart_5fread_5fbyte_5finstance_9',['uart_read_byte_instance',['../uart_8h.html#afb3971f7bde4d345bc981b87866267c9',1,'uart.c']]],
+  ['uart_5fread_5finstance_10',['uart_read_instance',['../uart_8h.html#a3ab7120aad2e941879ac328479d40af3',1,'uart.c']]],
+  ['uart_5fset_5firda_5fmode_11',['uart_set_irda_mode',['../uart_8h.html#afdbbf43dd9af325b1cae5d5318853a8d',1,'uart.h']]],
+  ['uart_5fset_5firda_5fmode_5finstance_12',['uart_set_irda_mode_instance',['../uart_8h.html#a84eca02c048700d3f3ea086ff1e93451',1,'uart.c']]],
+  ['uart_5fset_5frun_5fin_5fstandby_13',['uart_set_run_in_standby',['../uart_8h.html#aa034660a70fb244c2e25187509985760',1,'uart.h']]],
+  ['uart_5fset_5frun_5fin_5fstandby_5finstance_14',['uart_set_run_in_standby_instance',['../uart_8h.html#a94d5de1ee0878b0fb2d92c3626c3da22',1,'uart.c']]],
+  ['uart_5fwrite_15',['uart_write',['../uart_8h.html#a6e0844dd68d04ca88f255b6c75326a70',1,'uart.h']]],
+  ['uart_5fwrite_5finstance_16',['uart_write_instance',['../uart_8h.html#ad53a035557ef05336ff3e45547b65861',1,'uart.c']]]
 ];

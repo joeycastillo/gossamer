@@ -233,7 +233,7 @@ const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>Num_SERCOM_I
 </dl>
 <p>Supported CPU frequencies vary from chip to chip:</p><ul>
 <li>On the SAM D11 and D21, you can choose 8, 4, 2 or 1 MHz.</li>
-<li>On the SAM L21 and L22, you can choose 16, 12, 8 or 4 MHz. While you can run these chips at higher frequencies using the DFLL, Gossamer aims for simplicity: this means that it only supports the internal oscillator at one of its standard frequencies. <dl class="section note"><dt>Note</dt><dd>Some peripherals like SERCOMs and TC/TCCs read the CPU frequency when they are configured, to set critical timing-related parameters like baud rate or period. If you change the CPU frequency after setting up these peripherals and then attempt to use them, they will very likely behave in unexpected ways. Thus you should disable any peripherals that depend on GCLK0 before calling set_cpu_frequency, and then re-enable them after. </dd></dl>
+<li>On the SAM L21 and L22, you can choose 16, 12, 8 or 4 MHz. While you can run these chips at higher frequencies using the DFLL, Gossamer aims for simplicity: this means that it only supports the internal oscillator at one of its standard frequencies. <dl class="section note"><dt>Note</dt><dd>Some peripherals like SERCOMs and TC/TCCs read the CPU frequency when they are configured, to set critical timing-related parameters like baud rate or period. If you change the CPU frequency after setting up these peripherals and then attempt to use them, they will very likely behave in unexpected ways. Thus you should de-init any peripherals that depend on GCLK0 before calling set_cpu_frequency, and then re-init them after. </dd></dl>
 </li>
 </ul>
 

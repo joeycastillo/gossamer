@@ -75,28 +75,13 @@ $(function() {
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="autotoc_md0"></a>
 gossamer: a very lightweight firmware framework for SAMD and SAML chips</h1>
-<h2><a class="anchor" id="autotoc_md1"></a>
-WARNING: I am dramatically refactoring right now (Fall 2023) as I make use of this framework in a couple of real world projects. The API is subject to dramatic and breaking changes for the next few months as I work through what I want this to be. — Joey</h2>
-<h1><a class="anchor" id="autotoc_md2"></a>
-Original README</h1>
-<blockquote class="doxtable">
-<p>&zwj;gos·sa·mer noun <br  />
- \ ˈgä-sə-mər \ <br  />
-</p>
-<ol type="1">
-<li>a film of cobwebs floating in air in calm clear weather <br  />
-</li>
-<li>something light, delicate, or insubstantial </li>
-</ol>
-</blockquote>
-<p>gossamer is an extremely lightweight framework for developing bare-metal firmware applications for the Microchip (neé Atmel) SAM D and SAM L series chips. it aims for consistency, simplicity and low power consumption.</p>
-<p><b>STILL UNDER ACTIVE DEVELOPMENT!</b> The API remains likely to change for the foreseeable future.</p>
+<p>Gossamer is an extremely lightweight framework for developing bare-metal firmware applications for the Microchip SAM D and SAM L series chips. It aims for consistency, simplicity and low power consumption.</p>
 <p>Gossamer targets four chips at this time: the SAM D11, D21, L21 and L22. These chips are all strikingly similar: they all have Cortex M0+ cores as well as native USB and as familiar peripherals like ADC's, TCC's and SERCOMs. Alas, a lot of the interfaces to these peripherals have slight differences, and at startup, these chips have subtly different clock setups.</p>
-<p>The primary goal of the project is to provide a simple environment for making device firmware for gadgets with these chips. The secondary goal is to ensure that the code you write can be compatible across chips in the family. By papering over subtle differences in syntax and setup, you should be able to write code for one chip in the family (like the SAM D21), and then seamlessly compile it for another, like the SAM D11 if you realize you need to cut BOM costs, or the L21 if you decide that low power is your priority.</p>
+<p>The primary goal of the project is to provide a simple environment for writing firmware for these chips. The secondary goal is to ensure that the code you write will be compatible across chips in the family. By papering over subtle differences in syntax and setup, you should be able to write code for one chip in the family (like the SAM D21), and then seamlessly compile it for another, like the SAM D11 if you realize you need to cut BOM costs, or the L21 if you decide that low power is your priority.</p>
 <p>Not all devices have all the same peripherals. Some features, like the segment LCD, are specific to one chip like the SAM L22. Even some devices that do have the same peripherals have different configuration options; for example, the DAC peripheral has two 12-bit channels on the SAM L21, but only one 10-bit channel on the SAM D21 and D11. Still, many of the peripherals are very similar on the different platforms, and gossamer provides a thin layer of translation on top that should make it easy to move up and down the product line.</p>
-<h2><a class="anchor" id="autotoc_md3"></a>
-A consistent setup at boot</h2>
-<p>If you look at the data sheet, you'll see that some devices boot with a 1 MHz clock, and others with a 4 MHz clock. No generic clocks are defined, and if you're coming from the Atmel Start world, you'll recall that it was on you to invent a clock tree from sceatch.</p>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Clock Tree</h2>
+<p>If you look at the data sheets for these chips, you'll see that some boot with a 1 MHz clock, and others with a 4 MHz clock. No generic clocks are defined, and if you're coming from the Atmel Start world, you'll recall that it was on you to invent a clock tree from sceatch.</p>
 <p>Gossamer simplifies this by giving you a consistent environment on all four platforms:</p>
 <ul>
 <li>GCLK0, the main system clock, is set to 8 MHz at boot. You can change this in <code>app_init</code> using the <code>set_cpu_frequency</code> function.</li>
@@ -104,25 +89,40 @@ A consistent setup at boot</h2>
 <li>GCLK2 is a low-power, low-accuracy 32 kHz clock sourced from OSCULP32K.</li>
 <li>GCLK3 is a 1024 Hz clock, derived from the most accurate source available.</li>
 </ul>
-<p>Some peripherals are automatically clocked from the source that makes the most sense (i.e. RTC from GCLK3, EIC from GCLK2). SERCOM peripherals are clocked from the main clock, but provide a configurable baud rate in theor init functions. More versatile peripherals like the TC and TCC take a generic clock and prescaler factor as parameters in their init functions.</p>
-<h2><a class="anchor" id="autotoc_md4"></a>
-Consistent interface to peripherals</h2>
-<p>Peripherals are generally thin wrappers around the actual hardware, and provide a consistent way to enable, disable and operate the peripherals. This allows us to paper over subtle implementation details and hand-wave away register layout differences, like the difference between waiting on <code>STATUS.bit.SYNCBUSY</code> vs <code>SYNCBUSY.reg</code>.</p>
-<p>All peripherals (WIP) have a <code>peripheral_init</code> and a <code>peripheral_enable</code> function, as well as a <code>peripheral_disable</code> function.</p>
+<p>Some peripherals are automatically clocked from the source that makes the most sense (i.e. RTC from GCLK3, EIC from GCLK2). SERCOM peripherals are clocked from the main clock, but provide a configurable baud rate in their init functions. More versatile peripherals like the TC and TCC take a generic clock and prescaler factor as parameters in their init functions.</p>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Application Framework</h2>
+<p>Much like an Arduino sketch has setup and loop functions, a Gossamer application is implemented in three functions:</p>
 <ul>
-<li><code>peripheral_init</code> enables the peripheral clocks and configures the peripheral, but does not enable the peripheral itself. Generally returns void, but for peripherals whose initialization can fail (i.e. due to a bad parameter), some init functions will return a boolean value: <code>true</code> if successful, <code>false</code> otherwise.</li>
-<li><code>peripheral_enable</code> enables the peripheral itself. Some peripherals have multiple channels; for example, the SAM L21 has two DAC channels. In these cases, the enable function takes as a parameter which instance to enable.</li>
-<li><code>peripheral_disable</code> disables the peripheral. For peripherals with multiple channels, disables the channel, unless all channels are disabled in which case it disables the whole peripheral.</li>
+<li><code>app_init</code> is called after the system clocks are initialized, and before anything else. This is an opportunity to change any low-level defaults like processor speed, and configure any additional system clocks and long-running peripherals like the RTC.</li>
+<li><code>app_setup</code> is akin to the Arduino <code>setup()</code> function, and provides an opportunity to set up your application's initial state.</li>
+<li><code>app_loop</code> is akin to the Arduino <code>loop()</code> function, with the difference that your application will return a boolean value indicating whether the application is prepared to enter STANDBY mode:<ul>
+<li>Returning <code>false</code> here ensures that your <code>app_loop</code> will be called again immediately.</li>
+<li>Returning <code>true</code> will send the microcontroller into STANDBY mode, where it will remain until woken by an interrupt.</li>
+</ul>
+</li>
+</ul>
+<p>This last bit — entering standby mode as often as possible — is a key feature of gossamer. In standby mode, the CPU is halted, but peripherals set up to run in standby can still run, and wake the device on an interrupt like a button press, timer tick or even the receipt of data over a UART.</p>
+<p>This is a great way to conserve energy in battery-powered applications, and gossamer makes it easy.</p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Peripheral Interface</h2>
+<p>Peripherals are generally thin wrappers around raw register reads and writes, with little more than synchronization logic tacked on. Wrapping the raw register twiddling in function calls allows us to paper over subtle implementation details and hand-wave away register layout differences, like the difference between waiting on <code>STATUS.bit.SYNCBUSY</code> vs <code>SYNCBUSY.reg</code>. This provides a consistent way to enable, disable and operate peripherals:</p>
+<ul>
+<li><code>peripheral_init</code> enables the peripheral clocks and configures the peripheral, but does not enable it. Generally returns void, but for peripherals whose initialization can fail (i.e. due to a bad parameter), some init functions will return a boolean value: <code>true</code> if successful, <code>false</code> otherwise.</li>
+<li><code>peripheral_enable</code> enables the peripheral (usually a <code>CTRLA.bit.ENABLE</code>, with associated <code>SYNCBUSY</code> wait). Some peripherals have multiple channels (DAC) or instances (SERCOM). In these cases, the enable function takes as a parameter which instance to enable.</li>
+<li><code>peripheral_disable</code> disables the peripheral.<ul>
+<li>For peripherals with multiple channels, this disables the channel, unless all channels are disabled in which case it disables the whole peripheral.</li>
+<li>For peripherals with multiple instances, this only disables the specified instance.</li>
+</ul>
+</li>
 </ul>
 <p>For example, this is how you might set up the RTC peripheral, which has predefined clock defaults:</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="rtc_8h.html#acf9024748b942a7ae375cf75951afa9c">rtc_init</a>();</div>
 <div class="line"><a class="code hl_function" href="rtc_8h.html#abec68bd2863d22f5a8e12ab89f8134f4">rtc_enable</a>();</div>
-<div class="line"><a class="code hl_function" href="rtc_8h.html#a16c55e20ebca1f6501626e39a38c6425">rtc_set_date_time</a>(date_time);</div>
-<div class="ttc" id="artc_8h_html_a16c55e20ebca1f6501626e39a38c6425"><div class="ttname"><a href="rtc_8h.html#a16c55e20ebca1f6501626e39a38c6425">rtc_set_date_time</a></div><div class="ttdeci">void rtc_set_date_time(rtc_date_time_t date_time)</div><div class="ttdoc">Sets the date and time.</div><div class="ttdef"><b>Definition</b> rtc.c:79</div></div>
 <div class="ttc" id="artc_8h_html_abec68bd2863d22f5a8e12ab89f8134f4"><div class="ttname"><a href="rtc_8h.html#abec68bd2863d22f5a8e12ab89f8134f4">rtc_enable</a></div><div class="ttdeci">void rtc_enable(void)</div><div class="ttdoc">Enables the RTC.</div><div class="ttdef"><b>Definition</b> rtc.c:73</div></div>
 <div class="ttc" id="artc_8h_html_acf9024748b942a7ae375cf75951afa9c"><div class="ttname"><a href="rtc_8h.html#acf9024748b942a7ae375cf75951afa9c">rtc_init</a></div><div class="ttdeci">void rtc_init(void)</div><div class="ttdoc">Initializes the RTC.</div><div class="ttdef"><b>Definition</b> rtc.c:49</div></div>
 </div><!-- fragment --><p>This is how you might output an analog value on DAC channel 0 (the first DAC on the SAM L21, or the only DAC on D21):</p>
-<div class="fragment"><div class="line">HAL_GPIO_A0_pmuxen(HAL_GPIO_PMUX_B);</div>
+<div class="fragment"><div class="line">HAL_GPIO_A0_pmuxen(HAL_GPIO_PMUX_DAC);</div>
 <div class="line"><a class="code hl_function" href="dac_8h.html#a6e622fafee8436bf9cf9f6b120352e3c">dac_init</a>();</div>
 <div class="line"><a class="code hl_function" href="dac_8h.html#a27483fa712ea61a534f679e72ffba463">dac_enable</a>(0);</div>
 <div class="line"><a class="code hl_function" href="dac_8h.html#a2b43d67fbe14479cc72c1119fb2b7a48">dac_set_analog_value</a>(0, 512);</div>
@@ -130,35 +130,39 @@ Consistent interface to peripherals</h2>
 <div class="ttc" id="adac_8h_html_a2b43d67fbe14479cc72c1119fb2b7a48"><div class="ttname"><a href="dac_8h.html#a2b43d67fbe14479cc72c1119fb2b7a48">dac_set_analog_value</a></div><div class="ttdeci">void dac_set_analog_value(uint16_t channel, uint16_t value)</div><div class="ttdoc">Set the analog value of the DAC.</div><div class="ttdef"><b>Definition</b> dac.c:97</div></div>
 <div class="ttc" id="adac_8h_html_a6e622fafee8436bf9cf9f6b120352e3c"><div class="ttname"><a href="dac_8h.html#a6e622fafee8436bf9cf9f6b120352e3c">dac_init</a></div><div class="ttdeci">void dac_init(void)</div><div class="ttdoc">Initializes the DAC peripheral, but does not enable it.</div><div class="ttdef"><b>Definition</b> dac.c:40</div></div>
 </div><!-- fragment --><p>This is how you would set up Timer/Counter TC1 to overflow at 500 Hz (i.e. for driving a DMA transaction):</p>
-<div class="fragment"><div class="line"><a class="code hl_function" href="tc_8h.html#a1ccf965a51a89fb1df2545988d4739d2">tc_init</a>(1, GENERIC_CLOCK_0, TC_PRESCALER_DIV256); <span class="comment">// 16 MHz / 256 = 62,500</span></div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="tc_8h.html#a1ccf965a51a89fb1df2545988d4739d2">tc_init</a>(1, GENERIC_CLOCK_0, TC_PRESCALER_DIV256); <span class="comment">// 8 MHz / 256 = 125,000</span></div>
+<div class="line"><a class="code hl_function" href="tc_8h.html#abbb61997f4579d174976dcc8e858c87a">tc_set_counter_mode</a>(1, TC_COUNTER_MODE_8BIT)</div>
 <div class="line"><a class="code hl_function" href="tc_8h.html#affa4b9e60ccf8ba52074f3f2f28d8823">tc_set_wavegen</a>(1, TC_WAVE_WAVEGEN_MFRQ); <span class="comment">// Match frequency mode, overflow at CC0</span></div>
-<div class="line"><a class="code hl_function" href="tc_8h.html#a30b584892c4a1cfce9ddc70933776e7e">tc_count16_set_cc</a>(1, 0, 125); <span class="comment">// 62,500 / 125 = 500 Hz</span></div>
+<div class="line"><a class="code hl_function" href="tc_8h.html#a8862d572676201371406b19746198c45">tc_count8_set_cc</a>(1, 0, 250); <span class="comment">// 125,000 / 250 = 500 Hz</span></div>
 <div class="line"><a class="code hl_function" href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">tc_enable</a>(1);</div>
 <div class="ttc" id="atc_8h_html_a1ccf965a51a89fb1df2545988d4739d2"><div class="ttname"><a href="tc_8h.html#a1ccf965a51a89fb1df2545988d4739d2">tc_init</a></div><div class="ttdeci">bool tc_init(uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler)</div><div class="ttdoc">Enables the peripheral clock for the TC and clocks it with the selected clock source....</div><div class="ttdef"><b>Definition</b> tc.c:36</div></div>
 <div class="ttc" id="atc_8h_html_a2715d5a6f20298805eefa13a8a7a1b99"><div class="ttname"><a href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">tc_enable</a></div><div class="ttdeci">void tc_enable(uint8_t instance)</div><div class="ttdoc">Enables the TC. Make sure to call tc_init first to set it up.</div><div class="ttdef"><b>Definition</b> tc.c:105</div></div>
-<div class="ttc" id="atc_8h_html_a30b584892c4a1cfce9ddc70933776e7e"><div class="ttname"><a href="tc_8h.html#a30b584892c4a1cfce9ddc70933776e7e">tc_count16_set_cc</a></div><div class="ttdeci">void tc_count16_set_cc(uint8_t instance, uint8_t channel, uint16_t value)</div><div class="ttdoc">Sets the TC's compare channel CC0 or CC1 register in 16-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:126</div></div>
+<div class="ttc" id="atc_8h_html_a8862d572676201371406b19746198c45"><div class="ttname"><a href="tc_8h.html#a8862d572676201371406b19746198c45">tc_count8_set_cc</a></div><div class="ttdeci">void tc_count8_set_cc(uint8_t instance, uint8_t channel, uint8_t value)</div><div class="ttdoc">Sets the TC's compare channel CC0 or CC1 register in 8-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:122</div></div>
+<div class="ttc" id="atc_8h_html_abbb61997f4579d174976dcc8e858c87a"><div class="ttname"><a href="tc_8h.html#abbb61997f4579d174976dcc8e858c87a">tc_set_counter_mode</a></div><div class="ttdeci">void tc_set_counter_mode(uint8_t instance, tc_counter_mode_t mode)</div><div class="ttdoc">Sets the TC's counting mode (an 8, 16 or 32-bit counter),.</div><div class="ttdef"><b>Definition</b> tc.c:70</div></div>
 <div class="ttc" id="atc_8h_html_affa4b9e60ccf8ba52074f3f2f28d8823"><div class="ttname"><a href="tc_8h.html#affa4b9e60ccf8ba52074f3f2f28d8823">tc_set_wavegen</a></div><div class="ttdeci">void tc_set_wavegen(uint8_t instance, tc_wavegen_t mode)</div><div class="ttdoc">Sets the TC's waveform generation mode.</div><div class="ttdef"><b>Definition</b> tc.c:78</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md5"></a>
-Consistent process for flashing firmware</h2>
-<p>All of these chips can function with a USB bootloader, and Gossamer is designed to work within that setup. It provides a consistent method for flashing code to a device: running <code>make &amp;&amp; make install</code> builds your application and flashes it to a device.</p>
-<ul>
-<li>SAM D21, L21 and L22 chips are meant to use <a href="https://github.com/adafruit/uf2-samdx1">Adafruit's UF2 bootloader</a>; just double tap Reset to enter bootloader mode.</li>
-<li>SAM D11 chips can use the <a href="https://github.com/majbthrd/SAMDx1-USB-DFU-Bootloader">DFU bootloader</a>, although this is still a bit experimental.</li>
-</ul>
+</div><!-- fragment --><p>For SERCOM peripherals, which have several instances, we provide a shortcut: if your board defines a <code>I2C_SERCOM</code>, <code>SPI_SERCOM</code>, or <code>UART_SERCOM</code> in its <code>pins.h</code>, you can use the <code>i2c_init</code>, <code>spi_init</code>, or <code>uart_init</code> functions without specifying the SERCOM instance. For example, if your board defines a <code>I2C_SERCOM</code>, you would set up the I2C peripheral like this:</p>
+<div class="fragment"><div class="line">HAL_GPIO_SDA_pmuxen(HAL_GPIO_PMUX_SERCOM);</div>
+<div class="line">HAL_GPIO_SCL_pmuxen(HAL_GPIO_PMUX_SERCOM);</div>
+<div class="line"><a class="code hl_function" href="i2c_8h.html#a5730d9445429351b9f750084c5cb5aae">i2c_init</a>();</div>
+<div class="line"><a class="code hl_function" href="i2c_8h.html#a5a1923e2271df541e858cb4e05d7b895">i2c_enable</a>();</div>
+<div class="ttc" id="ai2c_8h_html_a5730d9445429351b9f750084c5cb5aae"><div class="ttname"><a href="i2c_8h.html#a5730d9445429351b9f750084c5cb5aae">i2c_init</a></div><div class="ttdeci">void i2c_init(void)</div><div class="ttdoc">Initializes the I2C peripheral for a board with a defined I2C_SERCOM.</div></div>
+<div class="ttc" id="ai2c_8h_html_a5a1923e2271df541e858cb4e05d7b895"><div class="ttname"><a href="i2c_8h.html#a5a1923e2271df541e858cb4e05d7b895">i2c_enable</a></div><div class="ttdeci">void i2c_enable(void)</div><div class="ttdoc">Enables the I2C peripheral for a board with a defined I2C_SERCOM.</div></div>
+</div><!-- fragment --><p>However, if your board does not define <code>I2C_SERCOM</code>, you would use the <code>i2c_init_instance</code> function instead:</p>
+<div class="fragment"><div class="line">HAL_GPIO_SDA_pmuxen(HAL_GPIO_PMUX_SERCOM);</div>
+<div class="line">HAL_GPIO_SCL_pmuxen(HAL_GPIO_PMUX_SERCOM);</div>
+<div class="line"><a class="code hl_function" href="i2c_8h.html#ae0163192e71ff834062fcb7591b01e29">i2c_init_instance</a>(2);</div>
+<div class="line"><a class="code hl_function" href="i2c_8h.html#a5a1923e2271df541e858cb4e05d7b895">i2c_enable</a>();</div>
+<div class="ttc" id="ai2c_8h_html_ae0163192e71ff834062fcb7591b01e29"><div class="ttname"><a href="i2c_8h.html#ae0163192e71ff834062fcb7591b01e29">i2c_init_instance</a></div><div class="ttdeci">void i2c_init_instance(uint8_t sercom, uint32_t baud)</div><div class="ttdoc">Initializes an I2C peripheral on the given SERCOM.</div><div class="ttdef"><b>Definition</b> i2c.c:44</div></div>
+</div><!-- fragment --><p><code>SPI_SERCOM</code> and <code>UART_SERCOM</code> work similarly, although you will also need to specify <code>SPI_SERCOM_DOPO</code> and <code>SPI_SERCOM_DIPO</code>, or <code>UART_SERCOM_TXPO</code> and <code>UART_SERCOM_RXPO</code> to give Gossamer a hint at your pinout.</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Flashing Firmware</h2>
+<p>Gossamer is designed to work with <a href="https://github.com/adafruit/uf2-samdx1">Adafruit's UF2 bootloader</a> on SAM D21, L21 and L22 chips. For SAM D11 chips, it's designed to work with the <a href="https://github.com/majbthrd/SAMDx1-USB-DFU-Bootloader">DFU bootloader</a>. The UF2 bootloader is a drag-and-drop bootloader that presents itself as a USB drive, while the DFU bootloader is a USB DFU bootloader that can be flashed using the <code>dfu-util</code> command line tool.</p>
+<p>Either way, gossamer papers over the differences: with a device in bootloader mode plugged in via USB, running <code>make &amp;&amp; make install</code> builds your application and flashes it to a device.</p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Emscripten Support</h2>
+<p>Gossamer includes a set of "dummy" peripherals that allow your application to compile to WebAssembly using Emscripten. Note that other than the GPIO macros tracking basic pin levels, these peripherals don't actually <em>do</em> anything, but this is an area of interest for future development.</p>
 <h2><a class="anchor" id="autotoc_md6"></a>
-Simple framework for writing firmware</h2>
-<p>Much like an Arduino sketch has setup and loop functions, a Gossamer application is implemented in three functions:</p>
-<ul>
-<li><code>app_init</code> is called after the system clocks are initialized and before anything else. This is an opportunity to change any low-level defaults like processor speed, and configure any system clocks and long-running peripherals like the RTC.</li>
-<li><code>app_setup</code> is akin to the Arduino <code>setup()</code> function, and provides an opportunity to set up your application's initial state.</li>
-<li><code>app_loop</code> is akin to the Arduino <code>loop()</code> function, with the difference that your application will return a boolean value indicating whether the application is prepared to enter STANDBY mode:<ul>
-<li>Returning <code>false</code> here ensures that your <code>app_loop</code> will be called again immediately.</li>
-<li>Returning <code>true</code> will send the microcontroller into STANDBY mode, where it will remain until woken by an interrupt. This is a fantastic way to build low power firmware.</li>
-</ul>
-</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md7"></a>
-Simple to get started!</h2>
+Examples</h2>
 <p>Boards are defined in the <code>/boards</code> directory, which sets up the target as well as predefined macros for all the pins on a given board. So, for example, this is how you get to blinky on any board with a built in LED:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="app_8h.html">app.h</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="delay_8h.html">delay.h</a>&quot;</span></div>
@@ -189,12 +193,9 @@ Simple to get started!</h2>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="app_8h.html#acce192accedbd296eb8d2182f8101f16">app_setup</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line">    <span class="comment">// I2C direction set</span></div>
-<div class="line">    HAL_GPIO_SDA_out();</div>
-<div class="line">    HAL_GPIO_SCL_out();</div>
 <div class="line">    <span class="comment">// I2C pin mux</span></div>
-<div class="line">    HAL_GPIO_SDA_pmuxen(HAL_GPIO_PMUX_D);</div>
-<div class="line">    HAL_GPIO_SCL_pmuxen(HAL_GPIO_PMUX_D);</div>
+<div class="line">    HAL_GPIO_SDA_pmuxen(HAL_GPIO_PMUX_SERCOM);</div>
+<div class="line">    HAL_GPIO_SCL_pmuxen(HAL_GPIO_PMUX_SERCOM);</div>
 <div class="line">    <span class="comment">// initialize the I2C peripheral</span></div>
 <div class="line">    <a class="code hl_function" href="i2c_8h.html#a5730d9445429351b9f750084c5cb5aae">i2c_init</a>();</div>
 <div class="line">    <a class="code hl_function" href="i2c_8h.html#a5a1923e2271df541e858cb4e05d7b895">i2c_enable</a>();</div>
@@ -209,9 +210,11 @@ Simple to get started!</h2>
 <div class="line">    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">}</div>
 <div class="ttc" id="ai2c_8h_html"><div class="ttname"><a href="i2c_8h.html">i2c.h</a></div><div class="ttdoc">I2C Peripheral.</div></div>
-<div class="ttc" id="ai2c_8h_html_a5730d9445429351b9f750084c5cb5aae"><div class="ttname"><a href="i2c_8h.html#a5730d9445429351b9f750084c5cb5aae">i2c_init</a></div><div class="ttdeci">void i2c_init(void)</div><div class="ttdoc">Initializes the I2C peripheral for a board with defined SDA/SCL pins. Defaults to a bus speed of 100k...</div></div>
-<div class="ttc" id="ai2c_8h_html_a5a1923e2271df541e858cb4e05d7b895"><div class="ttname"><a href="i2c_8h.html#a5a1923e2271df541e858cb4e05d7b895">i2c_enable</a></div><div class="ttdeci">void i2c_enable(void)</div><div class="ttdoc">Enables the I2C peripheral for a board with defined SDA/SCL pins.</div></div>
-</div><!-- fragment --> </div></div><!-- PageDoc -->
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
+Current state and future plans</h2>
+<p>Gossamer is now stable enough for folks to use; in fact, it's the framework underlying <a href="https://github.com/joeycastillo/second-movement">Second Movement</a>, the new firmware for <a href="https://www.sensorwatch.net">Sensor Watch</a>. Having said that, not all peripherals are implemented, and not all of the ones that are implemented are complete. There are lots of features for which we don't have functions defined, and certain peripherals are only implemented on certain chips.</p>
+<p>But hey: pull requests are welcome! </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

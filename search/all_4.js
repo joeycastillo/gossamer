@@ -1,9 +1,18 @@
 var searchData=
 [
-  ['changes_20for_20the_20next_20few_20months_20as_20i_20work_20through_20what_20i_20want_20this_20to_20be_20—_20joey_0',['WARNING: I am dramatically refactoring right now (Fall 2023) as I make use of this framework in a couple of real world projects. The API is subject to dramatic and breaking changes for the next few months as I work through what I want this to be. — Joey',['../index.html#autotoc_md1',1,'']]],
-  ['chips_1',['gossamer: a very lightweight firmware framework for SAMD and SAML chips',['../index.html#autotoc_md0',1,'']]],
-  ['consistent_20interface_20to_20peripherals_2',['Consistent interface to peripherals',['../index.html#autotoc_md4',1,'']]],
-  ['consistent_20process_20for_20flashing_20firmware_3',['Consistent process for flashing firmware',['../index.html#autotoc_md5',1,'']]],
-  ['consistent_20setup_20at_20boot_4',['A consistent setup at boot',['../index.html#autotoc_md3',1,'']]],
-  ['couple_20of_20real_20world_20projects_20the_20api_20is_20subject_20to_20dramatic_20and_20breaking_20changes_20for_20the_20next_20few_20months_20as_20i_20work_20through_20what_20i_20want_20this_20to_20be_20—_20joey_5',['WARNING: I am dramatically refactoring right now (Fall 2023) as I make use of this framework in a couple of real world projects. The API is subject to dramatic and breaking changes for the next few months as I work through what I want this to be. — Joey',['../index.html#autotoc_md1',1,'']]]
+  ['eic_2eh_0',['eic.h',['../eic_8h.html',1,'']]],
+  ['eic_5fconfigure_5fcallback_1',['eic_configure_callback',['../eic_8h.html#a5695270545c3f5b6a24682447108e6cd',1,'eic.c']]],
+  ['eic_5fconfigure_5fpin_2',['eic_configure_pin',['../eic_8h.html#a034f0e472fc0d955b11de053a263e8cd',1,'eic.c']]],
+  ['eic_5fdisable_3',['eic_disable',['../eic_8h.html#abaae85c8706e41bb2cc2b7aa7be956e6',1,'eic.c']]],
+  ['eic_5fdisable_5fevent_4',['eic_disable_event',['../eic_8h.html#a21e4b3925d449c25fe3831b167845161',1,'eic.c']]],
+  ['eic_5fdisable_5finterrupt_5',['eic_disable_interrupt',['../eic_8h.html#a48015b16099d943fad32302fad6114a1',1,'eic.c']]],
+  ['eic_5fenable_6',['eic_enable',['../eic_8h.html#afd8706ad3219397c91636524d2149eb0',1,'eic.c']]],
+  ['eic_5fenable_5fevent_7',['eic_enable_event',['../eic_8h.html#ae6a140e7799fec385ff48c97f399b7cf',1,'eic.c']]],
+  ['eic_5fenable_5finterrupt_8',['eic_enable_interrupt',['../eic_8h.html#a95932a1b8c5442120cd6caa7a5cb0733',1,'eic.c']]],
+  ['eic_5finit_9',['eic_init',['../eic_8h.html#ac66cb10fff656315b12df4248f798c41',1,'eic.c']]],
+  ['eic_5finterrupt_5ftrigger_5ft_10',['eic_interrupt_trigger_t',['../eic_8h.html#ac1fe47482a1a2c642408f50c2db9469f',1,'eic_interrupt_trigger_t:&#160;eic.h'],['../eic_8h.html#a2dcfd365c180eb12af23e9f125089244',1,'eic_interrupt_trigger_t:&#160;eic.h']]],
+  ['emscripten_20support_11',['Emscripten Support',['../index.html#autotoc_md5',1,'']]],
+  ['evsys_2eh_12',['evsys.h',['../evsys_8h.html',1,'']]],
+  ['evsys_5fconfigure_5fchannel_13',['evsys_configure_channel',['../evsys_8h.html#a506dcdef11267257fce99f6deffc4844',1,'evsys.c']]],
+  ['examples_14',['Examples',['../index.html#autotoc_md6',1,'']]]
 ];

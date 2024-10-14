@@ -91,10 +91,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ac4b206a51636d91c5cffcbcee458c3cb" id="r_ac4b206a51636d91c5cffcbcee458c3cb"><td class="memItemLeft" align="right" valign="top"><a id="ac4b206a51636d91c5cffcbcee458c3cb" name="ac4b206a51636d91c5cffcbcee458c3cb"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>spi_mode_t</b> { <b>SPI_MODE_0</b> = 0
-, <b>SPI_MODE_1</b>
-, <b>SPI_MODE_2</b>
-, <b>SPI_MODE_3</b>
+<tr class="memitem:ac4b206a51636d91c5cffcbcee458c3cb" id="r_ac4b206a51636d91c5cffcbcee458c3cb"><td class="memItemLeft" align="right" valign="top"><a id="ac4b206a51636d91c5cffcbcee458c3cb" name="ac4b206a51636d91c5cffcbcee458c3cb"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>spi_mode_t</b> { <b>SPI_MODE_PERIPHERAL</b> = 2
+, <b>SPI_MODE_CONTROLLER</b> = 3
  }</td></tr>
 <tr class="separator:ac4b206a51636d91c5cffcbcee458c3cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a59b1c0553025b0573e017528952890" id="r_a6a59b1c0553025b0573e017528952890"><td class="memItemLeft" align="right" valign="top"><a id="a6a59b1c0553025b0573e017528952890" name="a6a59b1c0553025b0573e017528952890"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>spi_dopo_t</b> { <b>SPI_DOPO_0_SCK_1</b> = 0
@@ -116,34 +114,263 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a48ef10ade34f68b96d36dee03ebc4415" id="r_a48ef10ade34f68b96d36dee03ebc4415"><td class="memItemLeft" align="right" valign="top"><a id="a48ef10ade34f68b96d36dee03ebc4415" name="a48ef10ade34f68b96d36dee03ebc4415"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>spi_init</b> (spi_mode_t mode, uint32_t baud)</td></tr>
+<tr class="memitem:a48ef10ade34f68b96d36dee03ebc4415" id="r_a48ef10ade34f68b96d36dee03ebc4415"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_8h.html#a48ef10ade34f68b96d36dee03ebc4415">spi_init</a> (spi_mode_t mode, uint32_t baud)</td></tr>
+<tr class="memdesc:a48ef10ade34f68b96d36dee03ebc4415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the SPI peripheral for a board with a defined SPI_SERCOM.  <br /></td></tr>
 <tr class="separator:a48ef10ade34f68b96d36dee03ebc4415"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72cf41d2f19954fefd27f681d6b39532" id="r_a72cf41d2f19954fefd27f681d6b39532"><td class="memItemLeft" align="right" valign="top"><a id="a72cf41d2f19954fefd27f681d6b39532" name="a72cf41d2f19954fefd27f681d6b39532"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>spi_enable</b> (void)</td></tr>
+<tr class="memdesc:a72cf41d2f19954fefd27f681d6b39532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the SPI peripheral for a board with a defined SPI_SERCOM. <br /></td></tr>
 <tr class="separator:a72cf41d2f19954fefd27f681d6b39532"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50084189a01c481aebe4e4d1e1968910" id="r_a50084189a01c481aebe4e4d1e1968910"><td class="memItemLeft" align="right" valign="top"><a id="a50084189a01c481aebe4e4d1e1968910" name="a50084189a01c481aebe4e4d1e1968910"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>spi_transfer</b> (uint8_t data)</td></tr>
+<tr class="memitem:a50084189a01c481aebe4e4d1e1968910" id="r_a50084189a01c481aebe4e4d1e1968910"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_8h.html#a50084189a01c481aebe4e4d1e1968910">spi_transfer</a> (uint8_t data)</td></tr>
+<tr class="memdesc:a50084189a01c481aebe4e4d1e1968910"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfers a byte over SPI for a board with a defined SPI_SERCOM.  <br /></td></tr>
 <tr class="separator:a50084189a01c481aebe4e4d1e1968910"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8d2d6d1632faf9abbe03c3ed90d54d4" id="r_aa8d2d6d1632faf9abbe03c3ed90d54d4"><td class="memItemLeft" align="right" valign="top"><a id="aa8d2d6d1632faf9abbe03c3ed90d54d4" name="aa8d2d6d1632faf9abbe03c3ed90d54d4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>spi_disable</b> (void)</td></tr>
+<tr class="memdesc:aa8d2d6d1632faf9abbe03c3ed90d54d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the SPI peripheral for a board with a defined SPI_SERCOM. <br /></td></tr>
 <tr class="separator:aa8d2d6d1632faf9abbe03c3ed90d54d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee8eaa5f597d774c4fc4a6f7d6d08305" id="r_aee8eaa5f597d774c4fc4a6f7d6d08305"><td class="memItemLeft" align="right" valign="top"><a id="aee8eaa5f597d774c4fc4a6f7d6d08305" name="aee8eaa5f597d774c4fc4a6f7d6d08305"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>spi_init_instance</b> (uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, spi_mode_t mode, uint32_t baud)</td></tr>
+<tr class="memitem:aee8eaa5f597d774c4fc4a6f7d6d08305" id="r_aee8eaa5f597d774c4fc4a6f7d6d08305"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_8h.html#aee8eaa5f597d774c4fc4a6f7d6d08305">spi_init_instance</a> (uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, spi_mode_t mode, uint32_t baud)</td></tr>
+<tr class="memdesc:aee8eaa5f597d774c4fc4a6f7d6d08305"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a specific SERCOM instance for SPI.  <br /></td></tr>
 <tr class="separator:aee8eaa5f597d774c4fc4a6f7d6d08305"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f1915874847b4564ab22039f2b8762f" id="r_a8f1915874847b4564ab22039f2b8762f"><td class="memItemLeft" align="right" valign="top"><a id="a8f1915874847b4564ab22039f2b8762f" name="a8f1915874847b4564ab22039f2b8762f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>spi_enable_instance</b> (uint8_t sercom)</td></tr>
+<tr class="memitem:a8f1915874847b4564ab22039f2b8762f" id="r_a8f1915874847b4564ab22039f2b8762f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_8h.html#a8f1915874847b4564ab22039f2b8762f">spi_enable_instance</a> (uint8_t sercom)</td></tr>
+<tr class="memdesc:a8f1915874847b4564ab22039f2b8762f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables a specific SERCOM instance for SPI.  <br /></td></tr>
 <tr class="separator:a8f1915874847b4564ab22039f2b8762f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03d51191e1fb189fcddf1087999d58a2" id="r_a03d51191e1fb189fcddf1087999d58a2"><td class="memItemLeft" align="right" valign="top"><a id="a03d51191e1fb189fcddf1087999d58a2" name="a03d51191e1fb189fcddf1087999d58a2"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>spi_transfer_instance</b> (uint8_t sercom, uint8_t data)</td></tr>
+<tr class="memitem:a03d51191e1fb189fcddf1087999d58a2" id="r_a03d51191e1fb189fcddf1087999d58a2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_8h.html#a03d51191e1fb189fcddf1087999d58a2">spi_transfer_instance</a> (uint8_t sercom, uint8_t data)</td></tr>
+<tr class="memdesc:a03d51191e1fb189fcddf1087999d58a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfers a byte over SPI.  <br /></td></tr>
 <tr class="separator:a03d51191e1fb189fcddf1087999d58a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3856b233dc7584708ab420d41c4816fe" id="r_a3856b233dc7584708ab420d41c4816fe"><td class="memItemLeft" align="right" valign="top"><a id="a3856b233dc7584708ab420d41c4816fe" name="a3856b233dc7584708ab420d41c4816fe"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>spi_disable_instance</b> (uint8_t sercom)</td></tr>
+<tr class="memitem:a3856b233dc7584708ab420d41c4816fe" id="r_a3856b233dc7584708ab420d41c4816fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_8h.html#a3856b233dc7584708ab420d41c4816fe">spi_disable_instance</a> (uint8_t sercom)</td></tr>
+<tr class="memdesc:a3856b233dc7584708ab420d41c4816fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables a specific SERCOM instance for SPI.  <br /></td></tr>
 <tr class="separator:a3856b233dc7584708ab420d41c4816fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>SPI Peripheral. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a3856b233dc7584708ab420d41c4816fe" name="a3856b233dc7584708ab420d41c4816fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3856b233dc7584708ab420d41c4816fe">&#9670;&#160;</a></span>spi_disable_instance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spi_disable_instance </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>sercom</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disables a specific SERCOM instance for SPI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sercom</td><td>The SERCOM instance to disable. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8f1915874847b4564ab22039f2b8762f" name="a8f1915874847b4564ab22039f2b8762f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f1915874847b4564ab22039f2b8762f">&#9670;&#160;</a></span>spi_enable_instance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spi_enable_instance </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>sercom</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables a specific SERCOM instance for SPI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sercom</td><td>The SERCOM instance to enable. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a48ef10ade34f68b96d36dee03ebc4415" name="a48ef10ade34f68b96d36dee03ebc4415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48ef10ade34f68b96d36dee03ebc4415">&#9670;&#160;</a></span>spi_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spi_init </td>
+          <td>(</td>
+          <td class="paramtype">spi_mode_t&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baud</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the SPI peripheral for a board with a defined SPI_SERCOM. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>SPI_MODE_CONTROLLER or SPI_MODE_PERIPHERAL </td></tr>
+    <tr><td class="paramname">baud</td><td>The desired baud rate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Warning</dt><dd>SPI_MODE_PERIPHERAL is untested! </dd></dl>
+
+</div>
+</div>
+<a id="aee8eaa5f597d774c4fc4a6f7d6d08305" name="aee8eaa5f597d774c4fc4a6f7d6d08305"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee8eaa5f597d774c4fc4a6f7d6d08305">&#9670;&#160;</a></span>spi_init_instance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spi_init_instance </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>sercom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">spi_dopo_t&#160;</td>
+          <td class="paramname"><em>dopo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">spi_dipo_t&#160;</td>
+          <td class="paramname"><em>dipo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">spi_mode_t&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baud</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes a specific SERCOM instance for SPI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sercom</td><td>The SERCOM instance to initialize. </td></tr>
+    <tr><td class="paramname">dopo</td><td>The data out pinout. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>spi_dopo_t </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dipo</td><td>The data in pinout. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>spi_dipo_t </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>SPI_MODE_CONTROLLER or SPI_MODE_PERIPHERAL </td></tr>
+    <tr><td class="paramname">baud</td><td>The desired baud rate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Warning</dt><dd>SPI_MODE_PERIPHERAL is untested! </dd></dl>
+
+</div>
+</div>
+<a id="a50084189a01c481aebe4e4d1e1968910" name="a50084189a01c481aebe4e4d1e1968910"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50084189a01c481aebe4e4d1e1968910">&#9670;&#160;</a></span>spi_transfer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spi_transfer </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transfers a byte over SPI for a board with a defined SPI_SERCOM. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The byte to send. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The byte received. </dd></dl>
+
+</div>
+</div>
+<a id="a03d51191e1fb189fcddf1087999d58a2" name="a03d51191e1fb189fcddf1087999d58a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03d51191e1fb189fcddf1087999d58a2">&#9670;&#160;</a></span>spi_transfer_instance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t spi_transfer_instance </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>sercom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transfers a byte over SPI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sercom</td><td>The SERCOM instance to use. </td></tr>
+    <tr><td class="paramname">data</td><td>The byte to send. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The byte received. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8

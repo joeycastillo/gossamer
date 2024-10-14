@@ -1,15 +1,21 @@
 var searchData=
 [
-  ['of_20this_20framework_20in_20a_20couple_20of_20real_20world_20projects_20the_20api_20is_20subject_20to_20dramatic_20and_20breaking_20changes_20for_20the_20next_20few_20months_20as_20i_20work_20through_20what_20i_20want_20this_20to_20be_20—_20joey_0',['WARNING: I am dramatically refactoring right now (Fall 2023) as I make use of this framework in a couple of real world projects. The API is subject to dramatic and breaking changes for the next few months as I work through what I want this to be. — Joey',['../index.html#autotoc_md1',1,'']]],
-  ['opamp_2eh_1',['opamp.h',['../opamp_8h.html',1,'']]],
-  ['opamp_5fdisable_2',['opamp_disable',['../opamp_8h.html#a0dcff33b01f135e8608d0bb90a758e8a',1,'opamp.c']]],
-  ['opamp_5fenable_3',['opamp_enable',['../opamp_8h.html#a92d4aa1c45921733f297129e39161fb4',1,'opamp.c']]],
-  ['opamp_5finit_4',['opamp_init',['../opamp_8h.html#a1f92b0993e68ddbf650bd02873de8fcd',1,'opamp.c']]],
-  ['opamp_5fset_5fanalog_5fconnection_5',['opamp_set_analog_connection',['../opamp_8h.html#aa41c70604826026b22c95f1b0448c642',1,'opamp.c']]],
-  ['opamp_5fset_5fmuxneg_6',['opamp_set_muxneg',['../opamp_8h.html#aae5d775bcd2c346190b9b3c321c528bc',1,'opamp.c']]],
-  ['opamp_5fset_5fmuxpos_7',['opamp_set_muxpos',['../opamp_8h.html#acdac2a6f48d8d0eca22f3618a7c2bd17',1,'opamp.c']]],
-  ['opamp_5fset_5fpotmux_8',['opamp_set_potmux',['../opamp_8h.html#a03227184722fe89e01e8f1fa00df63e3',1,'opamp.c']]],
-  ['opamp_5fset_5fres1mux_9',['opamp_set_res1mux',['../opamp_8h.html#abb5b017b5571c2bbc53330f54ba79971',1,'opamp.c']]],
-  ['opamp_5fset_5fres2mux_10',['opamp_set_res2mux',['../opamp_8h.html#ab9f7e0d2fbaf34171563d8c1ceb5f3b8',1,'opamp.c']]],
-  ['original_20readme_11',['Original README',['../index.html#autotoc_md2',1,'']]]
+  ['uart_2eh_0',['uart.h',['../uart_8h.html',1,'']]],
+  ['uart_5fdisable_1',['uart_disable',['../uart_8h.html#a9dbcc0696f2607e16da1f55d3b4d6d94',1,'uart.h']]],
+  ['uart_5fdisable_5finstance_2',['uart_disable_instance',['../uart_8h.html#a22b6636b750bfa7669521d5be5baed82',1,'uart.c']]],
+  ['uart_5fenable_3',['uart_enable',['../uart_8h.html#affcbd24efeade3b1444100dbbc614e88',1,'uart.h']]],
+  ['uart_5fenable_5finstance_4',['uart_enable_instance',['../uart_8h.html#ad390de8c3b3ddcb3d03a36513262528d',1,'uart.c']]],
+  ['uart_5finit_5',['uart_init',['../uart_8h.html#ad8f6a793347af79ca41a3363dbd3fd96',1,'uart.h']]],
+  ['uart_5finit_5finstance_6',['uart_init_instance',['../uart_8h.html#a9e514ab7ce443e2fd91fbe99bf8cb207',1,'uart.c']]],
+  ['uart_5firq_5fhandler_7',['uart_irq_handler',['../uart_8h.html#a3d2a4f57b803f517096c373734ffa78b',1,'uart.c']]],
+  ['uart_5fread_8',['uart_read',['../uart_8h.html#acb00b8879d87fea2a41df7f2772c916c',1,'uart.h']]],
+  ['uart_5fread_5fbyte_9',['uart_read_byte',['../uart_8h.html#a6c3fa8ab576e34e015d469a2734d3292',1,'uart.h']]],
+  ['uart_5fread_5fbyte_5finstance_10',['uart_read_byte_instance',['../uart_8h.html#afb3971f7bde4d345bc981b87866267c9',1,'uart.c']]],
+  ['uart_5fread_5finstance_11',['uart_read_instance',['../uart_8h.html#a3ab7120aad2e941879ac328479d40af3',1,'uart.c']]],
+  ['uart_5fset_5firda_5fmode_12',['uart_set_irda_mode',['../uart_8h.html#afdbbf43dd9af325b1cae5d5318853a8d',1,'uart.h']]],
+  ['uart_5fset_5firda_5fmode_5finstance_13',['uart_set_irda_mode_instance',['../uart_8h.html#a84eca02c048700d3f3ea086ff1e93451',1,'uart.c']]],
+  ['uart_5fset_5frun_5fin_5fstandby_14',['uart_set_run_in_standby',['../uart_8h.html#aa034660a70fb244c2e25187509985760',1,'uart.h']]],
+  ['uart_5fset_5frun_5fin_5fstandby_5finstance_15',['uart_set_run_in_standby_instance',['../uart_8h.html#a94d5de1ee0878b0fb2d92c3626c3da22',1,'uart.c']]],
+  ['uart_5fwrite_16',['uart_write',['../uart_8h.html#a6e0844dd68d04ca88f255b6c75326a70',1,'uart.h']]],
+  ['uart_5fwrite_5finstance_17',['uart_write_instance',['../uart_8h.html#ad53a035557ef05336ff3e45547b65861',1,'uart.c']]]
 ];

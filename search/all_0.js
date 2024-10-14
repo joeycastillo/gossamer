@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['2023_20as_20i_20make_20use_20of_20this_20framework_20in_20a_20couple_20of_20real_20world_20projects_20the_20api_20is_20subject_20to_20dramatic_20and_20breaking_20changes_20for_20the_20next_20few_20months_20as_20i_20work_20through_20what_20i_20want_20this_20to_20be_20—_20joey_0',['WARNING: I am dramatically refactoring right now (Fall 2023) as I make use of this framework in a couple of real world projects. The API is subject to dramatic and breaking changes for the next few months as I work through what I want this to be. — Joey',['../index.html#autotoc_md1',1,'']]]
+  ['_5fenable_5f48mhz_5fgclk1_0',['_enable_48mhz_gclk1',['../system_8h.html#af6d6cb9ca08e26e456d9ed1d425453e8',1,'system.h']]],
+  ['_5fenter_5fstandby_5fmode_1',['_enter_standby_mode',['../system_8h.html#a436af75ad5caf82faa3497787abf4321',1,'system.h']]],
+  ['_5fsercom_5fclock_5fsetup_2',['_sercom_clock_setup',['../sercom_8h.html#a76ac345ff33c35b9e6847c719bcb00a3',1,'sercom.c']]],
+  ['_5fsercom_5fdisable_3',['_sercom_disable',['../sercom_8h.html#abef0ed2b1af8b63d85ceb0bc2d212fc5',1,'sercom.c']]],
+  ['_5fsercom_5fenable_4',['_sercom_enable',['../sercom_8h.html#a2d6b4fa64e102b375f255222acb1d74a',1,'sercom.c']]]
 ];

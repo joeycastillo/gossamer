@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['joey_0',['WARNING: I am dramatically refactoring right now (Fall 2023) as I make use of this framework in a couple of real world projects. The API is subject to dramatic and breaking changes for the next few months as I work through what I want this to be. — Joey',['../index.html#autotoc_md1',1,'']]]
+  ['peripheral_20interface_0',['Peripheral Interface',['../index.html#autotoc_md3',1,'']]],
+  ['plans_1',['Current state and future plans',['../index.html#autotoc_md7',1,'']]],
+  ['ptc_2eh_2',['ptc.h',['../ptc_8h.html',1,'']]]
 ];

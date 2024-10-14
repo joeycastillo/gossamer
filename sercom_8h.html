@@ -91,19 +91,101 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a76ac345ff33c35b9e6847c719bcb00a3" id="r_a76ac345ff33c35b9e6847c719bcb00a3"><td class="memItemLeft" align="right" valign="top"><a id="a76ac345ff33c35b9e6847c719bcb00a3" name="a76ac345ff33c35b9e6847c719bcb00a3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>_sercom_clock_setup</b> (uint8_t sercom)</td></tr>
+<tr class="memitem:a76ac345ff33c35b9e6847c719bcb00a3" id="r_a76ac345ff33c35b9e6847c719bcb00a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sercom_8h.html#a76ac345ff33c35b9e6847c719bcb00a3">_sercom_clock_setup</a> (uint8_t sercom)</td></tr>
+<tr class="memdesc:a76ac345ff33c35b9e6847c719bcb00a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the clocks required to run a SERCOM peripheral.  <br /></td></tr>
 <tr class="separator:a76ac345ff33c35b9e6847c719bcb00a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d6b4fa64e102b375f255222acb1d74a" id="r_a2d6b4fa64e102b375f255222acb1d74a"><td class="memItemLeft" align="right" valign="top"><a id="a2d6b4fa64e102b375f255222acb1d74a" name="a2d6b4fa64e102b375f255222acb1d74a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>_sercom_enable</b> (uint8_t sercom)</td></tr>
+<tr class="memitem:a2d6b4fa64e102b375f255222acb1d74a" id="r_a2d6b4fa64e102b375f255222acb1d74a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sercom_8h.html#a2d6b4fa64e102b375f255222acb1d74a">_sercom_enable</a> (uint8_t sercom)</td></tr>
+<tr class="memdesc:a2d6b4fa64e102b375f255222acb1d74a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables a SERCOM peripheral.  <br /></td></tr>
 <tr class="separator:a2d6b4fa64e102b375f255222acb1d74a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abef0ed2b1af8b63d85ceb0bc2d212fc5" id="r_abef0ed2b1af8b63d85ceb0bc2d212fc5"><td class="memItemLeft" align="right" valign="top"><a id="abef0ed2b1af8b63d85ceb0bc2d212fc5" name="abef0ed2b1af8b63d85ceb0bc2d212fc5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>_sercom_disable</b> (uint8_t sercom)</td></tr>
+<tr class="memitem:abef0ed2b1af8b63d85ceb0bc2d212fc5" id="r_abef0ed2b1af8b63d85ceb0bc2d212fc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sercom_8h.html#abef0ed2b1af8b63d85ceb0bc2d212fc5">_sercom_disable</a> (uint8_t sercom)</td></tr>
+<tr class="memdesc:abef0ed2b1af8b63d85ceb0bc2d212fc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables a SERCOM peripheral.  <br /></td></tr>
 <tr class="separator:abef0ed2b1af8b63d85ceb0bc2d212fc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Private functions for helping with SERCOM management. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a76ac345ff33c35b9e6847c719bcb00a3" name="a76ac345ff33c35b9e6847c719bcb00a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76ac345ff33c35b9e6847c719bcb00a3">&#9670;&#160;</a></span>_sercom_clock_setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _sercom_clock_setup </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>sercom</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets up the clocks required to run a SERCOM peripheral. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sercom</td><td>The SERCOM instance to set up. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function is not intended to be called directly. Use the functions defined in <code><a class="el" href="spi_8h.html" title="SPI Peripheral.">spi.h</a></code>, <code><a class="el" href="i2c_8h.html" title="I2C Peripheral.">i2c.h</a></code>, or <code><a class="el" href="uart_8h.html" title="UART Peripheral.">uart.h</a></code>. </dd></dl>
+
+</div>
+</div>
+<a id="abef0ed2b1af8b63d85ceb0bc2d212fc5" name="abef0ed2b1af8b63d85ceb0bc2d212fc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abef0ed2b1af8b63d85ceb0bc2d212fc5">&#9670;&#160;</a></span>_sercom_disable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _sercom_disable </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>sercom</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disables a SERCOM peripheral. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sercom</td><td>The SERCOM instance to disable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function is not intended to be called directly. Use the functions defined in <code><a class="el" href="spi_8h.html" title="SPI Peripheral.">spi.h</a></code>, <code><a class="el" href="i2c_8h.html" title="I2C Peripheral.">i2c.h</a></code>, or <code><a class="el" href="uart_8h.html" title="UART Peripheral.">uart.h</a></code>. </dd></dl>
+
+</div>
+</div>
+<a id="a2d6b4fa64e102b375f255222acb1d74a" name="a2d6b4fa64e102b375f255222acb1d74a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d6b4fa64e102b375f255222acb1d74a">&#9670;&#160;</a></span>_sercom_enable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _sercom_enable </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>sercom</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables a SERCOM peripheral. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sercom</td><td>The SERCOM instance to enable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function is not intended to be called directly. Use the functions defined in <code><a class="el" href="spi_8h.html" title="SPI Peripheral.">spi.h</a></code>, <code><a class="el" href="i2c_8h.html" title="I2C Peripheral.">i2c.h</a></code>, or <code><a class="el" href="uart_8h.html" title="UART Peripheral.">uart.h</a></code>. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
