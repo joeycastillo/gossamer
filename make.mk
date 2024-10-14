@@ -28,6 +28,9 @@ else
   MKDIR = mkdir
 endif
 
+INCLUDES += \
+  -I$(GOSSAMER_PATH)/common/ \
+
 ifndef EMSCRIPTEN
 # Settings and flags for building on hardware
 
@@ -65,7 +68,6 @@ LDFLAGS += -specs=nosys.specs
 LIBS += -lm
 
 INCLUDES += \
-  -I$(GOSSAMER_PATH)/common/ \
   -I$(GOSSAMER_PATH)/peripherals/ \
   -I$(GOSSAMER_PATH)/chips/$(CHIP)/include/ \
 
@@ -96,14 +98,13 @@ BUILD = ./build-sim
 CC = emcc
 
 INCLUDES += \
-  -I$(GOSSAMER_PATH)/dummy/common/ \
   -I$(GOSSAMER_PATH)/dummy/peripherals/ \
   -I$(GOSSAMER_PATH)/dummy/chips/$(CHIP)/include/ \
 
 SRCS += \
-  $(GOSSAMER_PATH)/dummy/chips/$(CHIP)/startup_$(CHIP).c \
-  $(GOSSAMER_PATH)/dummy/chips/$(CHIP)/system_$(CHIP).c \
-  $(GOSSAMER_PATH)/dummy/common/emscripten_loop.c \
+  $(GOSSAMER_PATH)/chips/$(CHIP)/startup_$(CHIP).c \
+  $(GOSSAMER_PATH)/dummy/system_$(CHIP).c \
+  $(GOSSAMER_PATH)/dummy/emscripten_loop.c \
   $(GOSSAMER_PATH)/dummy/peripherals/adc.c \
   $(GOSSAMER_PATH)/dummy/peripherals/dac.c \
   $(GOSSAMER_PATH)/dummy/peripherals/dma.c \

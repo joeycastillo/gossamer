@@ -33,6 +33,14 @@
 
 #pragma once
 
+#if __EMSCRIPTEN__
+
+typedef int tc_instance_details_t;
+typedef int tcc_instance_details_t;
+typedef int sercom_instance_details_t;
+
+#else
+
 typedef struct {
     Tc* tc;
     uint32_t clock_enable_mask;
@@ -51,6 +59,8 @@ typedef struct {
     uint8_t gclk_id;
     uint8_t interrupt_line;
 } sercom_instance_details_t;
+
+#endif
 
 extern const tc_instance_details_t TC_Peripherals[];
 extern const uint8_t Num_TC_Instances;

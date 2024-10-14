@@ -29,6 +29,9 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+
+#include <stdbool.h>
+#include <stdint.h>
 #include "sam.h"
 
 #pragma once
@@ -52,6 +55,96 @@
 #define HAL_GPIO_PMUX_L      11
 #define HAL_GPIO_PMUX_M      12
 #define HAL_GPIO_PMUX_N      13
+
+#if __EMSCRIPTEN__
+
+extern bool pin_levels[3][32];
+
+#define HAL_GPIO_PIN(name, port, pin)            \
+  static inline void HAL_GPIO_##name##_set(void)        \
+  {                    \
+    pin_levels[HAL_GPIO_PORT##port][pin] = true; \
+    (void)HAL_GPIO_##name##_set;            \
+  }                    \
+                    \
+  static inline void HAL_GPIO_##name##_clr(void)        \
+  {                    \
+    pin_levels[HAL_GPIO_PORT##port][pin] = false; \
+    (void)HAL_GPIO_##name##_clr;            \
+  }                    \
+                    \
+  static inline void HAL_GPIO_##name##_toggle(void)        \
+  {                    \
+    pin_levels[HAL_GPIO_PORT##port][pin] = !pin_levels[HAL_GPIO_PORT##port][pin]; \
+    (void)HAL_GPIO_##name##_toggle;            \
+  }                    \
+                    \
+  static inline void HAL_GPIO_##name##_write(int value)        \
+  {                    \
+    pin_levels[HAL_GPIO_PORT##port][pin] = !!value; \
+    (void)HAL_GPIO_##name##_write;            \
+  }                    \
+                    \
+  static inline void HAL_GPIO_##name##_drvstr(int value)        \
+  {                    \
+    (void)HAL_GPIO_##name##_write;            \
+  }                    \
+                    \
+  static inline void HAL_GPIO_##name##_in(void)          \
+  {                    \
+    (void)HAL_GPIO_##name##_in;              \
+  }                    \
+                    \
+  static inline void HAL_GPIO_##name##_out(void)        \
+  {                    \
+    (void)HAL_GPIO_##name##_out;            \
+  }                    \
+                    \
+  static inline void HAL_GPIO_##name##_off(void)        \
+  {                    \
+    (void)HAL_GPIO_##name##_off;            \
+  }                    \
+                    \
+  static inline void HAL_GPIO_##name##_pullup(void)        \
+  {                    \
+    (void)HAL_GPIO_##name##_pullup;            \
+  }                    \
+                    \
+  static inline void HAL_GPIO_##name##_pulldown(void)        \
+  {                    \
+    (void)HAL_GPIO_##name##_pulldown;            \
+  }                    \
+                    \
+  static inline int HAL_GPIO_##name##_read(void)        \
+  {                    \
+    return pin_levels[HAL_GPIO_PORT##port][pin]; \
+    (void)HAL_GPIO_##name##_read;            \
+  }                    \
+                    \
+  static inline int HAL_GPIO_##name##_state(void)        \
+  {                    \
+    return 0; \
+    (void)HAL_GPIO_##name##_state;            \
+  }                    \
+                    \
+  static inline void HAL_GPIO_##name##_pmuxen(int mux)        \
+  {                    \
+    (void)HAL_GPIO_##name##_pmuxen;            \
+  }                    \
+                    \
+  static inline void HAL_GPIO_##name##_pmuxdis(void)        \
+  {                    \
+    (void)HAL_GPIO_##name##_pmuxdis;            \
+  }                    \
+                    \
+  static inline uint8_t HAL_GPIO_##name##_pin(void)        \
+  {                    \
+    return ((HAL_GPIO_PORT##port << 5) | (pin & 0x1f));					\
+    (void)HAL_GPIO_##name##_pin;            \
+  }                    \
+                    \
+
+#else
 
 #define HAL_GPIO_PIN(name, port, pin)						\
   static inline void HAL_GPIO_##name##_set(void)				\
@@ -160,6 +253,8 @@
     (void)HAL_GPIO_##name##_pin;						\
   }										\
                     \
+
+#endif // __EMSCRIPTEN__
 
 HAL_GPIO_PIN(SWCLK, A, 30)
 HAL_GPIO_PIN(SWDIO, A, 31)

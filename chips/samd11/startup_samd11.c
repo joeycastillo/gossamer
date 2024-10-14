@@ -27,7 +27,9 @@
  */
 
 //-----------------------------------------------------------------------------
+#if !__EMSCRIPTEN__
 #include "samd11.h"
+#endif
 
 //-----------------------------------------------------------------------------
 #define DUMMY __attribute__ ((weak, alias ("irq_handler_dummy")))
@@ -120,6 +122,7 @@ void (* const vectors[])(void) =
 //-----------------------------------------------------------------------------
 void irq_handler_reset(void)
 {
+#if !__EMSCRIPTEN__
     unsigned int *src, *dst;
 
     src = &_etext;
@@ -132,6 +135,7 @@ void irq_handler_reset(void)
         *dst++ = 0;
 
     SCB->VTOR = (uint32_t)vectors;
+#endif
 
     main();
 

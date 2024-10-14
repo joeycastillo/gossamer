@@ -1,5 +1,24 @@
 #pragma once
 
+#if __EMSCRIPTEN__
+
+typedef int generic_clock_generator_t;
+
+#define HAL_GPIO_PMUX_EIC (0)
+#define HAL_GPIO_PMUX_ADC (1)
+#define HAL_GPIO_PMUX_AC (1)
+#define HAL_GPIO_PMUX_PTC (1)
+#define HAL_GPIO_PMUX_SERCOM (2)
+#define HAL_GPIO_PMUX_SERCOM_ALT (3)
+
+#define DMAC_CHCTRLB_TRIGACT_BLOCK_Val  (0)
+#define DMAC_CHCTRLB_TRIGACT_BEAT_Val   (2)
+#define DMAC_CHCTRLB_TRIGACT_TRANSACTION_Val (3)
+
+typedef int DmacDescriptor;
+
+#else
+
 #define HAL_GPIO_PMUX_EIC HAL_GPIO_PMUX_A
 #define HAL_GPIO_PMUX_ADC HAL_GPIO_PMUX_B
 #define HAL_GPIO_PMUX_AC HAL_GPIO_PMUX_B
@@ -166,3 +185,5 @@ typedef enum {
     GENERIC_CLOCK_11 = GCLK_PCHCTRL_GEN_GCLK11_Val,
 } generic_clock_generator_t;
 #endif
+
+#endif // __EMSCRIPTEN__

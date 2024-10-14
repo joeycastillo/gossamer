@@ -17,6 +17,9 @@ bool main_loop_is_sleeping(void);
 static void main_loop_set_sleeping(bool sleeping);
 static EM_BOOL main_loop(double time, void *userData);
 
+// dummy functtion to replace pointer provided by linker
+void _stack_top(void) {}
+
 static inline void request_next_frame(void) {
     if (animation_frame_id == ANIMATION_FRAME_ID_INVALID) {
         animation_frame_id = emscripten_request_animation_frame(main_loop, NULL);
