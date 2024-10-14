@@ -62,6 +62,17 @@ typedef enum {
     TC_CHANNEL_POLARITY_INVERTED = 1,
 } tc_channel_polarity_t;
 
+typedef enum {
+  TC_EVENT_ACTION_DISABLED = 0x0ul,
+  TC_EVENT_ACTION_RETRIGGER = 0x1ul,
+  TC_EVENT_ACTION_COUNT = 0x2ul,
+  TC_EVENT_ACTION_START = 0x3ul,
+  TC_EVENT_ACTION_STAMP = 0x4ul,  /// NOTE: Not available on SAM D11 or D21
+  TC_EVENT_ACTION_PPW = 0x5ul,
+  TC_EVENT_ACTION_PWP = 0x6ul,
+  TC_EVENT_ACTION_PW = 0x7ul,     /// NOTE: Not available on SAM D11 or D21
+} tc_event_action_t;
+
 /** @brief Enables the peripheral clock for the TC and clocks it with the selected
   *        clock source. Also resets the TC to its starting configuration, which
   *        is COUNT16 mode.
@@ -250,6 +261,13 @@ uint16_t tc_count16_get_count(uint8_t instance);
  * @param value The value to set.
  */
 uint32_t tc_count32_get_count(uint8_t instance);
+
+/**
+ * @brief Sets the action to take when the TC receives an event.
+ * @param instance The TC peripheral instance as numbered in the data sheet.
+ * @param action The action to take. @see tc_event_action_t
+ */
+void tc_set_event_action(uint8_t instance, tc_event_action_t action);
 
 /**
  * @brief Issues a STOP command to the TC.

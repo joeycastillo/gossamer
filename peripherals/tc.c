@@ -168,6 +168,11 @@ uint32_t tc_count32_get_count(uint8_t instance) {
     return TC_Peripherals[instance - TC_First_Index].tc->COUNT32.COUNT.reg;
 }
 
+void tc_set_event_action(uint8_t instance, tc_event_action_t action) {
+    TC_Peripherals[instance - TC_First_Index].tc->COUNT16.EVCTRL.bit.EVACT = action;
+    TC_Peripherals[instance - TC_First_Index].tc->COUNT16.EVCTRL.bit.TCEI = !!action;
+}
+
 void tc_stop(uint8_t instance) {
     TC_Peripherals[instance - TC_First_Index].tc->COUNT16.CTRLBSET.bit.CMD = TC_CTRLBSET_CMD_STOP_Val;
 }
