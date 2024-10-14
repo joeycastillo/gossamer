@@ -8,5 +8,6 @@ var searchData=
   ['eic_5fenable_5',['eic_enable',['../eic_8h.html#afd8706ad3219397c91636524d2149eb0',1,'eic.c']]],
   ['eic_5fenable_5fevent_6',['eic_enable_event',['../eic_8h.html#ae6a140e7799fec385ff48c97f399b7cf',1,'eic.c']]],
   ['eic_5fenable_5finterrupt_7',['eic_enable_interrupt',['../eic_8h.html#a95932a1b8c5442120cd6caa7a5cb0733',1,'eic.c']]],
-  ['eic_5finit_8',['eic_init',['../eic_8h.html#ac66cb10fff656315b12df4248f798c41',1,'eic.c']]]
+  ['eic_5finit_8',['eic_init',['../eic_8h.html#ac66cb10fff656315b12df4248f798c41',1,'eic.c']]],
+  ['evsys_5fconfigure_5fchannel_9',['evsys_configure_channel',['../evsys_8h.html#a506dcdef11267257fce99f6deffc4844',1,'evsys.c']]]
 ];

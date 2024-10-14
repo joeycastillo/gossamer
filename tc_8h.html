@@ -120,6 +120,19 @@ Enumerations</h2></td></tr>
 , <b>TC_CHANNEL_POLARITY_INVERTED</b> = 1
  }</td></tr>
 <tr class="separator:af3fa955b5dc85a2a79c00d3feb1cad62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae83a15325ed7aaf529abae8eb9edb996" id="r_ae83a15325ed7aaf529abae8eb9edb996"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#ae83a15325ed7aaf529abae8eb9edb996">tc_event_action_t</a> { <br />
+&#160;&#160;<b>TC_EVENT_ACTION_DISABLED</b> = 0x0ul
+, <b>TC_EVENT_ACTION_RETRIGGER</b> = 0x1ul
+, <b>TC_EVENT_ACTION_COUNT</b> = 0x2ul
+, <b>TC_EVENT_ACTION_START</b> = 0x3ul
+, <br />
+&#160;&#160;<b>TC_EVENT_ACTION_STAMP</b> = 0x4ul
+, <a class="el" href="tc_8h.html#ae83a15325ed7aaf529abae8eb9edb996a4957024d607401030b128f9b775edb7d">TC_EVENT_ACTION_PPW</a> = 0x5ul
+, <b>TC_EVENT_ACTION_PWP</b> = 0x6ul
+, <b>TC_EVENT_ACTION_PW</b> = 0x7ul
+<br />
+ }</td></tr>
+<tr class="separator:ae83a15325ed7aaf529abae8eb9edb996"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -177,6 +190,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aa5879a623b3133654d474decb14b61f8" id="r_aa5879a623b3133654d474decb14b61f8"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#aa5879a623b3133654d474decb14b61f8">tc_count32_get_count</a> (uint8_t instance)</td></tr>
 <tr class="memdesc:aa5879a623b3133654d474decb14b61f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the TC's current counter value in 32-bit mode.  <br /></td></tr>
 <tr class="separator:aa5879a623b3133654d474decb14b61f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59bb895d55ef97120fac8149ec78bc47" id="r_a59bb895d55ef97120fac8149ec78bc47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a59bb895d55ef97120fac8149ec78bc47">tc_set_event_action</a> (uint8_t instance, <a class="el" href="tc_8h.html#ae83a15325ed7aaf529abae8eb9edb996">tc_event_action_t</a> action)</td></tr>
+<tr class="memdesc:a59bb895d55ef97120fac8149ec78bc47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the action to take when the TC receives an event.  <br /></td></tr>
+<tr class="separator:a59bb895d55ef97120fac8149ec78bc47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15eaf925943d7ba804ecd8bd466a4b14" id="r_a15eaf925943d7ba804ecd8bd466a4b14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tc_8h.html#a15eaf925943d7ba804ecd8bd466a4b14">tc_stop</a> (uint8_t instance)</td></tr>
 <tr class="memdesc:a15eaf925943d7ba804ecd8bd466a4b14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Issues a STOP command to the TC.  <br /></td></tr>
 <tr class="separator:a15eaf925943d7ba804ecd8bd466a4b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,7 +205,26 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Timer/Counter Peripheral. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ae83a15325ed7aaf529abae8eb9edb996" name="ae83a15325ed7aaf529abae8eb9edb996"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae83a15325ed7aaf529abae8eb9edb996">&#9670;&#160;</a></span>tc_event_action_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="tc_8h.html#ae83a15325ed7aaf529abae8eb9edb996">tc_event_action_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae83a15325ed7aaf529abae8eb9edb996a4957024d607401030b128f9b775edb7d" name="ae83a15325ed7aaf529abae8eb9edb996a4957024d607401030b128f9b775edb7d"></a>TC_EVENT_ACTION_PPW&#160;</td><td class="fielddoc"><p>NOTE: Not available on SAM D11 or D21. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="a2e534df47672eea4460487ab3fe1e123" name="a2e534df47672eea4460487ab3fe1e123"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2e534df47672eea4460487ab3fe1e123">&#9670;&#160;</a></span>tc_count16_get_count()</h2>
 
@@ -828,6 +863,44 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a59bb895d55ef97120fac8149ec78bc47" name="a59bb895d55ef97120fac8149ec78bc47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59bb895d55ef97120fac8149ec78bc47">&#9670;&#160;</a></span>tc_set_event_action()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tc_set_event_action </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="tc_8h.html#ae83a15325ed7aaf529abae8eb9edb996">tc_event_action_t</a>&#160;</td>
+          <td class="paramname"><em>action</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the action to take when the TC receives an event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">action</td><td>The action to take. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="tc_8h.html#ae83a15325ed7aaf529abae8eb9edb996">tc_event_action_t</a> </dd></dl>
 
 </div>
 </div>
