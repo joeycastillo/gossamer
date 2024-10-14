@@ -2,7 +2,20 @@
 
 #if __EMSCRIPTEN__
 
-typedef int generic_clock_generator_t;
+typedef enum {
+    GENERIC_CLOCK_0 = 0,
+    GENERIC_CLOCK_1,
+    GENERIC_CLOCK_2,
+    GENERIC_CLOCK_3,
+    GENERIC_CLOCK_4,
+    GENERIC_CLOCK_5,
+    GENERIC_CLOCK_6,
+    GENERIC_CLOCK_7,
+    GENERIC_CLOCK_8,
+    GENERIC_CLOCK_9,
+    GENERIC_CLOCK_10,
+    GENERIC_CLOCK_11,
+} generic_clock_generator_t;
 
 #define HAL_GPIO_PMUX_EIC (0)
 #define HAL_GPIO_PMUX_ADC (1)
