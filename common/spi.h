@@ -19,10 +19,8 @@
 #include <stddef.h>
 
 typedef enum {
-    SPI_MODE_0 = 0,
-    SPI_MODE_1,
-    SPI_MODE_2,
-    SPI_MODE_3,
+    SPI_MODE_PERIPHERAL = 2,
+    SPI_MODE_CONTROLLER = 3,
 } spi_mode_t;
 
 typedef enum {

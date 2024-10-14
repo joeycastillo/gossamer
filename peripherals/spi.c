@@ -50,28 +50,9 @@ void spi_init_instance(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, spi_mod
     } else {
         SERCOM->SPI.CTRLB.bit.RXEN = 1;
     }
-    SERCOM->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_MODE(3) |
+    SERCOM->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_MODE(mode) |
                             SERCOM_SPI_CTRLA_DOPO(dopo) |
                             SERCOM_SPI_CTRLA_DIPO(dipo);
-
-    switch (mode) {
-        case SPI_MODE_0:
-            SERCOM->SPI.CTRLA.bit.CPOL = 0;
-            SERCOM->SPI.CTRLA.bit.CPHA = 0;
-            break;
-        case SPI_MODE_1:
-            SERCOM->SPI.CTRLA.bit.CPOL = 0;
-            SERCOM->SPI.CTRLA.bit.CPHA = 1;
-            break;
-        case SPI_MODE_2:
-            SERCOM->SPI.CTRLA.bit.CPOL = 1;
-            SERCOM->SPI.CTRLA.bit.CPHA = 0;
-            break;
-        case SPI_MODE_3:
-            SERCOM->SPI.CTRLA.bit.CPOL = 1;
-            SERCOM->SPI.CTRLA.bit.CPHA = 1;
-            break;
-    }
 
     /* Set baud */
     uint32_t baudrate = baud;
