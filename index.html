@@ -115,19 +115,29 @@ Consistent interface to peripherals</h2>
 <li><code>peripheral_disable</code> disables the peripheral. For peripherals with multiple channels, disables the channel, unless all channels are disabled in which case it disables the whole peripheral.</li>
 </ul>
 <p>For example, this is how you might set up the RTC peripheral, which has predefined clock defaults:</p>
-<div class="fragment"><div class="line">rtc_init();</div>
-<div class="line">rtc_enable();</div>
-<div class="line">rtc_set_date_time(date_time);</div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="rtc_8h.html#acf9024748b942a7ae375cf75951afa9c">rtc_init</a>();</div>
+<div class="line"><a class="code hl_function" href="rtc_8h.html#abec68bd2863d22f5a8e12ab89f8134f4">rtc_enable</a>();</div>
+<div class="line"><a class="code hl_function" href="rtc_8h.html#a16c55e20ebca1f6501626e39a38c6425">rtc_set_date_time</a>(date_time);</div>
+<div class="ttc" id="artc_8h_html_a16c55e20ebca1f6501626e39a38c6425"><div class="ttname"><a href="rtc_8h.html#a16c55e20ebca1f6501626e39a38c6425">rtc_set_date_time</a></div><div class="ttdeci">void rtc_set_date_time(rtc_date_time_t date_time)</div><div class="ttdoc">Sets the date and time.</div><div class="ttdef"><b>Definition</b> rtc.c:79</div></div>
+<div class="ttc" id="artc_8h_html_abec68bd2863d22f5a8e12ab89f8134f4"><div class="ttname"><a href="rtc_8h.html#abec68bd2863d22f5a8e12ab89f8134f4">rtc_enable</a></div><div class="ttdeci">void rtc_enable(void)</div><div class="ttdoc">Enables the RTC.</div><div class="ttdef"><b>Definition</b> rtc.c:73</div></div>
+<div class="ttc" id="artc_8h_html_acf9024748b942a7ae375cf75951afa9c"><div class="ttname"><a href="rtc_8h.html#acf9024748b942a7ae375cf75951afa9c">rtc_init</a></div><div class="ttdeci">void rtc_init(void)</div><div class="ttdoc">Initializes the RTC.</div><div class="ttdef"><b>Definition</b> rtc.c:49</div></div>
 </div><!-- fragment --><p>This is how you might output an analog value on DAC channel 0 (the first DAC on the SAM L21, or the only DAC on D21):</p>
 <div class="fragment"><div class="line">HAL_GPIO_A0_pmuxen(HAL_GPIO_PMUX_B);</div>
-<div class="line">dac_init();</div>
-<div class="line">dac_enable(0);</div>
-<div class="line">dac_set_analog_value(0, 512);</div>
+<div class="line"><a class="code hl_function" href="dac_8h.html#a6e622fafee8436bf9cf9f6b120352e3c">dac_init</a>();</div>
+<div class="line"><a class="code hl_function" href="dac_8h.html#a27483fa712ea61a534f679e72ffba463">dac_enable</a>(0);</div>
+<div class="line"><a class="code hl_function" href="dac_8h.html#a2b43d67fbe14479cc72c1119fb2b7a48">dac_set_analog_value</a>(0, 512);</div>
+<div class="ttc" id="adac_8h_html_a27483fa712ea61a534f679e72ffba463"><div class="ttname"><a href="dac_8h.html#a27483fa712ea61a534f679e72ffba463">dac_enable</a></div><div class="ttdeci">void dac_enable(dac_channel_mask_t channelmask)</div><div class="ttdoc">Enables the DAC channels specified in the mask, and disables others.</div><div class="ttdef"><b>Definition</b> dac.c:75</div></div>
+<div class="ttc" id="adac_8h_html_a2b43d67fbe14479cc72c1119fb2b7a48"><div class="ttname"><a href="dac_8h.html#a2b43d67fbe14479cc72c1119fb2b7a48">dac_set_analog_value</a></div><div class="ttdeci">void dac_set_analog_value(uint16_t channel, uint16_t value)</div><div class="ttdoc">Set the analog value of the DAC.</div><div class="ttdef"><b>Definition</b> dac.c:97</div></div>
+<div class="ttc" id="adac_8h_html_a6e622fafee8436bf9cf9f6b120352e3c"><div class="ttname"><a href="dac_8h.html#a6e622fafee8436bf9cf9f6b120352e3c">dac_init</a></div><div class="ttdeci">void dac_init(void)</div><div class="ttdoc">Initializes the DAC peripheral, but does not enable it.</div><div class="ttdef"><b>Definition</b> dac.c:40</div></div>
 </div><!-- fragment --><p>This is how you would set up Timer/Counter TC1 to overflow at 500 Hz (i.e. for driving a DMA transaction):</p>
-<div class="fragment"><div class="line">tc_init(1, GENERIC_CLOCK_0, TC_PRESCALER_DIV256); <span class="comment">// 16 MHz / 256 = 62,500</span></div>
-<div class="line">tc_set_wavegen(1, TC_WAVE_WAVEGEN_MFRQ); <span class="comment">// Match frequency mode, overflow at CC0</span></div>
-<div class="line">tc_count16_set_cc(1, 0, 125); <span class="comment">// 62,500 / 125 = 500 Hz</span></div>
-<div class="line">tc_enable(1);</div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="tc_8h.html#a1ccf965a51a89fb1df2545988d4739d2">tc_init</a>(1, GENERIC_CLOCK_0, TC_PRESCALER_DIV256); <span class="comment">// 16 MHz / 256 = 62,500</span></div>
+<div class="line"><a class="code hl_function" href="tc_8h.html#affa4b9e60ccf8ba52074f3f2f28d8823">tc_set_wavegen</a>(1, TC_WAVE_WAVEGEN_MFRQ); <span class="comment">// Match frequency mode, overflow at CC0</span></div>
+<div class="line"><a class="code hl_function" href="tc_8h.html#a30b584892c4a1cfce9ddc70933776e7e">tc_count16_set_cc</a>(1, 0, 125); <span class="comment">// 62,500 / 125 = 500 Hz</span></div>
+<div class="line"><a class="code hl_function" href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">tc_enable</a>(1);</div>
+<div class="ttc" id="atc_8h_html_a1ccf965a51a89fb1df2545988d4739d2"><div class="ttname"><a href="tc_8h.html#a1ccf965a51a89fb1df2545988d4739d2">tc_init</a></div><div class="ttdeci">bool tc_init(uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler)</div><div class="ttdoc">Enables the peripheral clock for the TC and clocks it with the selected clock source....</div><div class="ttdef"><b>Definition</b> tc.c:36</div></div>
+<div class="ttc" id="atc_8h_html_a2715d5a6f20298805eefa13a8a7a1b99"><div class="ttname"><a href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">tc_enable</a></div><div class="ttdeci">void tc_enable(uint8_t instance)</div><div class="ttdoc">Enables the TC. Make sure to call tc_init first to set it up.</div><div class="ttdef"><b>Definition</b> tc.c:105</div></div>
+<div class="ttc" id="atc_8h_html_a30b584892c4a1cfce9ddc70933776e7e"><div class="ttname"><a href="tc_8h.html#a30b584892c4a1cfce9ddc70933776e7e">tc_count16_set_cc</a></div><div class="ttdeci">void tc_count16_set_cc(uint8_t instance, uint8_t channel, uint16_t value)</div><div class="ttdoc">Sets the TC's compare channel CC0 or CC1 register in 16-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:126</div></div>
+<div class="ttc" id="atc_8h_html_affa4b9e60ccf8ba52074f3f2f28d8823"><div class="ttname"><a href="tc_8h.html#affa4b9e60ccf8ba52074f3f2f28d8823">tc_set_wavegen</a></div><div class="ttdeci">void tc_set_wavegen(uint8_t instance, tc_wavegen_t mode)</div><div class="ttdoc">Sets the TC's waveform generation mode.</div><div class="ttdef"><b>Definition</b> tc.c:78</div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md5"></a>
 Consistent process for flashing firmware</h2>
 <p>All of these chips can function with a USB bootloader, and Gossamer is designed to work within that setup. It provides a consistent method for flashing code to a device: running <code>make &amp;&amp; make install</code> builds your application and flashes it to a device.</p>

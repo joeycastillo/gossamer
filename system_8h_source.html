@@ -114,56 +114,66 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structtc__instance__details__t.html">   36</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    Tc* tc;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    uint32_t clock_enable_mask;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    uint8_t gclk_id;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>} <a class="code hl_struct" href="structtc__instance__details__t.html">tc_instance_details_t</a>;</div>
-</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#if __EMSCRIPTEN__</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">typedef</span> <span class="keywordtype">int</span> <a class="code hl_struct" href="structtc__instance__details__t.html">tc_instance_details_t</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">typedef</span> <span class="keywordtype">int</span> <a class="code hl_struct" href="structtcc__instance__details__t.html">tcc_instance_details_t</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">typedef</span> <span class="keywordtype">int</span> <a class="code hl_struct" href="structsercom__instance__details__t.html">sercom_instance_details_t</a>;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="foldopen" id="foldopen00042" data-start="{" data-end="};">
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structtcc__instance__details__t.html">   42</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    Tcc* tcc;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    uint32_t clock_enable_mask;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    uint8_t gclk_id;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <a class="code hl_struct" href="structtcc__instance__details__t.html">tcc_instance_details_t</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structtc__instance__details__t.html">   44</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    Tc* tc;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    uint32_t clock_enable_mask;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    uint8_t gclk_id;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>} <a class="code hl_struct" href="structtc__instance__details__t.html">tc_instance_details_t</a>;</div>
 </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="foldopen" id="foldopen00048" data-start="{" data-end="};">
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structsercom__instance__details__t.html">   48</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    Sercom* sercom;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    uint32_t clock_enable_mask;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    uint8_t gclk_id;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    uint8_t interrupt_line;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>} <a class="code hl_struct" href="structsercom__instance__details__t.html">sercom_instance_details_t</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="};">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structtcc__instance__details__t.html">   50</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    Tcc* tcc;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    uint32_t clock_enable_mask;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    uint8_t gclk_id;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>} <a class="code hl_struct" href="structtcc__instance__details__t.html">tcc_instance_details_t</a>;</div>
 </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">extern</span> <span class="keyword">const</span> <a class="code hl_struct" href="structtc__instance__details__t.html">tc_instance_details_t</a> TC_Peripherals[];</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t Num_TC_Instances;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t TC_First_Index;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">extern</span> <span class="keyword">const</span> <a class="code hl_struct" href="structtcc__instance__details__t.html">tcc_instance_details_t</a> TCC_Peripherals[];</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t Num_TCC_Instances;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">extern</span> <span class="keyword">const</span> <a class="code hl_struct" href="structsercom__instance__details__t.html">sercom_instance_details_t</a> SERCOM_Peripherals[];</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t Num_SERCOM_Instances;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="};">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structsercom__instance__details__t.html">   56</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    Sercom* sercom;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    uint32_t clock_enable_mask;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    uint8_t gclk_id;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    uint8_t interrupt_line;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>} <a class="code hl_struct" href="structsercom__instance__details__t.html">sercom_instance_details_t</a>;</div>
+</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">extern</span> <span class="keyword">const</span> <a class="code hl_struct" href="structtc__instance__details__t.html">tc_instance_details_t</a> TC_Peripherals[];</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t Num_TC_Instances;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t TC_First_Index;</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="system_8h.html#af411a8bc6b7ed4b0af9114e10c959448">   82</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="system_8h.html#af411a8bc6b7ed4b0af9114e10c959448">sys_init</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="system_8h.html#a96fa401b65736262fc29cc0537bed03e">   87</a></span>uint32_t <a class="code hl_function" href="system_8h.html#a96fa401b65736262fc29cc0537bed03e">get_cpu_frequency</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="system_8h.html#a4f33e5a16dba970fa7064ea27287fcba">  104</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="system_8h.html#a4f33e5a16dba970fa7064ea27287fcba">set_cpu_frequency</a>(uint32_t freq);</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="system_8h.html#af6d6cb9ca08e26e456d9ed1d425453e8">  114</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="system_8h.html#af6d6cb9ca08e26e456d9ed1d425453e8">_enable_48mhz_gclk1</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">extern</span> <span class="keyword">const</span> <a class="code hl_struct" href="structtcc__instance__details__t.html">tcc_instance_details_t</a> TCC_Peripherals[];</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t Num_TCC_Instances;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">extern</span> <span class="keyword">const</span> <a class="code hl_struct" href="structsercom__instance__details__t.html">sercom_instance_details_t</a> SERCOM_Peripherals[];</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t Num_SERCOM_Instances;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="system_8h.html#af411a8bc6b7ed4b0af9114e10c959448">   92</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="system_8h.html#af411a8bc6b7ed4b0af9114e10c959448">sys_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="system_8h.html#a96fa401b65736262fc29cc0537bed03e">   97</a></span>uint32_t <a class="code hl_function" href="system_8h.html#a96fa401b65736262fc29cc0537bed03e">get_cpu_frequency</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="system_8h.html#a4f33e5a16dba970fa7064ea27287fcba">  114</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="system_8h.html#a4f33e5a16dba970fa7064ea27287fcba">set_cpu_frequency</a>(uint32_t freq);</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="system_8h.html#a436af75ad5caf82faa3497787abf4321">  121</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="system_8h.html#a436af75ad5caf82faa3497787abf4321">_enter_standby_mode</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="ttc" id="astructsercom__instance__details__t_html"><div class="ttname"><a href="structsercom__instance__details__t.html">sercom_instance_details_t</a></div><div class="ttdef"><b>Definition</b> system.h:48</div></div>
-<div class="ttc" id="astructtc__instance__details__t_html"><div class="ttname"><a href="structtc__instance__details__t.html">tc_instance_details_t</a></div><div class="ttdef"><b>Definition</b> system.h:36</div></div>
-<div class="ttc" id="astructtcc__instance__details__t_html"><div class="ttname"><a href="structtcc__instance__details__t.html">tcc_instance_details_t</a></div><div class="ttdef"><b>Definition</b> system.h:42</div></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="system_8h.html#af6d6cb9ca08e26e456d9ed1d425453e8">  124</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="system_8h.html#af6d6cb9ca08e26e456d9ed1d425453e8">_enable_48mhz_gclk1</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="system_8h.html#a436af75ad5caf82faa3497787abf4321">  131</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="system_8h.html#a436af75ad5caf82faa3497787abf4321">_enter_standby_mode</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="ttc" id="astructsercom__instance__details__t_html"><div class="ttname"><a href="structsercom__instance__details__t.html">sercom_instance_details_t</a></div><div class="ttdef"><b>Definition</b> system.h:56</div></div>
+<div class="ttc" id="astructtc__instance__details__t_html"><div class="ttname"><a href="structtc__instance__details__t.html">tc_instance_details_t</a></div><div class="ttdef"><b>Definition</b> system.h:44</div></div>
+<div class="ttc" id="astructtcc__instance__details__t_html"><div class="ttname"><a href="structtcc__instance__details__t.html">tcc_instance_details_t</a></div><div class="ttdef"><b>Definition</b> system.h:50</div></div>
 <div class="ttc" id="asystem_8h_html_a436af75ad5caf82faa3497787abf4321"><div class="ttname"><a href="system_8h.html#a436af75ad5caf82faa3497787abf4321">_enter_standby_mode</a></div><div class="ttdeci">void _enter_standby_mode(void)</div><div class="ttdoc">Enters the low-power STANDBY mode. Does not return until an interrupt fires.</div></div>
 <div class="ttc" id="asystem_8h_html_a4f33e5a16dba970fa7064ea27287fcba"><div class="ttname"><a href="system_8h.html#a4f33e5a16dba970fa7064ea27287fcba">set_cpu_frequency</a></div><div class="ttdeci">bool set_cpu_frequency(uint32_t freq)</div><div class="ttdoc">Sets the CPU frequency.</div></div>
 <div class="ttc" id="asystem_8h_html_a96fa401b65736262fc29cc0537bed03e"><div class="ttname"><a href="system_8h.html#a96fa401b65736262fc29cc0537bed03e">get_cpu_frequency</a></div><div class="ttdeci">uint32_t get_cpu_frequency(void)</div><div class="ttdoc">Gets the CPU frequency.</div></div>
