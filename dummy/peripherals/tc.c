@@ -92,6 +92,9 @@ uint32_t tc_count32_get_count(uint8_t instance) {
     return 0;
 }
 
+void tc_set_event_action(uint8_t instance, tc_event_action_t action) {
+}
+
 void tc_stop(uint8_t instance) {
 }
 
