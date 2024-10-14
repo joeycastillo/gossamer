@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-#ifdef APP_USES_TINYUSB
+#if APP_USES_TINYUSB || defined(__EMSCRIPTEN__)
 
 #pragma once
 
