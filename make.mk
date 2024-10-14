@@ -79,6 +79,7 @@ SRCS += \
   $(GOSSAMER_PATH)/peripherals/dac.c \
   $(GOSSAMER_PATH)/peripherals/dma.c \
   $(GOSSAMER_PATH)/peripherals/eic.c \
+  $(GOSSAMER_PATH)/peripherals/evsys.c \
   $(GOSSAMER_PATH)/peripherals/i2c.c \
   $(GOSSAMER_PATH)/peripherals/i2s.c \
   $(GOSSAMER_PATH)/peripherals/opamp.c \
@@ -109,6 +110,7 @@ SRCS += \
   $(GOSSAMER_PATH)/dummy/peripherals/dac.c \
   $(GOSSAMER_PATH)/dummy/peripherals/dma.c \
   $(GOSSAMER_PATH)/dummy/peripherals/eic.c \
+  $(GOSSAMER_PATH)/dummy/peripherals/evsys.c \
   $(GOSSAMER_PATH)/dummy/peripherals/i2c.c \
   $(GOSSAMER_PATH)/dummy/peripherals/i2s.c \
   $(GOSSAMER_PATH)/dummy/peripherals/opamp.c \
