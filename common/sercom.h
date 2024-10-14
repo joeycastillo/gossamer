@@ -28,15 +28,31 @@
 
 #pragma once
 
-/* Routines for interacting with SPI devices. */
-
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include "system.h"
 
+/**
+ * @brief Sets up the clocks required to run a SERCOM peripheral.
+ * @param sercom The SERCOM instance to set up.
+ * @note This function is not intended to be called directly. Use the functions
+ *       defined in `spi.h`, `i2c.h`, or `uart.h`.
+ */
 void _sercom_clock_setup(uint8_t sercom);
 
+/**
+ * @brief Enables a SERCOM peripheral.
+ * @param sercom The SERCOM instance to enable.
+ * @note This function is not intended to be called directly. Use the functions
+ *       defined in `spi.h`, `i2c.h`, or `uart.h`.
+ */
 void _sercom_enable(uint8_t sercom);
 
+/**
+ * @brief Disables a SERCOM peripheral.
+ * @param sercom The SERCOM instance to disable.
+ * @note This function is not intended to be called directly. Use the functions
+ *       defined in `spi.h`, `i2c.h`, or `uart.h`.
+ */
 void _sercom_disable(uint8_t sercom);

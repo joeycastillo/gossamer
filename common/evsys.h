@@ -1,6 +1,7 @@
 /** 
  * @file evsys.h
  * @brief Event System
+ * @note The Event System has no _init or _enable functions. It is always running.
  */
 /*
  * MIT License
@@ -31,10 +32,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-/// @brief Configures an event channel to route an event from a generator to a user.
-/// @param channel The event channel to configure. The number of channels varies by device, but all should have at least six channels.
-/// @param generator The event generator, or the source of the event.
-/// @param user The event user, or the peripheral that will receive the event.
-/// @param run_in_standby Whether the event channel should run in standby sleep mode.
-/// @param asynchronous Whether the event should use the asynchronous path or the synchronous path.
+/**
+ *  @brief Configures an event channel to route an event from a generator to a user.
+ *  @param channel The event channel to configure. The number of channels varies by device, but all should have at least six channels.
+ *  @param generator The event generator, or the source of the event.
+ *  @param user The event user, or the peripheral that will receive the event.
+ *  @param run_in_standby Whether the event channel should run in standby sleep mode.
+ *  @param asynchronous Whether the event should use the asynchronous path or the synchronous path.
+ */
 void evsys_configure_channel(uint8_t channel, uint8_t generator, uint8_t user, bool run_in_standby, bool asynchronous);

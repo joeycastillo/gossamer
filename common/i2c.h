@@ -27,16 +27,16 @@ typedef enum {
 } i2c_result_t;
 
 /**
- * @brief Initializes the I2C peripheral for a board with defined SDA/SCL pins.
- *        Defaults to a bus speed of 100kHz.
- * @details This function will only work if a board has pins named SDA and SCL,
- *          and relevant definitions for I2C_SERCOM. If you don't have these
- *          definitions, the build will fail at  link time.
+ * @brief Initializes the I2C peripheral for a board with a defined I2C_SERCOM.
+ * @details This function will set up the I2C peripheral with a bus speed of 100kHz.
+ * @note You are responsible for setting the appropriate pin mux for the SDA and SCL pins.
+ *       This function does not know which pins you intend to use, or whether they are on
+ *       the SERCOM or SERCOM_ALT pin mux.
  */
 void i2c_init(void);
 
 /**
- * @brief Enables the I2C peripheral for a board with defined SDA/SCL pins.
+ * @brief Enables the I2C peripheral for a board with a defined I2C_SERCOM.
  */
 void i2c_enable(void);
 

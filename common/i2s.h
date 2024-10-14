@@ -40,6 +40,14 @@ typedef enum {
     I2S_MODE_LEFT_JUSTIFIED,
 } i2s_mode_t;
 
+/**
+ * @brief Initializes the I2S peripheral.
+ * @param instance The I2S peripheral instance to initialize.
+ * @param sampleRate The sample rate to use.
+ * @param bitsPerSample The number of bits per sample.
+ * @param mode The I2S mode to use. @see i2s_mode_t
+ * @note This function only initializes the I2S peripheral. You must configure the pins yourself.
+ */
 void i2s_init(uint8_t instance, uint16_t sampleRate, uint8_t bitsPerSample, i2s_mode_t mode);
 
 void i2s_enable_receiver(uint8_t instance);

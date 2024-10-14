@@ -83,7 +83,6 @@ typedef enum {
  * @brief Initializes the SLCD peripheral, but does not enable it.
  * @details This function sets up the SLCD peripheral with some defaults:
  *          * LCD runs in standby
- *          * Clocked with the ultra low power 32kHz oscillator
  *          * Lowest possible contrast level (2.45 volts)
  *          * Uses the low power waveform
  *          * Charge pump refresh at 250Hz (slowest option)

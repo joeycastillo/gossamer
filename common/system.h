@@ -108,8 +108,8 @@ uint32_t get_cpu_frequency(void);
   *       they are configured, to set critical timing-related parameters like baud
   *       rate or period. If you change the CPU frequency after setting up these
   *       peripherals and then attempt to use them, they will very likely behave in
-  *       unexpected ways. Thus you should disable any peripherals that depend on
-  *       GCLK0 before calling set_cpu_frequency, and then re-enable them after.
+  *       unexpected ways. Thus you should de-init any peripherals that depend on
+  *       GCLK0 before calling set_cpu_frequency, and then re-init them after.
   */
 bool set_cpu_frequency(uint32_t freq);
 
