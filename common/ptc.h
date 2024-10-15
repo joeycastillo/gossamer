@@ -1,7 +1,4 @@
-/** 
- * @file ptc.h
- * @brief Peripheral Touch Controller
- */
+////< @file ptc.h
 /*
  * FreeTouch, a QTouch-compatible library - tested on ATSAMD21 only!
  * The MIT License (MIT)
@@ -32,6 +29,13 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "sam.h"
+
+/**
+ * @addtogroup ptc Peripheral Touch Controller
+ * @brief Functions for configuring and using the Peripheral Touch Controller.
+ * @details Based on Adafruit's FreeTouch library.
+ * @{
+ */ 
 
 #ifdef _SAMD21_
 #include "component/samd21_ptc_component.h"
@@ -111,3 +115,5 @@ void ptc_enable(uint8_t channel);
 uint16_t ptc_get_value(uint8_t channel);
 
 #endif
+
+/** @} */

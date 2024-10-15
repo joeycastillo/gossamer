@@ -1,12 +1,15 @@
-/** 
- * @file delay.h
- * @brief Delay routines
- */
+////< @file delay.h
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
 
 #pragma once
+
+/**
+ * @brief delay Delay routines
+ * @brief Functions for delaying execution using the SYSTICK peripheral.
+ * @{
+ */ 
 
 /**
  * @brief Initializes the system tick peripheral. This is required to use the delay functions.

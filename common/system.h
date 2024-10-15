@@ -1,7 +1,3 @@
-/** 
- * @file system.h
- * @brief Gossamer system routines
- */
 /*
  * MIT License
  *
@@ -74,7 +70,12 @@ extern const uint8_t Num_SERCOM_Instances;
 
 ////< @file system.h
 
-/// @{
+/**
+ * @addtogroup system System Internals
+ * @brief Functions for configuring the system and putting it in standby mode.
+ * @{
+ */ 
+
 /** @brief Initializes the system clocks and performs any required system-wide setup.
   * @details Gossamer aims for consistency at system startup, no matter which
   *          chip you are working with. To that end:
@@ -130,4 +131,4 @@ void _enable_48mhz_gclk1(void);
   */
 void _enter_standby_mode(void);
 
-/// @}
+/** @} */

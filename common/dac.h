@@ -1,7 +1,4 @@
-/** 
- * @file dac.h
- * @brief Digital to Analog Converter
- */
+////< @file dac.h
 /*
  * MIT License
  *
@@ -30,6 +27,12 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+
+/**
+ * @addtogroup dac Digital to Analog Converter
+ * @brief Functions for configuring and using the DAC peripheral.
+ * @{
+ */ 
 
 // channel mask enum for dac_enable
 typedef enum {
@@ -69,3 +72,5 @@ void dac_set_analog_value(uint16_t channel, uint16_t value);
  * @warning Currently only supports the DAC on VOUT[0]
  */
 void dac_disable(uint16_t channel);
+
+/** @} */

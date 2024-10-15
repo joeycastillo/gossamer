@@ -1,7 +1,4 @@
-/**
- * @file slcd.h
- * @brief Segment Liquid Crystal Display (SLCD) peripheral driver (SAM L22 only)
- */
+////< @file slcd.h
 /*
  * MIT License
  *
@@ -32,6 +29,12 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include "system.h"
+
+/**
+ * @addtogroup slcd Segment LCD driver
+ * @brief Functions for configuring and using the SAM L22's Segment LCD peripheral.
+ * @{
+ */ 
 
 #ifdef SLCD
 
@@ -233,3 +236,5 @@ void slcd_disable(void);
 
 
 #endif // SLCD
+
+/** @} */

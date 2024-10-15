@@ -1,7 +1,4 @@
-/** 
- * @file eic.h
- * @brief External Interrupt Controller
- */
+////< @file eic.h
 /*
  * MIT License
  *
@@ -30,6 +27,12 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+
+/**
+ * @addtogroup eic External Interrupt Controller
+ * @brief Functions for configuring and using the External Interrupt Controller.
+ * @{
+ */ 
 
 ///@brief An enum defining the types of interrupt trigger you wish to scan for.
 typedef enum eic_interrupt_trigger_t {
@@ -93,3 +96,5 @@ void eic_configure_callback(eic_cb_t callback);
 /** @brief Disables the external interrupt controller.
   */
 void eic_disable(void);
+
+/** @} */

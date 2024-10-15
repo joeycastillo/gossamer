@@ -1,7 +1,4 @@
-/** 
- * @file app.h
- * @brief Gossamer application framework
- */
+////< @file app.h
 /*
  * MIT License
  *
@@ -35,6 +32,14 @@
 #include "sam.h"
 #include "pins.h"
 
+/** @addtogroup app Gossamer application framework
+  * @brief This section describes the application framework that you will use to write your firmware.
+  * @details All Gossamer applications are built by implementing the three functions described in this section.
+  *          There is an optional fourth function that relates to the SAM L21 and L22's BACKUP mode, 
+  *          but you do not need to implement it unless you are using the BACKUP mode functionality.
+  * @{
+  */
+
 /** @brief A function you will implement to initialize your application's low-
   *        level setup. The app_init function is called after system clocks are
   *        initialized, and before anything else.
@@ -45,9 +50,9 @@
   *          some peripherals before entering STANDBY mode, and re-enable them
   *          after waking up. In essence, you should set up anything that will
   *          run forever in app_init, whereas anything that could get turned off
-  *          in the course of execution should be set up in app_setup.
-  * @note If your application plans to use the real-time clock perhiperal, you
-  *       probably want to call the `rtc_init` function here.
+  *          in the course of execution should be set up in app_setup. If your
+  *          application plans to use the real-time clock perhiperal, you probably
+  *          want to call the `rtc_init` function here.
   */
 void app_init(void);
 
@@ -87,3 +92,5 @@ bool app_loop(void);
  *         any other USB-related tasks you need to run.
 */
 void yield(void);
+
+/** @} */

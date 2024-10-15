@@ -1,7 +1,4 @@
-/**
- * @file i2s.h
- * @brief Inter-IC Sound interface (SAM D21 only)
- */
+////< @file i2s.h
 /*
  * MIT License
  *
@@ -32,6 +29,12 @@
 #include <stdbool.h>
 #include "sam.h"
 
+/**
+ * @addtogroup i2s Inter-IC Sound interface
+ * @brief Functions for configuring and using the I2S peripheral (SAM D21 only).
+ * @{
+ */ 
+
 #ifdef I2S
 
 typedef enum {
@@ -53,3 +56,5 @@ void i2s_init(uint8_t instance, uint16_t sampleRate, uint8_t bitsPerSample, i2s_
 void i2s_enable_receiver(uint8_t instance);
 
 #endif
+
+/** @} */

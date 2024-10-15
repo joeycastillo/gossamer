@@ -1,7 +1,4 @@
-/** 
- * @file opamp.h
- * @brief Operational Amplifier Peripheral
- */
+////< @file opamp.h
 /*
  * MIT License
  *
@@ -30,6 +27,12 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+
+/**
+ * @addtogroup opamp Operational Amplifier
+ * @brief Functions for configuring and using the operational amplifier on the SAM L21.
+ * @{
+ */ 
 
 #ifdef OPAMP
 
@@ -170,3 +173,5 @@ void opamp_set_analog_connection(uint16_t instance, bool connected);
 void opamp_disable(uint16_t instance);
 
 #endif
+
+/** @} */

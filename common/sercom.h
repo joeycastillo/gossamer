@@ -1,7 +1,3 @@
-/**
- * @file sercom.h
- * @brief Private functions for helping with SERCOM management.
- */
 /*
  * MIT License
  *

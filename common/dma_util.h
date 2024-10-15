@@ -1,5 +1,4 @@
-#ifndef DMA_UTIL_H_INCLUDED
-#define DMA_UTIL_H_INCLUDED
+#pragma once
 
 #include "sam.h"
 
@@ -106,5 +105,3 @@ typedef enum {
 } dma_status_t;
 
 #endif
-
-#endif // DMA_UTIL_H_INCLUDED

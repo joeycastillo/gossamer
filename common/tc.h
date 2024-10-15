@@ -1,7 +1,4 @@
-/** 
- * @file tc.h
- * @brief Timer/Counter Peripheral
- */
+////< @file tc.h
 /*
  * MIT License
  *
@@ -32,6 +29,12 @@
 #include <stdbool.h>
 #include "sam.h"
 #include "system.h"
+
+/**
+ * @addtogroup tc Timer/Counter
+ * @brief Functions for configuring and using the Timer/Counter peripherals.
+ * @{
+ */ 
 
 typedef enum {
     TC_PRESCALER_DIV1 = 0,
@@ -291,3 +294,5 @@ void tc_retrigger(uint8_t instance);
   * @param instance The TC peripheral instance as numbered in the data sheet, or 0.
   */
 void tc_disable(uint8_t instance);
+
+/** @} */

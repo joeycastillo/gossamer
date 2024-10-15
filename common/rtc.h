@@ -1,7 +1,4 @@
-/** 
- * @file rtc.h
- * @brief Real-Time Clock
- */
+////< @file rtc.h
 /*
  * MIT License
  *
@@ -30,6 +27,13 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+
+/**
+ * @addtogroup rtc Real-Time Clock
+ * @brief Functions for configuring and using the Real-Time Clock peripheral.
+ * @details Gossamer supports use of the RTC peripheral in MODE2 (calendar) mode only.
+ * @{
+ */ 
 
 #define RTC_REFERENCE_YEAR (2020)
 
@@ -102,3 +106,5 @@ void rtc_disable_alarm_interrupt(void);
   *                 of the RTC peripheral's INTFLAG register.
   */
 void rtc_configure_callback(rtc_cb_t callback);
+
+/** @} */

@@ -1,7 +1,4 @@
-/** 
- * @file adc.h
- * @brief Analog to Digital Converter
- */
+////< @file adc.h
 /* 
  * MIT License
  *
@@ -32,6 +29,11 @@
 #include <stdbool.h>
 
 
+/**
+ * @addtogroup adc Analog to Digital Converter
+ * @brief Functions for using the ADC peripheral
+ * @{
+ */ 
 /**
  * @brief Initializes the ADC peripheral, but does not enable it.
  * @details This function sets up some sensible defaults for basic use cases:
@@ -86,3 +88,5 @@ uint16_t adc_get_analog_value_for_channel(uint8_t channel);
  * @brief Disables the ADC peripheral
  */
 void adc_disable(void);
+
+/** @} */

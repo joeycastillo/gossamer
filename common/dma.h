@@ -1,3 +1,4 @@
+////< @file dma.h
 /*
  * MIT License
  *
@@ -34,6 +35,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "dma_util.h"
+
+/**
+ * @addtogroup dma Direct Memory Access Controller
+ * @brief WIP functions for configuring and using the Direct Memory Access controller.
+ * @{
+ */ 
 
 #ifndef _SAMD51_
 
@@ -104,3 +111,5 @@ DmacDescriptor *dma_add_descriptor(gossamer_dma_job_t *dmaJob, void *src, void *
 bool dma_start_job(gossamer_dma_job_t *dmaJob);
 
 #endif
+
+/** @} */

@@ -1,16 +1,26 @@
-/**
- * @file uart.h
- * @brief UART Peripheral
- * @details The UART peripheral is used for serial communication over TX and RX pins.
- *          Note that Gossaermer's UART implementation is interrupt-driven, which is
- *          different from the SPI and I2C peripherals. If you want to use the UART,
- *          you MUST implement the following function, replacing 'N' with the SERCOM
- *          number you are using:
- *              ```void irq_handler_sercomN(void) { uart_irq_handler(N); }```
- *          This interrupt handler will allow the UART to buffer incoming data to a
- *          FIFO, which is what you're actually reading from when you call `uart_read`.
- * @warning If you don't implement the interrupt handler, your application will hang,
- *          and you'll be confused until you read this line! (or in my case, write it)
+////< @file uart.h
+/* 
+ * MIT License
+ *
+ * Copyright (c) 2024 Joey Castillo
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 
 #pragma once
@@ -19,6 +29,22 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+/**
+ * @addtogroup uart UART Peripheral
+ * @brief The UART peripheral is used for serial communication over TX and RX pins.
+ * @details Note that Gossaermer's UART implementation is interrupt-driven, which is
+ *          different from the SPI and I2C peripherals. If you want to use the UART,
+ *          you MUST implement the following function, replacing 'N' with the SERCOM
+ *          number you are using:
+ *              ```void irq_handler_sercomN(void) { uart_irq_handler(N); }```
+ *          This interrupt handler will allow the UART to buffer incoming data to a
+ *          FIFO, which is what you're actually reading from when you call `uart_read`.
+ * @warning If you don't implement the interrupt handler, your application will hang,
+ *          and you'll be confused until you read this line! (or in my case, write it)
+ * @{
+ */ 
+
+/// @brief UART transmit pinout options
 typedef enum {
     UART_TXPO_0 = 0,
     UART_TXPO_2,
@@ -26,6 +52,7 @@ typedef enum {
     UART_TXPO_NONE = 0xff
 } uart_txpo_t;
 
+/// @brief UART receive pinout options
 typedef enum {
     UART_RXPO_0 = 0,
     UART_RXPO_1,
@@ -153,3 +180,5 @@ void uart_disable_instance(uint8_t sercom);
  * @param sercom SERCOM number
 */
 void uart_irq_handler(uint8_t sercom);
+
+/** @} */

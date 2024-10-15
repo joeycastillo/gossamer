@@ -1,7 +1,4 @@
-/**
- * @file spi.h
- * @brief SPI Peripheral
- */
+////< @file spi.h
 /*
     Cribbed from the Castor & Pollux Gemini firmware:
     https://github.com/wntrblm/Castor_and_Pollux/
@@ -15,6 +12,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
+
+/**
+ * @addtogroup spi SPI Peripheral
+ * @brief The SPI peripheral is used for synchronous serial communication with other devices.
+ * @{
+ */ 
 
 typedef enum {
     SPI_MODE_PERIPHERAL = 2,
@@ -91,3 +94,5 @@ uint8_t spi_transfer_instance(uint8_t sercom, uint8_t data);
  * @param sercom The SERCOM instance to disable.
  */
 void spi_disable_instance(uint8_t sercom);
+
+/** @} */

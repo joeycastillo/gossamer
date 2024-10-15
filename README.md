@@ -1,4 +1,4 @@
-/// @mainpage
+@title README
 
 gossamer: a very lightweight firmware framework for SAMD and SAML chips
 =======================================================================

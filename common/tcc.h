@@ -1,7 +1,4 @@
-/** 
- * @file tcc.h
- * @brief Timer/Counter for Control Applications (TCC) Peripheral
- */
+////< @file tcc.h
 /*
  * MIT License
  *
@@ -31,6 +28,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "sam.h"
+
+/**
+ * @addtogroup tcc Timer/Counter for Control Applications
+ * @brief Functions for configuring and using the TCC peripheral, a more advanced timer/counter.
+ * @{
+ */ 
 
 typedef enum {
     TCC_PRESCALER_DIV1 = 0,
@@ -233,3 +236,5 @@ void tcc_update(uint8_t instance);
   * @param instance The TCC peripheral instance as numbered in the data sheet, or 0.
   */
 void tcc_disable(uint8_t instance);
+
+/** @} */

@@ -1,3 +1,4 @@
+////< @file usb.h
 /* 
  * MIT License
  *
@@ -29,6 +30,13 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "tusb.h"
+
+/**
+ * @addtogroup usb Universal Serial Bus
+ * @brief Functions for configuring and using the USB peripheral.
+ * @details Gossamer uses the TinyUSB stack for USB support.
+ * @{
+ */ 
 
 /** @brief Initializes the USB preipheral, and assigns the USB pins to their
  *         relevant functions. In the process, this function also sets up the
@@ -70,5 +78,7 @@ bool usb_is_enabled(void);
  * @note Has not been extensively tested, TinyUSB may not like this.
  */
 void usb_disable(void);
+
+/** @} */
 
 #endif

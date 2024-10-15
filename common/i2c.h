@@ -1,7 +1,4 @@
-/** 
- * @file i2c.h
- * @brief I2C Peripheral
- */
+////< @file i2c.h
 /*
     Cribbed from the Castor & Pollux Gemini firmware:
     https://github.com/wntrblm/Castor_and_Pollux/
@@ -17,6 +14,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
+
+/**
+ * @addtogroup i2c Inter-IC Communications Peripheral
+ * @brief The I2C peripheral is used for communication with I2C devices over SDA and SCL pins.
+ * @{
+ */ 
 
 typedef enum {
     I2C_RESULT_SUCCESS = 0,
@@ -100,3 +103,5 @@ i2c_result_t i2c_read_instance(uint8_t sercom, uint8_t address, uint8_t* data, s
  * @param sercom The SERCOM of the I2C peripheral, as numbered in the data sheet.
  */
 void i2c_disable_instance(uint8_t sercom);
+
+/** @} */
