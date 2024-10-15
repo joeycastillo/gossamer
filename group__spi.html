@@ -103,10 +103,6 @@ $(document).ready(function(){initNavTree('group__spi.html',''); initResizable();
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:gac4b206a51636d91c5cffcbcee458c3cb" id="r_gac4b206a51636d91c5cffcbcee458c3cb"><td class="memItemLeft" align="right" valign="top"><a id="gac4b206a51636d91c5cffcbcee458c3cb" name="gac4b206a51636d91c5cffcbcee458c3cb"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>spi_mode_t</b> { <b>SPI_MODE_PERIPHERAL</b> = 2
-, <b>SPI_MODE_CONTROLLER</b> = 3
- }</td></tr>
-<tr class="separator:gac4b206a51636d91c5cffcbcee458c3cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6a59b1c0553025b0573e017528952890" id="r_ga6a59b1c0553025b0573e017528952890"><td class="memItemLeft" align="right" valign="top"><a id="ga6a59b1c0553025b0573e017528952890" name="ga6a59b1c0553025b0573e017528952890"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>spi_dopo_t</b> { <b>SPI_DOPO_0_SCK_1</b> = 0
 , <b>SPI_DOPO_2_SCK_3</b>
 , <b>SPI_DOPO_3_SCK_1</b>
@@ -126,23 +122,23 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga48ef10ade34f68b96d36dee03ebc4415" id="r_ga48ef10ade34f68b96d36dee03ebc4415"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spi.html#ga48ef10ade34f68b96d36dee03ebc4415">spi_init</a> (spi_mode_t mode, uint32_t baud)</td></tr>
-<tr class="memdesc:ga48ef10ade34f68b96d36dee03ebc4415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the SPI peripheral for a board with a defined SPI_SERCOM.  <br /></td></tr>
-<tr class="separator:ga48ef10ade34f68b96d36dee03ebc4415"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa2b2013ee668e73a427b2a99da1ca47a" id="r_gaa2b2013ee668e73a427b2a99da1ca47a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spi.html#gaa2b2013ee668e73a427b2a99da1ca47a">spi_init</a> (uint32_t baud)</td></tr>
+<tr class="memdesc:gaa2b2013ee668e73a427b2a99da1ca47a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the SPI SERCOM as a controller for a board with a defined SPI_SERCOM.  <br /></td></tr>
+<tr class="separator:gaa2b2013ee668e73a427b2a99da1ca47a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga72cf41d2f19954fefd27f681d6b39532" id="r_ga72cf41d2f19954fefd27f681d6b39532"><td class="memItemLeft" align="right" valign="top"><a id="ga72cf41d2f19954fefd27f681d6b39532" name="ga72cf41d2f19954fefd27f681d6b39532"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>spi_enable</b> (void)</td></tr>
-<tr class="memdesc:ga72cf41d2f19954fefd27f681d6b39532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the SPI peripheral for a board with a defined SPI_SERCOM. <br /></td></tr>
+<tr class="memdesc:ga72cf41d2f19954fefd27f681d6b39532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the SPI SERCOM for a board with a defined SPI_SERCOM. <br /></td></tr>
 <tr class="separator:ga72cf41d2f19954fefd27f681d6b39532"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga50084189a01c481aebe4e4d1e1968910" id="r_ga50084189a01c481aebe4e4d1e1968910"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spi.html#ga50084189a01c481aebe4e4d1e1968910">spi_transfer</a> (uint8_t data)</td></tr>
 <tr class="memdesc:ga50084189a01c481aebe4e4d1e1968910"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfers a byte over SPI for a board with a defined SPI_SERCOM.  <br /></td></tr>
 <tr class="separator:ga50084189a01c481aebe4e4d1e1968910"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa8d2d6d1632faf9abbe03c3ed90d54d4" id="r_gaa8d2d6d1632faf9abbe03c3ed90d54d4"><td class="memItemLeft" align="right" valign="top"><a id="gaa8d2d6d1632faf9abbe03c3ed90d54d4" name="gaa8d2d6d1632faf9abbe03c3ed90d54d4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>spi_disable</b> (void)</td></tr>
-<tr class="memdesc:gaa8d2d6d1632faf9abbe03c3ed90d54d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the SPI peripheral for a board with a defined SPI_SERCOM. <br /></td></tr>
+<tr class="memdesc:gaa8d2d6d1632faf9abbe03c3ed90d54d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the SPI SERCOM for a board with a defined SPI_SERCOM. <br /></td></tr>
 <tr class="separator:gaa8d2d6d1632faf9abbe03c3ed90d54d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaee8eaa5f597d774c4fc4a6f7d6d08305" id="r_gaee8eaa5f597d774c4fc4a6f7d6d08305"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spi.html#gaee8eaa5f597d774c4fc4a6f7d6d08305">spi_init_instance</a> (uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, spi_mode_t mode, uint32_t baud)</td></tr>
-<tr class="memdesc:gaee8eaa5f597d774c4fc4a6f7d6d08305"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a specific SERCOM instance for SPI.  <br /></td></tr>
-<tr class="separator:gaee8eaa5f597d774c4fc4a6f7d6d08305"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga236f4397be3ed06d5158e8dbfe387a29" id="r_ga236f4397be3ed06d5158e8dbfe387a29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spi.html#ga236f4397be3ed06d5158e8dbfe387a29">spi_init_instance</a> (uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, uint32_t baud)</td></tr>
+<tr class="memdesc:ga236f4397be3ed06d5158e8dbfe387a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a specific SERCOM instance as an SPI controller.  <br /></td></tr>
+<tr class="separator:ga236f4397be3ed06d5158e8dbfe387a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8f1915874847b4564ab22039f2b8762f" id="r_ga8f1915874847b4564ab22039f2b8762f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spi.html#ga8f1915874847b4564ab22039f2b8762f">spi_enable_instance</a> (uint8_t sercom)</td></tr>
 <tr class="memdesc:ga8f1915874847b4564ab22039f2b8762f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables a specific SERCOM instance for SPI.  <br /></td></tr>
 <tr class="separator:ga8f1915874847b4564ab22039f2b8762f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,6 +151,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>spi_disable</b> (void
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>The SPI peripheral is used for synchronous serial communication with other devices. </p>
+<p>Gossamer's SPI implementation only supports SPI controller mode, not peripheral mode. Your DOPO pin in this case is COPI/MOSI, and your DIPO pin is CIPO/MISO. </p>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga3856b233dc7584708ab420d41c4816fe" name="ga3856b233dc7584708ab420d41c4816fe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga3856b233dc7584708ab420d41c4816fe">&#9670;&#160;</a></span>spi_disable_instance()</h2>
@@ -208,8 +205,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>spi_disable</b> (void
 
 </div>
 </div>
-<a id="ga48ef10ade34f68b96d36dee03ebc4415" name="ga48ef10ade34f68b96d36dee03ebc4415"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga48ef10ade34f68b96d36dee03ebc4415">&#9670;&#160;</a></span>spi_init()</h2>
+<a id="gaa2b2013ee668e73a427b2a99da1ca47a" name="gaa2b2013ee668e73a427b2a99da1ca47a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa2b2013ee668e73a427b2a99da1ca47a">&#9670;&#160;</a></span>spi_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -217,37 +214,25 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>spi_disable</b> (void
         <tr>
           <td class="memname">void spi_init </td>
           <td>(</td>
-          <td class="paramtype">spi_mode_t&#160;</td>
-          <td class="paramname"><em>mode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>baud</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>baud</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initializes the SPI peripheral for a board with a defined SPI_SERCOM. </p>
+<p>Initializes the SPI SERCOM as a controller for a board with a defined SPI_SERCOM. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mode</td><td>SPI_MODE_CONTROLLER or SPI_MODE_PERIPHERAL </td></tr>
     <tr><td class="paramname">baud</td><td>The desired baud rate </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>Warning</dt><dd>SPI_MODE_PERIPHERAL is untested! </dd></dl>
 
 </div>
 </div>
-<a id="gaee8eaa5f597d774c4fc4a6f7d6d08305" name="gaee8eaa5f597d774c4fc4a6f7d6d08305"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaee8eaa5f597d774c4fc4a6f7d6d08305">&#9670;&#160;</a></span>spi_init_instance()</h2>
+<a id="ga236f4397be3ed06d5158e8dbfe387a29" name="ga236f4397be3ed06d5158e8dbfe387a29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga236f4397be3ed06d5158e8dbfe387a29">&#9670;&#160;</a></span>spi_init_instance()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -273,12 +258,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>spi_disable</b> (void
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">spi_mode_t&#160;</td>
-          <td class="paramname"><em>mode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">uint32_t&#160;</td>
           <td class="paramname"><em>baud</em>&#160;</td>
         </tr>
@@ -290,7 +269,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>spi_disable</b> (void
       </table>
 </div><div class="memdoc">
 
-<p>Initializes a specific SERCOM instance for SPI. </p>
+<p>Initializes a specific SERCOM instance as an SPI controller. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sercom</td><td>The SERCOM instance to initialize. </td></tr>
@@ -308,12 +287,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>spi_disable</b> (void
 <dl class="section see"><dt>See also</dt><dd>spi_dipo_t </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mode</td><td>SPI_MODE_CONTROLLER or SPI_MODE_PERIPHERAL </td></tr>
     <tr><td class="paramname">baud</td><td>The desired baud rate </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>Warning</dt><dd>SPI_MODE_PERIPHERAL is untested! </dd></dl>
 
 </div>
 </div>
