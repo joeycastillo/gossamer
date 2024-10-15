@@ -16,13 +16,10 @@
 /**
  * @addtogroup spi SPI Peripheral
  * @brief The SPI peripheral is used for synchronous serial communication with other devices.
+ * @details Gossamer's SPI implementation only supports SPI controller mode, not peripheral mode.
+ *          Your DOPO pin in this case is COPI/MOSI, and your DIPO pin is CIPO/MISO.
  * @{
  */ 
-
-typedef enum {
-    SPI_MODE_PERIPHERAL = 2,
-    SPI_MODE_CONTROLLER = 3,
-} spi_mode_t;
 
 typedef enum {
     SPI_DOPO_0_SCK_1 = 0,
@@ -40,15 +37,13 @@ typedef enum {
 } spi_dipo_t;
 
 /**
- * @brief Initializes the SPI peripheral for a board with a defined SPI_SERCOM.
- * @param mode SPI_MODE_CONTROLLER or SPI_MODE_PERIPHERAL
+ * @brief Initializes the SPI SERCOM as a controller for a board with a defined SPI_SERCOM.
  * @param baud The desired baud rate
- * @warning SPI_MODE_PERIPHERAL is untested!
  */
-void spi_init(spi_mode_t mode, uint32_t baud);
+void spi_init(uint32_t baud);
 
 /**
- * @brief Enables the SPI peripheral for a board with a defined SPI_SERCOM.
+ * @brief Enables the SPI SERCOM for a board with a defined SPI_SERCOM.
  */
 void spi_enable(void);
 
@@ -60,20 +55,18 @@ void spi_enable(void);
 uint8_t spi_transfer(uint8_t data);
 
 /**
- * @brief Disables the SPI peripheral for a board with a defined SPI_SERCOM.
+ * @brief Disables the SPI SERCOM for a board with a defined SPI_SERCOM.
  */
 void spi_disable(void);
 
 /**
- * @brief Initializes a specific SERCOM instance for SPI.
+ * @brief Initializes a specific SERCOM instance as an SPI controller.
  * @param sercom The SERCOM instance to initialize.
  * @param dopo The data out pinout. @see spi_dopo_t
  * @param dipo The data in pinout. @see spi_dipo_t
- * @param mode SPI_MODE_CONTROLLER or SPI_MODE_PERIPHERAL
  * @param baud The desired baud rate
- * @warning SPI_MODE_PERIPHERAL is untested!
  */
-void spi_init_instance(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, spi_mode_t mode, uint32_t baud);
+void spi_init_instance(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, uint32_t baud);
 
 /**
  * @brief Enables a specific SERCOM instance for SPI.

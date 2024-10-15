@@ -13,7 +13,7 @@
 
 #if defined(SPI_SERCOM)
 
-void spi_init(spi_mode_t mode, uint32_t baud) {
+void spi_init(uint32_t baud) {
 }
 
 void spi_enable(void) {
@@ -28,7 +28,7 @@ void spi_disable(void) {
 
 #endif
 
-void spi_init_instance(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, spi_mode_t mode, uint32_t baud) {
+void spi_init_instance(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, uint32_t baud) {
 }
 
 void spi_enable_instance(uint8_t sercom) {

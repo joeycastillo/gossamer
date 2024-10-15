@@ -14,8 +14,8 @@
 
 #if defined(SPI_SERCOM)
 
-void spi_init(spi_mode_t mode, uint32_t baud) {
-    spi_init_instance(SPI_SERCOM, SPI_SERCOM_DOPO, SPI_SERCOM_DIPO, mode, baud);
+void spi_init(uint32_t baud) {
+    spi_init_instance(SPI_SERCOM, SPI_SERCOM_DOPO, SPI_SERCOM_DIPO, baud);
 }
 
 void spi_enable(void) {
@@ -32,7 +32,7 @@ void spi_disable(void) {
 
 #endif
 
-void spi_init_instance(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, spi_mode_t mode, uint32_t baud) {
+void spi_init_instance(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, uint32_t baud) {
     Sercom* SERCOM = SERCOM_Peripherals[sercom].sercom;
 
     _sercom_clock_setup(sercom);
@@ -50,7 +50,7 @@ void spi_init_instance(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, spi_mod
     } else {
         SERCOM->SPI.CTRLB.bit.RXEN = 1;
     }
-    SERCOM->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_MODE(mode) |
+    SERCOM->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_MODE(3) |
                             SERCOM_SPI_CTRLA_DOPO(dopo) |
                             SERCOM_SPI_CTRLA_DIPO(dipo);
 
