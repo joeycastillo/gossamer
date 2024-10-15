@@ -1,18 +1,14 @@
 var searchData=
 [
-  ['eic_2eh_0',['eic.h',['../eic_8h.html',1,'']]],
-  ['eic_5fconfigure_5fcallback_1',['eic_configure_callback',['../eic_8h.html#a5695270545c3f5b6a24682447108e6cd',1,'eic.c']]],
-  ['eic_5fconfigure_5fpin_2',['eic_configure_pin',['../eic_8h.html#a034f0e472fc0d955b11de053a263e8cd',1,'eic.c']]],
-  ['eic_5fdisable_3',['eic_disable',['../eic_8h.html#abaae85c8706e41bb2cc2b7aa7be956e6',1,'eic.c']]],
-  ['eic_5fdisable_5fevent_4',['eic_disable_event',['../eic_8h.html#a21e4b3925d449c25fe3831b167845161',1,'eic.c']]],
-  ['eic_5fdisable_5finterrupt_5',['eic_disable_interrupt',['../eic_8h.html#a48015b16099d943fad32302fad6114a1',1,'eic.c']]],
-  ['eic_5fenable_6',['eic_enable',['../eic_8h.html#afd8706ad3219397c91636524d2149eb0',1,'eic.c']]],
-  ['eic_5fenable_5fevent_7',['eic_enable_event',['../eic_8h.html#ae6a140e7799fec385ff48c97f399b7cf',1,'eic.c']]],
-  ['eic_5fenable_5finterrupt_8',['eic_enable_interrupt',['../eic_8h.html#a95932a1b8c5442120cd6caa7a5cb0733',1,'eic.c']]],
-  ['eic_5finit_9',['eic_init',['../eic_8h.html#ac66cb10fff656315b12df4248f798c41',1,'eic.c']]],
-  ['eic_5finterrupt_5ftrigger_5ft_10',['eic_interrupt_trigger_t',['../eic_8h.html#ac1fe47482a1a2c642408f50c2db9469f',1,'eic_interrupt_trigger_t:&#160;eic.h'],['../eic_8h.html#a2dcfd365c180eb12af23e9f125089244',1,'eic_interrupt_trigger_t:&#160;eic.h']]],
-  ['emscripten_20support_11',['Emscripten Support',['../index.html#autotoc_md5',1,'']]],
-  ['evsys_2eh_12',['evsys.h',['../evsys_8h.html',1,'']]],
-  ['evsys_5fconfigure_5fchannel_13',['evsys_configure_channel',['../evsys_8h.html#a506dcdef11267257fce99f6deffc4844',1,'evsys.c']]],
-  ['examples_14',['Examples',['../index.html#autotoc_md6',1,'']]]
+  ['dac_5fdisable_0',['dac_disable',['../group__dac.html#ga6b0e70e8bf5135e2f3491e87fcd804fe',1,'dac_disable(uint16_t channel):&#160;dac.c'],['../group__dac.html#ga6b0e70e8bf5135e2f3491e87fcd804fe',1,'dac_disable(uint16_t channel):&#160;dac.c']]],
+  ['dac_5fenable_1',['dac_enable',['../group__dac.html#ga27483fa712ea61a534f679e72ffba463',1,'dac_enable(dac_channel_mask_t channelmask):&#160;dac.c'],['../group__dac.html#ga27483fa712ea61a534f679e72ffba463',1,'dac_enable(dac_channel_mask_t channelmask):&#160;dac.c']]],
+  ['dac_5finit_2',['dac_init',['../group__dac.html#ga6e622fafee8436bf9cf9f6b120352e3c',1,'dac_init(void):&#160;dac.c'],['../group__dac.html#ga6e622fafee8436bf9cf9f6b120352e3c',1,'dac_init(void):&#160;dac.c']]],
+  ['dac_5fset_5fanalog_5fvalue_3',['dac_set_analog_value',['../group__dac.html#ga2b43d67fbe14479cc72c1119fb2b7a48',1,'dac_set_analog_value(uint16_t channel, uint16_t value):&#160;dac.c'],['../group__dac.html#ga2b43d67fbe14479cc72c1119fb2b7a48',1,'dac_set_analog_value(uint16_t channel, uint16_t value):&#160;dac.c']]],
+  ['digital_20converter_4',['Analog to Digital Converter',['../group__adc.html',1,'']]],
+  ['digital_20to_20analog_20converter_5',['Digital to Analog Converter',['../group__dac.html',1,'']]],
+  ['direct_20memory_20access_20controller_6',['Direct Memory Access Controller',['../group__dma.html',1,'']]],
+  ['dma_5fadd_5fdescriptor_7',['dma_add_descriptor',['../group__dma.html#ga3dca92a07f9089896f3673699863832f',1,'dma_add_descriptor(gossamer_dma_job_t *dmaJob, void *src, void *dst, uint32_t count, dma_beat_size_t size, dma_address_increment_t addressIncrement, dma_stepsize_t stepSize, dma_stepsel_t stepSel):&#160;dma.c'],['../group__dma.html#ga3dca92a07f9089896f3673699863832f',1,'dma_add_descriptor(gossamer_dma_job_t *dmaJob, void *src, void *dst, uint32_t count, dma_beat_size_t size, dma_address_increment_t addressIncrement, dma_stepsize_t stepSize, dma_stepsel_t stepSel):&#160;dma.c']]],
+  ['dma_5fconfigure_8',['dma_configure',['../group__dma.html#gab907281d8798c56cca6da3444d93a918',1,'dma_configure(gossamer_dma_job_t *dmaJob, uint8_t peripheralTrigger, dma_trigger_action_t triggerAction, dma_configuration_flags_t flags):&#160;dma.c'],['../group__dma.html#gab907281d8798c56cca6da3444d93a918',1,'dma_configure(gossamer_dma_job_t *dmaJob, uint8_t peripheralTrigger, dma_trigger_action_t triggerAction, dma_configuration_flags_t flags):&#160;dma.c']]],
+  ['dma_5finit_9',['dma_init',['../group__dma.html#ga1c9e133b825bded7bf8039c43b49d2c7',1,'dma_init(void):&#160;dma.c'],['../group__dma.html#ga1c9e133b825bded7bf8039c43b49d2c7',1,'dma_init(void):&#160;dma.c']]],
+  ['driver_10',['Segment LCD driver',['../group__slcd.html',1,'']]]
 ];

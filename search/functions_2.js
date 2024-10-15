@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['dac_5fdisable_0',['dac_disable',['../dac_8h.html#a6b0e70e8bf5135e2f3491e87fcd804fe',1,'dac.c']]],
-  ['dac_5fenable_1',['dac_enable',['../dac_8h.html#a27483fa712ea61a534f679e72ffba463',1,'dac.c']]],
-  ['dac_5finit_2',['dac_init',['../dac_8h.html#a6e622fafee8436bf9cf9f6b120352e3c',1,'dac.c']]],
-  ['dac_5fset_5fanalog_5fvalue_3',['dac_set_analog_value',['../dac_8h.html#a2b43d67fbe14479cc72c1119fb2b7a48',1,'dac.c']]],
-  ['delay_5finit_4',['delay_init',['../delay_8h.html#af3c040fe31e69be32855715a75e0cda4',1,'delay.c']]],
-  ['delay_5fms_5',['delay_ms',['../delay_8h.html#ad2dd6e794004b50917d231195c324ce5',1,'delay.c']]],
-  ['delay_5fus_6',['delay_us',['../delay_8h.html#aa17c6e82a9085391c696904957505621',1,'delay.c']]]
+  ['dac_5fdisable_0',['dac_disable',['../group__dac.html#ga6b0e70e8bf5135e2f3491e87fcd804fe',1,'dac_disable(uint16_t channel):&#160;dac.c'],['../group__dac.html#ga6b0e70e8bf5135e2f3491e87fcd804fe',1,'dac_disable(uint16_t channel):&#160;dac.c']]],
+  ['dac_5fenable_1',['dac_enable',['../group__dac.html#ga27483fa712ea61a534f679e72ffba463',1,'dac_enable(dac_channel_mask_t channelmask):&#160;dac.c'],['../group__dac.html#ga27483fa712ea61a534f679e72ffba463',1,'dac_enable(dac_channel_mask_t channelmask):&#160;dac.c']]],
+  ['dac_5finit_2',['dac_init',['../group__dac.html#ga6e622fafee8436bf9cf9f6b120352e3c',1,'dac_init(void):&#160;dac.c'],['../group__dac.html#ga6e622fafee8436bf9cf9f6b120352e3c',1,'dac_init(void):&#160;dac.c']]],
+  ['dac_5fset_5fanalog_5fvalue_3',['dac_set_analog_value',['../group__dac.html#ga2b43d67fbe14479cc72c1119fb2b7a48',1,'dac_set_analog_value(uint16_t channel, uint16_t value):&#160;dac.c'],['../group__dac.html#ga2b43d67fbe14479cc72c1119fb2b7a48',1,'dac_set_analog_value(uint16_t channel, uint16_t value):&#160;dac.c']]],
+  ['dma_5fadd_5fdescriptor_4',['dma_add_descriptor',['../group__dma.html#ga3dca92a07f9089896f3673699863832f',1,'dma_add_descriptor(gossamer_dma_job_t *dmaJob, void *src, void *dst, uint32_t count, dma_beat_size_t size, dma_address_increment_t addressIncrement, dma_stepsize_t stepSize, dma_stepsel_t stepSel):&#160;dma.c'],['../group__dma.html#ga3dca92a07f9089896f3673699863832f',1,'dma_add_descriptor(gossamer_dma_job_t *dmaJob, void *src, void *dst, uint32_t count, dma_beat_size_t size, dma_address_increment_t addressIncrement, dma_stepsize_t stepSize, dma_stepsel_t stepSel):&#160;dma.c']]],
+  ['dma_5fconfigure_5',['dma_configure',['../group__dma.html#gab907281d8798c56cca6da3444d93a918',1,'dma_configure(gossamer_dma_job_t *dmaJob, uint8_t peripheralTrigger, dma_trigger_action_t triggerAction, dma_configuration_flags_t flags):&#160;dma.c'],['../group__dma.html#gab907281d8798c56cca6da3444d93a918',1,'dma_configure(gossamer_dma_job_t *dmaJob, uint8_t peripheralTrigger, dma_trigger_action_t triggerAction, dma_configuration_flags_t flags):&#160;dma.c']]],
+  ['dma_5finit_6',['dma_init',['../group__dma.html#ga1c9e133b825bded7bf8039c43b49d2c7',1,'dma_init(void):&#160;dma.c'],['../group__dma.html#ga1c9e133b825bded7bf8039c43b49d2c7',1,'dma_init(void):&#160;dma.c']]]
 ];

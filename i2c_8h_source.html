@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -52,6 +56,23 @@ $(function() {
 $(document).ready(function() { init_codefold(0); });
 /* @license-end */
 </script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('i2c_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -73,73 +94,73 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html">common</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">i2c.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="i2c_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">    Cribbed from the Castor &amp; Pollux Gemini firmware:</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">    https://github.com/wntrblm/Castor_and_Pollux/</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">    Copyright (c) 2021 Alethea Katherine Flowers.</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">    Published under the standard MIT License.</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">    Full text available at: https://opensource.org/licenses/MIT</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">/* Routines for interacting with I2C devices. */</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    I2C_RESULT_SUCCESS = 0,</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    I2C_RESULT_ERR_ADDR_NACK = -1,</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    I2C_RESULT_ERR_BUSSTATE = -2,</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    I2C_RESULT_ERR_BUSERR = -3,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    I2C_RESULT_ERR_DATA_NACK = -4,</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>} i2c_result_t;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="i2c_8h.html#a5730d9445429351b9f750084c5cb5aae">   36</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="i2c_8h.html#a5730d9445429351b9f750084c5cb5aae">i2c_init</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="i2c_8h.html#a5a1923e2271df541e858cb4e05d7b895">   41</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="i2c_8h.html#a5a1923e2271df541e858cb4e05d7b895">i2c_enable</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="i2c_8h.html#a5e6b5b5c02987f6b23765799809d9b25">   49</a></span>i2c_result_t <a class="code hl_function" href="i2c_8h.html#a5e6b5b5c02987f6b23765799809d9b25">i2c_write</a>(uint8_t address, uint8_t* data, <span class="keywordtype">size_t</span> len);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="i2c_8h.html#ae5074c1f6733c42bf7ccbd771ad2496c">   57</a></span>i2c_result_t <a class="code hl_function" href="i2c_8h.html#ae5074c1f6733c42bf7ccbd771ad2496c">i2c_read</a>(uint8_t address, uint8_t* data, <span class="keywordtype">size_t</span> len);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="i2c_8h.html#abe70f8fe4c72329b89ec526c749f50d7">   62</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="i2c_8h.html#abe70f8fe4c72329b89ec526c749f50d7">i2c_disable</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keywordtype">void</span> <a class="code hl_function" href="i2c_8h.html#ae0163192e71ff834062fcb7591b01e29">i2c_init_instance</a>(uint8_t sercom, uint32_t baud);</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keywordtype">void</span> <a class="code hl_function" href="i2c_8h.html#a88da4919a13ca41408ae8eafdab3855f">i2c_enable_instance</a>(uint8_t sercom);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>i2c_result_t <a class="code hl_function" href="i2c_8h.html#a2f2ad75c678b2e0ebafd9c9686d38674">i2c_write_instance</a>(uint8_t sercom, uint8_t address, uint8_t* data, <span class="keywordtype">size_t</span> len);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>i2c_result_t <a class="code hl_function" href="i2c_8h.html#a64cffaf51a6050fb5e58cb35a52e5179">i2c_read_instance</a>(uint8_t sercom, uint8_t address, uint8_t* data, <span class="keywordtype">size_t</span> len);</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keywordtype">void</span> <a class="code hl_function" href="i2c_8h.html#a9cc8d8299e418b944243a96fa8adc996">i2c_disable_instance</a>(uint8_t sercom);</div>
-<div class="ttc" id="ai2c_8h_html_a2f2ad75c678b2e0ebafd9c9686d38674"><div class="ttname"><a href="i2c_8h.html#a2f2ad75c678b2e0ebafd9c9686d38674">i2c_write_instance</a></div><div class="ttdeci">i2c_result_t i2c_write_instance(uint8_t sercom, uint8_t address, uint8_t *data, size_t len)</div><div class="ttdoc">Writes data to an I2C device on the given SERCOM at the provided address.</div><div class="ttdef"><b>Definition</b> i2c.c:91</div></div>
-<div class="ttc" id="ai2c_8h_html_a5730d9445429351b9f750084c5cb5aae"><div class="ttname"><a href="i2c_8h.html#a5730d9445429351b9f750084c5cb5aae">i2c_init</a></div><div class="ttdeci">void i2c_init(void)</div><div class="ttdoc">Initializes the I2C peripheral for a board with a defined I2C_SERCOM.</div></div>
-<div class="ttc" id="ai2c_8h_html_a5a1923e2271df541e858cb4e05d7b895"><div class="ttname"><a href="i2c_8h.html#a5a1923e2271df541e858cb4e05d7b895">i2c_enable</a></div><div class="ttdeci">void i2c_enable(void)</div><div class="ttdoc">Enables the I2C peripheral for a board with a defined I2C_SERCOM.</div></div>
-<div class="ttc" id="ai2c_8h_html_a5e6b5b5c02987f6b23765799809d9b25"><div class="ttname"><a href="i2c_8h.html#a5e6b5b5c02987f6b23765799809d9b25">i2c_write</a></div><div class="ttdeci">i2c_result_t i2c_write(uint8_t address, uint8_t *data, size_t len)</div><div class="ttdoc">Writes data to an I2C device at the provided address.</div></div>
-<div class="ttc" id="ai2c_8h_html_a64cffaf51a6050fb5e58cb35a52e5179"><div class="ttname"><a href="i2c_8h.html#a64cffaf51a6050fb5e58cb35a52e5179">i2c_read_instance</a></div><div class="ttdeci">i2c_result_t i2c_read_instance(uint8_t sercom, uint8_t address, uint8_t *data, size_t len)</div><div class="ttdoc">Reads data from an I2C device on the given SERCOM at the provided address.</div><div class="ttdef"><b>Definition</b> i2c.c:144</div></div>
-<div class="ttc" id="ai2c_8h_html_a88da4919a13ca41408ae8eafdab3855f"><div class="ttname"><a href="i2c_8h.html#a88da4919a13ca41408ae8eafdab3855f">i2c_enable_instance</a></div><div class="ttdeci">void i2c_enable_instance(uint8_t sercom)</div><div class="ttdoc">Enables the I2C peripheral on the given SERCOM.</div><div class="ttdef"><b>Definition</b> i2c.c:83</div></div>
-<div class="ttc" id="ai2c_8h_html_a9cc8d8299e418b944243a96fa8adc996"><div class="ttname"><a href="i2c_8h.html#a9cc8d8299e418b944243a96fa8adc996">i2c_disable_instance</a></div><div class="ttdeci">void i2c_disable_instance(uint8_t sercom)</div><div class="ttdoc">Disables the I2C peripheral on the given SERCOM.</div><div class="ttdef"><b>Definition</b> i2c.c:190</div></div>
-<div class="ttc" id="ai2c_8h_html_abe70f8fe4c72329b89ec526c749f50d7"><div class="ttname"><a href="i2c_8h.html#abe70f8fe4c72329b89ec526c749f50d7">i2c_disable</a></div><div class="ttdeci">void i2c_disable(void)</div><div class="ttdoc">Disables the I2C peripheral for a board with defined SDA/SCL pins.</div></div>
-<div class="ttc" id="ai2c_8h_html_ae0163192e71ff834062fcb7591b01e29"><div class="ttname"><a href="i2c_8h.html#ae0163192e71ff834062fcb7591b01e29">i2c_init_instance</a></div><div class="ttdeci">void i2c_init_instance(uint8_t sercom, uint32_t baud)</div><div class="ttdoc">Initializes an I2C peripheral on the given SERCOM.</div><div class="ttdef"><b>Definition</b> i2c.c:44</div></div>
-<div class="ttc" id="ai2c_8h_html_ae5074c1f6733c42bf7ccbd771ad2496c"><div class="ttname"><a href="i2c_8h.html#ae5074c1f6733c42bf7ccbd771ad2496c">i2c_read</a></div><div class="ttdeci">i2c_result_t i2c_read(uint8_t address, uint8_t *data, size_t len)</div><div class="ttdoc">Reads data from an I2C device at the provided address.</div></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">    Cribbed from the Castor &amp; Pollux Gemini firmware:</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">    https://github.com/wntrblm/Castor_and_Pollux/</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">    Copyright (c) 2021 Alethea Katherine Flowers.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">    Published under the standard MIT License.</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">    Full text available at: https://opensource.org/licenses/MIT</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">/* Routines for interacting with I2C devices. */</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    I2C_RESULT_SUCCESS = 0,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    I2C_RESULT_ERR_ADDR_NACK = -1,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    I2C_RESULT_ERR_BUSSTATE = -2,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    I2C_RESULT_ERR_BUSERR = -3,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    I2C_RESULT_ERR_DATA_NACK = -4,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>} i2c_result_t;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="group__i2c.html#ga5730d9445429351b9f750084c5cb5aae">   39</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__i2c.html#ga5730d9445429351b9f750084c5cb5aae">i2c_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="group__i2c.html#ga5a1923e2271df541e858cb4e05d7b895">   44</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__i2c.html#ga5a1923e2271df541e858cb4e05d7b895">i2c_enable</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="group__i2c.html#ga5e6b5b5c02987f6b23765799809d9b25">   52</a></span>i2c_result_t <a class="code hl_function" href="group__i2c.html#ga5e6b5b5c02987f6b23765799809d9b25">i2c_write</a>(uint8_t address, uint8_t* data, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="group__i2c.html#gae5074c1f6733c42bf7ccbd771ad2496c">   60</a></span>i2c_result_t <a class="code hl_function" href="group__i2c.html#gae5074c1f6733c42bf7ccbd771ad2496c">i2c_read</a>(uint8_t address, uint8_t* data, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="group__i2c.html#gabe70f8fe4c72329b89ec526c749f50d7">   65</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__i2c.html#gabe70f8fe4c72329b89ec526c749f50d7">i2c_disable</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__i2c.html#gae0163192e71ff834062fcb7591b01e29">i2c_init_instance</a>(uint8_t sercom, uint32_t baud);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__i2c.html#ga88da4919a13ca41408ae8eafdab3855f">i2c_enable_instance</a>(uint8_t sercom);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>i2c_result_t <a class="code hl_function" href="group__i2c.html#ga2f2ad75c678b2e0ebafd9c9686d38674">i2c_write_instance</a>(uint8_t sercom, uint8_t address, uint8_t* data, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>i2c_result_t <a class="code hl_function" href="group__i2c.html#ga64cffaf51a6050fb5e58cb35a52e5179">i2c_read_instance</a>(uint8_t sercom, uint8_t address, uint8_t* data, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__i2c.html#ga9cc8d8299e418b944243a96fa8adc996">i2c_disable_instance</a>(uint8_t sercom);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="ttc" id="agroup__i2c_html_ga2f2ad75c678b2e0ebafd9c9686d38674"><div class="ttname"><a href="group__i2c.html#ga2f2ad75c678b2e0ebafd9c9686d38674">i2c_write_instance</a></div><div class="ttdeci">i2c_result_t i2c_write_instance(uint8_t sercom, uint8_t address, uint8_t *data, size_t len)</div><div class="ttdoc">Writes data to an I2C device on the given SERCOM at the provided address.</div><div class="ttdef"><b>Definition</b> i2c.c:91</div></div>
+<div class="ttc" id="agroup__i2c_html_ga5730d9445429351b9f750084c5cb5aae"><div class="ttname"><a href="group__i2c.html#ga5730d9445429351b9f750084c5cb5aae">i2c_init</a></div><div class="ttdeci">void i2c_init(void)</div><div class="ttdoc">Initializes the I2C peripheral for a board with a defined I2C_SERCOM.</div></div>
+<div class="ttc" id="agroup__i2c_html_ga5a1923e2271df541e858cb4e05d7b895"><div class="ttname"><a href="group__i2c.html#ga5a1923e2271df541e858cb4e05d7b895">i2c_enable</a></div><div class="ttdeci">void i2c_enable(void)</div><div class="ttdoc">Enables the I2C peripheral for a board with a defined I2C_SERCOM.</div></div>
+<div class="ttc" id="agroup__i2c_html_ga5e6b5b5c02987f6b23765799809d9b25"><div class="ttname"><a href="group__i2c.html#ga5e6b5b5c02987f6b23765799809d9b25">i2c_write</a></div><div class="ttdeci">i2c_result_t i2c_write(uint8_t address, uint8_t *data, size_t len)</div><div class="ttdoc">Writes data to an I2C device at the provided address.</div></div>
+<div class="ttc" id="agroup__i2c_html_ga64cffaf51a6050fb5e58cb35a52e5179"><div class="ttname"><a href="group__i2c.html#ga64cffaf51a6050fb5e58cb35a52e5179">i2c_read_instance</a></div><div class="ttdeci">i2c_result_t i2c_read_instance(uint8_t sercom, uint8_t address, uint8_t *data, size_t len)</div><div class="ttdoc">Reads data from an I2C device on the given SERCOM at the provided address.</div><div class="ttdef"><b>Definition</b> i2c.c:144</div></div>
+<div class="ttc" id="agroup__i2c_html_ga88da4919a13ca41408ae8eafdab3855f"><div class="ttname"><a href="group__i2c.html#ga88da4919a13ca41408ae8eafdab3855f">i2c_enable_instance</a></div><div class="ttdeci">void i2c_enable_instance(uint8_t sercom)</div><div class="ttdoc">Enables the I2C peripheral on the given SERCOM.</div><div class="ttdef"><b>Definition</b> i2c.c:83</div></div>
+<div class="ttc" id="agroup__i2c_html_ga9cc8d8299e418b944243a96fa8adc996"><div class="ttname"><a href="group__i2c.html#ga9cc8d8299e418b944243a96fa8adc996">i2c_disable_instance</a></div><div class="ttdeci">void i2c_disable_instance(uint8_t sercom)</div><div class="ttdoc">Disables the I2C peripheral on the given SERCOM.</div><div class="ttdef"><b>Definition</b> i2c.c:190</div></div>
+<div class="ttc" id="agroup__i2c_html_gabe70f8fe4c72329b89ec526c749f50d7"><div class="ttname"><a href="group__i2c.html#gabe70f8fe4c72329b89ec526c749f50d7">i2c_disable</a></div><div class="ttdeci">void i2c_disable(void)</div><div class="ttdoc">Disables the I2C peripheral for a board with defined SDA/SCL pins.</div></div>
+<div class="ttc" id="agroup__i2c_html_gae0163192e71ff834062fcb7591b01e29"><div class="ttname"><a href="group__i2c.html#gae0163192e71ff834062fcb7591b01e29">i2c_init_instance</a></div><div class="ttdeci">void i2c_init_instance(uint8_t sercom, uint32_t baud)</div><div class="ttdoc">Initializes an I2C peripheral on the given SERCOM.</div><div class="ttdef"><b>Definition</b> i2c.c:44</div></div>
+<div class="ttc" id="agroup__i2c_html_gae5074c1f6733c42bf7ccbd771ad2496c"><div class="ttname"><a href="group__i2c.html#gae5074c1f6733c42bf7ccbd771ad2496c">i2c_read</a></div><div class="ttdeci">i2c_result_t i2c_read(uint8_t address, uint8_t *data, size_t len)</div><div class="ttdoc">Reads data from an I2C device at the provided address.</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html">common</a></li><li class="navelem"><b>i2c.h</b></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

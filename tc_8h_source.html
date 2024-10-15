@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -52,6 +56,23 @@ $(function() {
 $(document).ready(function() { init_codefold(0); });
 /* @license-end */
 </script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('tc_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -73,161 +94,160 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html">common</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">tc.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="tc_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * MIT License</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Copyright (c) 2022 Joey Castillo</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> * of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> * in the Software without restriction, including without limitation the rights</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment"> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"> * copies of the Software, and to permit persons to whom the Software is</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment"> * furnished to do so, subject to the following conditions:</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * MIT License</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * Copyright (c) 2022 Joey Castillo</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * in the Software without restriction, including without limitation the rights</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> * copies of the Software, and to permit persons to whom the Software is</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> * furnished to do so, subject to the following conditions:</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"> * The above copyright notice and this permission notice shall be included in all</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment"> * copies or substantial portions of the Software.</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> * The above copyright notice and this permission notice shall be included in all</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> * copies or substantial portions of the Software.</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment"> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"> * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment"> * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment"> * SOFTWARE.</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &quot;sam.h&quot;</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &quot;<a class="code" href="system_8h.html">system.h</a>&quot;</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    TC_PRESCALER_DIV1 = 0,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    TC_PRESCALER_DIV2 = 1,</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    TC_PRESCALER_DIV4 = 2,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    TC_PRESCALER_DIV8 = 3,</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    TC_PRESCALER_DIV16 = 4,</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    TC_PRESCALER_DIV64 = 5,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    TC_PRESCALER_DIV256 = 6,</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    TC_PRESCALER_DIV1024 = 7</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>} tc_prescaler_value_t;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    TC_COUNTER_MODE_16BIT = 0,</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    TC_COUNTER_MODE_8BIT = 1,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    TC_COUNTER_MODE_32BIT = 2,</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>} tc_counter_mode_t;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    TC_WAVEGEN_NORMAL_FREQUENCY = 0,</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    TC_WAVEGEN_MATCH_FREQUENCY = 1,</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    TC_WAVEGEN_NORMAL_PWM = 2,</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    TC_WAVEGEN_MATCH_PWM = 3,</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>} tc_wavegen_t;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    TC_CHANNEL_POLARITY_NORMAL = 0,</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    TC_CHANNEL_POLARITY_INVERTED = 1,</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>} tc_channel_polarity_t;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="foldopen" id="foldopen00065" data-start="{" data-end="};">
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="tc_8h.html#ae83a15325ed7aaf529abae8eb9edb996">   65</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  TC_EVENT_ACTION_DISABLED = 0x0ul,</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  TC_EVENT_ACTION_RETRIGGER = 0x1ul,</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  TC_EVENT_ACTION_COUNT = 0x2ul,</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  TC_EVENT_ACTION_START = 0x3ul,</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  TC_EVENT_ACTION_STAMP = 0x4ul,  </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="tc_8h.html#ae83a15325ed7aaf529abae8eb9edb996a4957024d607401030b128f9b775edb7d">   71</a></span>  <a class="code hl_enumvalue" href="tc_8h.html#ae83a15325ed7aaf529abae8eb9edb996a4957024d607401030b128f9b775edb7d">TC_EVENT_ACTION_PPW</a> = 0x5ul,</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  TC_EVENT_ACTION_PWP = 0x6ul,</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  TC_EVENT_ACTION_PW = 0x7ul,     </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>} <a class="code hl_enumeration" href="tc_8h.html#ae83a15325ed7aaf529abae8eb9edb996">tc_event_action_t</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment"> * SOFTWARE.</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &quot;sam.h&quot;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &quot;system.h&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    TC_PRESCALER_DIV1 = 0,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    TC_PRESCALER_DIV2 = 1,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    TC_PRESCALER_DIV4 = 2,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    TC_PRESCALER_DIV8 = 3,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    TC_PRESCALER_DIV16 = 4,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    TC_PRESCALER_DIV64 = 5,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    TC_PRESCALER_DIV256 = 6,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    TC_PRESCALER_DIV1024 = 7</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>} tc_prescaler_value_t;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    TC_COUNTER_MODE_16BIT = 0,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    TC_COUNTER_MODE_8BIT = 1,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    TC_COUNTER_MODE_32BIT = 2,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>} tc_counter_mode_t;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    TC_WAVEGEN_NORMAL_FREQUENCY = 0,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    TC_WAVEGEN_MATCH_FREQUENCY = 1,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    TC_WAVEGEN_NORMAL_PWM = 2,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    TC_WAVEGEN_MATCH_PWM = 3,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>} tc_wavegen_t;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    TC_CHANNEL_POLARITY_NORMAL = 0,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    TC_CHANNEL_POLARITY_INVERTED = 1,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>} tc_channel_polarity_t;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="foldopen" id="foldopen00068" data-start="{" data-end="};">
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="group__tc.html#gae83a15325ed7aaf529abae8eb9edb996">   68</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  TC_EVENT_ACTION_DISABLED = 0x0ul,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  TC_EVENT_ACTION_RETRIGGER = 0x1ul,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  TC_EVENT_ACTION_COUNT = 0x2ul,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  TC_EVENT_ACTION_START = 0x3ul,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  TC_EVENT_ACTION_STAMP = 0x4ul,  </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="group__tc.html#ggae83a15325ed7aaf529abae8eb9edb996a4957024d607401030b128f9b775edb7d">   74</a></span>  <a class="code hl_enumvalue" href="group__tc.html#ggae83a15325ed7aaf529abae8eb9edb996a4957024d607401030b128f9b775edb7d">TC_EVENT_ACTION_PPW</a> = 0x5ul,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  TC_EVENT_ACTION_PWP = 0x6ul,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  TC_EVENT_ACTION_PW = 0x7ul,     </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>} <a class="code hl_enumeration" href="group__tc.html#gae83a15325ed7aaf529abae8eb9edb996">tc_event_action_t</a>;</div>
 </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keywordtype">bool</span> <a class="code hl_function" href="tc_8h.html#a1ccf965a51a89fb1df2545988d4739d2">tc_init</a>(uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler);</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#abbb61997f4579d174976dcc8e858c87a">tc_set_counter_mode</a>(uint8_t instance, tc_counter_mode_t mode);</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#a0dec44fc5db357209ea67b67607c7e81">tc_set_run_in_standby</a>(uint8_t instance, <span class="keywordtype">bool</span> runStandby);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#affa4b9e60ccf8ba52074f3f2f28d8823">tc_set_wavegen</a>(uint8_t instance, tc_wavegen_t mode);</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#afd02ffa629bde002a06ad16a570177ac">tc_set_channel_polarity</a>(uint8_t instance, uint8_t channel, tc_channel_polarity_t polarity);</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">tc_enable</a>(uint8_t instance);</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="keywordtype">bool</span> <a class="code hl_function" href="tc_8h.html#a1b71bab26fe6c8796a723a10fba63b6b">tc_is_enabled</a>(uint8_t instance);</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#ab18ace8a5dd07d75cb9e6957d9e2658c">tc_count8_set_period</a>(uint8_t instance, uint8_t period);</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>uint8_t <a class="code hl_function" href="tc_8h.html#a993860f6b38c672f9ca6ae1b60452282">tc_count8_get_period</a>(uint8_t instance);</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#a8862d572676201371406b19746198c45">tc_count8_set_cc</a>(uint8_t instance, uint8_t channel, uint8_t value);</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#a30b584892c4a1cfce9ddc70933776e7e">tc_count16_set_cc</a>(uint8_t instance, uint8_t channel, uint16_t value);</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#a5078d0682876c8bcabbf8da7944865e8">tc_count32_set_cc</a>(uint8_t instance, uint8_t channel, uint32_t value);</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#a363974408ab3135aaf6529cadfd5195b">tc_count8_set_count</a>(uint8_t instance, uint8_t value);</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#a2b52ab8a84db926117b40c7c6d6447d6">tc_count16_set_count</a>(uint8_t instance, uint16_t value);</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#a4136a7369f7b79b4a1d29575c1f1f9d8">tc_count32_set_count</a>(uint8_t instance, uint32_t value);</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>uint8_t <a class="code hl_function" href="tc_8h.html#a0350dc913a38a4e3b27b441510a614ba">tc_count8_get_count</a>(uint8_t instance);</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>uint16_t <a class="code hl_function" href="tc_8h.html#a2e534df47672eea4460487ab3fe1e123">tc_count16_get_count</a>(uint8_t instance);</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>uint32_t <a class="code hl_function" href="tc_8h.html#aa5879a623b3133654d474decb14b61f8">tc_count32_get_count</a>(uint8_t instance);</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#a59bb895d55ef97120fac8149ec78bc47">tc_set_event_action</a>(uint8_t instance, <a class="code hl_enumeration" href="tc_8h.html#ae83a15325ed7aaf529abae8eb9edb996">tc_event_action_t</a> action);</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#a15eaf925943d7ba804ecd8bd466a4b14">tc_stop</a>(uint8_t instance);</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#aabc141b06b22193abcb931edf634a7f5">tc_retrigger</a>(uint8_t instance);</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="keywordtype">void</span> <a class="code hl_function" href="tc_8h.html#af2ed5cb964a3f29663b89bfc2a661caf">tc_disable</a>(uint8_t instance);</div>
-<div class="ttc" id="asystem_8h_html"><div class="ttname"><a href="system_8h.html">system.h</a></div><div class="ttdoc">Gossamer system routines.</div></div>
-<div class="ttc" id="atc_8h_html_a0350dc913a38a4e3b27b441510a614ba"><div class="ttname"><a href="tc_8h.html#a0350dc913a38a4e3b27b441510a614ba">tc_count8_get_count</a></div><div class="ttdeci">uint8_t tc_count8_get_count(uint8_t instance)</div><div class="ttdoc">Gets the TC's current counter value in 8-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:156</div></div>
-<div class="ttc" id="atc_8h_html_a0dec44fc5db357209ea67b67607c7e81"><div class="ttname"><a href="tc_8h.html#a0dec44fc5db357209ea67b67607c7e81">tc_set_run_in_standby</a></div><div class="ttdeci">void tc_set_run_in_standby(uint8_t instance, bool runStandby)</div><div class="ttdoc">Sets the TC's run-in-standby mode.</div><div class="ttdef"><b>Definition</b> tc.c:74</div></div>
-<div class="ttc" id="atc_8h_html_a15eaf925943d7ba804ecd8bd466a4b14"><div class="ttname"><a href="tc_8h.html#a15eaf925943d7ba804ecd8bd466a4b14">tc_stop</a></div><div class="ttdeci">void tc_stop(uint8_t instance)</div><div class="ttdoc">Issues a STOP command to the TC.</div><div class="ttdef"><b>Definition</b> tc.c:176</div></div>
-<div class="ttc" id="atc_8h_html_a1b71bab26fe6c8796a723a10fba63b6b"><div class="ttname"><a href="tc_8h.html#a1b71bab26fe6c8796a723a10fba63b6b">tc_is_enabled</a></div><div class="ttdeci">bool tc_is_enabled(uint8_t instance)</div><div class="ttdoc">Checks whether the TC is enabled.</div><div class="ttdef"><b>Definition</b> tc.c:110</div></div>
-<div class="ttc" id="atc_8h_html_a1ccf965a51a89fb1df2545988d4739d2"><div class="ttname"><a href="tc_8h.html#a1ccf965a51a89fb1df2545988d4739d2">tc_init</a></div><div class="ttdeci">bool tc_init(uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler)</div><div class="ttdoc">Enables the peripheral clock for the TC and clocks it with the selected clock source....</div><div class="ttdef"><b>Definition</b> tc.c:36</div></div>
-<div class="ttc" id="atc_8h_html_a2715d5a6f20298805eefa13a8a7a1b99"><div class="ttname"><a href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">tc_enable</a></div><div class="ttdeci">void tc_enable(uint8_t instance)</div><div class="ttdoc">Enables the TC. Make sure to call tc_init first to set it up.</div><div class="ttdef"><b>Definition</b> tc.c:105</div></div>
-<div class="ttc" id="atc_8h_html_a2b52ab8a84db926117b40c7c6d6447d6"><div class="ttname"><a href="tc_8h.html#a2b52ab8a84db926117b40c7c6d6447d6">tc_count16_set_count</a></div><div class="ttdeci">void tc_count16_set_count(uint8_t instance, uint16_t value)</div><div class="ttdoc">Sets the TC's counter value in 16-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:138</div></div>
-<div class="ttc" id="atc_8h_html_a2e534df47672eea4460487ab3fe1e123"><div class="ttname"><a href="tc_8h.html#a2e534df47672eea4460487ab3fe1e123">tc_count16_get_count</a></div><div class="ttdeci">uint16_t tc_count16_get_count(uint8_t instance)</div><div class="ttdoc">Gets the TC's current counter value in 16-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:161</div></div>
-<div class="ttc" id="atc_8h_html_a30b584892c4a1cfce9ddc70933776e7e"><div class="ttname"><a href="tc_8h.html#a30b584892c4a1cfce9ddc70933776e7e">tc_count16_set_cc</a></div><div class="ttdeci">void tc_count16_set_cc(uint8_t instance, uint8_t channel, uint16_t value)</div><div class="ttdoc">Sets the TC's compare channel CC0 or CC1 register in 16-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:126</div></div>
-<div class="ttc" id="atc_8h_html_a363974408ab3135aaf6529cadfd5195b"><div class="ttname"><a href="tc_8h.html#a363974408ab3135aaf6529cadfd5195b">tc_count8_set_count</a></div><div class="ttdeci">void tc_count8_set_count(uint8_t instance, uint8_t value)</div><div class="ttdoc">Sets the TC's counter value in 8-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:134</div></div>
-<div class="ttc" id="atc_8h_html_a4136a7369f7b79b4a1d29575c1f1f9d8"><div class="ttname"><a href="tc_8h.html#a4136a7369f7b79b4a1d29575c1f1f9d8">tc_count32_set_count</a></div><div class="ttdeci">void tc_count32_set_count(uint8_t instance, uint32_t value)</div><div class="ttdoc">Sets the TC's counter value in 32-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:142</div></div>
-<div class="ttc" id="atc_8h_html_a5078d0682876c8bcabbf8da7944865e8"><div class="ttname"><a href="tc_8h.html#a5078d0682876c8bcabbf8da7944865e8">tc_count32_set_cc</a></div><div class="ttdeci">void tc_count32_set_cc(uint8_t instance, uint8_t channel, uint32_t value)</div><div class="ttdoc">Sets the TC's compare channel CC0 or CC1 register in 32-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:130</div></div>
-<div class="ttc" id="atc_8h_html_a59bb895d55ef97120fac8149ec78bc47"><div class="ttname"><a href="tc_8h.html#a59bb895d55ef97120fac8149ec78bc47">tc_set_event_action</a></div><div class="ttdeci">void tc_set_event_action(uint8_t instance, tc_event_action_t action)</div><div class="ttdoc">Sets the action to take when the TC receives an event.</div><div class="ttdef"><b>Definition</b> tc.c:171</div></div>
-<div class="ttc" id="atc_8h_html_a8862d572676201371406b19746198c45"><div class="ttname"><a href="tc_8h.html#a8862d572676201371406b19746198c45">tc_count8_set_cc</a></div><div class="ttdeci">void tc_count8_set_cc(uint8_t instance, uint8_t channel, uint8_t value)</div><div class="ttdoc">Sets the TC's compare channel CC0 or CC1 register in 8-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:122</div></div>
-<div class="ttc" id="atc_8h_html_a993860f6b38c672f9ca6ae1b60452282"><div class="ttname"><a href="tc_8h.html#a993860f6b38c672f9ca6ae1b60452282">tc_count8_get_period</a></div><div class="ttdeci">uint8_t tc_count8_get_period(uint8_t instance)</div><div class="ttdoc">Gets the TC's period or PER register in 8-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:118</div></div>
-<div class="ttc" id="atc_8h_html_aa5879a623b3133654d474decb14b61f8"><div class="ttname"><a href="tc_8h.html#aa5879a623b3133654d474decb14b61f8">tc_count32_get_count</a></div><div class="ttdeci">uint32_t tc_count32_get_count(uint8_t instance)</div><div class="ttdoc">Gets the TC's current counter value in 32-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:166</div></div>
-<div class="ttc" id="atc_8h_html_aabc141b06b22193abcb931edf634a7f5"><div class="ttname"><a href="tc_8h.html#aabc141b06b22193abcb931edf634a7f5">tc_retrigger</a></div><div class="ttdeci">void tc_retrigger(uint8_t instance)</div><div class="ttdoc">Issues a RETRIGGER command to the TC.</div><div class="ttdef"><b>Definition</b> tc.c:180</div></div>
-<div class="ttc" id="atc_8h_html_ab18ace8a5dd07d75cb9e6957d9e2658c"><div class="ttname"><a href="tc_8h.html#ab18ace8a5dd07d75cb9e6957d9e2658c">tc_count8_set_period</a></div><div class="ttdeci">void tc_count8_set_period(uint8_t instance, uint8_t period)</div><div class="ttdoc">Sets the TC's period or PER register in 8-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:114</div></div>
-<div class="ttc" id="atc_8h_html_abbb61997f4579d174976dcc8e858c87a"><div class="ttname"><a href="tc_8h.html#abbb61997f4579d174976dcc8e858c87a">tc_set_counter_mode</a></div><div class="ttdeci">void tc_set_counter_mode(uint8_t instance, tc_counter_mode_t mode)</div><div class="ttdoc">Sets the TC's counting mode (an 8, 16 or 32-bit counter),.</div><div class="ttdef"><b>Definition</b> tc.c:70</div></div>
-<div class="ttc" id="atc_8h_html_ae83a15325ed7aaf529abae8eb9edb996"><div class="ttname"><a href="tc_8h.html#ae83a15325ed7aaf529abae8eb9edb996">tc_event_action_t</a></div><div class="ttdeci">tc_event_action_t</div><div class="ttdef"><b>Definition</b> tc.h:65</div></div>
-<div class="ttc" id="atc_8h_html_ae83a15325ed7aaf529abae8eb9edb996a4957024d607401030b128f9b775edb7d"><div class="ttname"><a href="tc_8h.html#ae83a15325ed7aaf529abae8eb9edb996a4957024d607401030b128f9b775edb7d">TC_EVENT_ACTION_PPW</a></div><div class="ttdeci">@ TC_EVENT_ACTION_PPW</div><div class="ttdoc">NOTE: Not available on SAM D11 or D21.</div><div class="ttdef"><b>Definition</b> tc.h:71</div></div>
-<div class="ttc" id="atc_8h_html_af2ed5cb964a3f29663b89bfc2a661caf"><div class="ttname"><a href="tc_8h.html#af2ed5cb964a3f29663b89bfc2a661caf">tc_disable</a></div><div class="ttdeci">void tc_disable(uint8_t instance)</div><div class="ttdoc">Disables the TC, but retains all its settings.</div><div class="ttdef"><b>Definition</b> tc.c:184</div></div>
-<div class="ttc" id="atc_8h_html_afd02ffa629bde002a06ad16a570177ac"><div class="ttname"><a href="tc_8h.html#afd02ffa629bde002a06ad16a570177ac">tc_set_channel_polarity</a></div><div class="ttdeci">void tc_set_channel_polarity(uint8_t instance, uint8_t channel, tc_channel_polarity_t polarity)</div><div class="ttdoc">Sets the polarity of one of the waveform output channels.</div><div class="ttdef"><b>Definition</b> tc.c:86</div></div>
-<div class="ttc" id="atc_8h_html_affa4b9e60ccf8ba52074f3f2f28d8823"><div class="ttname"><a href="tc_8h.html#affa4b9e60ccf8ba52074f3f2f28d8823">tc_set_wavegen</a></div><div class="ttdeci">void tc_set_wavegen(uint8_t instance, tc_wavegen_t mode)</div><div class="ttdoc">Sets the TC's waveform generation mode.</div><div class="ttdef"><b>Definition</b> tc.c:78</div></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__tc.html#ga1ccf965a51a89fb1df2545988d4739d2">tc_init</a>(uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#gabbb61997f4579d174976dcc8e858c87a">tc_set_counter_mode</a>(uint8_t instance, tc_counter_mode_t mode);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#ga0dec44fc5db357209ea67b67607c7e81">tc_set_run_in_standby</a>(uint8_t instance, <span class="keywordtype">bool</span> runStandby);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#gaffa4b9e60ccf8ba52074f3f2f28d8823">tc_set_wavegen</a>(uint8_t instance, tc_wavegen_t mode);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#gafd02ffa629bde002a06ad16a570177ac">tc_set_channel_polarity</a>(uint8_t instance, uint8_t channel, tc_channel_polarity_t polarity);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#ga2715d5a6f20298805eefa13a8a7a1b99">tc_enable</a>(uint8_t instance);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__tc.html#ga1b71bab26fe6c8796a723a10fba63b6b">tc_is_enabled</a>(uint8_t instance);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#gab18ace8a5dd07d75cb9e6957d9e2658c">tc_count8_set_period</a>(uint8_t instance, uint8_t period);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>uint8_t <a class="code hl_function" href="group__tc.html#ga993860f6b38c672f9ca6ae1b60452282">tc_count8_get_period</a>(uint8_t instance);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#ga8862d572676201371406b19746198c45">tc_count8_set_cc</a>(uint8_t instance, uint8_t channel, uint8_t value);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#ga30b584892c4a1cfce9ddc70933776e7e">tc_count16_set_cc</a>(uint8_t instance, uint8_t channel, uint16_t value);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#ga5078d0682876c8bcabbf8da7944865e8">tc_count32_set_cc</a>(uint8_t instance, uint8_t channel, uint32_t value);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#ga363974408ab3135aaf6529cadfd5195b">tc_count8_set_count</a>(uint8_t instance, uint8_t value);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#ga2b52ab8a84db926117b40c7c6d6447d6">tc_count16_set_count</a>(uint8_t instance, uint16_t value);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#ga4136a7369f7b79b4a1d29575c1f1f9d8">tc_count32_set_count</a>(uint8_t instance, uint32_t value);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>uint8_t <a class="code hl_function" href="group__tc.html#ga0350dc913a38a4e3b27b441510a614ba">tc_count8_get_count</a>(uint8_t instance);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>uint16_t <a class="code hl_function" href="group__tc.html#ga2e534df47672eea4460487ab3fe1e123">tc_count16_get_count</a>(uint8_t instance);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>uint32_t <a class="code hl_function" href="group__tc.html#gaa5879a623b3133654d474decb14b61f8">tc_count32_get_count</a>(uint8_t instance);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#ga59bb895d55ef97120fac8149ec78bc47">tc_set_event_action</a>(uint8_t instance, <a class="code hl_enumeration" href="group__tc.html#gae83a15325ed7aaf529abae8eb9edb996">tc_event_action_t</a> action);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#ga15eaf925943d7ba804ecd8bd466a4b14">tc_stop</a>(uint8_t instance);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#gaabc141b06b22193abcb931edf634a7f5">tc_retrigger</a>(uint8_t instance);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tc.html#gaf2ed5cb964a3f29663b89bfc2a661caf">tc_disable</a>(uint8_t instance);</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="ttc" id="agroup__tc_html_ga0350dc913a38a4e3b27b441510a614ba"><div class="ttname"><a href="group__tc.html#ga0350dc913a38a4e3b27b441510a614ba">tc_count8_get_count</a></div><div class="ttdeci">uint8_t tc_count8_get_count(uint8_t instance)</div><div class="ttdoc">Gets the TC's current counter value in 8-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:156</div></div>
+<div class="ttc" id="agroup__tc_html_ga0dec44fc5db357209ea67b67607c7e81"><div class="ttname"><a href="group__tc.html#ga0dec44fc5db357209ea67b67607c7e81">tc_set_run_in_standby</a></div><div class="ttdeci">void tc_set_run_in_standby(uint8_t instance, bool runStandby)</div><div class="ttdoc">Sets the TC's run-in-standby mode.</div><div class="ttdef"><b>Definition</b> tc.c:74</div></div>
+<div class="ttc" id="agroup__tc_html_ga15eaf925943d7ba804ecd8bd466a4b14"><div class="ttname"><a href="group__tc.html#ga15eaf925943d7ba804ecd8bd466a4b14">tc_stop</a></div><div class="ttdeci">void tc_stop(uint8_t instance)</div><div class="ttdoc">Issues a STOP command to the TC.</div><div class="ttdef"><b>Definition</b> tc.c:176</div></div>
+<div class="ttc" id="agroup__tc_html_ga1b71bab26fe6c8796a723a10fba63b6b"><div class="ttname"><a href="group__tc.html#ga1b71bab26fe6c8796a723a10fba63b6b">tc_is_enabled</a></div><div class="ttdeci">bool tc_is_enabled(uint8_t instance)</div><div class="ttdoc">Checks whether the TC is enabled.</div><div class="ttdef"><b>Definition</b> tc.c:110</div></div>
+<div class="ttc" id="agroup__tc_html_ga1ccf965a51a89fb1df2545988d4739d2"><div class="ttname"><a href="group__tc.html#ga1ccf965a51a89fb1df2545988d4739d2">tc_init</a></div><div class="ttdeci">bool tc_init(uint8_t instance, generic_clock_generator_t clocksource, tc_prescaler_value_t prescaler)</div><div class="ttdoc">Enables the peripheral clock for the TC and clocks it with the selected clock source....</div><div class="ttdef"><b>Definition</b> tc.c:36</div></div>
+<div class="ttc" id="agroup__tc_html_ga2715d5a6f20298805eefa13a8a7a1b99"><div class="ttname"><a href="group__tc.html#ga2715d5a6f20298805eefa13a8a7a1b99">tc_enable</a></div><div class="ttdeci">void tc_enable(uint8_t instance)</div><div class="ttdoc">Enables the TC. Make sure to call tc_init first to set it up.</div><div class="ttdef"><b>Definition</b> tc.c:105</div></div>
+<div class="ttc" id="agroup__tc_html_ga2b52ab8a84db926117b40c7c6d6447d6"><div class="ttname"><a href="group__tc.html#ga2b52ab8a84db926117b40c7c6d6447d6">tc_count16_set_count</a></div><div class="ttdeci">void tc_count16_set_count(uint8_t instance, uint16_t value)</div><div class="ttdoc">Sets the TC's counter value in 16-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:138</div></div>
+<div class="ttc" id="agroup__tc_html_ga2e534df47672eea4460487ab3fe1e123"><div class="ttname"><a href="group__tc.html#ga2e534df47672eea4460487ab3fe1e123">tc_count16_get_count</a></div><div class="ttdeci">uint16_t tc_count16_get_count(uint8_t instance)</div><div class="ttdoc">Gets the TC's current counter value in 16-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:161</div></div>
+<div class="ttc" id="agroup__tc_html_ga30b584892c4a1cfce9ddc70933776e7e"><div class="ttname"><a href="group__tc.html#ga30b584892c4a1cfce9ddc70933776e7e">tc_count16_set_cc</a></div><div class="ttdeci">void tc_count16_set_cc(uint8_t instance, uint8_t channel, uint16_t value)</div><div class="ttdoc">Sets the TC's compare channel CC0 or CC1 register in 16-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:126</div></div>
+<div class="ttc" id="agroup__tc_html_ga363974408ab3135aaf6529cadfd5195b"><div class="ttname"><a href="group__tc.html#ga363974408ab3135aaf6529cadfd5195b">tc_count8_set_count</a></div><div class="ttdeci">void tc_count8_set_count(uint8_t instance, uint8_t value)</div><div class="ttdoc">Sets the TC's counter value in 8-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:134</div></div>
+<div class="ttc" id="agroup__tc_html_ga4136a7369f7b79b4a1d29575c1f1f9d8"><div class="ttname"><a href="group__tc.html#ga4136a7369f7b79b4a1d29575c1f1f9d8">tc_count32_set_count</a></div><div class="ttdeci">void tc_count32_set_count(uint8_t instance, uint32_t value)</div><div class="ttdoc">Sets the TC's counter value in 32-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:142</div></div>
+<div class="ttc" id="agroup__tc_html_ga5078d0682876c8bcabbf8da7944865e8"><div class="ttname"><a href="group__tc.html#ga5078d0682876c8bcabbf8da7944865e8">tc_count32_set_cc</a></div><div class="ttdeci">void tc_count32_set_cc(uint8_t instance, uint8_t channel, uint32_t value)</div><div class="ttdoc">Sets the TC's compare channel CC0 or CC1 register in 32-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:130</div></div>
+<div class="ttc" id="agroup__tc_html_ga59bb895d55ef97120fac8149ec78bc47"><div class="ttname"><a href="group__tc.html#ga59bb895d55ef97120fac8149ec78bc47">tc_set_event_action</a></div><div class="ttdeci">void tc_set_event_action(uint8_t instance, tc_event_action_t action)</div><div class="ttdoc">Sets the action to take when the TC receives an event.</div><div class="ttdef"><b>Definition</b> tc.c:171</div></div>
+<div class="ttc" id="agroup__tc_html_ga8862d572676201371406b19746198c45"><div class="ttname"><a href="group__tc.html#ga8862d572676201371406b19746198c45">tc_count8_set_cc</a></div><div class="ttdeci">void tc_count8_set_cc(uint8_t instance, uint8_t channel, uint8_t value)</div><div class="ttdoc">Sets the TC's compare channel CC0 or CC1 register in 8-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:122</div></div>
+<div class="ttc" id="agroup__tc_html_ga993860f6b38c672f9ca6ae1b60452282"><div class="ttname"><a href="group__tc.html#ga993860f6b38c672f9ca6ae1b60452282">tc_count8_get_period</a></div><div class="ttdeci">uint8_t tc_count8_get_period(uint8_t instance)</div><div class="ttdoc">Gets the TC's period or PER register in 8-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:118</div></div>
+<div class="ttc" id="agroup__tc_html_gaa5879a623b3133654d474decb14b61f8"><div class="ttname"><a href="group__tc.html#gaa5879a623b3133654d474decb14b61f8">tc_count32_get_count</a></div><div class="ttdeci">uint32_t tc_count32_get_count(uint8_t instance)</div><div class="ttdoc">Gets the TC's current counter value in 32-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:166</div></div>
+<div class="ttc" id="agroup__tc_html_gaabc141b06b22193abcb931edf634a7f5"><div class="ttname"><a href="group__tc.html#gaabc141b06b22193abcb931edf634a7f5">tc_retrigger</a></div><div class="ttdeci">void tc_retrigger(uint8_t instance)</div><div class="ttdoc">Issues a RETRIGGER command to the TC.</div><div class="ttdef"><b>Definition</b> tc.c:180</div></div>
+<div class="ttc" id="agroup__tc_html_gab18ace8a5dd07d75cb9e6957d9e2658c"><div class="ttname"><a href="group__tc.html#gab18ace8a5dd07d75cb9e6957d9e2658c">tc_count8_set_period</a></div><div class="ttdeci">void tc_count8_set_period(uint8_t instance, uint8_t period)</div><div class="ttdoc">Sets the TC's period or PER register in 8-bit mode.</div><div class="ttdef"><b>Definition</b> tc.c:114</div></div>
+<div class="ttc" id="agroup__tc_html_gabbb61997f4579d174976dcc8e858c87a"><div class="ttname"><a href="group__tc.html#gabbb61997f4579d174976dcc8e858c87a">tc_set_counter_mode</a></div><div class="ttdeci">void tc_set_counter_mode(uint8_t instance, tc_counter_mode_t mode)</div><div class="ttdoc">Sets the TC's counting mode (an 8, 16 or 32-bit counter),.</div><div class="ttdef"><b>Definition</b> tc.c:70</div></div>
+<div class="ttc" id="agroup__tc_html_gae83a15325ed7aaf529abae8eb9edb996"><div class="ttname"><a href="group__tc.html#gae83a15325ed7aaf529abae8eb9edb996">tc_event_action_t</a></div><div class="ttdeci">tc_event_action_t</div><div class="ttdef"><b>Definition</b> tc.h:68</div></div>
+<div class="ttc" id="agroup__tc_html_gaf2ed5cb964a3f29663b89bfc2a661caf"><div class="ttname"><a href="group__tc.html#gaf2ed5cb964a3f29663b89bfc2a661caf">tc_disable</a></div><div class="ttdeci">void tc_disable(uint8_t instance)</div><div class="ttdoc">Disables the TC, but retains all its settings.</div><div class="ttdef"><b>Definition</b> tc.c:184</div></div>
+<div class="ttc" id="agroup__tc_html_gafd02ffa629bde002a06ad16a570177ac"><div class="ttname"><a href="group__tc.html#gafd02ffa629bde002a06ad16a570177ac">tc_set_channel_polarity</a></div><div class="ttdeci">void tc_set_channel_polarity(uint8_t instance, uint8_t channel, tc_channel_polarity_t polarity)</div><div class="ttdoc">Sets the polarity of one of the waveform output channels.</div><div class="ttdef"><b>Definition</b> tc.c:86</div></div>
+<div class="ttc" id="agroup__tc_html_gaffa4b9e60ccf8ba52074f3f2f28d8823"><div class="ttname"><a href="group__tc.html#gaffa4b9e60ccf8ba52074f3f2f28d8823">tc_set_wavegen</a></div><div class="ttdeci">void tc_set_wavegen(uint8_t instance, tc_wavegen_t mode)</div><div class="ttdoc">Sets the TC's waveform generation mode.</div><div class="ttdef"><b>Definition</b> tc.c:78</div></div>
+<div class="ttc" id="agroup__tc_html_ggae83a15325ed7aaf529abae8eb9edb996a4957024d607401030b128f9b775edb7d"><div class="ttname"><a href="group__tc.html#ggae83a15325ed7aaf529abae8eb9edb996a4957024d607401030b128f9b775edb7d">TC_EVENT_ACTION_PPW</a></div><div class="ttdeci">@ TC_EVENT_ACTION_PPW</div><div class="ttdoc">NOTE: Not available on SAM D11 or D21.</div><div class="ttdef"><b>Definition</b> tc.h:74</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html">common</a></li><li class="navelem"><b>tc.h</b></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

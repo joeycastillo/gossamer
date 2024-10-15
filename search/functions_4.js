@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['get_5fcpu_5ffrequency_0',['get_cpu_frequency',['../system_8h.html#a96fa401b65736262fc29cc0537bed03e',1,'system.h']]],
+  ['get_5fcpu_5ffrequency_0',['get_cpu_frequency',['../group__system.html#ga96fa401b65736262fc29cc0537bed03e',1,'system.h']]],
   ['gfx_5fdraw_5fchar_1',['gfx_draw_char',['../gfx_8h.html#a5b59e00c08f5d1fd885e1e8047bfd6c5',1,'gfx.c']]],
   ['gfx_5fdraw_5fcircle_2',['gfx_draw_circle',['../gfx_8h.html#a0e7d434468150b90226c04f93ca04eee',1,'gfx.c']]],
   ['gfx_5fdraw_5fhline_3',['gfx_draw_hline',['../gfx_8h.html#a86c12e8e89f71a28150038a94c4efe10',1,'gfx.c']]],

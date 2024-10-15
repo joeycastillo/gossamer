@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -52,6 +56,23 @@ $(function() {
 $(document).ready(function() { init_codefold(0); });
 /* @license-end */
 </script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('eic_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -73,87 +94,87 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html">common</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">eic.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="eic_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * MIT License</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Copyright (c) 2022 Joey Castillo</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> * of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> * in the Software without restriction, including without limitation the rights</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment"> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"> * copies of the Software, and to permit persons to whom the Software is</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment"> * furnished to do so, subject to the following conditions:</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * MIT License</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * Copyright (c) 2022 Joey Castillo</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * in the Software without restriction, including without limitation the rights</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> * copies of the Software, and to permit persons to whom the Software is</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> * furnished to do so, subject to the following conditions:</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"> * The above copyright notice and this permission notice shall be included in all</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment"> * copies or substantial portions of the Software.</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> * The above copyright notice and this permission notice shall be included in all</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> * copies or substantial portions of the Software.</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment"> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"> * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment"> * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment"> * SOFTWARE.</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment"> * SOFTWARE.</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="eic_8h.html#ac1fe47482a1a2c642408f50c2db9469f">   35</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code hl_enumeration" href="eic_8h.html#ac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a> {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    INTERRUPT_TRIGGER_NONE = 0,</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    INTERRUPT_TRIGGER_RISING,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    INTERRUPT_TRIGGER_FALLING,</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    INTERRUPT_TRIGGER_BOTH,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="eic_8h.html#a2dcfd365c180eb12af23e9f125089244">   40</a></span>} <a class="code hl_enumeration" href="eic_8h.html#ac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a>;</div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="group__eic.html#gac1fe47482a1a2c642408f50c2db9469f">   38</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__eic.html#gac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a> {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    INTERRUPT_TRIGGER_NONE = 0,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    INTERRUPT_TRIGGER_RISING,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    INTERRUPT_TRIGGER_FALLING,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    INTERRUPT_TRIGGER_BOTH,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="group__eic.html#ga2dcfd365c180eb12af23e9f125089244">   43</a></span>} <a class="code hl_enumeration" href="group__eic.html#gac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a>;</div>
 </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">typedef</span> void (*eic_cb_t)(uint8_t channel);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keywordtype">void</span> <a class="code hl_function" href="eic_8h.html#ac66cb10fff656315b12df4248f798c41">eic_init</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keywordtype">void</span> <a class="code hl_function" href="eic_8h.html#afd8706ad3219397c91636524d2149eb0">eic_enable</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>int8_t <a class="code hl_function" href="eic_8h.html#a034f0e472fc0d955b11de053a263e8cd">eic_configure_pin</a>(<span class="keyword">const</span> uint8_t pin, <a class="code hl_enumeration" href="eic_8h.html#ac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a> trigger);</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keywordtype">bool</span> <a class="code hl_function" href="eic_8h.html#a95932a1b8c5442120cd6caa7a5cb0733">eic_enable_interrupt</a>(<span class="keyword">const</span> uint8_t pin);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keywordtype">bool</span> <a class="code hl_function" href="eic_8h.html#a48015b16099d943fad32302fad6114a1">eic_disable_interrupt</a>(<span class="keyword">const</span> uint8_t pin);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keywordtype">bool</span> <a class="code hl_function" href="eic_8h.html#ae6a140e7799fec385ff48c97f399b7cf">eic_enable_event</a>(<span class="keyword">const</span> uint8_t pin);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keywordtype">bool</span> <a class="code hl_function" href="eic_8h.html#a21e4b3925d449c25fe3831b167845161">eic_disable_event</a>(<span class="keyword">const</span> uint8_t pin);</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keywordtype">void</span> <a class="code hl_function" href="eic_8h.html#a5695270545c3f5b6a24682447108e6cd">eic_configure_callback</a>(eic_cb_t callback);</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keywordtype">void</span> <a class="code hl_function" href="eic_8h.html#abaae85c8706e41bb2cc2b7aa7be956e6">eic_disable</a>(<span class="keywordtype">void</span>);</div>
-<div class="ttc" id="aeic_8h_html_a034f0e472fc0d955b11de053a263e8cd"><div class="ttname"><a href="eic_8h.html#a034f0e472fc0d955b11de053a263e8cd">eic_configure_pin</a></div><div class="ttdeci">int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger_t trigger)</div><div class="ttdoc">Configures an external interrupt on one of the external interrupt pins.</div><div class="ttdef"><b>Definition</b> eic.c:99</div></div>
-<div class="ttc" id="aeic_8h_html_a21e4b3925d449c25fe3831b167845161"><div class="ttname"><a href="eic_8h.html#a21e4b3925d449c25fe3831b167845161">eic_disable_event</a></div><div class="ttdeci">bool eic_disable_event(const uint8_t pin)</div><div class="ttdoc">Disables the interrupt on the given interrupt channel.</div><div class="ttdef"><b>Definition</b> eic.c:190</div></div>
-<div class="ttc" id="aeic_8h_html_a48015b16099d943fad32302fad6114a1"><div class="ttname"><a href="eic_8h.html#a48015b16099d943fad32302fad6114a1">eic_disable_interrupt</a></div><div class="ttdeci">bool eic_disable_interrupt(const uint8_t pin)</div><div class="ttdoc">Disables the interrupt on the given interrupt channel.</div><div class="ttdef"><b>Definition</b> eic.c:150</div></div>
-<div class="ttc" id="aeic_8h_html_a5695270545c3f5b6a24682447108e6cd"><div class="ttname"><a href="eic_8h.html#a5695270545c3f5b6a24682447108e6cd">eic_configure_callback</a></div><div class="ttdeci">void eic_configure_callback(eic_cb_t callback)</div><div class="ttdoc">Configures an external interrupt callback.</div><div class="ttdef"><b>Definition</b> eic.c:219</div></div>
-<div class="ttc" id="aeic_8h_html_a95932a1b8c5442120cd6caa7a5cb0733"><div class="ttname"><a href="eic_8h.html#a95932a1b8c5442120cd6caa7a5cb0733">eic_enable_interrupt</a></div><div class="ttdeci">bool eic_enable_interrupt(const uint8_t pin)</div><div class="ttdoc">Enables an interrupt on the given interrupt channel.</div><div class="ttdef"><b>Definition</b> eic.c:129</div></div>
-<div class="ttc" id="aeic_8h_html_abaae85c8706e41bb2cc2b7aa7be956e6"><div class="ttname"><a href="eic_8h.html#abaae85c8706e41bb2cc2b7aa7be956e6">eic_disable</a></div><div class="ttdeci">void eic_disable(void)</div><div class="ttdoc">Disables the external interrupt controller.</div><div class="ttdef"><b>Definition</b> eic.c:209</div></div>
-<div class="ttc" id="aeic_8h_html_ac1fe47482a1a2c642408f50c2db9469f"><div class="ttname"><a href="eic_8h.html#ac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a></div><div class="ttdeci">eic_interrupt_trigger_t</div><div class="ttdoc">An enum defining the types of interrupt trigger you wish to scan for.</div><div class="ttdef"><b>Definition</b> eic.h:35</div></div>
-<div class="ttc" id="aeic_8h_html_ac66cb10fff656315b12df4248f798c41"><div class="ttname"><a href="eic_8h.html#ac66cb10fff656315b12df4248f798c41">eic_init</a></div><div class="ttdeci">void eic_init(void)</div><div class="ttdoc">Initializes the external interrupt controller, but does not enable it.</div><div class="ttdef"><b>Definition</b> eic.c:62</div></div>
-<div class="ttc" id="aeic_8h_html_ae6a140e7799fec385ff48c97f399b7cf"><div class="ttname"><a href="eic_8h.html#ae6a140e7799fec385ff48c97f399b7cf">eic_enable_event</a></div><div class="ttdeci">bool eic_enable_event(const uint8_t pin)</div><div class="ttdoc">Enables an interrupt on the given interrupt channel.</div><div class="ttdef"><b>Definition</b> eic.c:171</div></div>
-<div class="ttc" id="aeic_8h_html_afd8706ad3219397c91636524d2149eb0"><div class="ttname"><a href="eic_8h.html#afd8706ad3219397c91636524d2149eb0">eic_enable</a></div><div class="ttdeci">void eic_enable(void)</div><div class="ttdoc">Enables the external interrupt controller.</div><div class="ttdef"><b>Definition</b> eic.c:87</div></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">typedef</span> void (*eic_cb_t)(uint8_t channel);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__eic.html#gac66cb10fff656315b12df4248f798c41">eic_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__eic.html#gafd8706ad3219397c91636524d2149eb0">eic_enable</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>int8_t <a class="code hl_function" href="group__eic.html#ga034f0e472fc0d955b11de053a263e8cd">eic_configure_pin</a>(<span class="keyword">const</span> uint8_t pin, <a class="code hl_enumeration" href="group__eic.html#gac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a> trigger);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__eic.html#ga95932a1b8c5442120cd6caa7a5cb0733">eic_enable_interrupt</a>(<span class="keyword">const</span> uint8_t pin);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__eic.html#ga48015b16099d943fad32302fad6114a1">eic_disable_interrupt</a>(<span class="keyword">const</span> uint8_t pin);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__eic.html#gae6a140e7799fec385ff48c97f399b7cf">eic_enable_event</a>(<span class="keyword">const</span> uint8_t pin);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__eic.html#ga21e4b3925d449c25fe3831b167845161">eic_disable_event</a>(<span class="keyword">const</span> uint8_t pin);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__eic.html#ga5695270545c3f5b6a24682447108e6cd">eic_configure_callback</a>(eic_cb_t callback);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__eic.html#gabaae85c8706e41bb2cc2b7aa7be956e6">eic_disable</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="ttc" id="agroup__eic_html_ga034f0e472fc0d955b11de053a263e8cd"><div class="ttname"><a href="group__eic.html#ga034f0e472fc0d955b11de053a263e8cd">eic_configure_pin</a></div><div class="ttdeci">int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger_t trigger)</div><div class="ttdoc">Configures an external interrupt on one of the external interrupt pins.</div><div class="ttdef"><b>Definition</b> eic.c:99</div></div>
+<div class="ttc" id="agroup__eic_html_ga21e4b3925d449c25fe3831b167845161"><div class="ttname"><a href="group__eic.html#ga21e4b3925d449c25fe3831b167845161">eic_disable_event</a></div><div class="ttdeci">bool eic_disable_event(const uint8_t pin)</div><div class="ttdoc">Disables the interrupt on the given interrupt channel.</div><div class="ttdef"><b>Definition</b> eic.c:190</div></div>
+<div class="ttc" id="agroup__eic_html_ga48015b16099d943fad32302fad6114a1"><div class="ttname"><a href="group__eic.html#ga48015b16099d943fad32302fad6114a1">eic_disable_interrupt</a></div><div class="ttdeci">bool eic_disable_interrupt(const uint8_t pin)</div><div class="ttdoc">Disables the interrupt on the given interrupt channel.</div><div class="ttdef"><b>Definition</b> eic.c:150</div></div>
+<div class="ttc" id="agroup__eic_html_ga5695270545c3f5b6a24682447108e6cd"><div class="ttname"><a href="group__eic.html#ga5695270545c3f5b6a24682447108e6cd">eic_configure_callback</a></div><div class="ttdeci">void eic_configure_callback(eic_cb_t callback)</div><div class="ttdoc">Configures an external interrupt callback.</div><div class="ttdef"><b>Definition</b> eic.c:219</div></div>
+<div class="ttc" id="agroup__eic_html_ga95932a1b8c5442120cd6caa7a5cb0733"><div class="ttname"><a href="group__eic.html#ga95932a1b8c5442120cd6caa7a5cb0733">eic_enable_interrupt</a></div><div class="ttdeci">bool eic_enable_interrupt(const uint8_t pin)</div><div class="ttdoc">Enables an interrupt on the given interrupt channel.</div><div class="ttdef"><b>Definition</b> eic.c:129</div></div>
+<div class="ttc" id="agroup__eic_html_gabaae85c8706e41bb2cc2b7aa7be956e6"><div class="ttname"><a href="group__eic.html#gabaae85c8706e41bb2cc2b7aa7be956e6">eic_disable</a></div><div class="ttdeci">void eic_disable(void)</div><div class="ttdoc">Disables the external interrupt controller.</div><div class="ttdef"><b>Definition</b> eic.c:209</div></div>
+<div class="ttc" id="agroup__eic_html_gac1fe47482a1a2c642408f50c2db9469f"><div class="ttname"><a href="group__eic.html#gac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a></div><div class="ttdeci">eic_interrupt_trigger_t</div><div class="ttdoc">An enum defining the types of interrupt trigger you wish to scan for.</div><div class="ttdef"><b>Definition</b> eic.h:38</div></div>
+<div class="ttc" id="agroup__eic_html_gac66cb10fff656315b12df4248f798c41"><div class="ttname"><a href="group__eic.html#gac66cb10fff656315b12df4248f798c41">eic_init</a></div><div class="ttdeci">void eic_init(void)</div><div class="ttdoc">Initializes the external interrupt controller, but does not enable it.</div><div class="ttdef"><b>Definition</b> eic.c:62</div></div>
+<div class="ttc" id="agroup__eic_html_gae6a140e7799fec385ff48c97f399b7cf"><div class="ttname"><a href="group__eic.html#gae6a140e7799fec385ff48c97f399b7cf">eic_enable_event</a></div><div class="ttdeci">bool eic_enable_event(const uint8_t pin)</div><div class="ttdoc">Enables an interrupt on the given interrupt channel.</div><div class="ttdef"><b>Definition</b> eic.c:171</div></div>
+<div class="ttc" id="agroup__eic_html_gafd8706ad3219397c91636524d2149eb0"><div class="ttname"><a href="group__eic.html#gafd8706ad3219397c91636524d2149eb0">eic_enable</a></div><div class="ttdeci">void eic_enable(void)</div><div class="ttdoc">Enables the external interrupt controller.</div><div class="ttdef"><b>Definition</b> eic.c:87</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html">common</a></li><li class="navelem"><b>eic.h</b></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

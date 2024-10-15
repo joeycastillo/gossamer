@@ -25,6 +25,7 @@
 var menudata={children:[
 {text:"Main Page",url:"index.html"},
 {text:"Related Pages",url:"pages.html"},
+{text:"Topics",url:"topics.html"},
 {text:"Data Structures",url:"annotated.html",children:[
 {text:"Data Structures",url:"annotated.html"},
 {text:"Data Structure Index",url:"classes.html"}]},
@@ -32,32 +33,7 @@ var menudata={children:[
 {text:"File List",url:"files.html"},
 {text:"Globals",url:"globals.html",children:[
 {text:"All",url:"globals.html",children:[
-{text:"_",url:"globals.html#index__5F"},
-{text:"a",url:"globals.html#index_a"},
-{text:"d",url:"globals.html#index_d"},
-{text:"e",url:"globals.html#index_e"},
 {text:"g",url:"globals.html#index_g"},
-{text:"i",url:"globals.html#index_i"},
-{text:"o",url:"globals.html#index_o"},
-{text:"r",url:"globals.html#index_r"},
-{text:"s",url:"globals.html#index_s"},
-{text:"t",url:"globals.html#index_t"},
-{text:"u",url:"globals.html#index_u"},
-{text:"y",url:"globals.html#index_y"}]},
-{text:"Functions",url:"globals_func.html",children:[
-{text:"_",url:"globals_func.html#index__5F"},
-{text:"a",url:"globals_func.html#index_a"},
-{text:"d",url:"globals_func.html#index_d"},
-{text:"e",url:"globals_func.html#index_e"},
-{text:"g",url:"globals_func.html#index_g"},
-{text:"i",url:"globals_func.html#index_i"},
-{text:"o",url:"globals_func.html#index_o"},
-{text:"r",url:"globals_func.html#index_r"},
-{text:"s",url:"globals_func.html#index_s"},
-{text:"t",url:"globals_func.html#index_t"},
-{text:"u",url:"globals_func.html#index_u"},
-{text:"y",url:"globals_func.html#index_y"}]},
-{text:"Typedefs",url:"globals_type.html"},
-{text:"Enumerations",url:"globals_enum.html"},
-{text:"Enumerator",url:"globals_eval.html"},
+{text:"s",url:"globals.html#index_s"}]},
+{text:"Functions",url:"globals_func.html"},
 {text:"Macros",url:"globals_defs.html"}]}]}]}

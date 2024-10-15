@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -48,6 +52,22 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('globals_func.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -70,58 +90,7 @@ $(function() {
 </div>
 
 <div class="contents">
-<div class="textblock">Here is a list of all documented functions with links to the documentation:</div>
-
-<h3><a id="index__5F" name="index__5F"></a>- _ -</h3><ul>
-<li>_enable_48mhz_gclk1()&#160;:&#160;<a class="el" href="system_8h.html#af6d6cb9ca08e26e456d9ed1d425453e8">system.h</a></li>
-<li>_enter_standby_mode()&#160;:&#160;<a class="el" href="system_8h.html#a436af75ad5caf82faa3497787abf4321">system.h</a></li>
-<li>_sercom_clock_setup()&#160;:&#160;<a class="el" href="sercom_8h.html#a76ac345ff33c35b9e6847c719bcb00a3">sercom.h</a></li>
-<li>_sercom_disable()&#160;:&#160;<a class="el" href="sercom_8h.html#abef0ed2b1af8b63d85ceb0bc2d212fc5">sercom.h</a></li>
-<li>_sercom_enable()&#160;:&#160;<a class="el" href="sercom_8h.html#a2d6b4fa64e102b375f255222acb1d74a">sercom.h</a></li>
-</ul>
-
-
-<h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
-<li>adc_disable()&#160;:&#160;<a class="el" href="adc_8h.html#a3b4b977d0665b5346849f3b892ac5106">adc.h</a></li>
-<li>adc_enable()&#160;:&#160;<a class="el" href="adc_8h.html#a3afdea3b7c9b91013c270f1a1a669782">adc.h</a></li>
-<li>adc_get_analog_value()&#160;:&#160;<a class="el" href="adc_8h.html#a96ce001b81ec65219abcb7e4a583f55c">adc.h</a></li>
-<li>adc_get_analog_value_for_channel()&#160;:&#160;<a class="el" href="adc_8h.html#a200744370e2a8505c3dead71aff1c2dc">adc.h</a></li>
-<li>adc_init()&#160;:&#160;<a class="el" href="adc_8h.html#a2b815e6730e8723a6d1d06d9ef8f31c0">adc.h</a></li>
-<li>adc_set_sampling_length()&#160;:&#160;<a class="el" href="adc_8h.html#a1b33d0d9bd2841354f016f8c64be3e15">adc.h</a></li>
-<li>app_init()&#160;:&#160;<a class="el" href="app_8h.html#add3190cf715f513666f4be42874d91e2">app.h</a></li>
-<li>app_loop()&#160;:&#160;<a class="el" href="app_8h.html#ad1cfce0ef962cd2afe2d8b2d2d13482a">app.h</a></li>
-<li>app_setup()&#160;:&#160;<a class="el" href="app_8h.html#acce192accedbd296eb8d2182f8101f16">app.h</a></li>
-<li>app_wake_from_backup()&#160;:&#160;<a class="el" href="app_8h.html#ab6a9f08ba879ce8d28fb19ca2882890a">app.h</a></li>
-</ul>
-
-
-<h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
-<li>dac_disable()&#160;:&#160;<a class="el" href="dac_8h.html#a6b0e70e8bf5135e2f3491e87fcd804fe">dac.h</a></li>
-<li>dac_enable()&#160;:&#160;<a class="el" href="dac_8h.html#a27483fa712ea61a534f679e72ffba463">dac.h</a></li>
-<li>dac_init()&#160;:&#160;<a class="el" href="dac_8h.html#a6e622fafee8436bf9cf9f6b120352e3c">dac.h</a></li>
-<li>dac_set_analog_value()&#160;:&#160;<a class="el" href="dac_8h.html#a2b43d67fbe14479cc72c1119fb2b7a48">dac.h</a></li>
-<li>delay_init()&#160;:&#160;<a class="el" href="delay_8h.html#af3c040fe31e69be32855715a75e0cda4">delay.h</a></li>
-<li>delay_ms()&#160;:&#160;<a class="el" href="delay_8h.html#ad2dd6e794004b50917d231195c324ce5">delay.h</a></li>
-<li>delay_us()&#160;:&#160;<a class="el" href="delay_8h.html#aa17c6e82a9085391c696904957505621">delay.h</a></li>
-</ul>
-
-
-<h3><a id="index_e" name="index_e"></a>- e -</h3><ul>
-<li>eic_configure_callback()&#160;:&#160;<a class="el" href="eic_8h.html#a5695270545c3f5b6a24682447108e6cd">eic.h</a></li>
-<li>eic_configure_pin()&#160;:&#160;<a class="el" href="eic_8h.html#a034f0e472fc0d955b11de053a263e8cd">eic.h</a></li>
-<li>eic_disable()&#160;:&#160;<a class="el" href="eic_8h.html#abaae85c8706e41bb2cc2b7aa7be956e6">eic.h</a></li>
-<li>eic_disable_event()&#160;:&#160;<a class="el" href="eic_8h.html#a21e4b3925d449c25fe3831b167845161">eic.h</a></li>
-<li>eic_disable_interrupt()&#160;:&#160;<a class="el" href="eic_8h.html#a48015b16099d943fad32302fad6114a1">eic.h</a></li>
-<li>eic_enable()&#160;:&#160;<a class="el" href="eic_8h.html#afd8706ad3219397c91636524d2149eb0">eic.h</a></li>
-<li>eic_enable_event()&#160;:&#160;<a class="el" href="eic_8h.html#ae6a140e7799fec385ff48c97f399b7cf">eic.h</a></li>
-<li>eic_enable_interrupt()&#160;:&#160;<a class="el" href="eic_8h.html#a95932a1b8c5442120cd6caa7a5cb0733">eic.h</a></li>
-<li>eic_init()&#160;:&#160;<a class="el" href="eic_8h.html#ac66cb10fff656315b12df4248f798c41">eic.h</a></li>
-<li>evsys_configure_channel()&#160;:&#160;<a class="el" href="evsys_8h.html#a506dcdef11267257fce99f6deffc4844">evsys.h</a></li>
-</ul>
-
-
-<h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
-<li>get_cpu_frequency()&#160;:&#160;<a class="el" href="system_8h.html#a96fa401b65736262fc29cc0537bed03e">system.h</a></li>
+<div class="textblock">Here is a list of all documented functions with links to the documentation:</div><ul>
 <li>gfx_draw_char()&#160;:&#160;<a class="el" href="gfx_8h.html#a5b59e00c08f5d1fd885e1e8047bfd6c5">gfx.h</a></li>
 <li>gfx_draw_circle()&#160;:&#160;<a class="el" href="gfx_8h.html#a0e7d434468150b90226c04f93ca04eee">gfx.h</a></li>
 <li>gfx_draw_hline()&#160;:&#160;<a class="el" href="gfx_8h.html#a86c12e8e89f71a28150038a94c4efe10">gfx.h</a></li>
@@ -140,134 +109,16 @@ $(function() {
 <li>gfx_fill_triangle()&#160;:&#160;<a class="el" href="gfx_8h.html#a968191da41b8719840fff7bfb94790c4">gfx.h</a></li>
 <li>gfx_init()&#160;:&#160;<a class="el" href="gfx_8h.html#a8c74f352515fa78338978d379f1b4965">gfx.h</a></li>
 <li>gfx_set_rotation()&#160;:&#160;<a class="el" href="gfx_8h.html#a05b894d2e0ea6e3c6edd8a88df0f9f14">gfx.h</a></li>
-</ul>
-
-
-<h3><a id="index_i" name="index_i"></a>- i -</h3><ul>
-<li>i2c_disable()&#160;:&#160;<a class="el" href="i2c_8h.html#abe70f8fe4c72329b89ec526c749f50d7">i2c.h</a></li>
-<li>i2c_disable_instance()&#160;:&#160;<a class="el" href="i2c_8h.html#a9cc8d8299e418b944243a96fa8adc996">i2c.h</a></li>
-<li>i2c_enable()&#160;:&#160;<a class="el" href="i2c_8h.html#a5a1923e2271df541e858cb4e05d7b895">i2c.h</a></li>
-<li>i2c_enable_instance()&#160;:&#160;<a class="el" href="i2c_8h.html#a88da4919a13ca41408ae8eafdab3855f">i2c.h</a></li>
-<li>i2c_init()&#160;:&#160;<a class="el" href="i2c_8h.html#a5730d9445429351b9f750084c5cb5aae">i2c.h</a></li>
-<li>i2c_init_instance()&#160;:&#160;<a class="el" href="i2c_8h.html#ae0163192e71ff834062fcb7591b01e29">i2c.h</a></li>
-<li>i2c_read()&#160;:&#160;<a class="el" href="i2c_8h.html#ae5074c1f6733c42bf7ccbd771ad2496c">i2c.h</a></li>
-<li>i2c_read_instance()&#160;:&#160;<a class="el" href="i2c_8h.html#a64cffaf51a6050fb5e58cb35a52e5179">i2c.h</a></li>
-<li>i2c_write()&#160;:&#160;<a class="el" href="i2c_8h.html#a5e6b5b5c02987f6b23765799809d9b25">i2c.h</a></li>
-<li>i2c_write_instance()&#160;:&#160;<a class="el" href="i2c_8h.html#a2f2ad75c678b2e0ebafd9c9686d38674">i2c.h</a></li>
-</ul>
-
-
-<h3><a id="index_o" name="index_o"></a>- o -</h3><ul>
-<li>opamp_disable()&#160;:&#160;<a class="el" href="opamp_8h.html#a0dcff33b01f135e8608d0bb90a758e8a">opamp.h</a></li>
-<li>opamp_enable()&#160;:&#160;<a class="el" href="opamp_8h.html#a92d4aa1c45921733f297129e39161fb4">opamp.h</a></li>
-<li>opamp_init()&#160;:&#160;<a class="el" href="opamp_8h.html#a1f92b0993e68ddbf650bd02873de8fcd">opamp.h</a></li>
-<li>opamp_set_analog_connection()&#160;:&#160;<a class="el" href="opamp_8h.html#aa41c70604826026b22c95f1b0448c642">opamp.h</a></li>
-<li>opamp_set_muxneg()&#160;:&#160;<a class="el" href="opamp_8h.html#aae5d775bcd2c346190b9b3c321c528bc">opamp.h</a></li>
-<li>opamp_set_muxpos()&#160;:&#160;<a class="el" href="opamp_8h.html#acdac2a6f48d8d0eca22f3618a7c2bd17">opamp.h</a></li>
-<li>opamp_set_potmux()&#160;:&#160;<a class="el" href="opamp_8h.html#a03227184722fe89e01e8f1fa00df63e3">opamp.h</a></li>
-<li>opamp_set_res1mux()&#160;:&#160;<a class="el" href="opamp_8h.html#abb5b017b5571c2bbc53330f54ba79971">opamp.h</a></li>
-<li>opamp_set_res2mux()&#160;:&#160;<a class="el" href="opamp_8h.html#ab9f7e0d2fbaf34171563d8c1ceb5f3b8">opamp.h</a></li>
-</ul>
-
-
-<h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
-<li>rtc_configure_callback()&#160;:&#160;<a class="el" href="rtc_8h.html#a8dd6108752ed8c8e5dad649d650dc1d5">rtc.h</a></li>
-<li>rtc_disable_alarm_interrupt()&#160;:&#160;<a class="el" href="rtc_8h.html#a0b927833b5d5d87ec161a8c9cb14d633">rtc.h</a></li>
-<li>rtc_enable()&#160;:&#160;<a class="el" href="rtc_8h.html#abec68bd2863d22f5a8e12ab89f8134f4">rtc.h</a></li>
-<li>rtc_enable_alarm_interrupt()&#160;:&#160;<a class="el" href="rtc_8h.html#a7ed60d3c6eddb662a798903454a60f5c">rtc.h</a></li>
-<li>rtc_get_date_time()&#160;:&#160;<a class="el" href="rtc_8h.html#a728694478350f90fa205569ee72a4d55">rtc.h</a></li>
-<li>rtc_init()&#160;:&#160;<a class="el" href="rtc_8h.html#acf9024748b942a7ae375cf75951afa9c">rtc.h</a></li>
-<li>rtc_is_enabled()&#160;:&#160;<a class="el" href="rtc_8h.html#a72309e05f8aa147cfdd0eb6ac2037889">rtc.h</a></li>
-<li>rtc_set_date_time()&#160;:&#160;<a class="el" href="rtc_8h.html#a16c55e20ebca1f6501626e39a38c6425">rtc.h</a></li>
-</ul>
-
-
-<h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
-<li>set_cpu_frequency()&#160;:&#160;<a class="el" href="system_8h.html#a4f33e5a16dba970fa7064ea27287fcba">system.h</a></li>
 <li>sh1107_begin()&#160;:&#160;<a class="el" href="sh1107_8h.html#aed0009c4be3de7d50eb4c7b195460c7c">sh1107.h</a></li>
 <li>sh1107_update()&#160;:&#160;<a class="el" href="sh1107_8h.html#af07fc90517a99581d8fb86c73ff40270">sh1107.h</a></li>
-<li>spi_disable()&#160;:&#160;<a class="el" href="spi_8h.html#aa8d2d6d1632faf9abbe03c3ed90d54d4">spi.h</a></li>
-<li>spi_disable_instance()&#160;:&#160;<a class="el" href="spi_8h.html#a3856b233dc7584708ab420d41c4816fe">spi.h</a></li>
-<li>spi_enable()&#160;:&#160;<a class="el" href="spi_8h.html#a72cf41d2f19954fefd27f681d6b39532">spi.h</a></li>
-<li>spi_enable_instance()&#160;:&#160;<a class="el" href="spi_8h.html#a8f1915874847b4564ab22039f2b8762f">spi.h</a></li>
-<li>spi_init()&#160;:&#160;<a class="el" href="spi_8h.html#a48ef10ade34f68b96d36dee03ebc4415">spi.h</a></li>
-<li>spi_init_instance()&#160;:&#160;<a class="el" href="spi_8h.html#aee8eaa5f597d774c4fc4a6f7d6d08305">spi.h</a></li>
-<li>spi_transfer()&#160;:&#160;<a class="el" href="spi_8h.html#a50084189a01c481aebe4e4d1e1968910">spi.h</a></li>
-<li>spi_transfer_instance()&#160;:&#160;<a class="el" href="spi_8h.html#a03d51191e1fb189fcddf1087999d58a2">spi.h</a></li>
-<li>sys_init()&#160;:&#160;<a class="el" href="system_8h.html#af411a8bc6b7ed4b0af9114e10c959448">system.h</a></li>
-</ul>
-
-
-<h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
-<li>tc_count16_get_count()&#160;:&#160;<a class="el" href="tc_8h.html#a2e534df47672eea4460487ab3fe1e123">tc.h</a></li>
-<li>tc_count16_set_cc()&#160;:&#160;<a class="el" href="tc_8h.html#a30b584892c4a1cfce9ddc70933776e7e">tc.h</a></li>
-<li>tc_count16_set_count()&#160;:&#160;<a class="el" href="tc_8h.html#a2b52ab8a84db926117b40c7c6d6447d6">tc.h</a></li>
-<li>tc_count32_get_count()&#160;:&#160;<a class="el" href="tc_8h.html#aa5879a623b3133654d474decb14b61f8">tc.h</a></li>
-<li>tc_count32_set_cc()&#160;:&#160;<a class="el" href="tc_8h.html#a5078d0682876c8bcabbf8da7944865e8">tc.h</a></li>
-<li>tc_count32_set_count()&#160;:&#160;<a class="el" href="tc_8h.html#a4136a7369f7b79b4a1d29575c1f1f9d8">tc.h</a></li>
-<li>tc_count8_get_count()&#160;:&#160;<a class="el" href="tc_8h.html#a0350dc913a38a4e3b27b441510a614ba">tc.h</a></li>
-<li>tc_count8_get_period()&#160;:&#160;<a class="el" href="tc_8h.html#a993860f6b38c672f9ca6ae1b60452282">tc.h</a></li>
-<li>tc_count8_set_cc()&#160;:&#160;<a class="el" href="tc_8h.html#a8862d572676201371406b19746198c45">tc.h</a></li>
-<li>tc_count8_set_count()&#160;:&#160;<a class="el" href="tc_8h.html#a363974408ab3135aaf6529cadfd5195b">tc.h</a></li>
-<li>tc_count8_set_period()&#160;:&#160;<a class="el" href="tc_8h.html#ab18ace8a5dd07d75cb9e6957d9e2658c">tc.h</a></li>
-<li>tc_disable()&#160;:&#160;<a class="el" href="tc_8h.html#af2ed5cb964a3f29663b89bfc2a661caf">tc.h</a></li>
-<li>tc_enable()&#160;:&#160;<a class="el" href="tc_8h.html#a2715d5a6f20298805eefa13a8a7a1b99">tc.h</a></li>
-<li>tc_init()&#160;:&#160;<a class="el" href="tc_8h.html#a1ccf965a51a89fb1df2545988d4739d2">tc.h</a></li>
-<li>tc_is_enabled()&#160;:&#160;<a class="el" href="tc_8h.html#a1b71bab26fe6c8796a723a10fba63b6b">tc.h</a></li>
-<li>tc_retrigger()&#160;:&#160;<a class="el" href="tc_8h.html#aabc141b06b22193abcb931edf634a7f5">tc.h</a></li>
-<li>tc_set_channel_polarity()&#160;:&#160;<a class="el" href="tc_8h.html#afd02ffa629bde002a06ad16a570177ac">tc.h</a></li>
-<li>tc_set_counter_mode()&#160;:&#160;<a class="el" href="tc_8h.html#abbb61997f4579d174976dcc8e858c87a">tc.h</a></li>
-<li>tc_set_event_action()&#160;:&#160;<a class="el" href="tc_8h.html#a59bb895d55ef97120fac8149ec78bc47">tc.h</a></li>
-<li>tc_set_run_in_standby()&#160;:&#160;<a class="el" href="tc_8h.html#a0dec44fc5db357209ea67b67607c7e81">tc.h</a></li>
-<li>tc_set_wavegen()&#160;:&#160;<a class="el" href="tc_8h.html#affa4b9e60ccf8ba52074f3f2f28d8823">tc.h</a></li>
-<li>tc_stop()&#160;:&#160;<a class="el" href="tc_8h.html#a15eaf925943d7ba804ecd8bd466a4b14">tc.h</a></li>
-<li>tcc_disable()&#160;:&#160;<a class="el" href="tcc_8h.html#a14a335ba34333f27e6460bf1cf659177">tcc.h</a></li>
-<li>tcc_enable()&#160;:&#160;<a class="el" href="tcc_8h.html#a6ac612aa1426900df32765fb71e79918">tcc.h</a></li>
-<li>tcc_get_count()&#160;:&#160;<a class="el" href="tcc_8h.html#a52b25028c793c126d85096049f1b1f75">tcc.h</a></li>
-<li>tcc_get_period()&#160;:&#160;<a class="el" href="tcc_8h.html#a4123d9f15758b550c9f47ae3bf851a23">tcc.h</a></li>
-<li>tcc_init()&#160;:&#160;<a class="el" href="tcc_8h.html#a55f68c3649be5d58b0e422ad94224b94">tcc.h</a></li>
-<li>tcc_is_enabled()&#160;:&#160;<a class="el" href="tcc_8h.html#a5797bec545a165a39f092514139f5b1e">tcc.h</a></li>
-<li>tcc_retrigger()&#160;:&#160;<a class="el" href="tcc_8h.html#ac9b0bb48f6116f8fb3e6036963ad5ac8">tcc.h</a></li>
-<li>tcc_set_cc()&#160;:&#160;<a class="el" href="tcc_8h.html#abbe2f7d3ec62ef888d0c905b03470531">tcc.h</a></li>
-<li>tcc_set_channel_polarity()&#160;:&#160;<a class="el" href="tcc_8h.html#aa449988b4bea75a5e018c01e38d6c058">tcc.h</a></li>
-<li>tcc_set_count()&#160;:&#160;<a class="el" href="tcc_8h.html#a287f26e06ce521f40c6f25190c1098c1">tcc.h</a></li>
-<li>tcc_set_output_matrix()&#160;:&#160;<a class="el" href="tcc_8h.html#a5646c274366bca4fdbc220d732282f2e">tcc.h</a></li>
-<li>tcc_set_period()&#160;:&#160;<a class="el" href="tcc_8h.html#a0e0c7fc6f5730d54bea797616d2471fc">tcc.h</a></li>
-<li>tcc_set_run_in_standby()&#160;:&#160;<a class="el" href="tcc_8h.html#a273b5e8282d26fa117e00925e2a240cc">tcc.h</a></li>
-<li>tcc_set_wavegen()&#160;:&#160;<a class="el" href="tcc_8h.html#a7d6656d2bfabdc18ac7088094cb304a9">tcc.h</a></li>
-<li>tcc_stop()&#160;:&#160;<a class="el" href="tcc_8h.html#a9fccdb4bb693f6a77f5a808b8d5011b2">tcc.h</a></li>
-<li>tcc_update()&#160;:&#160;<a class="el" href="tcc_8h.html#aa135529878d40c76aa1a8fdda73f5b39">tcc.h</a></li>
-</ul>
-
-
-<h3><a id="index_u" name="index_u"></a>- u -</h3><ul>
-<li>uart_disable()&#160;:&#160;<a class="el" href="uart_8h.html#a9dbcc0696f2607e16da1f55d3b4d6d94">uart.h</a></li>
-<li>uart_disable_instance()&#160;:&#160;<a class="el" href="uart_8h.html#a22b6636b750bfa7669521d5be5baed82">uart.h</a></li>
-<li>uart_enable()&#160;:&#160;<a class="el" href="uart_8h.html#affcbd24efeade3b1444100dbbc614e88">uart.h</a></li>
-<li>uart_enable_instance()&#160;:&#160;<a class="el" href="uart_8h.html#ad390de8c3b3ddcb3d03a36513262528d">uart.h</a></li>
-<li>uart_init()&#160;:&#160;<a class="el" href="uart_8h.html#ad8f6a793347af79ca41a3363dbd3fd96">uart.h</a></li>
-<li>uart_init_instance()&#160;:&#160;<a class="el" href="uart_8h.html#a9e514ab7ce443e2fd91fbe99bf8cb207">uart.h</a></li>
-<li>uart_irq_handler()&#160;:&#160;<a class="el" href="uart_8h.html#a3d2a4f57b803f517096c373734ffa78b">uart.h</a></li>
-<li>uart_read()&#160;:&#160;<a class="el" href="uart_8h.html#acb00b8879d87fea2a41df7f2772c916c">uart.h</a></li>
-<li>uart_read_byte()&#160;:&#160;<a class="el" href="uart_8h.html#a6c3fa8ab576e34e015d469a2734d3292">uart.h</a></li>
-<li>uart_read_byte_instance()&#160;:&#160;<a class="el" href="uart_8h.html#afb3971f7bde4d345bc981b87866267c9">uart.h</a></li>
-<li>uart_read_instance()&#160;:&#160;<a class="el" href="uart_8h.html#a3ab7120aad2e941879ac328479d40af3">uart.h</a></li>
-<li>uart_set_irda_mode()&#160;:&#160;<a class="el" href="uart_8h.html#afdbbf43dd9af325b1cae5d5318853a8d">uart.h</a></li>
-<li>uart_set_irda_mode_instance()&#160;:&#160;<a class="el" href="uart_8h.html#a84eca02c048700d3f3ea086ff1e93451">uart.h</a></li>
-<li>uart_set_run_in_standby()&#160;:&#160;<a class="el" href="uart_8h.html#aa034660a70fb244c2e25187509985760">uart.h</a></li>
-<li>uart_set_run_in_standby_instance()&#160;:&#160;<a class="el" href="uart_8h.html#a94d5de1ee0878b0fb2d92c3626c3da22">uart.h</a></li>
-<li>uart_write()&#160;:&#160;<a class="el" href="uart_8h.html#a6e0844dd68d04ca88f255b6c75326a70">uart.h</a></li>
-<li>uart_write_instance()&#160;:&#160;<a class="el" href="uart_8h.html#ad53a035557ef05336ff3e45547b65861">uart.h</a></li>
-</ul>
-
-
-<h3><a id="index_y" name="index_y"></a>- y -</h3><ul>
-<li>yield()&#160;:&#160;<a class="el" href="app_8h.html#a7cb51f5c2b5cad3766f19eb69c92793b">app.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

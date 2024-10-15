@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -52,6 +56,23 @@ $(function() {
 $(document).ready(function() { init_codefold(0); });
 /* @license-end */
 </script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('slcd_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -73,126 +94,138 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html">common</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">slcd.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="slcd_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * MIT License</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Copyright (c) 2023 Joey Castillo</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> * of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> * in the Software without restriction, including without limitation the rights</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment"> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"> * copies of the Software, and to permit persons to whom the Software is</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment"> * furnished to do so, subject to the following conditions:</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * MIT License</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * Copyright (c) 2023 Joey Castillo</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * in the Software without restriction, including without limitation the rights</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> * copies of the Software, and to permit persons to whom the Software is</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> * furnished to do so, subject to the following conditions:</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"> * The above copyright notice and this permission notice shall be included in all</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment"> * copies or substantial portions of the Software.</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> * The above copyright notice and this permission notice shall be included in all</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> * copies or substantial portions of the Software.</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment"> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"> * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment"> * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment"> * SOFTWARE.</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &quot;<a class="code" href="system_8h.html">system.h</a>&quot;</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#ifdef SLCD</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    SLCD_BIAS_STATIC = 0,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    SLCD_BIAS_HALF = 1,</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    SLCD_BIAS_THIRD = 2,</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    SLCD_BIAS_FOURTH = 3,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>} slcd_bias_value_t;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    SLCD_DUTY_1_COMMON = 0,</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    SLCD_DUTY_2_COMMON = 1,</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    SLCD_DUTY_3_COMMON = 2,</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    SLCD_DUTY_4_COMMON = 3,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    SLCD_DUTY_6_COMMON = 4,</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    SLCD_DUTY_8_COMMON = 5,</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>} slcd_duty_value_t;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    SLCD_PRESCALER_DIV16 = 0,</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    SLCD_PRESCALER_DIV32 = 1,</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    SLCD_PRESCALER_DIV64 = 2,</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    SLCD_PRESCALER_DIV128 = 3,</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>} slcd_prescaler_value_t;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    SLCD_CLOCKSOURCE_ULP = 0,</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    SLCD_CLOCKSOURCE_XOSC = 1,</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>} slcd_clocksource_value_t;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    SLCD_CLOCKDIV_1 = 0,</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    SLCD_CLOCKDIV_2 = 1,</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    SLCD_CLOCKDIV_3 = 2,</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    SLCD_CLOCKDIV_4 = 3,</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    SLCD_CLOCKDIV_5 = 4,</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    SLCD_CLOCKDIV_6 = 5,</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    SLCD_CLOCKDIV_7 = 6,</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    SLCD_CLOCKDIV_8 = 7,</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>} slcd_clockdiv_value_t;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    SLCD_CSRSHIFT_LEFT = 0,</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    SLCD_CSRSHIFT_RIGHT = 1,</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>} slcd_csrshift_value_t;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="keywordtype">void</span> slcd_init(uint64_t lcd_pins, slcd_bias_value_t bias, slcd_duty_value_t duty, slcd_clocksource_value_t clocksource, slcd_prescaler_value_t prescaler, slcd_clockdiv_value_t clkdiv);</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keywordtype">void</span> slcd_set_contrast(uint8_t contrast);</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="keywordtype">void</span> slcd_enable(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="keywordtype">void</span> slcd_clear(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="keywordtype">void</span> slcd_set_segment(uint8_t com, uint8_t seg);</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="keywordtype">void</span> slcd_clear_segment(uint8_t com, uint8_t seg);</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="keywordtype">void</span> slcd_configure_frame_counter(uint8_t fc, uint8_t overflow_count, <span class="keywordtype">bool</span> prescale);</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="keywordtype">void</span> slcd_set_frame_counter_enabled(uint8_t fc, <span class="keywordtype">bool</span> enabled);</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="keywordtype">void</span> slcd_configure_blink(<span class="keywordtype">bool</span> blink_all, uint8_t bss0, uint8_t bss1, uint8_t fc);</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="keywordtype">void</span> slcd_set_blink_enabled(<span class="keywordtype">bool</span> enabled);</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="keywordtype">void</span> slcd_configure_circular_shift_animation(uint16_t initial_value, uint8_t size, slcd_csrshift_value_t shift_dir, uint8_t fc);</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="keywordtype">void</span> slcd_set_circular_shift_animation_enabled(<span class="keywordtype">bool</span> enabled);</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="keywordtype">void</span> slcd_disable(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="preprocessor">#endif </span><span class="comment">// SLCD</span></div>
-<div class="ttc" id="asystem_8h_html"><div class="ttname"><a href="system_8h.html">system.h</a></div><div class="ttdoc">Gossamer system routines.</div></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment"> * SOFTWARE.</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &quot;system.h&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#ifdef SLCD</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    SLCD_BIAS_STATIC = 0,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    SLCD_BIAS_HALF = 1,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    SLCD_BIAS_THIRD = 2,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    SLCD_BIAS_FOURTH = 3,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} slcd_bias_value_t;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    SLCD_DUTY_1_COMMON = 0,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    SLCD_DUTY_2_COMMON = 1,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    SLCD_DUTY_3_COMMON = 2,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    SLCD_DUTY_4_COMMON = 3,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    SLCD_DUTY_6_COMMON = 4,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    SLCD_DUTY_8_COMMON = 5,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>} slcd_duty_value_t;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    SLCD_PRESCALER_DIV16 = 0,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    SLCD_PRESCALER_DIV32 = 1,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    SLCD_PRESCALER_DIV64 = 2,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    SLCD_PRESCALER_DIV128 = 3,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>} slcd_prescaler_value_t;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    SLCD_CLOCKSOURCE_ULP = 0,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    SLCD_CLOCKSOURCE_XOSC = 1,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>} slcd_clocksource_value_t;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    SLCD_CLOCKDIV_1 = 0,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    SLCD_CLOCKDIV_2 = 1,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    SLCD_CLOCKDIV_3 = 2,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    SLCD_CLOCKDIV_4 = 3,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    SLCD_CLOCKDIV_5 = 4,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    SLCD_CLOCKDIV_6 = 5,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    SLCD_CLOCKDIV_7 = 6,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    SLCD_CLOCKDIV_8 = 7,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>} slcd_clockdiv_value_t;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    SLCD_CSRSHIFT_LEFT = 0,</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    SLCD_CSRSHIFT_RIGHT = 1,</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>} slcd_csrshift_value_t;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__slcd.html#ga1d5b89a5e4f29c7d807794f9c25caaa1">slcd_init</a>(uint64_t lcd_pins, slcd_bias_value_t bias, slcd_duty_value_t duty, slcd_clocksource_value_t clocksource, slcd_prescaler_value_t prescaler, slcd_clockdiv_value_t clkdiv);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__slcd.html#gac39467715e72b5336855708198be9b05">slcd_set_contrast</a>(uint8_t contrast);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__slcd.html#gaf629b000ff5ce5ded0f46e2df795f8b3">slcd_enable</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__slcd.html#gae95a8c8448785a091418cde0ab46cde1">slcd_clear</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__slcd.html#gafa6a244c0634d7009cb70b4fe9c2bd54">slcd_set_segment</a>(uint8_t com, uint8_t seg);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__slcd.html#ga32700273cbcdb6bec5dbe35aadf675fe">slcd_clear_segment</a>(uint8_t com, uint8_t seg);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__slcd.html#ga4ddbc9636249c6652d298a8c14fb1b19">slcd_configure_frame_counter</a>(uint8_t fc, uint8_t overflow_count, <span class="keywordtype">bool</span> prescale);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__slcd.html#gaa49c7c6c125badffdf00d71a96e989ee">slcd_set_frame_counter_enabled</a>(uint8_t fc, <span class="keywordtype">bool</span> enabled);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__slcd.html#gacf507491bc54005057442f48dffd22b5">slcd_configure_blink</a>(<span class="keywordtype">bool</span> blink_all, uint8_t bss0, uint8_t bss1, uint8_t fc);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__slcd.html#gad12bde6c35bcea61572c6813281be416">slcd_set_blink_enabled</a>(<span class="keywordtype">bool</span> enabled);</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__slcd.html#ga4e1060443dcfb767dc7bd6503c318f1b">slcd_configure_circular_shift_animation</a>(uint16_t initial_value, uint8_t size, slcd_csrshift_value_t shift_dir, uint8_t fc);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__slcd.html#ga4dec2a1983ffc4fd4c69b31d8fc06b1a">slcd_set_circular_shift_animation_enabled</a>(<span class="keywordtype">bool</span> enabled);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__slcd.html#ga0f4187acb065db5da4cde95a729f17cf">slcd_disable</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="preprocessor">#endif </span><span class="comment">// SLCD</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="ttc" id="agroup__slcd_html_ga0f4187acb065db5da4cde95a729f17cf"><div class="ttname"><a href="group__slcd.html#ga0f4187acb065db5da4cde95a729f17cf">slcd_disable</a></div><div class="ttdeci">void slcd_disable(void)</div><div class="ttdoc">Disables the SLCD peripheral.</div><div class="ttdef"><b>Definition</b> slcd.c:166</div></div>
+<div class="ttc" id="agroup__slcd_html_ga1d5b89a5e4f29c7d807794f9c25caaa1"><div class="ttname"><a href="group__slcd.html#ga1d5b89a5e4f29c7d807794f9c25caaa1">slcd_init</a></div><div class="ttdeci">void slcd_init(uint64_t lcd_pins, slcd_bias_value_t bias, slcd_duty_value_t duty, slcd_clocksource_value_t clocksource, slcd_prescaler_value_t prescaler, slcd_clockdiv_value_t clkdiv)</div><div class="ttdoc">Initializes the SLCD peripheral, but does not enable it.</div><div class="ttdef"><b>Definition</b> slcd.c:34</div></div>
+<div class="ttc" id="agroup__slcd_html_ga32700273cbcdb6bec5dbe35aadf675fe"><div class="ttname"><a href="group__slcd.html#ga32700273cbcdb6bec5dbe35aadf675fe">slcd_clear_segment</a></div><div class="ttdeci">void slcd_clear_segment(uint8_t com, uint8_t seg)</div><div class="ttdoc">Clears a segment in the display memory.</div><div class="ttdef"><b>Definition</b> slcd.c:101</div></div>
+<div class="ttc" id="agroup__slcd_html_ga4ddbc9636249c6652d298a8c14fb1b19"><div class="ttname"><a href="group__slcd.html#ga4ddbc9636249c6652d298a8c14fb1b19">slcd_configure_frame_counter</a></div><div class="ttdeci">void slcd_configure_frame_counter(uint8_t fc, uint8_t overflow_count, bool prescale)</div><div class="ttdoc">Configures one of the three frame counters.</div><div class="ttdef"><b>Definition</b> slcd.c:105</div></div>
+<div class="ttc" id="agroup__slcd_html_ga4dec2a1983ffc4fd4c69b31d8fc06b1a"><div class="ttname"><a href="group__slcd.html#ga4dec2a1983ffc4fd4c69b31d8fc06b1a">slcd_set_circular_shift_animation_enabled</a></div><div class="ttdeci">void slcd_set_circular_shift_animation_enabled(bool enabled)</div><div class="ttdoc">Enables or disables circular shift register animation according to the configuration set by slcd_conf...</div><div class="ttdef"><b>Definition</b> slcd.c:161</div></div>
+<div class="ttc" id="agroup__slcd_html_ga4e1060443dcfb767dc7bd6503c318f1b"><div class="ttname"><a href="group__slcd.html#ga4e1060443dcfb767dc7bd6503c318f1b">slcd_configure_circular_shift_animation</a></div><div class="ttdeci">void slcd_configure_circular_shift_animation(uint16_t initial_value, uint8_t size, slcd_csrshift_value_t shift_dir, uint8_t fc)</div><div class="ttdoc">Configures the Circular Shift Register animation, but does not start it. This is pretty obscure and y...</div><div class="ttdef"><b>Definition</b> slcd.c:154</div></div>
+<div class="ttc" id="agroup__slcd_html_gaa49c7c6c125badffdf00d71a96e989ee"><div class="ttname"><a href="group__slcd.html#gaa49c7c6c125badffdf00d71a96e989ee">slcd_set_frame_counter_enabled</a></div><div class="ttdeci">void slcd_set_frame_counter_enabled(uint8_t fc, bool enabled)</div><div class="ttdoc">Enables or disables one of the three frame counters.</div><div class="ttdef"><b>Definition</b> slcd.c:121</div></div>
+<div class="ttc" id="agroup__slcd_html_gac39467715e72b5336855708198be9b05"><div class="ttname"><a href="group__slcd.html#gac39467715e72b5336855708198be9b05">slcd_set_contrast</a></div><div class="ttdeci">void slcd_set_contrast(uint8_t contrast)</div><div class="ttdoc">Sets the contrast level for the display. Valid values are from 0-15.</div><div class="ttdef"><b>Definition</b> slcd.c:66</div></div>
+<div class="ttc" id="agroup__slcd_html_gacf507491bc54005057442f48dffd22b5"><div class="ttname"><a href="group__slcd.html#gacf507491bc54005057442f48dffd22b5">slcd_configure_blink</a></div><div class="ttdeci">void slcd_configure_blink(bool blink_all, uint8_t bss0, uint8_t bss1, uint8_t fc)</div><div class="ttdoc">Configures the blink mode, but does not start blinking.</div><div class="ttdef"><b>Definition</b> slcd.c:138</div></div>
+<div class="ttc" id="agroup__slcd_html_gad12bde6c35bcea61572c6813281be416"><div class="ttname"><a href="group__slcd.html#gad12bde6c35bcea61572c6813281be416">slcd_set_blink_enabled</a></div><div class="ttdeci">void slcd_set_blink_enabled(bool enabled)</div><div class="ttdoc">Enables or disables blinking according to the configuration set by slcd_configure_blink.</div><div class="ttdef"><b>Definition</b> slcd.c:149</div></div>
+<div class="ttc" id="agroup__slcd_html_gae95a8c8448785a091418cde0ab46cde1"><div class="ttname"><a href="group__slcd.html#gae95a8c8448785a091418cde0ab46cde1">slcd_clear</a></div><div class="ttdeci">void slcd_clear(void)</div><div class="ttdoc">Clears all display memory.</div><div class="ttdef"><b>Definition</b> slcd.c:75</div></div>
+<div class="ttc" id="agroup__slcd_html_gaf629b000ff5ce5ded0f46e2df795f8b3"><div class="ttname"><a href="group__slcd.html#gaf629b000ff5ce5ded0f46e2df795f8b3">slcd_enable</a></div><div class="ttdeci">void slcd_enable(void)</div><div class="ttdoc">Enables the SLCD peripheral.</div><div class="ttdef"><b>Definition</b> slcd.c:70</div></div>
+<div class="ttc" id="agroup__slcd_html_gafa6a244c0634d7009cb70b4fe9c2bd54"><div class="ttname"><a href="group__slcd.html#gafa6a244c0634d7009cb70b4fe9c2bd54">slcd_set_segment</a></div><div class="ttdeci">void slcd_set_segment(uint8_t com, uint8_t seg)</div><div class="ttdoc">Sets a segment in the display memory.</div><div class="ttdef"><b>Definition</b> slcd.c:97</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html">common</a></li><li class="navelem"><b>slcd.h</b></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>
