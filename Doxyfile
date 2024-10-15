@@ -5,7 +5,7 @@
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = "gossamer"
-PROJECT_NUMBER         = "0.0.0"
+PROJECT_NUMBER         = "0.0.1"
 PROJECT_BRIEF          = "a very lightweight app framework for SAMD and SAML chips"
 PROJECT_LOGO           =
 OUTPUT_DIRECTORY       = "."
