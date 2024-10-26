@@ -5,7 +5,7 @@ gossamer: a very lightweight firmware framework for SAMD and SAML chips
 
 Gossamer is an extremely lightweight framework for developing bare-metal firmware applications for the Microchip SAM D and SAM L series chips. It aims for consistency, simplicity and low power consumption.
 
-Gossamer targets four chips at this time: the SAM D11, D21, L21 and L22. These chips are all strikingly similar: they all have Cortex M0+ cores as well as native USB and as familiar peripherals like ADC's, TCC's and SERCOMs. Alas, a lot of the interfaces to these peripherals have slight differences, and at startup, these chips have subtly different clock setups.
+Gossamer targets four chips at this time: the SAM D11, D21, L21 and L22. These chips are all strikingly similar: they all have Cortex M0+ cores as well as native USB and familiar peripherals like ADC's, TCC's and SERCOMs. Alas, a lot of the interfaces to these peripherals have slight differences, and at startup, these chips have subtly different clock setups.
 
 The primary goal of the project is to provide a simple environment for writing firmware for these chips. The secondary goal is to ensure that the code you write will be compatible across chips in the family. By papering over subtle differences in syntax and setup, you should be able to write code for one chip in the family (like the SAM D21), and then seamlessly compile it for another, like the SAM D11 if you realize you need to cut BOM costs, or the L21 if you decide that low power is your priority.
 
@@ -14,7 +14,7 @@ Not all devices have all the same peripherals. Some features, like the segment L
 Clock Tree
 ----------
 
-If you look at the data sheets for these chips, you'll see that some boot with a 1 MHz clock, and others with a 4 MHz clock. No generic clocks are defined, and if you're coming from the Atmel Start world, you'll recall that it was on you to invent a clock tree from sceatch. 
+If you look at the data sheets for these chips, you'll see that some boot with a 1 MHz clock, and others with a 4 MHz clock. No generic clocks are defined, and if you're coming from the Atmel Start world, you'll recall that it was on you to invent a clock tree from scratch. 
 
 Gossamer simplifies this by giving you a consistent environment on all four platforms:
 
@@ -36,7 +36,7 @@ Much like an Arduino sketch has setup and loop functions, a Gossamer application
     * Returning `false` here ensures that your `app_loop` will be called again immediately.
     * Returning `true` will send the microcontroller into STANDBY mode, where it will remain until woken by an interrupt.
 
-This last bit — entering standby mode as often as possible — is a key feature of gossamer. In standby mode, the CPU is halted, but peripherals set up to run in standby can still run, and wake the device on an interrupt like a button press, timer tick or even the receipt of data over a UART. 
+This last bit — entering standby mode as often as possible — is a key feature of gossamer. In standby mode, the CPU is halted, but peripherals set up to run in standby can still run and wake the device on an interrupt like a button press, timer tick or even the receipt of data over a UART. 
 
 This is a great way to conserve energy in battery-powered applications, and gossamer makes it easy.
 
@@ -46,7 +46,7 @@ Peripheral Interface
 Peripherals are generally thin wrappers around raw register reads and writes, with little more than synchronization logic tacked on. Wrapping the raw register twiddling in function calls allows us to paper over subtle implementation details and hand-wave away register layout differences, like the difference between waiting on `STATUS.bit.SYNCBUSY` vs `SYNCBUSY.reg`. This provides a consistent way to enable, disable and operate peripherals:
 
 * `peripheral_init` enables the peripheral clocks and configures the peripheral, but does not enable it. Generally returns void, but for peripherals whose initialization can fail (i.e. due to a bad parameter), some init functions will return a boolean value: `true` if successful, `false` otherwise.
-* `peripheral_enable` enables the peripheral (usually a `CTRLA.bit.ENABLE`, with associated `SYNCBUSY` wait). Some peripherals have multiple channels (DAC) or instances (SERCOM). In these cases, the enable function takes as a parameter which instance to enable.
+* `peripheral_enable` enables the peripheral (usually a `CTRLA.bit.ENABLE`, with associated `SYNCBUSY` wait). Some peripherals have multiple channels (DAC) or instances (SERCOM). In these cases, the enable function takes as a parameter which channel or instance to enable.
 * `peripheral_disable` disables the peripheral.
     * For peripherals with multiple channels, this disables the channel, unless all channels are disabled in which case it disables the whole peripheral.
     * For peripherals with multiple instances, this only disables the specified instance.
