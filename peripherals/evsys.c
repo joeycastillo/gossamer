@@ -30,6 +30,11 @@
 void evsys_configure_channel(uint8_t channel, uint8_t generator, uint8_t user, bool run_in_standby, bool asynchronous) {
 #if defined(_SAMD11_) || defined(_SAMD21_) || defined(_SAMD51_)
     // TODO: these devices have a different way of configuring events
+    (void)channel;
+    (void)generator;
+    (void)user;
+    (void)run_in_standby;
+    (void)asynchronous;
 #else
     EVSYS->USER[user].reg = EVSYS_USER_CHANNEL(channel + 1);
     EVSYS->CHANNEL[0].reg = EVSYS_CHANNEL_EVGEN(generator) |
