@@ -28,8 +28,10 @@
 
 MEMORY
 {
-  flash (rx)  : ORIGIN = 0x00000000 + 8K, LENGTH = 0x40000 - 8K /* 256k - 8k */
-  ram   (rwx) : ORIGIN = 0x20000000, LENGTH = 0x8000 /* 32k */
+  bootloader (rx)  : ORIGIN = 0x0, LENGTH = 0x2000
+  flash      (rx)  : ORIGIN = 0x2000, LENGTH = 0x00040000-0x2000-0x2000
+  eeprom     (r)   : ORIGIN = 0x00040000-0x2000, LENGTH = 0x2000
+  ram        (rwx) : ORIGIN = 0x20000000, LENGTH = 0x00008000
 }
 
 __top_flash = ORIGIN(flash) + LENGTH(flash);
