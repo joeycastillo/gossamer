@@ -72,6 +72,7 @@ uint8_t spi_transfer_instance(uint8_t sercom, uint8_t data) {
 
     SERCOM_Peripherals[sercom].sercom->SPI.DATA.bit.DATA = data;
 
+    /// FIXME: Do we need to disable this check for a transmit-only SPI?
     while (!SERCOM_Peripherals[sercom].sercom->SPI.INTFLAG.bit.RXC) {}
 
     return SERCOM_Peripherals[sercom].sercom->SPI.DATA.bit.DATA;
