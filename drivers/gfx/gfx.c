@@ -36,11 +36,21 @@ void gfx_init(int16_t w, int16_t h, int8_t depth) {
     gfx_width = gfx_raw_width;
     gfx_height = gfx_raw_height;
     gfx_depth = depth;
-    // one bit only for now
+
     if (gfx_depth == 1) {
         uint32_t bytes = ((w + 7) / 8) * h;
         if ((gfx_buffer = (uint8_t *)malloc(bytes))) {
             memset(gfx_buffer, 0x00, bytes);
+        }
+    } else if (gfx_depth == 8) {
+        uint32_t bytes = w * h;
+        if ((gfx_buffer = (uint8_t *)malloc(bytes))) {
+            memset(gfx_buffer, 0, bytes);
+        }
+    } else if (gfx_depth == 16) {
+        uint32_t bytes = w * h * 2;
+        if ((gfx_buffer = (uint8_t *)malloc(bytes))) {
+            memset(gfx_buffer, 0, bytes);
         }
     }
 }
@@ -72,6 +82,20 @@ void gfx_draw_hline(int16_t x, int16_t y, int16_t w, uint16_t color) {
 
 #define grayoled_swap(a, b) (((a) ^= (b)), ((b) ^= (a)), ((a) ^= (b)))
 
+static void _gfx_draw_pixel_1bit(int16_t x, int16_t y, uint16_t color) {
+    switch (color) {
+        case 0:
+            gfx_buffer[x + (y / 8) * gfx_raw_width] &= ~(1 << (y & 7));
+            break;
+        case 1:
+            gfx_buffer[x + (y / 8) * gfx_raw_width] |= (1 << (y & 7));
+            break;
+        case 3:
+            gfx_buffer[x + (y / 8) * gfx_raw_width] ^= (1 << (y & 7));
+            break;
+    }
+}
+
 void gfx_draw_pixel(int16_t x, int16_t y, uint16_t color) {
     if ((x >= 0) && (x < gfx_width) && (y >= 0) && (y < gfx_height)) {
         // Pixel is in-bounds. Rotate coordinates if needed.
@@ -90,15 +114,15 @@ void gfx_draw_pixel(int16_t x, int16_t y, uint16_t color) {
                 break;
         }
 
-        switch (color) {
-            case 0:
-                gfx_buffer[x + (y / 8) * gfx_raw_width] &= ~(1 << (y & 7));
-                break;
+        switch (gfx_depth) {
             case 1:
-                gfx_buffer[x + (y / 8) * gfx_raw_width] |= (1 << (y & 7));
+                _gfx_draw_pixel_1bit(x, y, color);
                 break;
-            case 3:
-                gfx_buffer[x + (y / 8) * gfx_raw_width] ^= (1 << (y & 7));
+            case 8:
+                gfx_buffer[x + y * gfx_raw_width] = (uint8_t)color;
+                break;
+            case 16:
+                ((uint16_t *)gfx_buffer)[x + y * gfx_raw_width] = color;
                 break;
         }
     }
