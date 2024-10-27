@@ -9,14 +9,14 @@ var group__uart =
     [ "uart_init", "group__uart.html#gad8f6a793347af79ca41a3363dbd3fd96", null ],
     [ "uart_init_instance", "group__uart.html#ga9e514ab7ce443e2fd91fbe99bf8cb207", null ],
     [ "uart_irq_handler", "group__uart.html#ga3d2a4f57b803f517096c373734ffa78b", null ],
-    [ "uart_read", "group__uart.html#gacb00b8879d87fea2a41df7f2772c916c", null ],
-    [ "uart_read_byte", "group__uart.html#ga6c3fa8ab576e34e015d469a2734d3292", null ],
-    [ "uart_read_byte_instance", "group__uart.html#gafb3971f7bde4d345bc981b87866267c9", null ],
-    [ "uart_read_instance", "group__uart.html#ga3ab7120aad2e941879ac328479d40af3", null ],
+    [ "uart_read", "group__uart.html#ga02df0d8a58ed6b1a32e9d76ae4a963a0", null ],
+    [ "uart_read_byte", "group__uart.html#gadd8f793d670ffb8314798b0ceaf2e8ce", null ],
+    [ "uart_read_byte_instance", "group__uart.html#ga619f3e89d9cd5f2514cc6bb6fb3e9da3", null ],
+    [ "uart_read_instance", "group__uart.html#gaee8dc2d3466b44ff10205b21c4c04946", null ],
     [ "uart_set_irda_mode", "group__uart.html#gafdbbf43dd9af325b1cae5d5318853a8d", null ],
     [ "uart_set_irda_mode_instance", "group__uart.html#ga84eca02c048700d3f3ea086ff1e93451", null ],
     [ "uart_set_run_in_standby", "group__uart.html#gaa034660a70fb244c2e25187509985760", null ],
     [ "uart_set_run_in_standby_instance", "group__uart.html#ga94d5de1ee0878b0fb2d92c3626c3da22", null ],
-    [ "uart_write", "group__uart.html#ga6e0844dd68d04ca88f255b6c75326a70", null ],
-    [ "uart_write_instance", "group__uart.html#gad53a035557ef05336ff3e45547b65861", null ]
+    [ "uart_write", "group__uart.html#gaf3dc0a15d5c38d9872a04dcc9ca8e814", null ],
+    [ "uart_write_instance", "group__uart.html#gaf1a1015fc3939d69de6f4cc4c932c879", null ]
 ];
