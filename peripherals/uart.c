@@ -30,7 +30,7 @@ static volatile fifo_buffer_t uart_rx_fifo;
 static volatile fifo_buffer_t uart_tx_fifo;
 static volatile bool uart_fifo_overflow = false;
 
-static bool fifo_push(volatile fifo_buffer_t *fifo, uint8_t value) {
+static bool fifo_push(volatile fifo_buffer_t *fifo, char value) {
     int next_wr = (fifo->wr + 1) % UART_BUF_SIZE;
 
     if (next_wr == fifo->rd) return false;
@@ -41,7 +41,7 @@ static bool fifo_push(volatile fifo_buffer_t *fifo, uint8_t value) {
     return true;
 }
 
-static bool fifo_pop(volatile fifo_buffer_t *fifo, uint8_t *value) {
+static bool fifo_pop(volatile fifo_buffer_t *fifo, char *value) {
     if (fifo->rd == fifo->wr) return false;
 
     *value = fifo->data[fifo->rd];
@@ -50,7 +50,7 @@ static bool fifo_pop(volatile fifo_buffer_t *fifo, uint8_t *value) {
     return true;
 }
 
-static bool uart_write_byte(uint8_t sercom, uint8_t byte) {
+static bool uart_write_byte(uint8_t sercom, char byte) {
     Sercom* SERCOM = SERCOM_Peripherals[sercom].sercom;
     bool res = false;
 
@@ -68,7 +68,7 @@ static bool uart_write_byte(uint8_t sercom, uint8_t byte) {
 
 #if defined(UART_SERCOM)
 
-bool uart_read_byte(uint8_t *byte) {
+bool uart_read_byte(char *byte) {
     return uart_read_byte_instance(UART_SERCOM, byte);
 }
 
@@ -88,11 +88,11 @@ void uart_enable(void) {
     uart_enable_instance(UART_SERCOM);
 }
 
-void uart_write(uint8_t *data, size_t length) {
+void uart_write(char *data, size_t length) {
     uart_write_instance(UART_SERCOM, data, length);
 }
 
-size_t uart_read(uint8_t *data, size_t max_length) {
+size_t uart_read(char *data, size_t max_length) {
     return uart_read_instance(UART_SERCOM, data, max_length);
 }
 
@@ -165,13 +165,13 @@ void uart_enable_instance(uint8_t sercom) {
     _sercom_enable(sercom);
 }
 
-void uart_write_instance(uint8_t sercom, uint8_t *data, size_t length) {
+void uart_write_instance(uint8_t sercom, char *data, size_t length) {
     for (size_t i = 0; i < length; i++) {
         uart_write_byte(sercom, data[i]);
     }
 }
 
-size_t uart_read_instance(uint8_t sercom, uint8_t *data, size_t max_length) {
+size_t uart_read_instance(uint8_t sercom, char *data, size_t max_length) {
     size_t bytes_read;
     for (bytes_read = 0; bytes_read < max_length; bytes_read++) {
         if (!uart_read_byte_instance(sercom, &data[bytes_read])) break;
@@ -180,7 +180,7 @@ size_t uart_read_instance(uint8_t sercom, uint8_t *data, size_t max_length) {
     return bytes_read;
 }
 
-bool uart_read_byte_instance(uint8_t sercom, uint8_t *byte) {
+bool uart_read_byte_instance(uint8_t sercom, char *byte) {
     bool res = false;
 
     NVIC_DisableIRQ(SERCOM_Peripherals[sercom].interrupt_line);
@@ -208,7 +208,7 @@ void uart_irq_handler(uint8_t sercom) {
 
     if (flags & SERCOM_USART_INTFLAG_RXC) {
         int status = SERCOM->USART.STATUS.reg;
-        uint8_t byte = SERCOM->USART.DATA.reg;
+        char byte = SERCOM->USART.DATA.reg;
 
         SERCOM->USART.STATUS.reg = status;
 
@@ -216,7 +216,7 @@ void uart_irq_handler(uint8_t sercom) {
     }
 
     if (flags & SERCOM_USART_INTFLAG_DRE) {
-        uint8_t byte;
+        char byte;
 
         if (fifo_pop(&uart_tx_fifo, &byte)) SERCOM->USART.DATA.reg = byte;
         else SERCOM->USART.INTENCLR.reg = SERCOM_USART_INTENCLR_DRE;

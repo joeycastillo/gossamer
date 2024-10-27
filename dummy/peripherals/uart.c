@@ -15,7 +15,7 @@
 
 #if defined(UART_SERCOM)
 
-bool uart_read_byte(uint8_t *byte) {
+bool uart_read_byte(char *byte) {
     return false;
 }
 
@@ -28,10 +28,10 @@ void uart_set_run_in_standby(bool run_in_standby) {
 void uart_enable(void) {
 }
 
-void uart_write(uint8_t *data, size_t length) {
+void uart_write(char *data, size_t length) {
 }
 
-size_t uart_read(uint8_t *data, size_t max_length) {
+size_t uart_read(char *data, size_t max_length) {
     return 0;
 }
 
@@ -49,14 +49,14 @@ void uart_set_run_in_standby_instance(uint8_t sercom, bool run_in_standby) {
 void uart_enable_instance(uint8_t sercom) {
 }
 
-void uart_write_instance(uint8_t sercom, uint8_t *data, size_t length) {
+void uart_write_instance(uint8_t sercom, char *data, size_t length) {
 }
 
-size_t uart_read_instance(uint8_t sercom, uint8_t *data, size_t max_length) {
+size_t uart_read_instance(uint8_t sercom, char *data, size_t max_length) {
     return 0;
 }
 
-bool uart_read_byte_instance(uint8_t sercom, uint8_t *byte) {
+bool uart_read_byte_instance(uint8_t sercom, char *byte) {
     return false;
 }
 

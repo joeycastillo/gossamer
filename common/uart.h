@@ -89,7 +89,7 @@ void uart_set_irda_mode(bool irda);
  * @param data The data to write.
  * @param length The number of bytes to write.
  */
-void uart_write(uint8_t *data, size_t length);
+void uart_write(char *data, size_t length);
 
 /**
  * @brief Reads data from the UART peripheral for a board with a defined UART_SERCOM.
@@ -97,14 +97,14 @@ void uart_write(uint8_t *data, size_t length);
  * @param max_length The maximum number of bytes to read.
  * @return The number of bytes read.
  */
-size_t uart_read(uint8_t *data, size_t max_length);
+size_t uart_read(char *data, size_t max_length);
 
 /**
  * @brief Reads a single byte from the UART peripheral for a board with a defined UART_SERCOM.
  * @param byte The byte read.
  * @return true if a byte was read.
  */
-bool uart_read_byte(uint8_t *byte);
+bool uart_read_byte(char *byte);
 
 /**
  * @brief Disables the UART peripheral for a board with a defined UART_SERCOM.
@@ -145,7 +145,7 @@ void uart_enable_instance(uint8_t sercom);
  * @param data The data to write.
  * @param length The number of bytes to write.
  */
-void uart_write_instance(uint8_t sercom, uint8_t *data, size_t length);
+void uart_write_instance(uint8_t sercom, char *data, size_t length);
 
 /**
  * @brief Reads data from a specific SERCOM UART instance.
@@ -154,7 +154,7 @@ void uart_write_instance(uint8_t sercom, uint8_t *data, size_t length);
  * @param max_length The maximum number of bytes to read.
  * @return The number of bytes read.
  */
-size_t uart_read_instance(uint8_t sercom, uint8_t *data, size_t max_length);
+size_t uart_read_instance(uint8_t sercom, char *data, size_t max_length);
 
 /**
  * @brief Reads a single byte from a specific SERCOM UART instance.
@@ -162,7 +162,7 @@ size_t uart_read_instance(uint8_t sercom, uint8_t *data, size_t max_length);
  * @param byte The byte read.
  * @return true if a byte was read.
  */
-bool uart_read_byte_instance(uint8_t sercom, uint8_t *byte);
+bool uart_read_byte_instance(uint8_t sercom, char *byte);
 
 /**
  * @brief Disables a specific SERCOM UART instance.
