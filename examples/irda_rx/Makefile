@@ -3,7 +3,7 @@ GOSSAMER_PATH = ../..
 
 # If your firmware targets a specific board, specify it here,
 # or omit it and provide it on the command line (make BOARD=foo).
-BOARD=circuitplayground
+BOARD=sensorwatch_pro
 
 # enable USB
 TINYUSB_CDC=1

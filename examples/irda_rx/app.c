@@ -12,10 +12,11 @@ void app_init(void) {
 void app_setup(void) {
     usb_init();
     usb_enable();
-    HAL_GPIO_IR_ANALOG_in();
-    HAL_GPIO_IR_ANALOG_pullup();
-    HAL_GPIO_IR_ANALOG_pmuxen(HAL_GPIO_PMUX_SERCOM_ALT);
-    uart_init_instance(0, UART_TXPO_NONE, UART_RXPO_0, 300);
+    HAL_GPIO_IR_ENABLE_out();
+    HAL_GPIO_IR_ENABLE_clr();
+    HAL_GPIO_IRSENSE_in();
+    HAL_GPIO_IRSENSE_pmuxen(HAL_GPIO_PMUX_SERCOM_ALT);
+    uart_init_instance(0, UART_TXPO_NONE, UART_RXPO_0, 600);
     uart_set_irda_mode_instance(0, true);
     uart_enable_instance(0);
 }
