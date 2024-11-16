@@ -17,7 +17,13 @@ void app_setup(void) {
 }
 
 bool app_loop(void) {
-    char hello[] = "Hello, world!\r\n";
+    char hello[20] = ">1TEST>Hello World*";
+    uint8_t checksum = 0;
+    for (size_t i = 0; i < strlen(hello) - 1; i++) {
+        checksum += hello[i];
+    }
+    hello[18] = checksum;
+    hello[19] = 0;
     HAL_GPIO_LED_toggle();
     uart_write_instance(4, hello, strlen(hello));
     delay_ms(50);
