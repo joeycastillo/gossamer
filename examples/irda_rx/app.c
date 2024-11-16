@@ -16,7 +16,7 @@ void app_setup(void) {
     HAL_GPIO_IR_ENABLE_clr();
     HAL_GPIO_IRSENSE_in();
     HAL_GPIO_IRSENSE_pmuxen(HAL_GPIO_PMUX_SERCOM_ALT);
-    uart_init_instance(0, UART_TXPO_NONE, UART_RXPO_0, 600);
+    uart_init_instance(0, UART_TXPO_NONE, UART_RXPO_0, 900);
     uart_set_irda_mode_instance(0, true);
     uart_enable_instance(0);
 }

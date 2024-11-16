@@ -11,7 +11,7 @@ void app_setup(void) {
     HAL_GPIO_LED_out();
     HAL_GPIO_TX_out();
     HAL_GPIO_TX_pmuxen(HAL_GPIO_PMUX_SERCOM_ALT);
-    uart_init_instance(4, UART_TXPO_0, UART_RXPO_NONE, 600);
+    uart_init_instance(4, UART_TXPO_0, UART_RXPO_NONE, 900);
     uart_set_irda_mode_instance(4, true);
     uart_enable_instance(4);
 }
