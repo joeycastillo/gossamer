@@ -17,6 +17,7 @@ var searchData=
   ['app_5floop_14',['app_loop',['../group__app.html#gad1cfce0ef962cd2afe2d8b2d2d13482a',1,'app.h']]],
   ['app_5fsetup_15',['app_setup',['../group__app.html#gacce192accedbd296eb8d2182f8101f16',1,'app.h']]],
   ['app_5fwake_5ffrom_5fbackup_16',['app_wake_from_backup',['../group__app.html#gab6a9f08ba879ce8d28fb19ca2882890a',1,'app.h']]],
-  ['application_20framework_17',['application framework',['../md__r_e_a_d_m_e.html#autotoc_md2',1,'Application Framework'],['../group__app.html',1,'Gossamer application framework']]],
-  ['applications_18',['Timer/Counter for Control Applications',['../group__tcc.html',1,'']]]
+  ['application_20framework_17',['Application Framework',['../md__r_e_a_d_m_e.html#autotoc_md2',1,'']]],
+  ['application_20framework_18',['Gossamer application framework',['../group__app.html',1,'']]],
+  ['applications_19',['Timer/Counter for Control Applications',['../group__tcc.html',1,'']]]
 ];

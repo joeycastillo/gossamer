@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['peripheral_0',['peripheral',['../group__i2c.html',1,'Inter-IC Communications Peripheral'],['../group__spi.html',1,'SPI Peripheral'],['../group__uart.html',1,'UART Peripheral']]],
+  ['peripheral_0',['Peripheral',['../group__i2c.html',1,'Inter-IC Communications Peripheral'],['../group__spi.html',1,'SPI Peripheral'],['../group__uart.html',1,'UART Peripheral']]],
   ['peripheral_20interface_1',['Peripheral Interface',['../md__r_e_a_d_m_e.html#autotoc_md3',1,'']]],
   ['peripheral_20touch_20controller_2',['Peripheral Touch Controller',['../group__ptc.html',1,'']]],
   ['plans_3',['Current state and future plans',['../md__r_e_a_d_m_e.html#autotoc_md7',1,'']]],

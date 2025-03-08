@@ -15,7 +15,8 @@ var searchData=
   ['ic_20sound_20interface_12',['Inter-IC Sound interface',['../group__i2s.html',1,'']]],
   ['inter_20ic_20communications_20peripheral_13',['Inter-IC Communications Peripheral',['../group__i2c.html',1,'']]],
   ['inter_20ic_20sound_20interface_14',['Inter-IC Sound interface',['../group__i2s.html',1,'']]],
-  ['interface_15',['interface',['../group__i2s.html',1,'Inter-IC Sound interface'],['../md__r_e_a_d_m_e.html#autotoc_md3',1,'Peripheral Interface']]],
-  ['internals_16',['System Internals',['../group__system.html',1,'']]],
-  ['interrupt_20controller_17',['External Interrupt Controller',['../group__eic.html',1,'']]]
+  ['interface_15',['Peripheral Interface',['../md__r_e_a_d_m_e.html#autotoc_md3',1,'']]],
+  ['interface_16',['Inter-IC Sound interface',['../group__i2s.html',1,'']]],
+  ['internals_17',['System Internals',['../group__system.html',1,'']]],
+  ['interrupt_20controller_18',['External Interrupt Controller',['../group__eic.html',1,'']]]
 ];
