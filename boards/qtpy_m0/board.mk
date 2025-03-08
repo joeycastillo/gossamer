@@ -3,3 +3,4 @@ LDSCRIPT = samd21j18
 
 DEFINES += \
   -D__SAMD21E18A__ \
+  -DCRYSTALLESS \
