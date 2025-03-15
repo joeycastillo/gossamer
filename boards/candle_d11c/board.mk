@@ -1,0 +1,7 @@
+CHIP = samd11
+LDSCRIPT = samd11d14
+DFU = 1
+
+DEFINES += \
+  -D__SAMD11C14A__ \
+  -DCRYSTALLESS \
