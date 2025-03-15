@@ -42,11 +42,6 @@
 #define HAS_PTC 1
 #endif
 
-#ifdef _SAMD11_
-#include "component/samd11_ptc_component.h"
-#define HAS_PTC 1
-#endif
-
 #ifdef HAS_PTC
 
 /* Touch library oversampling (filter) setting */
