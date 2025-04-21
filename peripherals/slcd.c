@@ -135,6 +135,14 @@ void slcd_set_frame_counter_enabled(uint8_t fc, bool enabled) {
     _slcd_sync(SLCD_SYNCBUSY_CTRLD);
 }
 
+void slcd_set_frame_counter_interrupt_enabled(uint8_t fc, bool enabled) {
+    if (enabled) SLCD->INTENSET.reg |= 1 << fc;
+    else SLCD->INTENCLR.reg |= 1 << fc;
+    NVIC_ClearPendingIRQ(SLCD_IRQn);
+    if (enabled) NVIC_EnableIRQ(SLCD_IRQn);
+    else NVIC_DisableIRQ(SLCD_IRQn);
+}
+
 void slcd_configure_blink(bool blink_all, uint8_t bss0, uint8_t bss1, uint8_t fc) {
     SLCD->BCFG.bit.FCS = fc;
     if (blink_all) {

@@ -53,6 +53,9 @@ void slcd_configure_frame_counter(uint8_t fc, uint8_t overflow_count, bool presc
 void slcd_set_frame_counter_enabled(uint8_t fc, bool enabled) {
 }
 
+void slcd_set_frame_counter_interrupt_enabled(uint8_t fc, bool enabled) {
+}
+
 void slcd_configure_blink(bool blink_all, uint8_t bss0, uint8_t bss1, uint8_t fc) {
 }
 

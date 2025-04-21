@@ -191,6 +191,15 @@ void slcd_configure_frame_counter(uint8_t fc, uint8_t overflow_count, bool presc
 void slcd_set_frame_counter_enabled(uint8_t fc, bool enabled);
 
 /**
+ * @brief Enables or disables one of the three frame counter interrupts.
+ * @param fc The frame counter whose interrupt you want to configure. Valid options are 0, 1, or 2.
+ * @param enabled If true, the frame counter interrupt is enabled. If false, the interrupt is disabled.
+ * @note This function assumes you only use one frame counter as an interrupt source. When you disable
+ *       the frame counter interrupt, it disables all SLCD interrupts.
+ */
+void slcd_set_frame_counter_interrupt_enabled(uint8_t fc, bool enabled);
+
+/**
  * @brief Configures the blink mode, but does not start blinking.
  * @note SLCD must be disabled to configure the blinking mode.
  * @param blink_all If true, all segments will blink. If false, only the segments
