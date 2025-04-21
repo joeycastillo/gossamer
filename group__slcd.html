@@ -182,6 +182,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>slcd_enable</b> (void
 <tr class="memitem:gaa49c7c6c125badffdf00d71a96e989ee" id="r_gaa49c7c6c125badffdf00d71a96e989ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaa49c7c6c125badffdf00d71a96e989ee">slcd_set_frame_counter_enabled</a> (uint8_t fc, bool enabled)</td></tr>
 <tr class="memdesc:gaa49c7c6c125badffdf00d71a96e989ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables one of the three frame counters.  <br /></td></tr>
 <tr class="separator:gaa49c7c6c125badffdf00d71a96e989ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1e66417bd2e46a7c27cd048240b06894" id="r_ga1e66417bd2e46a7c27cd048240b06894"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1e66417bd2e46a7c27cd048240b06894">slcd_set_frame_counter_interrupt_enabled</a> (uint8_t fc, bool enabled)</td></tr>
+<tr class="memdesc:ga1e66417bd2e46a7c27cd048240b06894"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables one of the three frame counter interrupts.  <br /></td></tr>
+<tr class="separator:ga1e66417bd2e46a7c27cd048240b06894"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacf507491bc54005057442f48dffd22b5" id="r_gacf507491bc54005057442f48dffd22b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gacf507491bc54005057442f48dffd22b5">slcd_configure_blink</a> (bool blink_all, uint8_t bss0, uint8_t bss1, uint8_t fc)</td></tr>
 <tr class="memdesc:gacf507491bc54005057442f48dffd22b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the blink mode, but does not start blinking.  <br /></td></tr>
 <tr class="separator:gacf507491bc54005057442f48dffd22b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -577,6 +580,37 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>slcd_disable</b> (voi
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ga1e66417bd2e46a7c27cd048240b06894" name="ga1e66417bd2e46a7c27cd048240b06894"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1e66417bd2e46a7c27cd048240b06894">&#9670;&#160;</a></span>slcd_set_frame_counter_interrupt_enabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void slcd_set_frame_counter_interrupt_enabled </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>fc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enabled</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables or disables one of the three frame counter interrupts. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fc</td><td>The frame counter whose interrupt you want to configure. Valid options are 0, 1, or 2. </td></tr>
+    <tr><td class="paramname">enabled</td><td>If true, the frame counter interrupt is enabled. If false, the interrupt is disabled. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function assumes you only use one frame counter as an interrupt source. When you disable the frame counter interrupt, it disables all SLCD interrupts. </dd></dl>
 
 </div>
 </div>

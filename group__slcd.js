@@ -12,5 +12,6 @@ var group__slcd =
     [ "slcd_set_circular_shift_animation_enabled", "group__slcd.html#ga4dec2a1983ffc4fd4c69b31d8fc06b1a", null ],
     [ "slcd_set_contrast", "group__slcd.html#gac39467715e72b5336855708198be9b05", null ],
     [ "slcd_set_frame_counter_enabled", "group__slcd.html#gaa49c7c6c125badffdf00d71a96e989ee", null ],
+    [ "slcd_set_frame_counter_interrupt_enabled", "group__slcd.html#ga1e66417bd2e46a7c27cd048240b06894", null ],
     [ "slcd_set_segment", "group__slcd.html#gafa6a244c0634d7009cb70b4fe9c2bd54", null ]
 ];
