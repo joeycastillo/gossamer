@@ -139,9 +139,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>eic_init</b> (void)</
 void&#160;</td><td class="memItemRight" valign="bottom"><b>eic_enable</b> (void)</td></tr>
 <tr class="memdesc:gafd8706ad3219397c91636524d2149eb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the external interrupt controller. <br /></td></tr>
 <tr class="separator:gafd8706ad3219397c91636524d2149eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga034f0e472fc0d955b11de053a263e8cd" id="r_ga034f0e472fc0d955b11de053a263e8cd"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga034f0e472fc0d955b11de053a263e8cd">eic_configure_pin</a> (const uint8_t pin, <a class="el" href="#gac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a> trigger)</td></tr>
-<tr class="memdesc:ga034f0e472fc0d955b11de053a263e8cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures an external interrupt on one of the external interrupt pins.  <br /></td></tr>
-<tr class="separator:ga034f0e472fc0d955b11de053a263e8cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad3f788b42c85e67030aea844ee02b8b0" id="r_gad3f788b42c85e67030aea844ee02b8b0"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gad3f788b42c85e67030aea844ee02b8b0">eic_configure_pin</a> (const uint8_t pin, <a class="el" href="#gac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a> trigger, bool filten)</td></tr>
+<tr class="memdesc:gad3f788b42c85e67030aea844ee02b8b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures an external interrupt on one of the external interrupt pins.  <br /></td></tr>
+<tr class="separator:gad3f788b42c85e67030aea844ee02b8b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga95932a1b8c5442120cd6caa7a5cb0733" id="r_ga95932a1b8c5442120cd6caa7a5cb0733"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga95932a1b8c5442120cd6caa7a5cb0733">eic_enable_interrupt</a> (const uint8_t pin)</td></tr>
 <tr class="memdesc:ga95932a1b8c5442120cd6caa7a5cb0733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables an interrupt on the given interrupt channel.  <br /></td></tr>
 <tr class="separator:ga95932a1b8c5442120cd6caa7a5cb0733"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -191,8 +191,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>eic_disable</b> (void
 
 </div>
 </div>
-<a id="ga034f0e472fc0d955b11de053a263e8cd" name="ga034f0e472fc0d955b11de053a263e8cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga034f0e472fc0d955b11de053a263e8cd">&#9670;&#160;</a></span>eic_configure_pin()</h2>
+<a id="gad3f788b42c85e67030aea844ee02b8b0" name="gad3f788b42c85e67030aea844ee02b8b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad3f788b42c85e67030aea844ee02b8b0">&#9670;&#160;</a></span>eic_configure_pin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -205,7 +205,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>eic_disable</b> (void
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#gac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a></td>          <td class="paramname"><span class="paramname"><em>trigger</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="#gac1fe47482a1a2c642408f50c2db9469f">eic_interrupt_trigger_t</a></td>          <td class="paramname"><span class="paramname"><em>trigger</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>filten</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -215,6 +220,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>eic_disable</b> (void
   <table class="params">
     <tr><td class="paramname">pin</td><td>The external interrupt pin you wish to configure — use HAL_GPIO_xxx_PIN() macro. </td></tr>
     <tr><td class="paramname">trigger</td><td>The condition on which you wish to trigger: rising, falling or both. </td></tr>
+    <tr><td class="paramname">filten</td><td>A boolean indicating whether to enable filtering. This causes the EIC to sample the pin three times (clocked by the EIC clock) and apply a majority vote filter. </td></tr>
   </table>
   </dd>
 </dl>
