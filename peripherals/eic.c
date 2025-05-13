@@ -96,14 +96,16 @@ void eic_enable(void) {
 #endif
 }
 
-int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger_t trigger) {
+int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger_t trigger, bool filten) {
     uint16_t port = pin >> 5;
     int8_t channel = _eic_pin_to_channel[port][pin & 0x1F];
     if (channel < 0) {
         return -1;
     }
+    // Channels 0-7 occupy CONFIG[0] and channels 8-15 occupy CONFIG[1].
     uint8_t config_index = (channel > 7) ? 1 : 0;
-    uint8_t sense_pos = 4 * (channel % 8);
+    // SENSEx occupies the lower three bits of each four-bit configuration slot, and FILTENx the fourth bit.
+    uint8_t channel_pos = 4 * (channel % 8);
 
     CTRLREG.bit.ENABLE = 0;
     _eic_sync();
@@ -115,9 +117,14 @@ int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger_t trigger) {
     if (pin & 1) PORT->Group[port].PMUX[(pin & 0x1F) >> 1].bit.PMUXO = HAL_GPIO_PMUX_EIC;
     else PORT->Group[port].PMUX[(pin & 0x1F) >> 1].bit.PMUXE = HAL_GPIO_PMUX_EIC;
 
+    // configure the interrupt, which consists of setting SENSEx with the trigger, and FILTENx to enable or disable filtering
     uint32_t config = EIC->CONFIG[config_index].reg;
-    config &= ~(7 << sense_pos);
-    config |= trigger << (sense_pos);
+    // clear all four bits of the selected configuration slot.
+    config &= ~(0xF << channel_pos);
+    // set the trigger
+    config |= trigger << channel_pos;
+    // enable the filter if needed
+    if (filten) config |= 0x8 << channel_pos;
     EIC->CONFIG[config_index].reg = config;
 
     CTRLREG.bit.ENABLE = 1;
