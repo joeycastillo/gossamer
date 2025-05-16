@@ -164,6 +164,7 @@ bool eic_disable_interrupt(const uint8_t pin) {
     _eic_sync();
 
     EIC->INTENCLR.reg = 1 << channel;
+    EIC->INTFLAG.reg = 1 << channel;
 #if defined(_SAMD21_) || defined(_SAMD11_)
     uint32_t wakeup = EIC->WAKEUP.reg;
     EIC->WAKEUP.reg = wakeup & ~(1 << channel);
