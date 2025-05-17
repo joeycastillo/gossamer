@@ -28,6 +28,10 @@ HAL_GPIO_PIN(SDA,  B, 30)
 HAL_GPIO_PIN(SCL,  B, 31)
 #define I2C_SERCOM 1
 
+// Temperature sensor (optional add-on)
+HAL_GPIO_PIN(TS_ENABLE, B, 4)
+HAL_GPIO_PIN(TEMPSENSE, B, 2)
+
 // Light
 HAL_GPIO_PIN(RED,   A, 20)
 HAL_GPIO_PIN(GREEN, A, 21)
@@ -101,9 +105,3 @@ HAL_GPIO_PIN(SLCD26, B, 17)
     (uint64_t)1 << 35 | \
     (uint64_t)1 << 42 | \
     (uint64_t)1 << 43 | 0)
-
-#ifdef TEMPERATURE_BOARD_INSTALLED
-#define HAS_TEMPERATURE_SENSOR
-HAL_GPIO_PIN(TS_ENABLE, B, 4)
-HAL_GPIO_PIN(TEMPSENSE, B, 2)
-#endif
