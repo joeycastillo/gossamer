@@ -48,6 +48,12 @@ void spi_init(uint32_t baud);
 void spi_enable(void);
 
 /**
+ * @brief Checks if the SPI peripheral is currently enabled for a board with a defined SPI_SERCOM.
+ * @returns true if SPI is enabled, false if it is not.
+ */
+bool spi_is_enabled(void);
+
+/**
  * @brief Transfers a byte over SPI for a board with a defined SPI_SERCOM.
  * @param data The byte to send.
  * @return The byte received.
@@ -73,6 +79,13 @@ void spi_init_instance(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, uint32_
  * @param sercom The SERCOM instance to enable.
  */
 void spi_enable_instance(uint8_t sercom);
+
+/**
+ * @brief Checks if the SPI peripheral on the given SERCOM is currently enabled.
+ * @param sercom The SERCOM of the SPI peripheral, as numbered in the data sheet.
+ * @returns true if SPI is enabled, false if it is not.
+ */
+bool spi_is_enabled_instance(uint8_t sercom);
 
 /**
  * @brief Transfers a byte over SPI.

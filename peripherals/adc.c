@@ -187,6 +187,10 @@ void adc_enable(void) {
     adc_get_analog_value_for_channel(ADC_INPUTCTRL_MUXPOS_SCALEDCOREVCC_Val);
 }
 
+bool adc_is_enabled(void) {
+    return ADC->CTRLA.bit.ENABLE;
+}
+
 void adc_disable(void) {
     ADC->CTRLA.bit.ENABLE = 0;
     _adc_sync();

@@ -35,6 +35,10 @@ void eic_init(void) {
 void eic_enable(void) {
 }
 
+bool eic_is_enabled(void) {
+    return true;
+}
+
 int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger_t trigger, bool filten) {
     return 0;
 }

@@ -52,6 +52,12 @@ void eic_init(void);
   */
 void eic_enable(void);
 
+/**
+ * @brief Checks if the external interrupt controller is currently enabled.
+ * @returns true if the external interrupt controller is enabled, false if it is not.
+ */
+bool eic_is_enabled(void);
+
 /** @brief Configures an external interrupt on one of the external interrupt pins.
   * @details This function configures the interrupt channel with the specified trigger, but it does not
   *          set pin direction, mux or pull; you must set up the pin yourself. This function also does
@@ -65,7 +71,7 @@ void eic_enable(void);
   * @note Be sure to check your pin multiplexing table to ensure that you do not have multiple pins
   *       assigned to the same interrupt channel. Also note that the NMI pin is not currently supported.
   */
- int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger_t trigger, bool filten);
+int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger_t trigger, bool filten);
 
 /** @brief Enables an interrupt on the given interrupt channel.
   * @param pin The external interrupt pin.

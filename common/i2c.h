@@ -44,6 +44,12 @@ void i2c_init(void);
 void i2c_enable(void);
 
 /**
+ * @brief Checks if the I2C peripheral is currently enabled for a board with a defined I2C_SERCOM.
+ * @returns true if I2C is enabled, false if it is not.
+ */
+bool i2c_is_enabled(void);
+
+/**
  * @brief Writes data to an I2C device at the provided address.
  * @param address The I2C address of the device.
  * @param data The data to write.
@@ -79,6 +85,13 @@ void i2c_init_instance(uint8_t sercom, uint32_t baud);
  * @param sercom The SERCOM of the I2C peripheral, as numbered in the data sheet.
  */
 void i2c_enable_instance(uint8_t sercom);
+
+/**
+ * @brief Checks if the I2C peripheral on the given SERCOM is currently enabled.
+ * @param sercom The SERCOM of the I2C peripheral, as numbered in the data sheet.
+ * @returns true if I2C is enabled, false if it is not.
+ */
+bool i2c_is_enabled_instance(uint8_t sercom);
 
 /**
  * @brief Writes data to an I2C device on the given SERCOM at the provided address.

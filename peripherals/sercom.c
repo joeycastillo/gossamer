@@ -57,6 +57,11 @@ void _sercom_enable(uint8_t sercom) {
     while (SERCOM_Peripherals[sercom].sercom->SPI.SYNCBUSY.bit.ENABLE) {}
 }
 
+bool _sercom_is_enabled(uint8_t sercom) {
+    // All modes have CTRLA.ENABLE at the same bit position.
+    return SERCOM_Peripherals[sercom].sercom->SPI.CTRLA.bit.ENABLE;
+}
+
 void _sercom_disable(uint8_t sercom) {
     // All modes have CTRLA.ENABLE at the same bit position.
     SERCOM_Peripherals[sercom].sercom->SPI.CTRLA.bit.ENABLE = 0;

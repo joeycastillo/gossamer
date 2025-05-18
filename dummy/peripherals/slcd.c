@@ -38,6 +38,10 @@ void slcd_set_contrast(uint8_t contrast) {
 void slcd_enable(void) {
 }
 
+bool slcd_is_enabled(void) {
+    return true;
+}
+
 void slcd_clear(void) {
 }
 

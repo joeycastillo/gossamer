@@ -73,6 +73,12 @@ void uart_init(uint32_t baud);
 void uart_enable(void);
 
 /**
+ * @brief Checks if the UART peripheral is currently enabled for a board with a defined UART_SERCOM.
+ * @returns true if UART is enabled, false if it is not.
+ */
+bool uart_is_enabled(void);
+
+/**
  * @brief Sets whether the UART_SERCOM should run in standby mode.
  * @param run_in_standby true if the UART should run in standby mode.
  */
@@ -138,6 +144,13 @@ void uart_set_irda_mode_instance(uint8_t sercom, bool irda);
  * @param sercom The SERCOM instance to enable.
  */
 void uart_enable_instance(uint8_t sercom);
+
+/**
+ * @brief Checks if the UART peripheral on the given SERCOM is currently enabled.
+ * @param sercom The SERCOM of the UART peripheral, as numbered in the data sheet.
+ * @returns true if UART is enabled, false if it is not.
+ */
+bool uart_is_enabled_instance(uint8_t sercom);
 
 /**
  * @brief Writes data to a specific SERCOM UART instance.

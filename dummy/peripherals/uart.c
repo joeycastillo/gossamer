@@ -28,6 +28,10 @@ void uart_set_run_in_standby(bool run_in_standby) {
 void uart_enable(void) {
 }
 
+bool uart_is_enabled(void) {
+    return true;
+}
+
 void uart_write(char *data, size_t length) {
 }
 
@@ -47,6 +51,11 @@ void uart_set_run_in_standby_instance(uint8_t sercom, bool run_in_standby) {
 }
 
 void uart_enable_instance(uint8_t sercom) {
+}
+
+bool uart_is_enabled_instance(uint8_t sercom) {
+    (void)sercom;
+    return true;
 }
 
 void uart_write_instance(uint8_t sercom, char *data, size_t length) {

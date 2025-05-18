@@ -72,6 +72,10 @@ void slcd_enable(void) {
     _slcd_sync(SLCD_SYNCBUSY_ENABLE);
 }
 
+bool slcd_is_enabled(void) {
+    return SLCD->CTRLA.bit.ENABLE;
+}
+
 void slcd_clear(void) {
     /// TODO: Can we optimize this? 
     /// If under 32 segments, we can write 0 to just the SDATAL registers.

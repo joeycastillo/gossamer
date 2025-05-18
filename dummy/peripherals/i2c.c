@@ -19,6 +19,10 @@ void i2c_init(void) {
 void i2c_enable(void) {
 }
 
+bool i2c_is_enabled(void) {
+    return true;
+}
+
 i2c_result_t i2c_write(uint8_t address, uint8_t* data, size_t len) {
     return 0;
 }
@@ -36,6 +40,11 @@ void i2c_init_instance(uint8_t sercom, uint32_t baud) {
 }
 
 void i2c_enable_instance(uint8_t sercom) {
+}
+
+bool i2c_is_enabled_instance(uint8_t sercom) {
+    (void)sercom;
+    return true;
 }
 
 i2c_result_t i2c_write_instance(uint8_t sercom, uint8_t address, uint8_t* data, size_t len) {

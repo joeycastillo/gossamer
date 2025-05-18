@@ -153,6 +153,12 @@ void slcd_set_contrast(uint8_t contrast);
 void slcd_enable(void);
 
 /**
+ * @brief Checks if the SLCD peripheral is currently enabled.
+ * @returns true if the SLCD peripheral is enabled, false if it is not.
+ */
+bool slcd_is_enabled(void);
+
+/**
  * @brief Clears all display memory
  */
 void slcd_clear(void);

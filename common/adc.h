@@ -59,6 +59,12 @@ void adc_init(void);
 void adc_enable(void);
 
 /**
+ * @brief Checks if the ADC is currently enabled.
+ * @returns true if the ADC is enabled, false if it is not.
+ */
+bool adc_is_enabled(void);
+
+/**
  * @brief Sets the sampling length for the ADC.
  * @details The sampling length sets the number of ADC clock cycles for which the
  *          ADC will sample the input, less 1 (so 0 represents 1 clock cycle).

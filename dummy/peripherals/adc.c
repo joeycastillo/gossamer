@@ -46,5 +46,9 @@ void adc_init(void) {
 void adc_enable(void) {
 }
 
+bool adc_is_enabled(void) {
+    return true;
+}
+
 void adc_disable(void) {
 }

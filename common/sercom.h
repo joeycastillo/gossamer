@@ -46,6 +46,15 @@ void _sercom_clock_setup(uint8_t sercom);
 void _sercom_enable(uint8_t sercom);
 
 /**
+ * @brief Checks if a SERCOM peripheral is currently enabled.
+ * @param sercom The SERCOM instance to check.
+ * @note This function is not intended to be called directly. Use the functions
+ *       defined in `spi.h`, `i2c.h`, or `uart.h`.
+ * @returns true if the SERCOM peripheral is enabled, false if it is not.
+ */
+bool _sercom_is_enabled(uint8_t sercom);
+
+/**
  * @brief Disables a SERCOM peripheral.
  * @param sercom The SERCOM instance to disable.
  * @note This function is not intended to be called directly. Use the functions

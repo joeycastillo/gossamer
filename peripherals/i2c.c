@@ -27,6 +27,10 @@ void i2c_enable(void) {
     i2c_enable_instance(I2C_SERCOM);
 }
 
+bool i2c_is_enabled(void) {
+    return i2c_is_enabled_instance(I2C_SERCOM);
+}
+
 i2c_result_t i2c_write(uint8_t address, uint8_t* data, size_t len) {
     return i2c_write_instance(I2C_SERCOM, address, data, len);
 }
@@ -86,6 +90,10 @@ void i2c_enable_instance(uint8_t sercom) {
     /* Put the bus into the idle state. */
     SERCOM_Peripherals[sercom].sercom->I2CM.STATUS.bit.BUSSTATE = BUSSTATE_IDLE;
     while (SERCOM_Peripherals[sercom].sercom->I2CM.SYNCBUSY.bit.SYSOP) {};
+}
+
+bool i2c_is_enabled_instance(uint8_t sercom) {
+    return _sercom_is_enabled(sercom);
 }
 
 i2c_result_t i2c_write_instance(uint8_t sercom, uint8_t address, uint8_t* data, size_t len) {

@@ -88,6 +88,12 @@ void opamp_init(void);
 void opamp_enable(uint16_t instance);
 
 /**
+ * @brief Checks if an opamp peripheral is currently enabled.
+ * @returns true if at least one opamp instance is enabled, false if all instances are disabled.
+ */
+bool opamp_is_enabled(void);
+
+/**
  * @brief Sets the positive input mux for the given opamp.
  * @param instance The opamp instance to configure.
  * @param muxpos The desired connection, one of:

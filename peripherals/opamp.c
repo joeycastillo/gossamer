@@ -43,6 +43,10 @@ void opamp_enable(uint16_t instance) {
     OPAMP->OPAMPCTRL[instance].reg |= OPAMP_OPAMPCTRL_ENABLE;
 }
 
+bool opamp_is_enabled(void) {
+    return OPAMP->CTRLA.bit.ENABLE;
+}
+
 void opamp_set_muxpos(uint16_t instance, uint8_t muxpos) {
     OPAMP->OPAMPCTRL[instance].bit.MUXPOS = muxpos;
 }

@@ -22,6 +22,10 @@ void spi_enable(void) {
     spi_enable_instance(SPI_SERCOM);
 }
 
+bool spi_is_enabled(void) {
+    return spi_is_enabled_instance(SPI_SERCOM);
+}
+
 uint8_t spi_transfer(uint8_t data) {
     return spi_transfer_instance(SPI_SERCOM, data);
 }
@@ -65,6 +69,10 @@ void spi_init_instance(uint8_t sercom, spi_dopo_t dopo, spi_dipo_t dipo, uint32_
 
 void spi_enable_instance(uint8_t sercom) {
     _sercom_enable(sercom);
+}
+
+bool spi_is_enabled_instance(uint8_t sercom) {
+    return _sercom_is_enabled(sercom);
 }
 
 uint8_t spi_transfer_instance(uint8_t sercom, uint8_t data) {

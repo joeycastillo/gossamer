@@ -40,6 +40,10 @@ void ptc_init(void) {
 void ptc_enable(uint8_t channel) {
 }
 
+bool ptc_is_enabled(void) {
+    return true;
+}
+
 uint16_t ptc_get_value(uint8_t channel) {
     return 0;
 }

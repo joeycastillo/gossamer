@@ -88,6 +88,10 @@ void ptc_enable(uint8_t channel) {
     _ptc_sync();
 }
 
+bool ptc_is_enabled(void) {
+    return ((Ptc *)PTC)->CTRLA.bit.ENABLE;
+}
+
 uint16_t ptc_get_value(uint8_t channel) {
     ((Ptc *)PTC)->CTRLA.bit.RUNINSTANDBY = 1;
     _ptc_sync();

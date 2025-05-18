@@ -103,6 +103,12 @@ void ptc_init(void);
 void ptc_enable(uint8_t channel);
 
 /**
+ * @brief Checks if the PTC is currently enabled.
+ * @returns true if the PTC is enabled, false if it is not.
+ */
+bool ptc_is_enabled(void);
+
+/**
  * @brief Get a value from the given channel.
  * @param channel The PTC channel (NOT pin number) to read.
  * @return The touch value read from the channel.

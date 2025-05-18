@@ -34,6 +34,10 @@ void opamp_init(void) {
 void opamp_enable(uint16_t instance) {
 }
 
+bool opamp_is_enabled(void) {
+    return true;
+}
+
 void opamp_set_muxpos(uint16_t instance, uint8_t muxpos) {
 }
 

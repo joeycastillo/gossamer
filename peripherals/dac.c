@@ -94,6 +94,10 @@ void dac_enable(dac_channel_mask_t channelmask) {
     _dac_sync();
 }
 
+bool dac_is_enabled(void) {
+    return DAC->CTRLA.bit.ENABLE;
+}
+
 void dac_set_analog_value(uint16_t channel, uint16_t value) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
     (void) channel; // these chips have only one DAC

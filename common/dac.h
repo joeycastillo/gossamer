@@ -58,6 +58,12 @@ void dac_init(void);
 void dac_enable(dac_channel_mask_t channelmask);
 
 /**
+ * @brief Checks if the DAC peripheral is currently enabled.
+ * @returns true if the DAC is enabled, false if it is not.
+ */
+bool dac_is_enabled(void);
+
+/**
  * @brief Set the analog value of the DAC.
  * @param channel The DAC channel to set.
  * @param value The value to set the DAC to. The range is platform-dependent:

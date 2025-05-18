@@ -88,6 +88,10 @@ void uart_enable(void) {
     uart_enable_instance(UART_SERCOM);
 }
 
+bool uart_is_enabled(void) {
+    return uart_is_enabled_instance(UART_SERCOM);
+}
+
 void uart_write(char *data, size_t length) {
     uart_write_instance(UART_SERCOM, data, length);
 }
@@ -163,6 +167,10 @@ void uart_set_irda_mode_instance(uint8_t sercom, bool irda) {
 
 void uart_enable_instance(uint8_t sercom) {
     _sercom_enable(sercom);
+}
+
+bool uart_is_enabled_instance(uint8_t sercom) {
+    return _sercom_is_enabled(sercom);
 }
 
 void uart_write_instance(uint8_t sercom, char *data, size_t length) {

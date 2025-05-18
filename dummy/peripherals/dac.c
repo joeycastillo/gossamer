@@ -37,6 +37,10 @@ void dac_init(void) {
 void dac_enable(dac_channel_mask_t channelmask) {
 }
 
+bool dac_is_enabled(void) {
+    return true;
+}
+
 void dac_disable(uint16_t channel) {
 }
 
