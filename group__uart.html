@@ -138,6 +138,9 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_enable</b> (void)</td></tr>
 <tr class="memdesc:gaffcbd24efeade3b1444100dbbc614e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the UART peripheral for a board with a defined UART_SERCOM. <br /></td></tr>
 <tr class="separator:gaffcbd24efeade3b1444100dbbc614e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga19163bfb0f6132d193ff98afee602f38" id="r_ga19163bfb0f6132d193ff98afee602f38"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga19163bfb0f6132d193ff98afee602f38">uart_is_enabled</a> (void)</td></tr>
+<tr class="memdesc:ga19163bfb0f6132d193ff98afee602f38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the UART peripheral is currently enabled for a board with a defined UART_SERCOM.  <br /></td></tr>
+<tr class="separator:ga19163bfb0f6132d193ff98afee602f38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa034660a70fb244c2e25187509985760" id="r_gaa034660a70fb244c2e25187509985760"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaa034660a70fb244c2e25187509985760">uart_set_run_in_standby</a> (bool run_in_standby)</td></tr>
 <tr class="memdesc:gaa034660a70fb244c2e25187509985760"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether the UART_SERCOM should run in standby mode.  <br /></td></tr>
 <tr class="separator:gaa034660a70fb244c2e25187509985760"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,6 +172,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_disable</b> (voi
 <tr class="memitem:gad390de8c3b3ddcb3d03a36513262528d" id="r_gad390de8c3b3ddcb3d03a36513262528d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gad390de8c3b3ddcb3d03a36513262528d">uart_enable_instance</a> (uint8_t sercom)</td></tr>
 <tr class="memdesc:gad390de8c3b3ddcb3d03a36513262528d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables a specific SERCOM UART instance.  <br /></td></tr>
 <tr class="separator:gad390de8c3b3ddcb3d03a36513262528d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9d0f6ae769b9e1977628894ef9999774" id="r_ga9d0f6ae769b9e1977628894ef9999774"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga9d0f6ae769b9e1977628894ef9999774">uart_is_enabled_instance</a> (uint8_t sercom)</td></tr>
+<tr class="memdesc:ga9d0f6ae769b9e1977628894ef9999774"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the UART peripheral on the given SERCOM is currently enabled.  <br /></td></tr>
+<tr class="separator:ga9d0f6ae769b9e1977628894ef9999774"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf1a1015fc3939d69de6f4cc4c932c879" id="r_gaf1a1015fc3939d69de6f4cc4c932c879"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaf1a1015fc3939d69de6f4cc4c932c879">uart_write_instance</a> (uint8_t sercom, char *data, size_t length)</td></tr>
 <tr class="memdesc:gaf1a1015fc3939d69de6f4cc4c932c879"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to a specific SERCOM UART instance.  <br /></td></tr>
 <tr class="separator:gaf1a1015fc3939d69de6f4cc4c932c879"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -340,6 +346,52 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_disable</b> (voi
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ga19163bfb0f6132d193ff98afee602f38" name="ga19163bfb0f6132d193ff98afee602f38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga19163bfb0f6132d193ff98afee602f38">&#9670;&#160;</a></span>uart_is_enabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool uart_is_enabled </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the UART peripheral is currently enabled for a board with a defined UART_SERCOM. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if UART is enabled, false if it is not. </dd></dl>
+
+</div>
+</div>
+<a id="ga9d0f6ae769b9e1977628894ef9999774" name="ga9d0f6ae769b9e1977628894ef9999774"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9d0f6ae769b9e1977628894ef9999774">&#9670;&#160;</a></span>uart_is_enabled_instance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool uart_is_enabled_instance </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>sercom</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the UART peripheral on the given SERCOM is currently enabled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sercom</td><td>The SERCOM of the UART peripheral, as numbered in the data sheet. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if UART is enabled, false if it is not. </dd></dl>
 
 </div>
 </div>

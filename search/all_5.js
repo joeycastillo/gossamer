@@ -10,9 +10,10 @@ var searchData=
   ['eic_5fenable_5finterrupt_7',['eic_enable_interrupt',['../group__eic.html#ga95932a1b8c5442120cd6caa7a5cb0733',1,'eic_enable_interrupt(const uint8_t pin):&#160;eic.c'],['../group__eic.html#ga95932a1b8c5442120cd6caa7a5cb0733',1,'eic_enable_interrupt(const uint8_t pin):&#160;eic.c']]],
   ['eic_5finit_8',['eic_init',['../group__eic.html#gac66cb10fff656315b12df4248f798c41',1,'eic_init(void):&#160;eic.c'],['../group__eic.html#gac66cb10fff656315b12df4248f798c41',1,'eic_init(void):&#160;eic.c']]],
   ['eic_5finterrupt_5ftrigger_5ft_9',['eic_interrupt_trigger_t',['../group__eic.html#gac1fe47482a1a2c642408f50c2db9469f',1,'eic_interrupt_trigger_t:&#160;eic.h'],['../group__eic.html#ga2dcfd365c180eb12af23e9f125089244',1,'eic_interrupt_trigger_t:&#160;eic.h']]],
-  ['emscripten_20support_10',['Emscripten Support',['../md__r_e_a_d_m_e.html#autotoc_md5',1,'']]],
-  ['event_20system_11',['Event System',['../group__evsys.html',1,'']]],
-  ['evsys_5fconfigure_5fchannel_12',['evsys_configure_channel',['../group__evsys.html#ga506dcdef11267257fce99f6deffc4844',1,'evsys_configure_channel(uint8_t channel, uint8_t generator, uint8_t user, bool run_in_standby, bool asynchronous):&#160;evsys.c'],['../group__evsys.html#ga506dcdef11267257fce99f6deffc4844',1,'evsys_configure_channel(uint8_t channel, uint8_t generator, uint8_t user, bool run_in_standby, bool asynchronous):&#160;evsys.c']]],
-  ['examples_13',['Examples',['../md__r_e_a_d_m_e.html#autotoc_md6',1,'']]],
-  ['external_20interrupt_20controller_14',['External Interrupt Controller',['../group__eic.html',1,'']]]
+  ['eic_5fis_5fenabled_10',['eic_is_enabled',['../group__eic.html#ga7d705e805c822fe27a39fe2ec58c2eb8',1,'eic_is_enabled(void):&#160;eic.c'],['../group__eic.html#ga7d705e805c822fe27a39fe2ec58c2eb8',1,'eic_is_enabled(void):&#160;eic.c']]],
+  ['emscripten_20support_11',['Emscripten Support',['../md__r_e_a_d_m_e.html#autotoc_md5',1,'']]],
+  ['event_20system_12',['Event System',['../group__evsys.html',1,'']]],
+  ['evsys_5fconfigure_5fchannel_13',['evsys_configure_channel',['../group__evsys.html#ga506dcdef11267257fce99f6deffc4844',1,'evsys_configure_channel(uint8_t channel, uint8_t generator, uint8_t user, bool run_in_standby, bool asynchronous):&#160;evsys.c'],['../group__evsys.html#ga506dcdef11267257fce99f6deffc4844',1,'evsys_configure_channel(uint8_t channel, uint8_t generator, uint8_t user, bool run_in_standby, bool asynchronous):&#160;evsys.c']]],
+  ['examples_14',['Examples',['../md__r_e_a_d_m_e.html#autotoc_md6',1,'']]],
+  ['external_20interrupt_20controller_15',['External Interrupt Controller',['../group__eic.html',1,'']]]
 ];

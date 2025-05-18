@@ -10,5 +10,6 @@ var group__eic =
     [ "eic_enable", "group__eic.html#gafd8706ad3219397c91636524d2149eb0", null ],
     [ "eic_enable_event", "group__eic.html#gae6a140e7799fec385ff48c97f399b7cf", null ],
     [ "eic_enable_interrupt", "group__eic.html#ga95932a1b8c5442120cd6caa7a5cb0733", null ],
-    [ "eic_init", "group__eic.html#gac66cb10fff656315b12df4248f798c41", null ]
+    [ "eic_init", "group__eic.html#gac66cb10fff656315b12df4248f798c41", null ],
+    [ "eic_is_enabled", "group__eic.html#ga7d705e805c822fe27a39fe2ec58c2eb8", null ]
 ];

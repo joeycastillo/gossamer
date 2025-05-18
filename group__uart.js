@@ -9,6 +9,8 @@ var group__uart =
     [ "uart_init", "group__uart.html#gad8f6a793347af79ca41a3363dbd3fd96", null ],
     [ "uart_init_instance", "group__uart.html#ga9e514ab7ce443e2fd91fbe99bf8cb207", null ],
     [ "uart_irq_handler", "group__uart.html#ga3d2a4f57b803f517096c373734ffa78b", null ],
+    [ "uart_is_enabled", "group__uart.html#ga19163bfb0f6132d193ff98afee602f38", null ],
+    [ "uart_is_enabled_instance", "group__uart.html#ga9d0f6ae769b9e1977628894ef9999774", null ],
     [ "uart_read", "group__uart.html#ga02df0d8a58ed6b1a32e9d76ae4a963a0", null ],
     [ "uart_read_byte", "group__uart.html#gadd8f793d670ffb8314798b0ceaf2e8ce", null ],
     [ "uart_read_byte_instance", "group__uart.html#ga619f3e89d9cd5f2514cc6bb6fb3e9da3", null ],

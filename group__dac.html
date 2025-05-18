@@ -125,6 +125,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga27483fa712ea61a534f679e72ffba463" id="r_ga27483fa712ea61a534f679e72ffba463"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga27483fa712ea61a534f679e72ffba463">dac_enable</a> (dac_channel_mask_t channelmask)</td></tr>
 <tr class="memdesc:ga27483fa712ea61a534f679e72ffba463"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the DAC channels specified in the mask, and disables others.  <br /></td></tr>
 <tr class="separator:ga27483fa712ea61a534f679e72ffba463"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf80742d072e6bb5ee8569db821bb9af0" id="r_gaf80742d072e6bb5ee8569db821bb9af0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaf80742d072e6bb5ee8569db821bb9af0">dac_is_enabled</a> (void)</td></tr>
+<tr class="memdesc:gaf80742d072e6bb5ee8569db821bb9af0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the DAC peripheral is currently enabled.  <br /></td></tr>
+<tr class="separator:gaf80742d072e6bb5ee8569db821bb9af0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2b43d67fbe14479cc72c1119fb2b7a48" id="r_ga2b43d67fbe14479cc72c1119fb2b7a48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga2b43d67fbe14479cc72c1119fb2b7a48">dac_set_analog_value</a> (uint16_t channel, uint16_t value)</td></tr>
 <tr class="memdesc:ga2b43d67fbe14479cc72c1119fb2b7a48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the analog value of the DAC.  <br /></td></tr>
 <tr class="separator:ga2b43d67fbe14479cc72c1119fb2b7a48"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,6 +207,26 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section warning"><dt>Warning</dt><dd>Currently only supports the DAC on VOUT[0] </dd></dl>
 <p>TODO: Figure out appropriate clock setup on SAM D51</p>
+
+</div>
+</div>
+<a id="gaf80742d072e6bb5ee8569db821bb9af0" name="gaf80742d072e6bb5ee8569db821bb9af0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf80742d072e6bb5ee8569db821bb9af0">&#9670;&#160;</a></span>dac_is_enabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool dac_is_enabled </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the DAC peripheral is currently enabled. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the DAC is enabled, false if it is not. </dd></dl>
 
 </div>
 </div>

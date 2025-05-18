@@ -8,6 +8,7 @@ var group__slcd =
     [ "slcd_disable", "group__slcd.html#ga0f4187acb065db5da4cde95a729f17cf", null ],
     [ "slcd_enable", "group__slcd.html#gaf629b000ff5ce5ded0f46e2df795f8b3", null ],
     [ "slcd_init", "group__slcd.html#ga1d5b89a5e4f29c7d807794f9c25caaa1", null ],
+    [ "slcd_is_enabled", "group__slcd.html#gaaa4b85a75a4b5761bfe2378e0dc832b0", null ],
     [ "slcd_set_blink_enabled", "group__slcd.html#gad12bde6c35bcea61572c6813281be416", null ],
     [ "slcd_set_circular_shift_animation_enabled", "group__slcd.html#ga4dec2a1983ffc4fd4c69b31d8fc06b1a", null ],
     [ "slcd_set_contrast", "group__slcd.html#gac39467715e72b5336855708198be9b05", null ],
