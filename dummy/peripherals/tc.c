@@ -39,6 +39,9 @@ void tc_set_counter_mode(uint8_t instance, tc_counter_mode_t mode) {
 void tc_set_run_in_standby(uint8_t instance, bool runStandby) {
 }
 
+void tc_set_run_on_demand(uint8_t instance, bool onDemand) {
+}
+
 void tc_set_wavegen(uint8_t instance, tc_wavegen_t mode) {
 }
 

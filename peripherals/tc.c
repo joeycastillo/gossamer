@@ -75,6 +75,10 @@ void tc_set_run_in_standby(uint8_t instance, bool runStandby) {
     TC_Peripherals[instance - TC_First_Index].tc->COUNT16.CTRLA.bit.RUNSTDBY = runStandby;
 }
 
+void tc_set_run_on_demand(uint8_t instance, bool onDemand) {
+    TC_Peripherals[instance - TC_First_Index].tc->COUNT16.CTRLA.bit.ONDEMAND = onDemand;
+}
+
 void tc_set_wavegen(uint8_t instance, tc_wavegen_t mode) {
 #if defined(_SAMD21_) || defined(_SAMD11_)
     TC_Peripherals[instance - TC_First_Index].tc->COUNT16.CTRLA.bit.WAVEGEN = mode;
