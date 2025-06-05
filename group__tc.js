@@ -23,6 +23,7 @@ var group__tc =
     [ "tc_set_counter_mode", "group__tc.html#gabbb61997f4579d174976dcc8e858c87a", null ],
     [ "tc_set_event_action", "group__tc.html#ga59bb895d55ef97120fac8149ec78bc47", null ],
     [ "tc_set_run_in_standby", "group__tc.html#ga0dec44fc5db357209ea67b67607c7e81", null ],
+    [ "tc_set_run_on_demand", "group__tc.html#ga7c04e1cef8f7b0eb6e97f6dee7bd632c", null ],
     [ "tc_set_wavegen", "group__tc.html#gaffa4b9e60ccf8ba52074f3f2f28d8823", null ],
     [ "tc_stop", "group__tc.html#ga15eaf925943d7ba804ecd8bd466a4b14", null ]
 ];

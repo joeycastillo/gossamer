@@ -163,6 +163,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga0dec44fc5db357209ea67b67607c7e81" id="r_ga0dec44fc5db357209ea67b67607c7e81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga0dec44fc5db357209ea67b67607c7e81">tc_set_run_in_standby</a> (uint8_t instance, bool runStandby)</td></tr>
 <tr class="memdesc:ga0dec44fc5db357209ea67b67607c7e81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's run-in-standby mode.  <br /></td></tr>
 <tr class="separator:ga0dec44fc5db357209ea67b67607c7e81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7c04e1cef8f7b0eb6e97f6dee7bd632c" id="r_ga7c04e1cef8f7b0eb6e97f6dee7bd632c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga7c04e1cef8f7b0eb6e97f6dee7bd632c">tc_set_run_on_demand</a> (uint8_t instance, bool onDemand)</td></tr>
+<tr class="memdesc:ga7c04e1cef8f7b0eb6e97f6dee7bd632c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's run-on-demand mode.  <br /></td></tr>
+<tr class="separator:ga7c04e1cef8f7b0eb6e97f6dee7bd632c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaffa4b9e60ccf8ba52074f3f2f28d8823" id="r_gaffa4b9e60ccf8ba52074f3f2f28d8823"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaffa4b9e60ccf8ba52074f3f2f28d8823">tc_set_wavegen</a> (uint8_t instance, tc_wavegen_t mode)</td></tr>
 <tr class="memdesc:gaffa4b9e60ccf8ba52074f3f2f28d8823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TC's waveform generation mode.  <br /></td></tr>
 <tr class="separator:gaffa4b9e60ccf8ba52074f3f2f28d8823"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -855,6 +858,36 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
     <tr><td class="paramname">runStandby</td><td>true if the TC should keep running in standby mode, false if not. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga7c04e1cef8f7b0eb6e97f6dee7bd632c" name="ga7c04e1cef8f7b0eb6e97f6dee7bd632c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7c04e1cef8f7b0eb6e97f6dee7bd632c">&#9670;&#160;</a></span>tc_set_run_on_demand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tc_set_run_on_demand </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>instance</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>onDemand</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the TC's run-on-demand mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The TC peripheral instance as numbered in the data sheet. </td></tr>
+    <tr><td class="paramname">onDemand</td><td>true if the TC should run in standby only if enabled. </td></tr>
   </table>
   </dd>
 </dl>
