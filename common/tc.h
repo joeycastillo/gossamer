@@ -127,12 +127,15 @@ void tc_set_counter_mode(uint8_t instance, tc_counter_mode_t mode);
  */
 void tc_set_run_in_standby(uint8_t instance, bool runStandby);
 
+#ifndef _SAMD11_
 /**
  * @brief Sets the TC's run-on-demand mode.
  * @param instance The TC peripheral instance as numbered in the data sheet.
  * @param onDemand true if the TC should run in standby only if enabled.
+ * @note The SAM D11 does not support on-demand clock activation for the TC peripheral.
  */
 void tc_set_run_on_demand(uint8_t instance, bool onDemand);
+#endif
 
 /**
  * @brief Sets the TC's waveform generation mode.
