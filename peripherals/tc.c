@@ -75,7 +75,7 @@ void tc_set_run_in_standby(uint8_t instance, bool runStandby) {
     TC_Peripherals[instance - TC_First_Index].tc->COUNT16.CTRLA.bit.RUNSTDBY = runStandby;
 }
 
-#ifndef _SAMD11_
+#if !defined(_SAMD21_) && !defined(_SAMD11_)
 void tc_set_run_on_demand(uint8_t instance, bool onDemand) {
     TC_Peripherals[instance - TC_First_Index].tc->COUNT16.CTRLA.bit.ONDEMAND = onDemand;
 }

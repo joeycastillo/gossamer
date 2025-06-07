@@ -127,7 +127,7 @@ void tc_set_counter_mode(uint8_t instance, tc_counter_mode_t mode);
  */
 void tc_set_run_in_standby(uint8_t instance, bool runStandby);
 
-#ifndef _SAMD11_
+#if !defined(_SAMD21_) && !defined(_SAMD11_)
 /**
  * @brief Sets the TC's run-on-demand mode.
  * @param instance The TC peripheral instance as numbered in the data sheet.
