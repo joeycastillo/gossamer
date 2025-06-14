@@ -211,6 +211,20 @@ bool set_cpu_frequency(uint32_t freq) {
 }
 
 void _enter_standby_mode() {
+    // Don't fully power down flash when in sleep
+    NVMCTRL->CTRLB.bit.SLEEPPRM = NVMCTRL_CTRLB_SLEEPPRM_DISABLED_Val;
+
+    // Set deep sleep mode
     SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
+
+    // Insight from Adafruit Sleepydog library: due to a hardware bug on the SAMD21,
+    // the SysTick interrupts become active before the flash has powered up from
+    // sleep, causing a hard fault. To prevent this the SysTick interrupts are disabled
+    // before entering sleep mode.
+    SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk; // Disable SysTick interrupts
+
+    __DSB();
     __WFI();
+
+    SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk; // Enable SysTick interrupts
 }
