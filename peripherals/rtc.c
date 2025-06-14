@@ -119,5 +119,7 @@ void irq_handler_rtc(void);
 void irq_handler_rtc(void) {
     if (_rtc_callback != NULL) {
         _rtc_callback(RTC->MODE2.INTFLAG.reg);
+    } else {
+        RTC->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_MASK;
     }
 }
