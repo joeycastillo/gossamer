@@ -57,10 +57,15 @@ install:
 	@$(UF2) -D $(BUILD)/$(BIN).uf2
 endif
 
+# Define a compile rule template
+define compile_rule
+$(BUILD)/$(notdir $(1:.c=.o)): $(1) | $(SUBMODULES) directory
+	@echo CC $$@
+	@$(CC) $(CFLAGS) $$< -c -o $$@
+endef
 
-$(BUILD)/%.o: | $(SUBMODULES) directory
-	@echo CC $@
-	@$(CC) $(CFLAGS) $(filter %/$(subst .o,.c,$(notdir $@)), $(SRCS)) -c -o $@
+# Generate a rule for each source file
+$(foreach src,$(SRCS),$(eval $(call compile_rule,$(src))))
 
 directory:
 	@$(MKDIR) -p $(BUILD)
@@ -76,6 +81,6 @@ clean:
 analyze:
 	@$(COBRA) basic $(INCLUDES) $(DEFINES) $(SRCS)
 
-DEPFILES := $(SRCS:%.c=$(BUILD)/%.d)
+DEPFILES := $(addprefix $(BUILD)/, $(notdir $(SRCS:%.c=%.d)))
 
 -include $(wildcard $(DEPFILES))
