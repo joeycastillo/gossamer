@@ -1,19 +1,21 @@
 CFLAGS += $(INCLUDES) $(DEFINES)
 
-OBJS = $(addprefix $(BUILD)/, $(notdir %/$(subst .c,.o, $(SRCS))))
+OBJS = $(addprefix $(BUILD)/, $(notdir $(subst .c,.o, $(SRCS))))
 
 SUBMODULES = tinyusb
 
 COBRA = cobra -f
 
 ifndef EMSCRIPTEN
-
+# Hardware build targets
 ifeq ($(DFU), 1)
 all: $(BUILD)/$(BIN).elf $(BUILD)/$(BIN).hex $(BUILD)/$(BIN).bin $(BUILD)/$(BIN).dfu size
 else
 all: $(BUILD)/$(BIN).elf $(BUILD)/$(BIN).hex $(BUILD)/$(BIN).bin $(BUILD)/$(BIN).uf2 size
 endif
-
+else
+# Emscripten build targets
+all: $(BUILD)/$(BIN).elf $(BUILD)/$(BIN).html
 endif
 
 $(BUILD)/$(BIN).elf: $(OBJS)
@@ -42,7 +44,16 @@ $(BUILD)/$(BIN).dfu: $(BUILD)/$(BIN).elf
 	@echo DFUCONV $@
 	@$(DFU_CONV) $^ $@
 
-.phony: $(SUBMODULES)
+# Emscripten HTML target
+$(BUILD)/$(BIN).html: $(OBJS)
+	@echo HTML $@
+	@$(CC) $(LDFLAGS) $(OBJS) $(LIBS) -o $@ \
+		-s ASYNCIFY=1 \
+		-s EXPORTED_RUNTIME_METHODS=lengthBytesUTF8,printErr \
+		-s EXPORTED_FUNCTIONS=_main \
+		--shell-file=./watch-library/simulator/shell.html
+
+.PHONY: $(SUBMODULES) all clean size analyze install directory
 $(SUBMODULES):
 	:
 
@@ -82,5 +93,10 @@ analyze:
 	@$(COBRA) basic $(INCLUDES) $(DEFINES) $(SRCS)
 
 DEPFILES := $(addprefix $(BUILD)/, $(notdir $(SRCS:%.c=%.d)))
+
+# Generate dependency files
+$(BUILD)/%.d: %.c | directory
+	@$(CC) $(CFLAGS) -MM -MT $(BUILD)/$(notdir $(<:.c=.o)) $< > $@
+
 
 -include $(wildcard $(DEPFILES))
