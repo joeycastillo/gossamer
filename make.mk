@@ -2,7 +2,12 @@
 BUILD = ./build
 BIN = firmware
 
-include $(GOSSAMER_PATH)/boards/$(BOARD)/board.mk
+# Only include board.mk if BOARD is set and not cleaning
+ifeq (,$(filter clean,$(MAKECMDGOALS)))
+  ifdef BOARD
+    include $(GOSSAMER_PATH)/boards/$(BOARD)/board.mk
+  endif
+endif
 
 ##############################################################################
 .PHONY: all directory clean size

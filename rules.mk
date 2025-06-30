@@ -50,10 +50,18 @@ $(SUBMODULES):
 
 ifeq ($(DFU), 1)
 install:
+	@if [ ! -f $(BUILD)/$(BIN).dfu ]; then \
+		echo "\033[0;31m\033[1mError: Firmware not found. Please run 'make BOARD=<board_name>' first to build the firmware.\033[0m"; \
+		exit 1; \
+	fi
 	@$(DFU_UTIL) -D $(BUILD)/$(BIN).dfu
 	@echo "\033[0;97m\033[1mRemember to press RESET to run the newly installed code!\033[0m"
 else
 install:
+	@if [ ! -f $(BUILD)/$(BIN).uf2 ]; then \
+		echo "\033[0;31m\033[1mError: Firmware not found. Please run 'make BOARD=<board_name>' first to build the firmware.\033[0m"; \
+		exit 1; \
+	fi
 	@$(UF2) -D $(BUILD)/$(BIN).uf2
 endif
 
