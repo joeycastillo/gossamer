@@ -198,3 +198,38 @@ endif # End of tinyusb exclusion
 
 DEFINES += \
   -DDONT_USE_CMSIS_INIT
+
+# DATE = X
+#  YEAR = Sets the year and timezone to the PC's
+#  DAY = Sets the default time down to the day (year, month, day, timezone)
+#  MIN = Sets the default time down to the minute (year, month, day, timezone, hour, minute)
+ifdef DATE
+TIMEZONE := $(shell date +%z | awk '{print substr($$0, 1, 3) * 60 + substr($$0, 4, 2)}')
+CURRENT_YEAR := $(shell echo $$(($(shell date +"%Y") - 2020)))
+CURRENT_MONTH := $(shell date +"%-m")
+CURRENT_DAY := $(shell date +"%-d")
+CURRENT_HOUR := $(shell date +"%-H")
+CURRENT_MINUTE := $(shell date +"%-M")
+ifeq ($(DATE), YEAR)
+CFLAGS += -DMAKEFILE_TIMEZONE=$(TIMEZONE)
+CFLAGS += -DMAKEFILE_CURR_YEAR=$(CURRENT_YEAR)
+$(info Default year is set to $(shell date +"%Y") $(shell date +%Z))
+else ifeq ($(DATE), DAY)
+CFLAGS += -DMAKEFILE_TIMEZONE=$(TIMEZONE)
+CFLAGS += -DMAKEFILE_CURR_YEAR=$(CURRENT_YEAR)
+CFLAGS += -DMAKEFILE_CURR_MONTH=$(CURRENT_MONTH)
+CFLAGS += -DMAKEFILE_CURR_DAY=$(CURRENT_DAY)
+$(info Default date set to $(shell date +"%b") $(CURRENT_DAY) $(shell date +"%Y") $(shell date +%Z))
+else ifeq ($(DATE), MIN)
+CFLAGS += -DMAKEFILE_TIMEZONE=$(TIMEZONE)
+CFLAGS += -DMAKEFILE_CURR_YEAR=$(CURRENT_YEAR)
+CFLAGS += -DMAKEFILE_CURR_MONTH=$(CURRENT_MONTH)
+CFLAGS += -DMAKEFILE_CURR_DAY=$(CURRENT_DAY)
+CFLAGS += -DMAKEFILE_CURR_HOUR=$(CURRENT_HOUR)
+CFLAGS += -DMAKEFILE_CURR_MINUTE=$(CURRENT_MINUTE)
+$(info Default time set to $(CURRENT_HOUR):$(shell printf "%02d" $(CURRENT_MINUTE)) on $(shell date +"%b") $(CURRENT_DAY) $(shell date +"%Y") $(shell date +%Z))
+else
+$(error DATE must be YEAR, DAY, or MIN if used.)
+endif
+endif
+
