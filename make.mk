@@ -202,7 +202,7 @@ DEFINES += \
 # TIMESET = X
 #  year = Sets the year and timezone to the PC's
 #  day = Sets the default time down to the day (year, month, day, timezone)
-#  min = Sets the default time down to the minute (year, month, day, timezone, hour, minute)
+#  minute = Sets the default time down to the minute (year, month, day, timezone, hour, minute)
 ifdef TIMESET
 TIMEZONE := $(shell date +%z | awk '{print substr($$0, 1, 3) * 60 + substr($$0, 4, 2)}')
 CURRENT_YEAR := $(shell echo $$(($(shell date +"%Y") - 2020)))
@@ -220,7 +220,7 @@ CFLAGS += -DMAKEFILE_CURR_YEAR=$(CURRENT_YEAR)
 CFLAGS += -DMAKEFILE_CURR_MONTH=$(CURRENT_MONTH)
 CFLAGS += -DMAKEFILE_CURR_DAY=$(CURRENT_DAY)
 $(info Default date set to $(shell date +"%b") $(CURRENT_DAY) $(shell date +"%Y") $(shell date +%Z))
-else ifeq ($(TIMESET), min)
+else ifeq ($(TIMESET), minute)
 CFLAGS += -DMAKEFILE_TIMEZONE=$(TIMEZONE)
 CFLAGS += -DMAKEFILE_CURR_YEAR=$(CURRENT_YEAR)
 CFLAGS += -DMAKEFILE_CURR_MONTH=$(CURRENT_MONTH)
@@ -229,7 +229,7 @@ CFLAGS += -DMAKEFILE_CURR_HOUR=$(CURRENT_HOUR)
 CFLAGS += -DMAKEFILE_CURR_MINUTE=$(CURRENT_MINUTE)
 $(info Default time set to $(CURRENT_HOUR):$(shell printf "%02d" $(CURRENT_MINUTE)) on $(shell date +"%b") $(CURRENT_DAY) $(shell date +"%Y") $(shell date +%Z))
 else
-$(error TIMESET must be year, day, or min if used.)
+$(error TIMESET must be year, day, or minute if used.)
 endif
 endif
 
