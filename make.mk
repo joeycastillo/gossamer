@@ -198,3 +198,36 @@ endif # End of tinyusb exclusion
 
 DEFINES += \
   -DDONT_USE_CMSIS_INIT
+
+# TIMESET = X
+# if TIMESET is set to one of the following options, it will generate definitions that capture the build date and time:
+#  year = BUILD_YEAR is defined
+#  day = BUILD_YEAR, BUILD_MONTH and BUILD_DAY are defined
+#  minute = BUILD_YEAR, BUILD_MONTH, BUILD_DAY, BUILD_HOUR and BUILD_MINUTE are defined
+ifdef TIMESET
+CURRENT_YEAR := $(shell echo $$(($(shell date +"%Y") - 2020)))
+CURRENT_MONTH := $(shell date +"%-m")
+CURRENT_DAY := $(shell date +"%-d")
+CURRENT_HOUR := $(shell date +"%-H")
+CURRENT_MINUTE := $(shell date +"%-M")
+ifeq ($(TIMESET), year)
+CFLAGS += -DBUILD_YEAR=$(CURRENT_YEAR)
+else ifeq ($(TIMESET), day)
+CFLAGS += -DBUILD_YEAR=$(CURRENT_YEAR)
+CFLAGS += -DBUILD_MONTH=$(CURRENT_MONTH)
+CFLAGS += -DBUILD_DAY=$(CURRENT_DAY)
+else ifeq ($(TIMESET), minute)
+CFLAGS += -DBUILD_YEAR=$(CURRENT_YEAR)
+CFLAGS += -DBUILD_MONTH=$(CURRENT_MONTH)
+CFLAGS += -DBUILD_DAY=$(CURRENT_DAY)
+CFLAGS += -DBUILD_HOUR=$(CURRENT_HOUR)
+CFLAGS += -DBUILD_MINUTE=$(CURRENT_MINUTE)
+else
+$(error TIMESET must be year, day, or minute if used.)
+endif
+endif
+
+GIT_HASH := $(shell git rev-parse --short HEAD | cut -c1-6 || echo 0)
+ifneq ($(GIT_HASH), 0)
+CFLAGS += -DBUILD_GIT_HASH=\"$(GIT_HASH)\"
+endif
