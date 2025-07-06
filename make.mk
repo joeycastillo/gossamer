@@ -237,6 +237,8 @@ endif
 endif
 
 GIT_HASH := $(shell git rev-parse --short HEAD | cut -c1-6 || echo 0)
-ifneq ($(GIT_HASH), 0)
+ifdef GIT_HASH
 CFLAGS += -DBUILD_GIT_HASH=\"$(GIT_HASH)\"
+else
+CFLAGS += -DBUILD_GIT_HASH=\"noHash\"
 endif
