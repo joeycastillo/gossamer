@@ -200,9 +200,10 @@ DEFINES += \
   -DDONT_USE_CMSIS_INIT
 
 # TIMESET = X
-#  year = Sets the year to the PC's
-#  day = Sets the default time down to the day (year, month, day)
-#  minute = Sets the default time down to the minute (year, month, day, hour, minute)
+# if TIMESET is set to one of the following options, it will generate definitions that capture the build date and time:
+#  year = BUILD_YEAR is defined
+#  day = BUILD_YEAR, BUILD_MONTH and BUILD_DAY are defined
+#  minute = BUILD_YEAR, BUILD_MONTH, BUILD_DAY, BUILD_HOUR and BUILD_MINUTE are defined
 ifdef TIMESET
 CURRENT_YEAR := $(shell echo $$(($(shell date +"%Y") - 2020)))
 CURRENT_MONTH := $(shell date +"%-m")
@@ -210,19 +211,19 @@ CURRENT_DAY := $(shell date +"%-d")
 CURRENT_HOUR := $(shell date +"%-H")
 CURRENT_MINUTE := $(shell date +"%-M")
 ifeq ($(TIMESET), year)
-CFLAGS += -DMAKEFILE_CURR_YEAR=$(CURRENT_YEAR)
+CFLAGS += -DBUILD_YEAR=$(CURRENT_YEAR)
 $(info Default year is set to $(shell date +"%Y") $(shell date +%Z))
 else ifeq ($(TIMESET), day)
-CFLAGS += -DMAKEFILE_CURR_YEAR=$(CURRENT_YEAR)
-CFLAGS += -DMAKEFILE_CURR_MONTH=$(CURRENT_MONTH)
-CFLAGS += -DMAKEFILE_CURR_DAY=$(CURRENT_DAY)
+CFLAGS += -DBUILD_YEAR=$(CURRENT_YEAR)
+CFLAGS += -DBUILD_MONTH=$(CURRENT_MONTH)
+CFLAGS += -DBUILD_DAY=$(CURRENT_DAY)
 $(info Default date set to $(shell date +"%b") $(CURRENT_DAY) $(shell date +"%Y") $(shell date +%Z))
 else ifeq ($(TIMESET), minute)
-CFLAGS += -DMAKEFILE_CURR_YEAR=$(CURRENT_YEAR)
-CFLAGS += -DMAKEFILE_CURR_MONTH=$(CURRENT_MONTH)
-CFLAGS += -DMAKEFILE_CURR_DAY=$(CURRENT_DAY)
-CFLAGS += -DMAKEFILE_CURR_HOUR=$(CURRENT_HOUR)
-CFLAGS += -DMAKEFILE_CURR_MINUTE=$(CURRENT_MINUTE)
+CFLAGS += -DBUILD_YEAR=$(CURRENT_YEAR)
+CFLAGS += -DBUILD_MONTH=$(CURRENT_MONTH)
+CFLAGS += -DBUILD_DAY=$(CURRENT_DAY)
+CFLAGS += -DBUILD_HOUR=$(CURRENT_HOUR)
+CFLAGS += -DBUILD_MINUTE=$(CURRENT_MINUTE)
 $(info Default time set to $(CURRENT_HOUR):$(shell printf "%02d" $(CURRENT_MINUTE)) on $(shell date +"%b") $(CURRENT_DAY) $(shell date +"%Y") $(shell date +%Z))
 else
 $(error TIMESET must be year, day, or minute if used.)
@@ -231,6 +232,6 @@ endif
 
 GIT_HASH := $(shell git rev-parse --short HEAD | cut -c1-6 || echo 0)
 ifneq ($(GIT_HASH), 0)
-CFLAGS += -DMAKEFILE_GIT_HASH=\"$(GIT_HASH)\"
+CFLAGS += -DBUILD_GIT_HASH=\"$(GIT_HASH)\"
 $(info Git Hash: $(GIT_HASH))
 endif
