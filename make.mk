@@ -212,19 +212,16 @@ CURRENT_HOUR := $(shell date +"%-H")
 CURRENT_MINUTE := $(shell date +"%-M")
 ifeq ($(TIMESET), year)
 CFLAGS += -DBUILD_YEAR=$(CURRENT_YEAR)
-$(info Default year is set to $(shell date +"%Y") $(shell date +%Z))
 else ifeq ($(TIMESET), day)
 CFLAGS += -DBUILD_YEAR=$(CURRENT_YEAR)
 CFLAGS += -DBUILD_MONTH=$(CURRENT_MONTH)
 CFLAGS += -DBUILD_DAY=$(CURRENT_DAY)
-$(info Default date set to $(shell date +"%b") $(CURRENT_DAY) $(shell date +"%Y") $(shell date +%Z))
 else ifeq ($(TIMESET), minute)
 CFLAGS += -DBUILD_YEAR=$(CURRENT_YEAR)
 CFLAGS += -DBUILD_MONTH=$(CURRENT_MONTH)
 CFLAGS += -DBUILD_DAY=$(CURRENT_DAY)
 CFLAGS += -DBUILD_HOUR=$(CURRENT_HOUR)
 CFLAGS += -DBUILD_MINUTE=$(CURRENT_MINUTE)
-$(info Default time set to $(CURRENT_HOUR):$(shell printf "%02d" $(CURRENT_MINUTE)) on $(shell date +"%b") $(CURRENT_DAY) $(shell date +"%Y") $(shell date +%Z))
 else
 $(error TIMESET must be year, day, or minute if used.)
 endif
@@ -233,5 +230,4 @@ endif
 GIT_HASH := $(shell git rev-parse --short HEAD | cut -c1-6 || echo 0)
 ifneq ($(GIT_HASH), 0)
 CFLAGS += -DBUILD_GIT_HASH=\"$(GIT_HASH)\"
-$(info Git Hash: $(GIT_HASH))
 endif
