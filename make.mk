@@ -36,6 +36,9 @@ endif
 INCLUDES += \
   -I$(GOSSAMER_PATH)/common/ \
 
+ifndef EMSCRIPTEN
+# Settings and flags for building on hardware
+
 ifeq ($(DETECTED_OS), LINUX)
   MAKEFLAGS += -j $(shell nproc)
 endif
@@ -46,9 +49,6 @@ endif
 ifeq ($(DETECTED_OS), WINDOWS)
   MAKEFLAGS += -j $(NUMBER_OF_PROCESSORS)
 endif
-
-ifndef EMSCRIPTEN
-# Settings and flags for building on hardware
 
 CC = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
