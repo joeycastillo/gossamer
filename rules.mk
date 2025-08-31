@@ -107,4 +107,4 @@ $(BUILD)/%.d: %.c | directory
 	@$(CC) $(CFLAGS) -MM -MT $(BUILD)/$(notdir $(<:.c=.o)) $< > $@
 
 
--include $(wildcard $(DEPFILES))
+-include $(DEPFILES)
