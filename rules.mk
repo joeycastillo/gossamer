@@ -45,7 +45,7 @@ $(BUILD)/$(BIN).dfu: $(BUILD)/$(BIN).elf
 	@$(DFU_CONV) $^ $@
 
 # Emscripten HTML target
-$(BUILD)/$(BIN).html: $(OBJS)
+$(BUILD)/$(BIN).html: $(OBJS) watch-library/simulator/shell.html
 	@echo HTML $@
 	@$(CC) $(LDFLAGS) $(OBJS) $(LIBS) -o $@ \
 		-s ASYNCIFY=1 \
