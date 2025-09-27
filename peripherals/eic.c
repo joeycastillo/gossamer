@@ -100,6 +100,14 @@ bool eic_is_enabled(void) {
     return CTRLREG.bit.ENABLE;
 }
 
+int8_t eic_get_channel_for_pin(uint8_t pin) {
+    int8_t channel = _eic_pin_to_channel[pin >> 5][pin & 0x1F];
+    if (channel < 0) {
+        return -1;
+    }
+    return channel;
+}
+
 int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger_t trigger, bool filten) {
     uint16_t port = pin >> 5;
     int8_t channel = _eic_pin_to_channel[port][pin & 0x1F];
