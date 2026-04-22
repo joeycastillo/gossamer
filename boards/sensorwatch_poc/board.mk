@@ -1,0 +1,14 @@
+CHIP = saml22
+LDSCRIPT = saml22n18
+
+DEFINES += \
+  -D__SAML22J18A__ \
+  -DCRYSTALLESS \
+
+ifeq ($(DISPLAY), CUSTOM)
+  DEFINES += -DFORCE_CUSTOM_LCD
+endif
+
+ifeq ($(DISPLAY), CLASSIC)
+  DEFINES += -DFORCE_CLASSIC_LCD
+endif
