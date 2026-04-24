@@ -10,6 +10,7 @@ var dir_bdd9a5d540de89e9fe90efdfc6973a4f =
     [ "evsys.h", "evsys_8h_source.html", null ],
     [ "hal_gpio.h", "hal__gpio_8h_source.html", null ],
     [ "i2c.h", "i2c_8h_source.html", null ],
+    [ "i2cd.h", "i2cd_8h_source.html", null ],
     [ "i2s.h", "i2s_8h_source.html", null ],
     [ "opamp.h", "opamp_8h_source.html", null ],
     [ "ptc.h", "ptc_8h_source.html", null ],

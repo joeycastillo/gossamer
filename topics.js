@@ -7,6 +7,7 @@ var topics =
     [ "External Interrupt Controller", "group__eic.html", "group__eic" ],
     [ "Event System", "group__evsys.html", "group__evsys" ],
     [ "Inter-IC Communications Peripheral", "group__i2c.html", "group__i2c" ],
+    [ "I2C Device Mode Peripheral", "group__i2cd.html", "group__i2cd" ],
     [ "Inter-IC Sound interface", "group__i2s.html", "group__i2s" ],
     [ "Operational Amplifier", "group__opamp.html", "group__opamp" ],
     [ "Peripheral Touch Controller", "group__ptc.html", "group__ptc" ],
