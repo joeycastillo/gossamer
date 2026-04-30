@@ -104,7 +104,7 @@ void dac_set_analog_value(uint16_t channel, uint16_t value) {
     DAC->DATA.reg = value;
 #else // SAM L21 / SAM D51
     DAC->DACCTRL[channel].bit.ENABLE = 0;
-    while (!(DAC->STATUS.bit.READY0));
+    while (!(channel ? DAC->STATUS.bit.READY1 : DAC->STATUS.bit.READY0));
     DAC->DATA[channel].reg = value;
     DAC->DACCTRL[channel].bit.ENABLE = 1;
 #endif
