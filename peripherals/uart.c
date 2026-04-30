@@ -218,6 +218,8 @@ void uart_irq_handler(uint8_t sercom) {
         int status = SERCOM->USART.STATUS.reg;
         char byte = SERCOM->USART.DATA.reg;
 
+        /// NOTE: STATUS may contain error flags. We clear them but don't act on them.
+        /// Debatable whether this is a bug; it has worked up to now.
         SERCOM->USART.STATUS.reg = status;
 
         if (!fifo_push(&uart_rx_fifo, byte)) uart_fifo_overflow = true;
