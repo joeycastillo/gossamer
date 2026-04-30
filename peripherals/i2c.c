@@ -56,6 +56,8 @@ void i2c_init_instance(uint8_t sercom, uint32_t baud) {
     SERCOM->I2CM.CTRLA.bit.SWRST = 1;
     while (SERCOM->I2CM.SYNCBUSY.bit.SWRST || SERCOM->I2CM.SYNCBUSY.bit.ENABLE) {};
 
+    /// NOTE: Double SWRST, copied from upstream Castor & Pollux gem_i2c.c -- unsure if intentonal,
+    /// but I trust Thea's instincts more than my own here so I'm leaving it.
     /* Configure SERCOM for i2c master. */
     SERCOM->I2CM.CTRLA.bit.SWRST = 1;
     while (SERCOM->I2CM.SYNCBUSY.bit.SWRST || SERCOM->I2CM.CTRLA.bit.SWRST) {};
