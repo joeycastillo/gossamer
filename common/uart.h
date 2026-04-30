@@ -40,7 +40,10 @@
  *          This interrupt handler will allow the UART to buffer incoming data to a
  *          FIFO, which is what you're actually reading from when you call `uart_read`.
  * @warning If you don't implement the interrupt handler, your application will hang,
- *          and you'll be confused until you read this line! (or in my case, write it)
+ *          and you'll be confused until you read this line!
+ * @warning At this time, only one UART instance is supported, as there is one global
+ *          UART RX and one global UART TX buffer; as such, creating two UART SERCOMs
+ *          will cause data corruption.
  * @{
  */ 
 
