@@ -193,7 +193,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_disable</b> (voi
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>The UART peripheral is used for serial communication over TX and RX pins. </p>
-<p>Note that Gossaermer's UART implementation is interrupt-driven, which is different from the SPI and I2C peripherals. If you want to use the UART, you MUST implement the following function, replacing 'N' with the SERCOM number you are using: <code>void irq_handler_sercomN(void) { uart_irq_handler(N); }</code> This interrupt handler will allow the UART to buffer incoming data to a FIFO, which is what you're actually reading from when you call <code>uart_read</code>. </p><dl class="section warning"><dt>Warning</dt><dd>If you don't implement the interrupt handler, your application will hang, and you'll be confused until you read this line! (or in my case, write it) </dd></dl>
+<p>Note that Gossaermer's UART implementation is interrupt-driven, which is different from the SPI and I2C peripherals. If you want to use the UART, you MUST implement the following function, replacing 'N' with the SERCOM number you are using: <code>void irq_handler_sercomN(void) { uart_irq_handler(N); }</code> This interrupt handler will allow the UART to buffer incoming data to a FIFO, which is what you're actually reading from when you call <code>uart_read</code>. </p><dl class="section warning"><dt>Warning</dt><dd>If you don't implement the interrupt handler, your application will hang, and you'll be confused until you read this line! </dd>
+<dd>
+At this time, only one UART instance is supported, as there is one global UART RX and one global UART TX buffer; as such, creating two UART SERCOMs will cause data corruption. </dd></dl>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga22b6636b750bfa7669521d5be5baed82" name="ga22b6636b750bfa7669521d5be5baed82"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga22b6636b750bfa7669521d5be5baed82">&#9670;&#160;</a></span>uart_disable_instance()</h2>
@@ -346,6 +348,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_disable</b> (voi
   </table>
   </dd>
 </dl>
+<p>NOTE: STATUS may contain error flags. We clear them but don't act on them. Debatable whether this is a bug; it has worked up to now.</p>
 
 </div>
 </div>
