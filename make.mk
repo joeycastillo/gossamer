@@ -208,18 +208,18 @@ DEFINES += \
 #  minute = BUILD_YEAR, BUILD_MONTH, BUILD_DAY, BUILD_HOUR and BUILD_MINUTE are defined
 ifdef TIMESET
 ifeq ($(DETECTED_OS), WINDOWS)
-CURRENT_YEAR := $(shell powershell -Command "[System.DateTime]::Now.Year - 2020")
-CURRENT_MONTH := $(shell powershell -Command "[System.DateTime]::Now.Month")
-CURRENT_DAY := $(shell powershell -Command "[System.DateTime]::Now.Day")
-CURRENT_HOUR := $(shell powershell -Command "[System.DateTime]::Now.Hour")
-CURRENT_MINUTE := $(shell powershell -Command "[System.DateTime]::Now.Minute")
+CURRENT_YEAR := $(shell powershell -Command "[System.DateTime]::UtcNow.Year - 2020")
+CURRENT_MONTH := $(shell powershell -Command "[System.DateTime]::UtcNow.Month")
+CURRENT_DAY := $(shell powershell -Command "[System.DateTime]::UtcNow.Day")
+CURRENT_HOUR := $(shell powershell -Command "[System.DateTime]::UtcNow.Hour")
+CURRENT_MINUTE := $(shell powershell -Command "[System.DateTime]::UtcNow.Minute")
 else
 # Unix/Linux/macOS
 CURRENT_YEAR := $(shell echo $$(($(shell date +"%Y") - 2020)))
-CURRENT_MONTH := $(shell date +"%-m")
-CURRENT_DAY := $(shell date +"%-d")
-CURRENT_HOUR := $(shell date +"%-H")
-CURRENT_MINUTE := $(shell date +"%-M")
+CURRENT_MONTH := $(shell date -z utc +"%-m")
+CURRENT_DAY := $(shell date -z utc +"%-d")
+CURRENT_HOUR := $(shell date -z utc +"%-H")
+CURRENT_MINUTE := $(shell date -z utc +"%-M")
 endif
 ifeq ($(TIMESET), year)
 CFLAGS += -DBUILD_YEAR=$(CURRENT_YEAR)
