@@ -39,6 +39,10 @@ bool eic_is_enabled(void) {
     return true;
 }
 
+int8_t eic_get_channel_for_pin(uint8_t pin) {
+    return 0;
+}
+
 int8_t eic_configure_pin(const uint8_t pin, eic_interrupt_trigger_t trigger, bool filten) {
     return 0;
 }

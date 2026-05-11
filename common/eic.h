@@ -58,6 +58,12 @@ void eic_enable(void);
  */
 bool eic_is_enabled(void);
 
+/** @brief Finds the EIC channel number associated with the pin that is mapped to a pin.
+  * @param pin The external interrupt pin you wish to configure — use HAL_GPIO_xxx_PIN() macro.
+  * @return the EIC channel number associated with the pin, or -1 if the pin is not an interrupt pin.
+  */
+int8_t eic_get_channel_for_pin(uint8_t pin);
+
 /** @brief Configures an external interrupt on one of the external interrupt pins.
   * @details This function configures the interrupt channel with the specified trigger, but it does not
   *          set pin direction, mux or pull; you must set up the pin yourself. This function also does
