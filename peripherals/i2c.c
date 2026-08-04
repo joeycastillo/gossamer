@@ -187,7 +187,13 @@ i2c_result_t i2c_read_instance(uint8_t sercom, uint8_t address, uint8_t* data, s
     for (size_t i = 0; i < len; i++) {
         /* Receive data and wait for RX complete. */
         data[i] = SERCOM->I2CM.DATA.bit.DATA;
-        while (!SERCOM->I2CM.INTFLAG.bit.SB);
+        /* This can hang forever, so put a timeout on it. */
+        size_t w = 0;
+        for (; w < 100000; w++) {
+            if (SERCOM->I2CM.INTFLAG.bit.SB) {
+                break;
+            }
+        }
     }
 
     /* Send STOP command, NACK */
